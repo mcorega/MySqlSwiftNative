@@ -276,32 +276,36 @@ extension SequenceType where Generator.Element == UInt8 {
         return arr
     }
     
-    static func Int32Array(val: Int) -> [UInt8]{
-        var d = val
-        var arr = [UInt8](count: 4, repeatedValue: 0)
-        memccpy(&arr, &d, 4, 4)
-        return arr
+    static func Int32Array(val: Int32) -> [UInt8]{
+        var byteArray = [UInt8](count: 4, repeatedValue: 0)
+        
+        for i in 0...3 {
+            byteArray[i] = UInt8(0x0000FF & val >> Int32((i) * 8))
+        }
+        
+        return byteArray
+
     }
 
-    static func Int64Array(val: Int) -> [UInt8]{
-        var d = val
-        var arr = [UInt8](count: 8, repeatedValue: 0)
-        memccpy(&arr, &d, 8, 8)
-        return arr
+    static func Int64Array(val: Int64) -> [UInt8]{
+        var byteArray = [UInt8](count: 8, repeatedValue: 0)
+        
+        for i in 0...7 {
+            byteArray[i] = UInt8(0x0000FF & val >> Int64((i) * 8))
+        }
+        
+        return byteArray
     }
 
     
     static func UInt32Array(val: UInt32) -> [UInt8]{
-        var buf = [UInt8](count: 4, repeatedValue: 0)
+        var byteArray = [UInt8](count: 4, repeatedValue: 0)
         
-        let b = UInt8(val & 0xff)
+        for i in 0...3 {
+            byteArray[i] = UInt8(0x0000FF & val >> UInt32((i) * 8))
+        }
         
-        buf[0] = b
-        buf[1] = UInt8((val >> 8) & 0xff)
-        buf[2] = UInt8(val >> 16)
-        buf[3] = UInt8(val >> 24)
-        
-        return buf
+        return byteArray
     }
     
     static func UInt16Array(val: UInt16) -> [UInt8]{
@@ -320,6 +324,16 @@ extension SequenceType where Generator.Element == UInt8 {
         
         for i in 0...3 {
             byteArray[i] = UInt8(0x0000FF & val >> Int((i) * 8))
+        }
+        
+        return byteArray
+    }
+    
+    static func UIntArray(val: UInt) -> [UInt8]{
+        var byteArray = [UInt8](count: 4, repeatedValue: 0)
+        
+        for i in 0...3 {
+            byteArray[i] = UInt8(0x0000FF & val >> UInt((i) * 8))
         }
         
         return byteArray

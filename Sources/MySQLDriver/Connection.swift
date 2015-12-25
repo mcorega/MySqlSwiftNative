@@ -71,7 +71,8 @@ public extension MySQL.Connection {
             
             var pos = 0
             //print(data)
-            msh.proto_version = data[pos++]
+            msh.proto_version = data[pos]
+            pos += 1
             msh.server_version = data[pos..<data.count].string()
             pos += (msh.server_version?.utf8.count)! + 1
             msh.conn_id = data[pos...pos+4].uInt32()
@@ -218,7 +219,7 @@ public extension MySQL.Connection {
                     
                     // Field type [uint8]
                     columns![i].fieldType = data[pos]
-                    pos++
+                    pos += 1
                     
                     // Flags [uint16]
                     columns![i].flags = data[pos...pos+1].uInt16()

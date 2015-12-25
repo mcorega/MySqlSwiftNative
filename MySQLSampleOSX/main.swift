@@ -36,7 +36,7 @@ do{
     // insert 300 rows
     for i in 1...300 {
         // use a int, float and a string
-        try ins_stmt.exec(10+i, Float(i)/3.0, "name for \(i)")
+        try ins_stmt.exec(10-i, Float(i)/3.0, "name for \(i)")
     }
     
     // read rows 30 to 60

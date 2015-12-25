@@ -153,8 +153,8 @@ final class Mysql_SHA1 {
         var counter = 0
         
         while msgLength % len != (len - 8) {
-            counter++
-            msgLength++
+            counter += 1
+            msgLength += 1
         }
         
         tmpMessage += Array<UInt8>(count: counter, repeatedValue: 0)

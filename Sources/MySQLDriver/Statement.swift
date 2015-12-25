@@ -145,16 +145,27 @@ public extension MySQL {
                 
                 for v in args {
                     switch v {
+                        
+                    case let vv as Int64:
+                        dataTypeArr += [UInt8].UInt16Array(UInt16(MysqlTypes.MYSQL_TYPE_LONGLONG))
+                        argsArr += [UInt8].Int64Array(vv)
+                        break
+  
                     case let vv as UInt64:
                         dataTypeArr += [UInt8].UInt16Array(UInt16(MysqlTypes.MYSQL_TYPE_LONGLONG))
                         argsArr += [UInt8].UInt64Array(vv)
                         break
-                    
+
                     case let vv as Int:
                         dataTypeArr += [UInt8].UInt16Array(UInt16(MysqlTypes.MYSQL_TYPE_LONG))
-                        argsArr += [UInt8].Int32Array(vv)
+                        argsArr += [UInt8].IntArray(vv)
                         break
-                    
+
+                    case let vv as UInt:
+                        dataTypeArr += [UInt8].UInt16Array(UInt16(MysqlTypes.MYSQL_TYPE_LONG))
+                        argsArr += [UInt8].UIntArray(vv)
+                        break
+                        
                     case let vv as Double:
                         dataTypeArr += [UInt8].UInt16Array(UInt16(MysqlTypes.MYSQL_TYPE_DOUBLE))
                         argsArr += [UInt8].DoubleArray(vv)
