@@ -37,18 +37,18 @@ do{
   // read rows 30 to 60
   for i in 30...60 {
     do {
-    // send query
-    let res = try select_stmt.query(i)
-    
-    //read all rows from the resultset
-    let rows = try res.readAllRows()
-    
-    // print the rows
-    print(rows)
+      // send query
+      let res = try select_stmt.query(i)
+      
+      //read all rows from the resultset
+      let rows = try res.readAllRows()
+      
+      // print the rows
+      print(rows)
     }
     catch (let err) {
-    // if we get a error print it out
-    print(err)
+      // if we get a error print it out
+      print(err)
     }
   }
   try con.close()
