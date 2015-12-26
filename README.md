@@ -63,6 +63,11 @@ use_frameworks!
 pod 'MySqlSwiftNative', '~> 1.0.2'
 ```
 
+### Carthage.
+```
+github "mcorega/MySqlSwiftNative" == 1.0.2
+```
+
 ### License
 Copyright (c) 2015, Marius Corega
 All rights reserved.
