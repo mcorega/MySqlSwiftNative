@@ -15,6 +15,7 @@ public extension MySQL.Connection {
         case StatementPrepareError(String)
         case DataReadingError
         case QueryInProgress
+        case WrongHandshake
     }
     
    public func open() throws {
@@ -142,7 +143,20 @@ public extension MySQL.Connection {
         flags &= UInt32((mysql_Handshake?.cap_flags)!) | 0xffff0000
         //flags = 238213
         
-        let epwd = MySQL.Utils.encPasswd(self.passwd!, scramble: self.mysql_Handshake!.scramble!)
+        var epwd = [UInt8]()
+        
+        if self.passwd != nil {
+            
+            guard mysql_Handshake != nil else {
+                throw Error.WrongHandshake
+            }
+
+            guard mysql_Handshake!.scramble != nil else {
+                throw Error.WrongHandshake
+            }
+
+            epwd = MySQL.Utils.encPasswd(self.passwd!, scramble: self.mysql_Handshake!.scramble!)
+        }
         
         //let pay_len = 4 + 4 + 1 + 23 + user!.utf8.count + 1 + 1 + epwd.count + 21 + 1
         
