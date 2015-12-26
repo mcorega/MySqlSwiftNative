@@ -27,30 +27,31 @@ public extension MySQL {
             self.con = con
         }
         
-       public func query(args:Any...) throws -> Result{
+        public func query(args:[Any]) throws -> Result{
             
             guard self.con != nil else {
                 throw Error.NilConnection
             }
             
-      //      if con!.EOFfound && !con!.hasMoreResults {
-                try writeExecutePacket(args)
-                
-                let resLen = try con!.readResultSetHeaderPacket()
-                self.columns = try con!.readColumns(resLen)
-                
-                return BinaryRow(con: con!)
+            //      if con!.EOFfound && !con!.hasMoreResults {
+            
+            try writeExecutePacket(args)
+            
+            let resLen = try con!.readResultSetHeaderPacket()
+            self.columns = try con!.readColumns(resLen)
+            
+            return BinaryRow(con: con!)
+            
+            //     }
+            //     throw Connection.Error.QueryInProgress
+        }
 
-       //     }
-       //     throw Connection.Error.QueryInProgress
-         }
-        
-        public func exec(args:Any...) throws {
-            
+        public func exec(args:[Any]) throws {
+
             guard self.con != nil else {
                 throw Error.NilConnection
             }
-            
+
           //  if con!.EOFfound && !con!.hasMoreResults {
                 try writeExecutePacket(args)
                 
@@ -89,6 +90,7 @@ public extension MySQL {
         }
     
         func writeExecutePacket(args: [Any]) throws {
+
             if args.count != paramCount {
                 throw Error.ArgsCountMismatch
             }
