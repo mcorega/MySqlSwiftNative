@@ -57,6 +57,12 @@ catch (let e) {
   print(e)
 }
 ```
+### CocoPods.
+```
+use_frameworks!
+pod 'MySqlSwiftNative', '~> 1.0.2'
+```
+
 ### License
 Copyright (C) 2015 Marius Corega. This software is provided 'as-is', without any express or implied warranty.
 
