@@ -1,6 +1,8 @@
 Copyright (c) 2015, Marius Corega
 All rights reserved.
 
+Permission is granted to anyone to use this software for any purpose, 
+including commercial applications, and to alter it and redistribute it freely.
 Redistribution and use in source and binary forms, with or without
 modification, are permitted provided that the following conditions are met:
 
@@ -14,6 +16,12 @@ modification, are permitted provided that the following conditions are met:
 * Neither the name of the {organization} nor the names of its
   contributors may be used to endorse or promote products derived from
   this software without specific prior written permission.
+
+* If you use this software in a product, an acknowledgment in the product 
+  documentation is required.Altered source versions must be plainly marked 
+  as such, and must not be misrepresented as being the original software. 
+  This notice may not be removed or altered from any source or binary distribution.
+  
 
 THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
 AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
