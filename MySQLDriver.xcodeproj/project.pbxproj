@@ -7,6 +7,66 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3B1392BE1C2F3C1C00AA463B /* Connection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B1392B31C2F3C1C00AA463B /* Connection.swift */; };
+		3B1392BF1C2F3C1C00AA463B /* Connection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B1392B31C2F3C1C00AA463B /* Connection.swift */; };
+		3B1392C01C2F3C1C00AA463B /* Connection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B1392B31C2F3C1C00AA463B /* Connection.swift */; };
+		3B1392C11C2F3C1C00AA463B /* Connection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B1392B31C2F3C1C00AA463B /* Connection.swift */; };
+		3B1392C21C2F3C1C00AA463B /* Connection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B1392B31C2F3C1C00AA463B /* Connection.swift */; };
+		3B1392C31C2F3C1C00AA463B /* Connection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B1392B31C2F3C1C00AA463B /* Connection.swift */; };
+		3B1392C41C2F3C1C00AA463B /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B1392B41C2F3C1C00AA463B /* Constants.swift */; };
+		3B1392C51C2F3C1C00AA463B /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B1392B41C2F3C1C00AA463B /* Constants.swift */; };
+		3B1392C61C2F3C1C00AA463B /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B1392B41C2F3C1C00AA463B /* Constants.swift */; };
+		3B1392C71C2F3C1C00AA463B /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B1392B41C2F3C1C00AA463B /* Constants.swift */; };
+		3B1392C81C2F3C1C00AA463B /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B1392B41C2F3C1C00AA463B /* Constants.swift */; };
+		3B1392C91C2F3C1C00AA463B /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B1392B41C2F3C1C00AA463B /* Constants.swift */; };
+		3B1392D01C2F3C1C00AA463B /* mysql.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B1392B61C2F3C1C00AA463B /* mysql.swift */; };
+		3B1392D11C2F3C1C00AA463B /* mysql.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B1392B61C2F3C1C00AA463B /* mysql.swift */; };
+		3B1392D21C2F3C1C00AA463B /* mysql.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B1392B61C2F3C1C00AA463B /* mysql.swift */; };
+		3B1392D31C2F3C1C00AA463B /* mysql.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B1392B61C2F3C1C00AA463B /* mysql.swift */; };
+		3B1392D41C2F3C1C00AA463B /* mysql.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B1392B61C2F3C1C00AA463B /* mysql.swift */; };
+		3B1392D51C2F3C1C00AA463B /* mysql.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B1392B61C2F3C1C00AA463B /* mysql.swift */; };
+		3B1392D61C2F3C1C00AA463B /* Packets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B1392B71C2F3C1C00AA463B /* Packets.swift */; };
+		3B1392D71C2F3C1C00AA463B /* Packets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B1392B71C2F3C1C00AA463B /* Packets.swift */; };
+		3B1392D81C2F3C1C00AA463B /* Packets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B1392B71C2F3C1C00AA463B /* Packets.swift */; };
+		3B1392D91C2F3C1C00AA463B /* Packets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B1392B71C2F3C1C00AA463B /* Packets.swift */; };
+		3B1392DA1C2F3C1C00AA463B /* Packets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B1392B71C2F3C1C00AA463B /* Packets.swift */; };
+		3B1392DB1C2F3C1C00AA463B /* Packets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B1392B71C2F3C1C00AA463B /* Packets.swift */; };
+		3B1392DC1C2F3C1C00AA463B /* Query.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B1392B81C2F3C1C00AA463B /* Query.swift */; };
+		3B1392DD1C2F3C1C00AA463B /* Query.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B1392B81C2F3C1C00AA463B /* Query.swift */; };
+		3B1392DE1C2F3C1C00AA463B /* Query.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B1392B81C2F3C1C00AA463B /* Query.swift */; };
+		3B1392DF1C2F3C1C00AA463B /* Query.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B1392B81C2F3C1C00AA463B /* Query.swift */; };
+		3B1392E01C2F3C1C00AA463B /* Query.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B1392B81C2F3C1C00AA463B /* Query.swift */; };
+		3B1392E11C2F3C1C00AA463B /* Query.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B1392B81C2F3C1C00AA463B /* Query.swift */; };
+		3B1392E21C2F3C1C00AA463B /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B1392B91C2F3C1C00AA463B /* Result.swift */; };
+		3B1392E31C2F3C1C00AA463B /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B1392B91C2F3C1C00AA463B /* Result.swift */; };
+		3B1392E41C2F3C1C00AA463B /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B1392B91C2F3C1C00AA463B /* Result.swift */; };
+		3B1392E51C2F3C1C00AA463B /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B1392B91C2F3C1C00AA463B /* Result.swift */; };
+		3B1392E61C2F3C1C00AA463B /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B1392B91C2F3C1C00AA463B /* Result.swift */; };
+		3B1392E71C2F3C1C00AA463B /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B1392B91C2F3C1C00AA463B /* Result.swift */; };
+		3B1392E81C2F3C1C00AA463B /* sha1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B1392BA1C2F3C1C00AA463B /* sha1.swift */; };
+		3B1392E91C2F3C1C00AA463B /* sha1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B1392BA1C2F3C1C00AA463B /* sha1.swift */; };
+		3B1392EA1C2F3C1C00AA463B /* sha1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B1392BA1C2F3C1C00AA463B /* sha1.swift */; };
+		3B1392EB1C2F3C1C00AA463B /* sha1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B1392BA1C2F3C1C00AA463B /* sha1.swift */; };
+		3B1392EC1C2F3C1C00AA463B /* sha1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B1392BA1C2F3C1C00AA463B /* sha1.swift */; };
+		3B1392ED1C2F3C1C00AA463B /* sha1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B1392BA1C2F3C1C00AA463B /* sha1.swift */; };
+		3B1392EE1C2F3C1C00AA463B /* Socket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B1392BB1C2F3C1C00AA463B /* Socket.swift */; };
+		3B1392EF1C2F3C1C00AA463B /* Socket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B1392BB1C2F3C1C00AA463B /* Socket.swift */; };
+		3B1392F01C2F3C1C00AA463B /* Socket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B1392BB1C2F3C1C00AA463B /* Socket.swift */; };
+		3B1392F11C2F3C1C00AA463B /* Socket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B1392BB1C2F3C1C00AA463B /* Socket.swift */; };
+		3B1392F21C2F3C1C00AA463B /* Socket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B1392BB1C2F3C1C00AA463B /* Socket.swift */; };
+		3B1392F31C2F3C1C00AA463B /* Socket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B1392BB1C2F3C1C00AA463B /* Socket.swift */; };
+		3B1392F41C2F3C1C00AA463B /* Statement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B1392BC1C2F3C1C00AA463B /* Statement.swift */; };
+		3B1392F51C2F3C1C00AA463B /* Statement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B1392BC1C2F3C1C00AA463B /* Statement.swift */; };
+		3B1392F61C2F3C1C00AA463B /* Statement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B1392BC1C2F3C1C00AA463B /* Statement.swift */; };
+		3B1392F71C2F3C1C00AA463B /* Statement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B1392BC1C2F3C1C00AA463B /* Statement.swift */; };
+		3B1392F81C2F3C1C00AA463B /* Statement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B1392BC1C2F3C1C00AA463B /* Statement.swift */; };
+		3B1392F91C2F3C1C00AA463B /* Statement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B1392BC1C2F3C1C00AA463B /* Statement.swift */; };
+		3B1392FA1C2F3C1C00AA463B /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B1392BD1C2F3C1C00AA463B /* Utils.swift */; };
+		3B1392FB1C2F3C1C00AA463B /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B1392BD1C2F3C1C00AA463B /* Utils.swift */; };
+		3B1392FC1C2F3C1C00AA463B /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B1392BD1C2F3C1C00AA463B /* Utils.swift */; };
+		3B1392FD1C2F3C1C00AA463B /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B1392BD1C2F3C1C00AA463B /* Utils.swift */; };
+		3B1392FE1C2F3C1C00AA463B /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B1392BD1C2F3C1C00AA463B /* Utils.swift */; };
+		3B1392FF1C2F3C1C00AA463B /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B1392BD1C2F3C1C00AA463B /* Utils.swift */; };
 		3B28C3DD1C2D73E8008CA202 /* MySQLDriverMac.h in Headers */ = {isa = PBXBuildFile; fileRef = 3B28C3DC1C2D73E8008CA202 /* MySQLDriverMac.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3B28C3E41C2D73E8008CA202 /* MySQLDriverMac.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B28C3D91C2D73E8008CA202 /* MySQLDriverMac.framework */; };
 		3B28C3E91C2D73E8008CA202 /* MySQLDriverMacTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B28C3E81C2D73E8008CA202 /* MySQLDriverMacTests.swift */; };
@@ -14,56 +74,6 @@
 		3B28C4041C2D74D4008CA202 /* MySQLDriveriOS.h in Headers */ = {isa = PBXBuildFile; fileRef = 3B28C4031C2D74D4008CA202 /* MySQLDriveriOS.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3B28C40B1C2D74D4008CA202 /* MySQLDriveriOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B28C4011C2D74D4008CA202 /* MySQLDriveriOS.framework */; };
 		3B28C4101C2D74D4008CA202 /* MySQLDriveriOSTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B28C40F1C2D74D4008CA202 /* MySQLDriveriOSTests.swift */; };
-		3B28C4251C2D7547008CA202 /* Connection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B28C41B1C2D7547008CA202 /* Connection.swift */; };
-		3B28C4261C2D7547008CA202 /* Connection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B28C41B1C2D7547008CA202 /* Connection.swift */; };
-		3B28C4281C2D7547008CA202 /* Connection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B28C41B1C2D7547008CA202 /* Connection.swift */; };
-		3B28C4291C2D7547008CA202 /* Connection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B28C41B1C2D7547008CA202 /* Connection.swift */; };
-		3B28C42A1C2D7547008CA202 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B28C41C1C2D7547008CA202 /* Constants.swift */; };
-		3B28C42B1C2D7547008CA202 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B28C41C1C2D7547008CA202 /* Constants.swift */; };
-		3B28C42D1C2D7547008CA202 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B28C41C1C2D7547008CA202 /* Constants.swift */; };
-		3B28C42E1C2D7547008CA202 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B28C41C1C2D7547008CA202 /* Constants.swift */; };
-		3B28C42F1C2D7547008CA202 /* mysql.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B28C41D1C2D7547008CA202 /* mysql.swift */; };
-		3B28C4301C2D7547008CA202 /* mysql.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B28C41D1C2D7547008CA202 /* mysql.swift */; };
-		3B28C4321C2D7547008CA202 /* mysql.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B28C41D1C2D7547008CA202 /* mysql.swift */; };
-		3B28C4331C2D7547008CA202 /* mysql.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B28C41D1C2D7547008CA202 /* mysql.swift */; };
-		3B28C4341C2D7547008CA202 /* Packets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B28C41E1C2D7547008CA202 /* Packets.swift */; };
-		3B28C4351C2D7547008CA202 /* Packets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B28C41E1C2D7547008CA202 /* Packets.swift */; };
-		3B28C4371C2D7547008CA202 /* Packets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B28C41E1C2D7547008CA202 /* Packets.swift */; };
-		3B28C4381C2D7547008CA202 /* Packets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B28C41E1C2D7547008CA202 /* Packets.swift */; };
-		3B28C4391C2D7547008CA202 /* Query.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B28C41F1C2D7547008CA202 /* Query.swift */; };
-		3B28C43A1C2D7547008CA202 /* Query.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B28C41F1C2D7547008CA202 /* Query.swift */; };
-		3B28C43C1C2D7547008CA202 /* Query.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B28C41F1C2D7547008CA202 /* Query.swift */; };
-		3B28C43D1C2D7547008CA202 /* Query.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B28C41F1C2D7547008CA202 /* Query.swift */; };
-		3B28C43E1C2D7547008CA202 /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B28C4201C2D7547008CA202 /* Result.swift */; };
-		3B28C43F1C2D7547008CA202 /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B28C4201C2D7547008CA202 /* Result.swift */; };
-		3B28C4411C2D7547008CA202 /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B28C4201C2D7547008CA202 /* Result.swift */; };
-		3B28C4421C2D7547008CA202 /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B28C4201C2D7547008CA202 /* Result.swift */; };
-		3B28C4431C2D7547008CA202 /* sha1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B28C4211C2D7547008CA202 /* sha1.swift */; };
-		3B28C4441C2D7547008CA202 /* sha1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B28C4211C2D7547008CA202 /* sha1.swift */; };
-		3B28C4461C2D7547008CA202 /* sha1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B28C4211C2D7547008CA202 /* sha1.swift */; };
-		3B28C4471C2D7547008CA202 /* sha1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B28C4211C2D7547008CA202 /* sha1.swift */; };
-		3B28C4481C2D7547008CA202 /* Socket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B28C4221C2D7547008CA202 /* Socket.swift */; };
-		3B28C4491C2D7547008CA202 /* Socket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B28C4221C2D7547008CA202 /* Socket.swift */; };
-		3B28C44B1C2D7547008CA202 /* Socket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B28C4221C2D7547008CA202 /* Socket.swift */; };
-		3B28C44C1C2D7547008CA202 /* Socket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B28C4221C2D7547008CA202 /* Socket.swift */; };
-		3B28C44D1C2D7547008CA202 /* Statement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B28C4231C2D7547008CA202 /* Statement.swift */; };
-		3B28C44E1C2D7547008CA202 /* Statement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B28C4231C2D7547008CA202 /* Statement.swift */; };
-		3B28C4501C2D7547008CA202 /* Statement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B28C4231C2D7547008CA202 /* Statement.swift */; };
-		3B28C4511C2D7547008CA202 /* Statement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B28C4231C2D7547008CA202 /* Statement.swift */; };
-		3B28C4521C2D7547008CA202 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B28C4241C2D7547008CA202 /* Utils.swift */; };
-		3B28C4531C2D7547008CA202 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B28C4241C2D7547008CA202 /* Utils.swift */; };
-		3B28C4551C2D7547008CA202 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B28C4241C2D7547008CA202 /* Utils.swift */; };
-		3B28C4561C2D7547008CA202 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B28C4241C2D7547008CA202 /* Utils.swift */; };
-		3B28C4631C2D7E65008CA202 /* Connection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B28C41B1C2D7547008CA202 /* Connection.swift */; };
-		3B28C4641C2D7E65008CA202 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B28C41C1C2D7547008CA202 /* Constants.swift */; };
-		3B28C4651C2D7E65008CA202 /* mysql.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B28C41D1C2D7547008CA202 /* mysql.swift */; };
-		3B28C4661C2D7E65008CA202 /* Packets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B28C41E1C2D7547008CA202 /* Packets.swift */; };
-		3B28C4671C2D7E65008CA202 /* Query.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B28C41F1C2D7547008CA202 /* Query.swift */; };
-		3B28C4681C2D7E65008CA202 /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B28C4201C2D7547008CA202 /* Result.swift */; };
-		3B28C4691C2D7E65008CA202 /* sha1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B28C4211C2D7547008CA202 /* sha1.swift */; };
-		3B28C46A1C2D7E65008CA202 /* Socket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B28C4221C2D7547008CA202 /* Socket.swift */; };
-		3B28C46B1C2D7E65008CA202 /* Statement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B28C4231C2D7547008CA202 /* Statement.swift */; };
-		3B28C46C1C2D7E65008CA202 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B28C4241C2D7547008CA202 /* Utils.swift */; };
 		3B28C4741C2D91B6008CA202 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B28C4731C2D91B6008CA202 /* AppDelegate.swift */; };
 		3B28C4761C2D91B6008CA202 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B28C4751C2D91B6008CA202 /* ViewController.swift */; };
 		3B28C4791C2D91B6008CA202 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3B28C4771C2D91B6008CA202 /* Main.storyboard */; };
@@ -121,6 +131,16 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		3B1392B31C2F3C1C00AA463B /* Connection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Connection.swift; sourceTree = "<group>"; };
+		3B1392B41C2F3C1C00AA463B /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		3B1392B61C2F3C1C00AA463B /* mysql.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = mysql.swift; sourceTree = "<group>"; };
+		3B1392B71C2F3C1C00AA463B /* Packets.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Packets.swift; sourceTree = "<group>"; };
+		3B1392B81C2F3C1C00AA463B /* Query.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Query.swift; sourceTree = "<group>"; };
+		3B1392B91C2F3C1C00AA463B /* Result.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Result.swift; sourceTree = "<group>"; };
+		3B1392BA1C2F3C1C00AA463B /* sha1.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = sha1.swift; sourceTree = "<group>"; };
+		3B1392BB1C2F3C1C00AA463B /* Socket.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Socket.swift; sourceTree = "<group>"; };
+		3B1392BC1C2F3C1C00AA463B /* Statement.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Statement.swift; sourceTree = "<group>"; };
+		3B1392BD1C2F3C1C00AA463B /* Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		3B28C3D91C2D73E8008CA202 /* MySQLDriverMac.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = MySQLDriverMac.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3B28C3DC1C2D73E8008CA202 /* MySQLDriverMac.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MySQLDriverMac.h; sourceTree = "<group>"; };
 		3B28C3DE1C2D73E8008CA202 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -136,16 +156,6 @@
 		3B28C40F1C2D74D4008CA202 /* MySQLDriveriOSTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MySQLDriveriOSTests.swift; sourceTree = "<group>"; };
 		3B28C4111C2D74D4008CA202 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3B28C4181C2D74FD008CA202 /* Package.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Package.swift; sourceTree = "<group>"; };
-		3B28C41B1C2D7547008CA202 /* Connection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Connection.swift; sourceTree = "<group>"; };
-		3B28C41C1C2D7547008CA202 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
-		3B28C41D1C2D7547008CA202 /* mysql.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = mysql.swift; sourceTree = "<group>"; };
-		3B28C41E1C2D7547008CA202 /* Packets.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Packets.swift; sourceTree = "<group>"; };
-		3B28C41F1C2D7547008CA202 /* Query.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Query.swift; sourceTree = "<group>"; };
-		3B28C4201C2D7547008CA202 /* Result.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Result.swift; sourceTree = "<group>"; };
-		3B28C4211C2D7547008CA202 /* sha1.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = sha1.swift; sourceTree = "<group>"; };
-		3B28C4221C2D7547008CA202 /* Socket.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Socket.swift; sourceTree = "<group>"; };
-		3B28C4231C2D7547008CA202 /* Statement.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Statement.swift; sourceTree = "<group>"; };
-		3B28C4241C2D7547008CA202 /* Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		3B28C4711C2D91B5008CA202 /* MySQLSampleiOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MySQLSampleiOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3B28C4731C2D91B6008CA202 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3B28C4751C2D91B6008CA202 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -204,11 +214,36 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3B1392B11C2F3C1C00AA463B /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				3B1392B21C2F3C1C00AA463B /* MySqlSwiftNative */,
+			);
+			path = Sources;
+			sourceTree = "<group>";
+		};
+		3B1392B21C2F3C1C00AA463B /* MySqlSwiftNative */ = {
+			isa = PBXGroup;
+			children = (
+				3B1392B31C2F3C1C00AA463B /* Connection.swift */,
+				3B1392B41C2F3C1C00AA463B /* Constants.swift */,
+				3B1392B61C2F3C1C00AA463B /* mysql.swift */,
+				3B1392B71C2F3C1C00AA463B /* Packets.swift */,
+				3B1392B81C2F3C1C00AA463B /* Query.swift */,
+				3B1392B91C2F3C1C00AA463B /* Result.swift */,
+				3B1392BA1C2F3C1C00AA463B /* sha1.swift */,
+				3B1392BB1C2F3C1C00AA463B /* Socket.swift */,
+				3B1392BC1C2F3C1C00AA463B /* Statement.swift */,
+				3B1392BD1C2F3C1C00AA463B /* Utils.swift */,
+			);
+			path = MySqlSwiftNative;
+			sourceTree = "<group>";
+		};
 		3B28C3CD1C2D7360008CA202 = {
 			isa = PBXGroup;
 			children = (
 				3B28C4181C2D74FD008CA202 /* Package.swift */,
-				3B28C4191C2D7547008CA202 /* Sources */,
+				3B1392B11C2F3C1C00AA463B /* Sources */,
 				3B28C3DB1C2D73E8008CA202 /* MySQLDriverMac */,
 				3B28C3E71C2D73E8008CA202 /* MySQLDriverMacTests */,
 				3B28C3F61C2D7423008CA202 /* MySQLSampleOSX */,
@@ -274,31 +309,6 @@
 				3B28C4111C2D74D4008CA202 /* Info.plist */,
 			);
 			path = MySQLDriveriOSTests;
-			sourceTree = "<group>";
-		};
-		3B28C4191C2D7547008CA202 /* Sources */ = {
-			isa = PBXGroup;
-			children = (
-				3B28C41A1C2D7547008CA202 /* MySQLDriver */,
-			);
-			path = Sources;
-			sourceTree = "<group>";
-		};
-		3B28C41A1C2D7547008CA202 /* MySQLDriver */ = {
-			isa = PBXGroup;
-			children = (
-				3B28C41B1C2D7547008CA202 /* Connection.swift */,
-				3B28C41C1C2D7547008CA202 /* Constants.swift */,
-				3B28C41D1C2D7547008CA202 /* mysql.swift */,
-				3B28C41E1C2D7547008CA202 /* Packets.swift */,
-				3B28C41F1C2D7547008CA202 /* Query.swift */,
-				3B28C4201C2D7547008CA202 /* Result.swift */,
-				3B28C4211C2D7547008CA202 /* sha1.swift */,
-				3B28C4221C2D7547008CA202 /* Socket.swift */,
-				3B28C4231C2D7547008CA202 /* Statement.swift */,
-				3B28C4241C2D7547008CA202 /* Utils.swift */,
-			);
-			path = MySQLDriver;
 			sourceTree = "<group>";
 		};
 		3B28C4721C2D91B6008CA202 /* MySQLSampleiOS */ = {
@@ -545,16 +555,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3B28C44D1C2D7547008CA202 /* Statement.swift in Sources */,
-				3B28C4481C2D7547008CA202 /* Socket.swift in Sources */,
-				3B28C43E1C2D7547008CA202 /* Result.swift in Sources */,
-				3B28C4391C2D7547008CA202 /* Query.swift in Sources */,
-				3B28C4251C2D7547008CA202 /* Connection.swift in Sources */,
-				3B28C4521C2D7547008CA202 /* Utils.swift in Sources */,
-				3B28C42A1C2D7547008CA202 /* Constants.swift in Sources */,
-				3B28C4431C2D7547008CA202 /* sha1.swift in Sources */,
-				3B28C42F1C2D7547008CA202 /* mysql.swift in Sources */,
-				3B28C4341C2D7547008CA202 /* Packets.swift in Sources */,
+				3B1392D01C2F3C1C00AA463B /* mysql.swift in Sources */,
+				3B1392BE1C2F3C1C00AA463B /* Connection.swift in Sources */,
+				3B1392E81C2F3C1C00AA463B /* sha1.swift in Sources */,
+				3B1392D61C2F3C1C00AA463B /* Packets.swift in Sources */,
+				3B1392C41C2F3C1C00AA463B /* Constants.swift in Sources */,
+				3B1392EE1C2F3C1C00AA463B /* Socket.swift in Sources */,
+				3B1392E21C2F3C1C00AA463B /* Result.swift in Sources */,
+				3B1392FA1C2F3C1C00AA463B /* Utils.swift in Sources */,
+				3B1392DC1C2F3C1C00AA463B /* Query.swift in Sources */,
+				3B1392F41C2F3C1C00AA463B /* Statement.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -562,17 +572,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3B28C4301C2D7547008CA202 /* mysql.swift in Sources */,
 				3B28C3E91C2D73E8008CA202 /* MySQLDriverMacTests.swift in Sources */,
-				3B28C4441C2D7547008CA202 /* sha1.swift in Sources */,
-				3B28C4351C2D7547008CA202 /* Packets.swift in Sources */,
-				3B28C4261C2D7547008CA202 /* Connection.swift in Sources */,
-				3B28C4491C2D7547008CA202 /* Socket.swift in Sources */,
-				3B28C43F1C2D7547008CA202 /* Result.swift in Sources */,
-				3B28C4531C2D7547008CA202 /* Utils.swift in Sources */,
-				3B28C43A1C2D7547008CA202 /* Query.swift in Sources */,
-				3B28C42B1C2D7547008CA202 /* Constants.swift in Sources */,
-				3B28C44E1C2D7547008CA202 /* Statement.swift in Sources */,
+				3B1392DD1C2F3C1C00AA463B /* Query.swift in Sources */,
+				3B1392EF1C2F3C1C00AA463B /* Socket.swift in Sources */,
+				3B1392BF1C2F3C1C00AA463B /* Connection.swift in Sources */,
+				3B1392E91C2F3C1C00AA463B /* sha1.swift in Sources */,
+				3B1392D11C2F3C1C00AA463B /* mysql.swift in Sources */,
+				3B1392C51C2F3C1C00AA463B /* Constants.swift in Sources */,
+				3B1392E31C2F3C1C00AA463B /* Result.swift in Sources */,
+				3B1392D71C2F3C1C00AA463B /* Packets.swift in Sources */,
+				3B1392F51C2F3C1C00AA463B /* Statement.swift in Sources */,
+				3B1392FB1C2F3C1C00AA463B /* Utils.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -580,17 +590,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3B28C4651C2D7E65008CA202 /* mysql.swift in Sources */,
 				3B28C3F81C2D7423008CA202 /* main.swift in Sources */,
-				3B28C4691C2D7E65008CA202 /* sha1.swift in Sources */,
-				3B28C4661C2D7E65008CA202 /* Packets.swift in Sources */,
-				3B28C4631C2D7E65008CA202 /* Connection.swift in Sources */,
-				3B28C46A1C2D7E65008CA202 /* Socket.swift in Sources */,
-				3B28C4681C2D7E65008CA202 /* Result.swift in Sources */,
-				3B28C46C1C2D7E65008CA202 /* Utils.swift in Sources */,
-				3B28C4671C2D7E65008CA202 /* Query.swift in Sources */,
-				3B28C4641C2D7E65008CA202 /* Constants.swift in Sources */,
-				3B28C46B1C2D7E65008CA202 /* Statement.swift in Sources */,
+				3B1392DE1C2F3C1C00AA463B /* Query.swift in Sources */,
+				3B1392F01C2F3C1C00AA463B /* Socket.swift in Sources */,
+				3B1392C01C2F3C1C00AA463B /* Connection.swift in Sources */,
+				3B1392EA1C2F3C1C00AA463B /* sha1.swift in Sources */,
+				3B1392D21C2F3C1C00AA463B /* mysql.swift in Sources */,
+				3B1392C61C2F3C1C00AA463B /* Constants.swift in Sources */,
+				3B1392E41C2F3C1C00AA463B /* Result.swift in Sources */,
+				3B1392D81C2F3C1C00AA463B /* Packets.swift in Sources */,
+				3B1392F61C2F3C1C00AA463B /* Statement.swift in Sources */,
+				3B1392FC1C2F3C1C00AA463B /* Utils.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -598,16 +608,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3B28C4501C2D7547008CA202 /* Statement.swift in Sources */,
-				3B28C44B1C2D7547008CA202 /* Socket.swift in Sources */,
-				3B28C4411C2D7547008CA202 /* Result.swift in Sources */,
-				3B28C43C1C2D7547008CA202 /* Query.swift in Sources */,
-				3B28C4281C2D7547008CA202 /* Connection.swift in Sources */,
-				3B28C4551C2D7547008CA202 /* Utils.swift in Sources */,
-				3B28C42D1C2D7547008CA202 /* Constants.swift in Sources */,
-				3B28C4461C2D7547008CA202 /* sha1.swift in Sources */,
-				3B28C4321C2D7547008CA202 /* mysql.swift in Sources */,
-				3B28C4371C2D7547008CA202 /* Packets.swift in Sources */,
+				3B1392D31C2F3C1C00AA463B /* mysql.swift in Sources */,
+				3B1392C11C2F3C1C00AA463B /* Connection.swift in Sources */,
+				3B1392EB1C2F3C1C00AA463B /* sha1.swift in Sources */,
+				3B1392D91C2F3C1C00AA463B /* Packets.swift in Sources */,
+				3B1392C71C2F3C1C00AA463B /* Constants.swift in Sources */,
+				3B1392F11C2F3C1C00AA463B /* Socket.swift in Sources */,
+				3B1392E51C2F3C1C00AA463B /* Result.swift in Sources */,
+				3B1392FD1C2F3C1C00AA463B /* Utils.swift in Sources */,
+				3B1392DF1C2F3C1C00AA463B /* Query.swift in Sources */,
+				3B1392F71C2F3C1C00AA463B /* Statement.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -615,17 +625,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3B28C4331C2D7547008CA202 /* mysql.swift in Sources */,
 				3B28C4101C2D74D4008CA202 /* MySQLDriveriOSTests.swift in Sources */,
-				3B28C4471C2D7547008CA202 /* sha1.swift in Sources */,
-				3B28C4381C2D7547008CA202 /* Packets.swift in Sources */,
-				3B28C4291C2D7547008CA202 /* Connection.swift in Sources */,
-				3B28C44C1C2D7547008CA202 /* Socket.swift in Sources */,
-				3B28C4421C2D7547008CA202 /* Result.swift in Sources */,
-				3B28C4561C2D7547008CA202 /* Utils.swift in Sources */,
-				3B28C43D1C2D7547008CA202 /* Query.swift in Sources */,
-				3B28C42E1C2D7547008CA202 /* Constants.swift in Sources */,
-				3B28C4511C2D7547008CA202 /* Statement.swift in Sources */,
+				3B1392E01C2F3C1C00AA463B /* Query.swift in Sources */,
+				3B1392F21C2F3C1C00AA463B /* Socket.swift in Sources */,
+				3B1392C21C2F3C1C00AA463B /* Connection.swift in Sources */,
+				3B1392EC1C2F3C1C00AA463B /* sha1.swift in Sources */,
+				3B1392D41C2F3C1C00AA463B /* mysql.swift in Sources */,
+				3B1392C81C2F3C1C00AA463B /* Constants.swift in Sources */,
+				3B1392E61C2F3C1C00AA463B /* Result.swift in Sources */,
+				3B1392DA1C2F3C1C00AA463B /* Packets.swift in Sources */,
+				3B1392F81C2F3C1C00AA463B /* Statement.swift in Sources */,
+				3B1392FE1C2F3C1C00AA463B /* Utils.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -633,8 +643,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3B1392E71C2F3C1C00AA463B /* Result.swift in Sources */,
 				3B28C4761C2D91B6008CA202 /* ViewController.swift in Sources */,
+				3B1392F91C2F3C1C00AA463B /* Statement.swift in Sources */,
+				3B1392D51C2F3C1C00AA463B /* mysql.swift in Sources */,
+				3B1392FF1C2F3C1C00AA463B /* Utils.swift in Sources */,
+				3B1392C31C2F3C1C00AA463B /* Connection.swift in Sources */,
+				3B1392E11C2F3C1C00AA463B /* Query.swift in Sources */,
+				3B1392F31C2F3C1C00AA463B /* Socket.swift in Sources */,
+				3B1392ED1C2F3C1C00AA463B /* sha1.swift in Sources */,
+				3B1392DB1C2F3C1C00AA463B /* Packets.swift in Sources */,
 				3B28C4741C2D91B6008CA202 /* AppDelegate.swift in Sources */,
+				3B1392C91C2F3C1C00AA463B /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1290,6 +1310,7 @@
 				3B28C3ED1C2D73E8008CA202 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		3B28C3EE1C2D73E8008CA202 /* Build configuration list for PBXNativeTarget "MySQLDriverMacTests" */ = {
 			isa = XCConfigurationList;
@@ -1298,6 +1319,7 @@
 				3B28C3F01C2D73E8008CA202 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		3B28C3F91C2D7423008CA202 /* Build configuration list for PBXNativeTarget "MySQLSampleOSX" */ = {
 			isa = XCConfigurationList;
@@ -1306,6 +1328,7 @@
 				3B28C3FB1C2D7423008CA202 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		3B28C4121C2D74D4008CA202 /* Build configuration list for PBXNativeTarget "MySQLDriveriOS" */ = {
 			isa = XCConfigurationList;
@@ -1314,6 +1337,7 @@
 				3B28C4141C2D74D4008CA202 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		3B28C4151C2D74D4008CA202 /* Build configuration list for PBXNativeTarget "MySQLDriveriOSTests" */ = {
 			isa = XCConfigurationList;
@@ -1322,6 +1346,7 @@
 				3B28C4171C2D74D4008CA202 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		3B28C4801C2D91B6008CA202 /* Build configuration list for PBXNativeTarget "MySQLSampleiOS" */ = {
 			isa = XCConfigurationList;
@@ -1330,6 +1355,7 @@
 				3B28C4821C2D91B6008CA202 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
