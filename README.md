@@ -57,7 +57,7 @@ catch (let e) {
   print(e)
 }
 ```
-### CocoPods.
+### CocoaPods.
 ```
 use_frameworks!
 pod 'MySqlSwiftNative', '~> 1.0.2'
