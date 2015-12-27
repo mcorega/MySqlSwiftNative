@@ -154,7 +154,7 @@ extension SequenceType where Generator.Element == UInt8 {
         let arr = self.map { (elem) -> UInt8 in
             return elem
         }
-        return UInt32(arr[1])<<16 | UInt32(arr[1])<<8 | UInt32(arr[0])
+        return UInt32(arr[2])<<16 | UInt32(arr[1])<<8 | UInt32(arr[0])
     }
 
     func int32() -> Int32 {
