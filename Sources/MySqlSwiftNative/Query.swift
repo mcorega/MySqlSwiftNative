@@ -104,8 +104,15 @@ public extension MySQL.Connection {
         }
     }
     
-    func select(dbname:String) throws {
-        try exec("USE " + dbname)
+    func use(dbname:String) throws {
+        try writeCommandPacketStr(MysqlCommands.COM_INIT_DB, q: dbname)
+        
+        let resLen = try readResultSetHeaderPacket()
+        
+        if resLen > 0 {
+            try readUntilEOF()
+            try readUntilEOF()
+        }
     }
     
     /*
