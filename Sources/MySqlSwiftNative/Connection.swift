@@ -143,6 +143,10 @@ public extension MySQL.Connection {
         flags &= UInt32((mysql_Handshake?.cap_flags)!) | 0xffff0000
         //flags = 238213
         
+        if self.dbname != nil {
+            flags |= MysqlClientCaps.CLIENT_CONNECT_WITH_DB
+        }
+        
         var epwd = [UInt8]()
         
         if self.passwd != nil {
@@ -162,7 +166,9 @@ public extension MySQL.Connection {
         
         var arr = [UInt8]()
         
+        //write flags
         arr.appendContentsOf([UInt8].UInt32Array(UInt32(flags)))
+        //write max len packet
         arr.appendContentsOf([UInt8].UInt32Array(16777215))
         
         //  socket!.writeUInt8(33) //socket!.writeUInt8(mysql_Handshake!.lang!)
@@ -170,6 +176,7 @@ public extension MySQL.Connection {
         
         arr.appendContentsOf([UInt8](count: 23, repeatedValue: 0))
         
+        //send username
         arr.appendContentsOf(user!.utf8)
         arr.append(0)
         
@@ -177,8 +184,13 @@ public extension MySQL.Connection {
         arr.append(UInt8(epwd.count))
         arr.appendContentsOf(epwd)
         
-        arr.appendContentsOf("mysql_native_password".utf8)
+        //db name
+        if self.dbname != nil {
+            arr.appendContentsOf(self.dbname!.utf8)
+        }
+        arr.append(0)
         
+        arr.appendContentsOf("mysql_native_password".utf8)
         arr.append(0)
         
         //print(arr)

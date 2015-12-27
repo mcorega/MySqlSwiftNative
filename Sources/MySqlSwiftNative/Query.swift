@@ -106,6 +106,7 @@ public extension MySQL.Connection {
     
     func use(dbname:String) throws {
         try writeCommandPacketStr(MysqlCommands.COM_INIT_DB, q: dbname)
+        self.dbname = dbname
         
         let resLen = try readResultSetHeaderPacket()
         
