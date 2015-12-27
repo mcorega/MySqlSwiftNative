@@ -244,9 +244,40 @@ extension MySQL {
                     case MysqlTypes.MYSQL_TYPE_DATE, MysqlTypes.MYSQL_TYPE_NEWDATE, MysqlTypes.MYSQL_TYPE_TIME,
                         MysqlTypes.MYSQL_TYPE_TIMESTAMP, MysqlTypes.MYSQL_TYPE_DATETIME:
                         
-                        let (num, n) = MySQL.Utils.lenEncInt(Array(data[pos..<data.count]))
-                        row[cols[i].name] = num
-                        pos += n
+                        let (dlen, n) = MySQL.Utils.lenEncInt(Array(data[pos..<data.count]))
+                        
+                        guard dlen != nil else {
+                            row[cols[i].name] = NSNull()
+                            break
+                        }
+                        var y = 0, mo = 0, d = 0, h = 0, m = 0, s = 0, u = 0
+                        var res = ""
+                        
+                        switch Int(dlen!) {
+                        case 11:
+                            // 2015-12-02 12:03:15.001004005
+                            u = Int(data[pos+8..<pos+10].uInt32())
+                            res += String(format: ".%09d", u)
+                            fallthrough
+                        case 7:
+                            // 2015-12-02 12:03:15
+                            h = Int(data[pos+5])
+                            m = Int(data[pos+6])
+                            s = Int(data[pos+7])
+                            res = String(format: "%02d:%02d:%02d", arguments: [h, m, s]) + res
+                            fallthrough
+                        case 4:
+                            // 2015-12-02
+                            y = Int(data[pos+1..<pos+3].uInt16())
+                            mo = Int(data[pos+3])
+                            d = Int(data[pos+4])
+                            res = String(format: "%4d-%02d-%02d", arguments: [y, mo, d]) + " " + res
+                            break
+                        default:break
+                        }
+                        
+                        row[cols[i].name] = res
+                        pos += n + Int(dlen!)
                         break
                     default:
                         row[cols[i].name] = NSNull()
