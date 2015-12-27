@@ -60,12 +60,12 @@ catch (let e) {
 ### CocoaPods.
 ```
 use_frameworks!
-pod 'MySqlSwiftNative', '~> 1.0.2'
+pod 'MySqlSwiftNative', '~> 1.0.5'
 ```
 
 ### Carthage.
 ```
-github "mcorega/MySqlSwiftNative" == 1.0.2
+github "mcorega/MySqlSwiftNative" == 1.0.5
 ```
 
 ### License
