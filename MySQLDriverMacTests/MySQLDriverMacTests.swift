@@ -382,7 +382,30 @@ class MySQLDriverMacTests: XCTestCase {
             XCTAssertNil(e)
         }
     }
-    
+
+    func testQueryReadRowResultTimeStamp() {
+        let con = MySQL.Connection()
+        do {
+            try con.open("localhost", user: "test", passwd: "test", dbname: "swift_test")
+            try con.exec("drop table if exists xctest_timestamp")
+            try con.exec("create table xctest_timestamp(id INT NOT NULL AUTO_INCREMENT, PRIMARY KEY (id), val TIMESTAMP)")
+            try con.exec("insert into xctest_timestamp(val) VALUES('2015-12-02 12:02:24')")
+            let res = try con.query("select * from xctest_timestamp")
+            let row = try res.readRow()
+            try con.close()
+            if let val = row!["val"] as? NSDate where val == NSDate(dateTimeString: "2015-12-02 12:02:24") {
+                XCTAssert(true)
+            }
+            else {
+                XCTAssert(false)
+            }
+            
+        }
+        catch(let e) {
+            XCTAssertNil(e)
+        }
+    }
+
     func testQueryReadRowResultFloat() {
         let con = MySQL.Connection()
         do {

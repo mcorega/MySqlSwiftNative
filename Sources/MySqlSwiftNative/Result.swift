@@ -136,7 +136,8 @@ extension MySQL {
                                 break
 
                             case MysqlTypes.MYSQL_TYPE_TIMESTAMP:
-                                row[cols[i].name] = String(val)
+                                
+                                row[cols[i].name] = NSDate(dateTimeString: String(val))
                                 break
                                 
                             case MysqlTypes.MYSQL_TYPE_NULL:
