@@ -76,19 +76,29 @@ extension MySQL {
                         
                         if let val = name {
                             switch cols[i].fieldType {
+                            
                             case MysqlTypes.MYSQL_TYPE_VAR_STRING:
                                 row[cols[i].name] = name
                                 break
+                            
                             case MysqlTypes.MYSQL_TYPE_LONG, MysqlTypes.MYSQL_TYPE_LONGLONG,
                             MysqlTypes.MYSQL_TYPE_TINY, MysqlTypes.MYSQL_TYPE_SHORT:
+                                cols[i].flags
                                 row[cols[i].name] = Int(val)
                                 break
-                            case MysqlTypes.MYSQL_TYPE_DOUBLE, MysqlTypes.MYSQL_TYPE_FLOAT:
+                            
+                            case MysqlTypes.MYSQL_TYPE_DOUBLE:
                                 row[cols[i].name] = Double(val)
                                 break
+
+                            case MysqlTypes.MYSQL_TYPE_FLOAT:
+                                row[cols[i].name] = Float(val)
+                                break
+
                             case MysqlTypes.MYSQL_TYPE_NULL:
                                 row[cols[i].name] = NSNull()
                                 break
+                            
                             default:
                                 row[cols[i].name] = NSNull()
                                 break

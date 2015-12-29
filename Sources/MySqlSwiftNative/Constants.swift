@@ -8,24 +8,39 @@
 
 
 struct MysqlClientCaps {
-    static let CLIENT_LONG_PASSWORD   :UInt32 = 0x00000001   // new more secure passwords
-    static let CLIENT_FOUND_ROWS      :UInt32 = 0x00000002             // Found instead of affected rows
-    static let CLIENT_LONG_FLAG       :UInt32 = 0x00000004             // Get all column flags
-    static let CLIENT_CONNECT_WITH_DB  :UInt32 = 0x00000008            // One can specify db on connect
-    static let CLIENT_NO_SCHEMA        :UInt32 = 0x00000010            // Don't allow database.table.column
-    static let CLIENT_COMPRESS         :UInt32 = 0x00000020            // Can use compression protocol
-    static let CLIENT_ODBC             :UInt32 = 0x00000040            // Odbc client
-    static let CLIENT_LOCAL_FILES      :UInt32 = 0x00000080            // Can use LOAD DATA LOCAL
-    static let CLIENT_IGNORE_SPACE     :UInt32 = 0x00000100            // Ignore spaces before '('
-    static let CLIENT_PROTOCOL_41      :UInt32 = 0x00000200           // New 4.1 protocol
-    static let CLIENT_INTERACTIVE      :UInt32 = 0x00000400            // This is an interactive client
-    static let CLIENT_SSL              :UInt32 = 0x00000800            // Switch to SSL after handshake
-    static let CLIENT_IGNORE_SIGPIPE   :UInt32 = 0x00001000            // IGNORE sigpipes
-    static let CLIENT_TRANSACTIONS     :UInt32 = 0x00002000            // Client knows about transactions
-    static let CLIENT_RESERVED         :UInt32 = 0x00004000            // Old flag for 4.1 protocol
-    static let CLIENT_SECURE_CONN      :UInt32 = 0x00008000            // New 4.1 authentication
-    static let CLIENT_MULTI_STATEMENTS :UInt32 = 0x00010000            // Enable/disable multi-stmt support
-    static let CLIENT_MULTI_RESULTS    :UInt32 = 0x00020000             // Enable/disable multi-results
+    static let CLIENT_LONG_PASSWORD     :UInt32 = 0x00000001   // new more secure passwords
+    static let CLIENT_FOUND_ROWS        :UInt32 = 0x00000002             // Found instead of affected rows
+    static let CLIENT_LONG_FLAG         :UInt32 = 0x00000004             // Get all column flags
+    static let CLIENT_CONNECT_WITH_DB   :UInt32 = 0x00000008            // One can specify db on connect
+    static let CLIENT_NO_SCHEMA         :UInt32 = 0x00000010            // Don't allow database.table.column
+    static let CLIENT_COMPRESS          :UInt32 = 0x00000020            // Can use compression protocol
+    static let CLIENT_ODBC              :UInt32 = 0x00000040            // Odbc client
+    static let CLIENT_LOCAL_FILES       :UInt32 = 0x00000080            // Can use LOAD DATA LOCAL
+    static let CLIENT_IGNORE_SPACE      :UInt32 = 0x00000100            // Ignore spaces before '('
+    static let CLIENT_PROTOCOL_41       :UInt32 = 0x00000200           // New 4.1 protocol
+    static let CLIENT_INTERACTIVE       :UInt32 = 0x00000400            // This is an interactive client
+    static let CLIENT_SSL               :UInt32 = 0x00000800            // Switch to SSL after handshake
+    static let CLIENT_IGNORE_SIGPIPE    :UInt32 = 0x00001000            // IGNORE sigpipes
+    static let CLIENT_TRANSACTIONS      :UInt32 = 0x00002000            // Client knows about transactions
+    static let CLIENT_RESERVED          :UInt32 = 0x00004000            // Old flag for 4.1 protocol
+    static let CLIENT_SECURE_CONN       :UInt32 = 0x00008000            // New 4.1 authentication
+    static let CLIENT_MULTI_STATEMENTS  :UInt32 = 0x00010000            // Enable/disable multi-stmt support
+    static let CLIENT_MULTI_RESULTS     :UInt32 = 0x00020000             // Enable/disable multi-results
+}
+
+struct MysqlFieldFlag {
+    static let NOT_NULL         : UInt16 = 0x0001
+    static let PRI_KEY          : UInt16 = 0x0002
+    static let UNIQUE_KEY       : UInt16 = 0x0004
+    static let MULTI_KEY        : UInt16 = 0x0008
+    static let BLOB             : UInt16 = 0x0010
+    static let UNSIGNED         : UInt16 = 0x0020
+    static let ZERO_FILL        : UInt16 = 0x0040
+    static let BINARY           : UInt16 = 0x0080
+    static let ENUM             : UInt16 = 0x0100
+    static let AUTOINCREMENT    : UInt16 = 0x0200
+    static let TIMESTAMP        : UInt16 = 0x0400
+    static let SET              : UInt16 = 0x0800
 }
 
 struct MysqlCommands  {

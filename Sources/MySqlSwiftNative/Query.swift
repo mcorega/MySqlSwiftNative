@@ -48,7 +48,7 @@ public extension MySQL.Connection {
 
     func query(q:String) throws -> Result {
         
-        if self.EOFfound && !self.hasMoreResults {
+     //   if self.EOFfound && !self.hasMoreResults {
             try writeCommandPacketStr(MysqlCommands.COM_QUERY, q: q)
             
             let resLen = try readResultSetHeaderPacket()
@@ -56,8 +56,8 @@ public extension MySQL.Connection {
             
             return MySQL.TextRow(con: self)
             
-        }
-        throw MySQL.Connection.Error.QueryInProgress
+    //    }
+    //    throw MySQL.Connection.Error.QueryInProgress
     }
     
     func nextResult() throws -> Result {
