@@ -313,7 +313,76 @@ class MySQLDriverMacTests: XCTestCase {
             XCTAssertNil(e)
         }
     }
+    
+    func testQueryReadRowResultDate() {
+        let con = MySQL.Connection()
+        do {
+            try con.open("localhost", user: "test", passwd: "test", dbname: "swift_test")
+            try con.exec("drop table if exists xctest_date")
+            try con.exec("create table xctest_date(id INT NOT NULL AUTO_INCREMENT, PRIMARY KEY (id), val DATE)")
+            try con.exec("insert into xctest_date(val) VALUES('2015-12-02')")
+            let res = try con.query("select * from xctest_date")
+            let row = try res.readRow()
+            try con.close()
+            if let val = row!["val"] as? NSDate where val == NSDate(dateString: "2015-12-02") {
+                XCTAssert(true)
+            }
+            else {
+                XCTAssert(false)
+            }
+            
+        }
+        catch(let e) {
+            XCTAssertNil(e)
+        }
+    }
 
+    func testQueryReadRowResultTime() {
+        let con = MySQL.Connection()
+        do {
+            try con.open("localhost", user: "test", passwd: "test", dbname: "swift_test")
+            try con.exec("drop table if exists xctest_time")
+            try con.exec("create table xctest_time(id INT NOT NULL AUTO_INCREMENT, PRIMARY KEY (id), val TIME)")
+            try con.exec("insert into xctest_time(val) VALUES('12:02:24')")
+            let res = try con.query("select * from xctest_time")
+            let row = try res.readRow()
+            try con.close()
+            if let val = row!["val"] as? NSDate where val == NSDate(timeString: "12:02:24") {
+                XCTAssert(true)
+            }
+            else {
+                XCTAssert(false)
+            }
+            
+        }
+        catch(let e) {
+            XCTAssertNil(e)
+        }
+    }
+
+    func testQueryReadRowResultDateTime() {
+        let con = MySQL.Connection()
+        do {
+            try con.open("localhost", user: "test", passwd: "test", dbname: "swift_test")
+            try con.exec("drop table if exists xctest_datetime")
+            try con.exec("create table xctest_datetime(id INT NOT NULL AUTO_INCREMENT, PRIMARY KEY (id), val DATETIME)")
+            try con.exec("insert into xctest_datetime(val) VALUES('2015-12-02 12:02:24')")
+            let res = try con.query("select * from xctest_datetime")
+            let row = try res.readRow()
+            try con.close()
+            if let val = row!["val"] as? NSDate where val == NSDate(dateTimeString: "2015-12-02 12:02:24") {
+                XCTAssert(true)
+            }
+            else {
+                XCTAssert(false)
+            }
+            
+        }
+        catch(let e) {
+            XCTAssertNil(e)
+        }
+    }
+    
     func testQueryReadRowResultFloat() {
         let con = MySQL.Connection()
         do {

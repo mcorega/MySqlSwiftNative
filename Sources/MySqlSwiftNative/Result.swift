@@ -123,6 +123,22 @@ extension MySQL {
                                 row[cols[i].name] = Float(val)
                                 break
 
+                            case MysqlTypes.MYSQL_TYPE_DATE:
+                                row[cols[i].name] = NSDate(dateString: String(val))
+                                break
+
+                            case MysqlTypes.MYSQL_TYPE_TIME:
+                                row[cols[i].name] = NSDate(timeString: String(val))
+                                break
+
+                            case MysqlTypes.MYSQL_TYPE_DATETIME:
+                                row[cols[i].name] = NSDate(dateTimeString: String(val))
+                                break
+
+                            case MysqlTypes.MYSQL_TYPE_TIMESTAMP:
+                                row[cols[i].name] = String(val)
+                                break
+                                
                             case MysqlTypes.MYSQL_TYPE_NULL:
                                 row[cols[i].name] = NSNull()
                                 break
