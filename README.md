@@ -17,7 +17,7 @@ do{
   try con.exec("CREATE DATABASE IF NOT EXISTS " + db_name)
 
   // select the database
-  try con.select(db_name)
+  try con.use(db_name)
   
   // create a table for our tests
   try con.exec("CREATE TABLE test (id INT NOT NULL AUTO_INCREMENT, age INT, cash FLOAT, name VARCHAR(30), PRIMARY KEY (id))")
