@@ -81,12 +81,40 @@ extension MySQL {
                                 row[cols[i].name] = name
                                 break
                             
-                            case MysqlTypes.MYSQL_TYPE_LONG, MysqlTypes.MYSQL_TYPE_LONGLONG,
-                            MysqlTypes.MYSQL_TYPE_TINY, MysqlTypes.MYSQL_TYPE_SHORT:
-                                cols[i].flags
+                            case MysqlTypes.MYSQL_TYPE_LONGLONG:
+                                if cols[i].flags & MysqlFieldFlag.UNSIGNED == MysqlFieldFlag.UNSIGNED {
+                                    row[cols[i].name] = UInt64(val)
+                                    break
+                                }
+                                row[cols[i].name] = Int64(val)
+                                break
+
+                                
+                            case MysqlTypes.MYSQL_TYPE_LONG, MysqlTypes.MYSQL_TYPE_INT24:
+                                if cols[i].flags & MysqlFieldFlag.UNSIGNED == MysqlFieldFlag.UNSIGNED {
+                                    row[cols[i].name] = UInt(val)
+                                    break
+                                }
                                 row[cols[i].name] = Int(val)
                                 break
-                            
+
+                            case MysqlTypes.MYSQL_TYPE_SHORT:
+                                if cols[i].flags & MysqlFieldFlag.UNSIGNED == MysqlFieldFlag.UNSIGNED {
+                                    row[cols[i].name] = UInt16(val)
+                                    break
+                                }
+                                row[cols[i].name] = Int16(val)
+                                break
+
+                            case MysqlTypes.MYSQL_TYPE_TINY:
+                                if cols[i].flags & MysqlFieldFlag.UNSIGNED == MysqlFieldFlag.UNSIGNED {
+                                    row[cols[i].name] = UInt8(val)
+                                    break
+                                }
+                                row[cols[i].name] = Int8(val)
+                                break
+
+                                
                             case MysqlTypes.MYSQL_TYPE_DOUBLE:
                                 row[cols[i].name] = Double(val)
                                 break
