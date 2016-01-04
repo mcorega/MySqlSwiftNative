@@ -136,11 +136,11 @@ class MySQLDriverMacTests: XCTestCase {
             try con.open("localhost", user: "test", passwd: "test", dbname: "swift_test")
             try con.exec("drop table if exists xctest_int64")
             try con.exec("create table xctest_int64(id INT NOT NULL AUTO_INCREMENT, PRIMARY KEY (id), val BIGINT)")
-            try con.exec("insert into xctest_int64(val) VALUES(1)")
+            try con.exec("insert into xctest_int64(val) VALUES(1435353345)")
             let res = try con.query("select * from xctest_int64")
             let row = try res.readRow()
             try con.close()
-            if let val = row!["val"] as? Int64 where val == 1 {
+            if let val = row!["val"] as? Int64 where val == 1435353345 {
                 XCTAssert(true)
             }
             else {
@@ -476,5 +476,410 @@ class MySQLDriverMacTests: XCTestCase {
         }
     }
 
+    /// Statement tests
     
+    func testStatement() {
+        let con = MySQL.Connection()
+        do {
+            try con.open("localhost", user: "test", passwd: "test", dbname: "swift_test")
+            try con.exec("drop table if exists xctest_stmt")
+            try con.exec("create table xctest_stmt(id INT NOT NULL AUTO_INCREMENT, PRIMARY KEY (id))")
+            
+            let stmt = try con.prepare("select * from xctest_stmt")
+            
+            XCTAssertNotNil(stmt)
+        }
+        catch(let e) {
+            XCTAssertNil(e)
+        }
+    }
+
+    func testStatementReadRow() {
+        let con = MySQL.Connection()
+        do {
+            try con.open("localhost", user: "test", passwd: "test", dbname: "swift_test")
+            try con.exec("drop table if exists xctest_stmt_readrow")
+            try con.exec("create table xctest_stmt_readrow(id INT NOT NULL AUTO_INCREMENT, PRIMARY KEY (id), val INT)")
+            try con.exec("insert into xctest_stmt_readrow(val) VALUES(1)")
+            let stmt = try con.prepare("select * from xctest_stmt_readrow where val=?")
+            let res = try stmt.query([1])
+            let row = try res.readRow()
+            try con.close()
+            XCTAssertNotNil(row)
+        }
+        catch(let e) {
+            XCTAssertNil(e)
+        }
+    }
+
+    
+    func testStatementReadRowResult() {
+        let con = MySQL.Connection()
+        do {
+            try con.open("localhost", user: "test", passwd: "test", dbname: "swift_test")
+            try con.exec("drop table if exists xctest3")
+            try con.exec("create table xctest3(id INT NOT NULL AUTO_INCREMENT, PRIMARY KEY (id), val INT)")
+            try con.exec("insert into xctest3(val) VALUES(1)")
+            let stmt = try con.prepare("select * from xctest3 where val=?")
+            let res = try stmt.query([1])
+            let row = try res.readRow()
+            try con.close()
+            let val = row!["val"]
+            XCTAssertNotNil(val)
+        }
+        catch(let e) {
+            XCTAssertNil(e)
+        }
+    }
+    
+ 
+    func testStatementReadRowResultInt64() {
+        let con = MySQL.Connection()
+        do {
+            try con.open("localhost", user: "test", passwd: "test", dbname: "swift_test")
+            try con.exec("drop table if exists xctest_int64")
+            try con.exec("create table xctest_int64(id INT NOT NULL AUTO_INCREMENT, PRIMARY KEY (id), val BIGINT)")
+            try con.exec("insert into xctest_int64(val) VALUES(-1435353345)")
+            let stmt = try con.prepare("select * from xctest_int64 where val=?")
+            let res = try stmt.query([-1435353345])
+            let row = try res.readRow()
+            try con.close()
+            if let val = row!["val"] as? Int64 where val == -1435353345 {
+                XCTAssert(true)
+            }
+            else {
+                XCTAssert(false)
+            }
+            
+        }
+        catch(let e) {
+            XCTAssertNil(e)
+        }
+    }
+
+    func testStatementReadRowResultUInt64() {
+        let con = MySQL.Connection()
+        do {
+            try con.open("localhost", user: "test", passwd: "test", dbname: "swift_test")
+            try con.exec("drop table if exists xctest_uint64")
+            try con.exec("create table xctest_uint64(id INT NOT NULL AUTO_INCREMENT, PRIMARY KEY (id), val BIGINT UNSIGNED)")
+            try con.exec("insert into xctest_uint64(val) VALUES(13423423)")
+            let stmt = try con.prepare("select * from xctest_uint64 where val=?")
+            let res = try stmt.query([13423423])
+            let row = try res.readRow()
+            try con.close()
+            if let val = row!["val"] as? UInt64 where val == 13423423 {
+                XCTAssert(true)
+            }
+            else {
+                XCTAssert(false)
+            }
+            
+        }
+        catch(let e) {
+            XCTAssertNil(e)
+        }
+    }
+
+    func testStatementReadRowResultInt() {
+        let con = MySQL.Connection()
+        do {
+            try con.open("localhost", user: "test", passwd: "test", dbname: "swift_test")
+            try con.exec("drop table if exists xctest_int")
+            try con.exec("create table xctest_int(id INT NOT NULL AUTO_INCREMENT, PRIMARY KEY (id), val INT)")
+            try con.exec("insert into xctest_int(val) VALUES(12345)")
+            let stmt = try con.prepare("select * from xctest_int where val=?")
+            let res = try stmt.query([12345])
+            let row = try res.readRow()
+            try con.close()
+            if let val = row!["val"] as? Int where val == 12345 {
+                XCTAssert(true)
+            }
+            else {
+                XCTAssert(false)
+            }
+            
+        }
+        catch(let e) {
+            XCTAssertNil(e)
+        }
+    }
+/*
+    func testQueryReadRowResultUInt() {
+        let con = MySQL.Connection()
+        do {
+            try con.open("localhost", user: "test", passwd: "test", dbname: "swift_test")
+            try con.exec("drop table if exists xctest_uint")
+            try con.exec("create table xctest_uint(id INT NOT NULL AUTO_INCREMENT, PRIMARY KEY (id), val INT UNSIGNED)")
+            try con.exec("insert into xctest_uint(val) VALUES(1)")
+            let res = try con.query("select * from xctest_uint")
+            let row = try res.readRow()
+            try con.close()
+            if let val = row!["val"] as? UInt where val == 1 {
+                XCTAssert(true)
+            }
+            else {
+                XCTAssert(false)
+            }
+            
+        }
+        catch(let e) {
+            XCTAssertNil(e)
+        }
+    }
+    
+    func testQueryReadRowResultInt16() {
+        let con = MySQL.Connection()
+        do {
+            try con.open("localhost", user: "test", passwd: "test", dbname: "swift_test")
+            try con.exec("drop table if exists xctest_int16")
+            try con.exec("create table xctest_int16(id INT NOT NULL AUTO_INCREMENT, PRIMARY KEY (id), val SMALLINT)")
+            try con.exec("insert into xctest_int16(val) VALUES(1)")
+            let res = try con.query("select * from xctest_int16")
+            let row = try res.readRow()
+            try con.close()
+            if let val = row!["val"] as? Int16 where val == 1 {
+                XCTAssert(true)
+            }
+            else {
+                XCTAssert(false)
+            }
+            
+        }
+        catch(let e) {
+            XCTAssertNil(e)
+        }
+    }
+    
+    func testQueryReadRowResultUInt16() {
+        let con = MySQL.Connection()
+        do {
+            try con.open("localhost", user: "test", passwd: "test", dbname: "swift_test")
+            try con.exec("drop table if exists xctest_uint16")
+            try con.exec("create table xctest_uint16(id INT NOT NULL AUTO_INCREMENT, PRIMARY KEY (id), val SMALLINT UNSIGNED)")
+            try con.exec("insert into xctest_uint16(val) VALUES(1)")
+            let res = try con.query("select * from xctest_uint16")
+            let row = try res.readRow()
+            try con.close()
+            if let val = row!["val"] as? UInt16 where val == 1 {
+                XCTAssert(true)
+            }
+            else {
+                XCTAssert(false)
+            }
+            
+        }
+        catch(let e) {
+            XCTAssertNil(e)
+        }
+    }
+    
+    func testQueryReadRowResultInt8() {
+        let con = MySQL.Connection()
+        do {
+            try con.open("localhost", user: "test", passwd: "test", dbname: "swift_test")
+            try con.exec("drop table if exists xctest_int8")
+            try con.exec("create table xctest_int8(id INT NOT NULL AUTO_INCREMENT, PRIMARY KEY (id), val TINYINT)")
+            try con.exec("insert into xctest_int8(val) VALUES(1)")
+            let res = try con.query("select * from xctest_int8")
+            let row = try res.readRow()
+            try con.close()
+            if let val = row!["val"] as? Int8 where val == 1 {
+                XCTAssert(true)
+            }
+            else {
+                XCTAssert(false)
+            }
+            
+        }
+        catch(let e) {
+            XCTAssertNil(e)
+        }
+    }
+    
+    func testQueryReadRowResultUInt8() {
+        let con = MySQL.Connection()
+        do {
+            try con.open("localhost", user: "test", passwd: "test", dbname: "swift_test")
+            try con.exec("drop table if exists xctest_uint8")
+            try con.exec("create table xctest_uint8(id INT NOT NULL AUTO_INCREMENT, PRIMARY KEY (id), val TINYINT UNSIGNED)")
+            try con.exec("insert into xctest_uint8(val) VALUES(1)")
+            let res = try con.query("select * from xctest_uint8")
+            let row = try res.readRow()
+            try con.close()
+            if let val = row!["val"] as? UInt8 where val == 1 {
+                XCTAssert(true)
+            }
+            else {
+                XCTAssert(false)
+            }
+            
+        }
+        catch(let e) {
+            XCTAssertNil(e)
+        }
+    }
+    
+    func testQueryReadRowResultDate() {
+        let con = MySQL.Connection()
+        do {
+            try con.open("localhost", user: "test", passwd: "test", dbname: "swift_test")
+            try con.exec("drop table if exists xctest_date")
+            try con.exec("create table xctest_date(id INT NOT NULL AUTO_INCREMENT, PRIMARY KEY (id), val DATE)")
+            try con.exec("insert into xctest_date(val) VALUES('2015-12-02')")
+            let res = try con.query("select * from xctest_date")
+            let row = try res.readRow()
+            try con.close()
+            if let val = row!["val"] as? NSDate where val == NSDate(dateString: "2015-12-02") {
+                XCTAssert(true)
+            }
+            else {
+                XCTAssert(false)
+            }
+            
+        }
+        catch(let e) {
+            XCTAssertNil(e)
+        }
+    }
+    
+    func testQueryReadRowResultTime() {
+        let con = MySQL.Connection()
+        do {
+            try con.open("localhost", user: "test", passwd: "test", dbname: "swift_test")
+            try con.exec("drop table if exists xctest_time")
+            try con.exec("create table xctest_time(id INT NOT NULL AUTO_INCREMENT, PRIMARY KEY (id), val TIME)")
+            try con.exec("insert into xctest_time(val) VALUES('12:02:24')")
+            let res = try con.query("select * from xctest_time")
+            let row = try res.readRow()
+            try con.close()
+            if let val = row!["val"] as? NSDate where val == NSDate(timeString: "12:02:24") {
+                XCTAssert(true)
+            }
+            else {
+                XCTAssert(false)
+            }
+            
+        }
+        catch(let e) {
+            XCTAssertNil(e)
+        }
+    }
+    
+    func testQueryReadRowResultDateTime() {
+        let con = MySQL.Connection()
+        do {
+            try con.open("localhost", user: "test", passwd: "test", dbname: "swift_test")
+            try con.exec("drop table if exists xctest_datetime")
+            try con.exec("create table xctest_datetime(id INT NOT NULL AUTO_INCREMENT, PRIMARY KEY (id), val DATETIME)")
+            try con.exec("insert into xctest_datetime(val) VALUES('2015-12-02 12:02:24')")
+            let res = try con.query("select * from xctest_datetime")
+            let row = try res.readRow()
+            try con.close()
+            if let val = row!["val"] as? NSDate where val == NSDate(dateTimeString: "2015-12-02 12:02:24") {
+                XCTAssert(true)
+            }
+            else {
+                XCTAssert(false)
+            }
+            
+        }
+        catch(let e) {
+            XCTAssertNil(e)
+        }
+    }
+    
+    func testQueryReadRowResultTimeStamp() {
+        let con = MySQL.Connection()
+        do {
+            try con.open("localhost", user: "test", passwd: "test", dbname: "swift_test")
+            try con.exec("drop table if exists xctest_timestamp")
+            try con.exec("create table xctest_timestamp(id INT NOT NULL AUTO_INCREMENT, PRIMARY KEY (id), val TIMESTAMP)")
+            try con.exec("insert into xctest_timestamp(val) VALUES('2015-12-02 12:02:24')")
+            let res = try con.query("select * from xctest_timestamp")
+            let row = try res.readRow()
+            try con.close()
+            if let val = row!["val"] as? NSDate where val == NSDate(dateTimeString: "2015-12-02 12:02:24") {
+                XCTAssert(true)
+            }
+            else {
+                XCTAssert(false)
+            }
+            
+        }
+        catch(let e) {
+            XCTAssertNil(e)
+        }
+    }
+    
+    func testQueryReadRowResultFloat() {
+        let con = MySQL.Connection()
+        do {
+            try con.open("localhost", user: "test", passwd: "test", dbname: "swift_test")
+            try con.exec("drop table if exists xctest_float")
+            try con.exec("create table xctest_float(id INT NOT NULL AUTO_INCREMENT, PRIMARY KEY (id), val FLOAT)")
+            try con.exec("insert into xctest_float(val) VALUES(1)")
+            let res = try con.query("select * from xctest_float")
+            let row = try res.readRow()
+            try con.close()
+            if let val = row!["val"] as? Float  where val == Float(1) {
+                XCTAssert(true)
+            }
+            else {
+                XCTAssert(false)
+            }
+            
+        }
+        catch(let e) {
+            XCTAssertNil(e)
+        }
+    }
+    
+    func testQueryReadRowResultDouble() {
+        let con = MySQL.Connection()
+        do {
+            try con.open("localhost", user: "test", passwd: "test", dbname: "swift_test")
+            try con.exec("drop table if exists xctest_double")
+            try con.exec("create table xctest_double(id INT NOT NULL AUTO_INCREMENT, PRIMARY KEY (id), val DOUBLE)")
+            try con.exec("insert into xctest_double(val) VALUES(1)")
+            let res = try con.query("select * from xctest_double")
+            let row = try res.readRow()
+            try con.close()
+            if let val = row!["val"] as? Double  where val == Double(1) {
+                XCTAssert(true)
+            }
+            else {
+                XCTAssert(false)
+            }
+            
+        }
+        catch(let e) {
+            XCTAssertNil(e)
+        }
+    }
+    
+    
+    func testQueryReadRowResultString() {
+        let con = MySQL.Connection()
+        do {
+            try con.open("localhost", user: "test", passwd: "test", dbname: "swift_test")
+            try con.exec("drop table if exists xctest4")
+            try con.exec("create table xctest4(id INT NOT NULL AUTO_INCREMENT, PRIMARY KEY (id), val VARCHAR(5))")
+            try con.exec("insert into xctest4(val) VALUES('val')")
+            let res = try con.query("select * from xctest4")
+            let row = try res.readRow()
+            try con.close()
+            if let _ = row!["val"] as? String {
+                XCTAssert(true)
+            }
+            else {
+                XCTAssert(false)
+            }
+            
+        }
+        catch(let e) {
+            XCTAssertNil(e)
+        }
+    }
+*/
 }

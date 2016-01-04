@@ -76,6 +76,8 @@ public extension MySQL.Connection {
             pos += 1
             msh.server_version = data[pos..<data.count].string()
             pos += (msh.server_version?.utf8.count)! + 1
+            let v1 = UInt32(data[pos...pos+4])
+            let v2 = data[pos...pos+4].uInt32()
             msh.conn_id = data[pos...pos+4].uInt32()
             pos += 4
             msh.scramble = Array(data[pos..<pos+8])

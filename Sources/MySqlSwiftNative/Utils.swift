@@ -163,6 +163,31 @@ extension NSDate
 
 }
 
+extension UInt16 {
+    init(arr:ArraySlice<UInt8>) {
+        self = UInt16(arr[1])<<8 | UInt16(arr[0])
+    }
+    
+    func array() ->[UInt8] {
+        return arrayOfBytes(self)
+    }
+}
+
+extension UInt32 {
+    init(_ arr:ArraySlice<UInt8>) {
+        var res : UInt32 = 0
+            for i in 0..<4 {
+            res |= UInt32(arr[arr.startIndex + i]) << UInt32(i*8)
+        }
+        self = res
+    }
+    
+    func array() ->[UInt8] {
+        return arrayOfBytes(self)
+    }
+}
+
+
 extension SequenceType where Generator.Element == UInt8 {
     func uInt16() -> UInt16 {
        let arr = self.map { (elem) -> UInt8 in
