@@ -257,22 +257,46 @@ extension MySQL {
                         break
                         
                     case MysqlTypes.MYSQL_TYPE_TINY:
-                        row[cols[i].name] = Int8(data[pos])
+                        if cols[i].flags & MysqlFieldFlag.UNSIGNED == MysqlFieldFlag.UNSIGNED {
+                            row[cols[i].name] = UInt8(data[pos..<pos+1])
+                            pos += 1
+                            break
+                        }
+                        row[cols[i].name] = Int8(data[pos..<pos+1])
+                        
                         pos += 1
                         break
                         
-                    case MysqlTypes.MYSQL_TYPE_SHORT, MysqlTypes.MYSQL_TYPE_SHORT:
-                        row[cols[i].name] = data[pos..<pos+2].int16()
+                    case MysqlTypes.MYSQL_TYPE_SHORT:
+                        if cols[i].flags & MysqlFieldFlag.UNSIGNED == MysqlFieldFlag.UNSIGNED {
+                            row[cols[i].name] = UInt16(data[pos..<pos+2])
+                            pos += 2
+                            break
+                        }
+                        row[cols[i].name] = Int16(data[pos..<pos+2])
+                        
                         pos += 2
                         break
                         
                     case MysqlTypes.MYSQL_TYPE_INT24, MysqlTypes.MYSQL_TYPE_LONG:
-                        row[cols[i].name] = data[pos..<pos+4].int32()
+                        if cols[i].flags & MysqlFieldFlag.UNSIGNED == MysqlFieldFlag.UNSIGNED {
+                            row[cols[i].name] = UInt(UInt32(data[pos..<pos+4]))
+                            pos += 4
+                            break
+                        }
+                        row[cols[i].name] = Int(Int32(data[pos..<pos+4]))
+                        
                         pos += 4
                         break
                         
                     case MysqlTypes.MYSQL_TYPE_LONGLONG:
-                        row[cols[i].name] = data[pos..<pos+8].int64()
+                        if cols[i].flags & MysqlFieldFlag.UNSIGNED == MysqlFieldFlag.UNSIGNED {
+                            row[cols[i].name] = UInt64(data[pos..<pos+8])
+                            pos += 8
+                            break
+                        }
+                        row[cols[i].name] = Int64(data[pos..<pos+8])
+                        
                         pos += 8
                         break
                         
@@ -285,19 +309,95 @@ extension MySQL {
                         row[cols[i].name] = data[pos..<pos+8].float64()
                         pos += 8
                         break
+                        
+                    case MysqlTypes.MYSQL_TYPE_VARCHAR, MysqlTypes.MYSQL_TYPE_VAR_STRING, MysqlTypes.MYSQL_TYPE_STRING:
+                        let (str, n) = MySQL.Utils.lenEncStr(Array(data[pos..<data.count]))
+                        row[cols[i].name] = str
+                        pos += n
+                        break
 
-                    case MysqlTypes.MYSQL_TYPE_DECIMAL, MysqlTypes.MYSQL_TYPE_NEWDECIMAL, MysqlTypes.MYSQL_TYPE_VARCHAR,
+                    case MysqlTypes.MYSQL_TYPE_DECIMAL, MysqlTypes.MYSQL_TYPE_NEWDECIMAL,
                         MysqlTypes.MYSQL_TYPE_BIT, MysqlTypes.MYSQL_TYPE_ENUM, MysqlTypes.MYSQL_TYPE_SET, MysqlTypes.MYSQL_TYPE_TINY_BLOB,
                         MysqlTypes.MYSQL_TYPE_MEDIUM_BLOB, MysqlTypes.MYSQL_TYPE_LONG_BLOB, MysqlTypes.MYSQL_TYPE_BLOB,
-                        MysqlTypes.MYSQL_TYPE_VAR_STRING, MysqlTypes.MYSQL_TYPE_STRING, MysqlTypes.MYSQL_TYPE_GEOMETRY:
+                        MysqlTypes.MYSQL_TYPE_GEOMETRY:
                         
                         let (str, n) = MySQL.Utils.lenEncStr(Array(data[pos..<data.count]))
                         row[cols[i].name] = str
                         pos += n
                         break
                         
-                    case MysqlTypes.MYSQL_TYPE_DATE, MysqlTypes.MYSQL_TYPE_NEWDATE, MysqlTypes.MYSQL_TYPE_TIME,
-                        MysqlTypes.MYSQL_TYPE_TIMESTAMP, MysqlTypes.MYSQL_TYPE_DATETIME:
+                    case MysqlTypes.MYSQL_TYPE_DATE, MysqlTypes.MYSQL_TYPE_NEWDATE:
+                        let (dlen, n) = MySQL.Utils.lenEncInt(Array(data[pos..<data.count]))
+                        
+                        guard dlen != nil else {
+                            row[cols[i].name] = NSNull()
+                            break
+                        }
+                        var y = 0, mo = 0, d = 0, h = 0, m = 0, s = 0, u = 0
+                        var res = NSDate()
+                        
+                        switch Int(dlen!) {
+                        case 11:
+                            // 2015-12-02 12:03:15.000 001
+                            u = Int(data[pos+8..<pos+10].uInt32())
+                            //res += String(format: ".%09d", u)
+                            fallthrough
+                        case 7:
+                            // 2015-12-02 12:03:15
+                            h = Int(data[pos+5])
+                            m = Int(data[pos+6])
+                            s = Int(data[pos+7])
+                            //res = String(format: "%02d:%02d:%02d", arguments: [h, m, s]) + res
+                            fallthrough
+                        case 4:
+                            // 2015-12-02
+                            y = Int(data[pos+1..<pos+3].uInt16())
+                            mo = Int(data[pos+3])
+                            d = Int(data[pos+4])
+                            res = NSDate(dateString: String(format: "%4d-%02d-%02d", arguments: [y, mo, d]))
+                            break
+                        default:break
+                        }
+                        
+                        row[cols[i].name] = res
+                        pos += n + Int(dlen!)
+                        
+                        break
+
+                    case MysqlTypes.MYSQL_TYPE_TIME:
+                        let (dlen, n) = MySQL.Utils.lenEncInt(Array(data[pos..<data.count]))
+                        
+                        guard dlen != nil else {
+                            row[cols[i].name] = NSNull()
+                            break
+                        }
+                        var h = 0, m = 0, s = 0, u = 0
+                        var res = NSDate()
+                        
+                        switch Int(dlen!) {
+                        case 12:
+                            //12:03:15.000 001
+                            u = Int(data[pos+8..<pos+10].uInt32())
+                            //res += String(format: ".%09d", u)
+                            fallthrough
+                        case 8:
+                            //12:03:15
+                            h = Int(data[pos+6])
+                            m = Int(data[pos+7])
+                            s = Int(data[pos+8])
+                            res = NSDate(timeString:String(format: "%02d:%02d:%02d", arguments: [h, m, s]))
+                            break
+                        default:
+                            res = NSDate(timeString: "00:00:00")
+                            break
+                        }
+                        
+                        row[cols[i].name] = res
+                        pos += n + Int(dlen!)
+                        
+                        break
+
+                    case MysqlTypes.MYSQL_TYPE_TIMESTAMP, MysqlTypes.MYSQL_TYPE_DATETIME:
                         
                         let (dlen, n) = MySQL.Utils.lenEncInt(Array(data[pos..<data.count]))
                         
@@ -331,7 +431,7 @@ extension MySQL {
                         default:break
                         }
                         
-                        row[cols[i].name] = res
+                        row[cols[i].name] = NSDate(dateTimeString: res)
                         pos += n + Int(dlen!)
                         break
                     default:

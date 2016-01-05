@@ -163,9 +163,43 @@ extension NSDate
 
 }
 
+extension Int8 {
+    init(_ arr:ArraySlice<UInt8>) {
+        var val:Int8 = 0
+        let arrr = Array(arr)
+        memccpy(&val, arrr, 1, 1)
+        self = val
+    }
+    
+    func array() ->[UInt8] {
+        return arrayOfBytes(self)
+    }
+}
+
+extension UInt8 {
+    init(_ arr:ArraySlice<UInt8>) {
+        self = UInt8(arr[arr.startIndex])
+    }
+    
+    func array() ->[UInt8] {
+        return arrayOfBytes(self)
+    }
+}
+
+
+extension Int16 {
+    init(_ arr:ArraySlice<UInt8>) {
+        self = Int16(arr[arr.startIndex + 1])<<8 | Int16(arr[arr.startIndex])
+    }
+    
+    func array() ->[UInt8] {
+        return arrayOfBytes(self)
+    }
+}
+
 extension UInt16 {
-    init(arr:ArraySlice<UInt8>) {
-        self = UInt16(arr[1])<<8 | UInt16(arr[0])
+    init(_ arr:ArraySlice<UInt8>) {
+        self = UInt16(arr[arr.startIndex + 1])<<8 | UInt16(arr[arr.startIndex])
     }
     
     func array() ->[UInt8] {
@@ -176,8 +210,79 @@ extension UInt16 {
 extension UInt32 {
     init(_ arr:ArraySlice<UInt8>) {
         var res : UInt32 = 0
-            for i in 0..<4 {
+        for i in 0..<4 {
             res |= UInt32(arr[arr.startIndex + i]) << UInt32(i*8)
+        }
+        self = res
+    }
+    
+    func array() ->[UInt8] {
+        return arrayOfBytes(self)
+    }
+}
+
+extension UInt {
+    init(_ arr:ArraySlice<UInt8>) {
+        var res : UInt = 0
+        for i in 0..<4 {
+            res |= UInt(arr[arr.startIndex + i]) << UInt(i*8)
+        }
+        self = res
+    }
+    
+    func array() ->[UInt8] {
+        return arrayOfBytes(self)
+    }
+}
+
+extension Int {
+    init(_ arr:ArraySlice<UInt8>) {
+        var res : Int = 0
+        for i in 0..<4 {
+            res |= Int(arr[arr.startIndex + i]) << Int(i*8)
+        }
+        //self = res
+        self = Int(arr[arr.startIndex + 3])<<24 | Int(arr[arr.startIndex + 2])<<16 | Int(arr[arr.startIndex + 1])<<8 | Int(arr[arr.startIndex])
+    }
+    
+    func array() ->[UInt8] {
+        return arrayOfBytes(self)
+    }
+}
+
+extension Int32 {
+    init(_ arr:ArraySlice<UInt8>) {
+        var res : Int32 = 0
+        for i in 0..<4 {
+            res |= Int32(arr[arr.startIndex + i]) << Int32(i*8)
+        }
+        self = res
+    }
+    
+    func array() ->[UInt8] {
+        return arrayOfBytes(self)
+    }
+}
+
+extension Int64 {
+    init(_ arr:ArraySlice<UInt8>) {
+        var res : Int64 = 0
+        for i in 0..<8 {
+            res |= Int64(arr[arr.startIndex + i]) << Int64(i*8)
+        }
+        self = res
+    }
+    
+    func array() ->[UInt8] {
+        return arrayOfBytes(self)
+    }
+}
+
+extension UInt64 {
+    init(_ arr:ArraySlice<UInt8>) {
+        var res : UInt64 = 0
+        for i in 0..<8 {
+            res |= UInt64(arr[arr.startIndex + i]) << UInt64(i*8)
         }
         self = res
     }
