@@ -111,14 +111,23 @@ class MySQLDriverMacTests: XCTestCase {
             try con.dropTable("xctest_createtable_obj")
             
             struct obj {
+                var iint8 : Int8 = -1
+                var uint8: UInt8 = 1
+                var int16 : Int16 = -1
+                var uint16: UInt16 = 1
                 var id:Int = 1
                 var count:UInt = 10
                 var uint64 : UInt64 = 19999999999
                 var int64 : Int64 = -19999999999
+                var ffloat : Float = 1.1
+                var ddouble : Double = 1.1
+                var ddate = NSDate()
+                var str = "test string"
+                var ddata = "test data".dataUsingEncoding(NSUTF8StringEncoding)!
             }
             
             let o = obj()
-            
+              
             try con.createTable("xctest_createtable_obj", object: o)
         }
         catch(let e) {
@@ -411,11 +420,11 @@ class MySQLDriverMacTests: XCTestCase {
         do {
             try con.exec("drop table if exists xctest_float")
             try con.exec("create table xctest_float(id INT NOT NULL AUTO_INCREMENT, PRIMARY KEY (id), val FLOAT)")
-            try con.exec("insert into xctest_float(val) VALUES(1)")
+            try con.exec("insert into xctest_float(val) VALUES(1.1)")
             let res = try con.query("select * from xctest_float")
             let row = try res.readRow()
 
-            if let val = row!["val"] as? Float  where val == Float(1) {
+            if let val = row!["val"] as? Float  where val == Float(1.1) {
                 XCTAssert(true)
             }
             else {
@@ -431,11 +440,11 @@ class MySQLDriverMacTests: XCTestCase {
         do {
             try con.exec("drop table if exists xctest_double")
             try con.exec("create table xctest_double(id INT NOT NULL AUTO_INCREMENT, PRIMARY KEY (id), val DOUBLE)")
-            try con.exec("insert into xctest_double(val) VALUES(1)")
+            try con.exec("insert into xctest_double(val) VALUES(1.1)")
             let res = try con.query("select * from xctest_double")
             let row = try res.readRow()
 
-            if let val = row!["val"] as? Double  where val == Double(1) {
+            if let val = row!["val"] as? Double  where val == Double(1.1) {
                 XCTAssert(true)
             }
             else {

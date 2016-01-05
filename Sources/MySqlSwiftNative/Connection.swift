@@ -3,8 +3,10 @@
 //  mysql_driver
 //
 //  Created by cipi on 18/12/15.
-//  Copyright © 2015 cipi. All rights reserved.
+//  Copyright © 2015 Marius Corega. All rights reserved.
 //
+
+import Foundation
 
 public extension MySQL.Connection {
 
@@ -67,6 +69,14 @@ public extension MySQL.Connection {
     private func mysqlType(val:Any?) ->String {
         
         switch val {
+        case is Int8:
+            return "TINYINT"
+        case is UInt8:
+            return "TINYINT UNSIGNED"
+        case is Int16:
+            return "SMALLINT"
+        case is UInt16:
+            return "SMALLINT UNSIGNED"
         case is Int:
             return "INT"
         case is UInt:
@@ -75,6 +85,16 @@ public extension MySQL.Connection {
             return "BIGINT"
         case is UInt64:
             return "BIGINT UNSIGNED"
+        case is Float:
+            return "FLOAT"
+        case is Double:
+            return "DOUBLE"
+        case is String:
+            return "MEDIUMTEXT"
+        case is NSDate:
+            return "DATETIME"
+        case is NSData:
+            return "LONGBLOB"
         default:
             return ""
         }
@@ -82,12 +102,21 @@ public extension MySQL.Connection {
     
     public func createTable(tableName:String, row:MySQL.Row) throws {
         var v = ""
+        var count = row.count
         
         for (key, val) in row {
-            v += key + " " + mysqlType(val) + ","
+            let type = mysqlType(val)
+            count -= 1
+            
+            if type != "" {
+                v += key + " " + type
+                if count > 1 {
+                    v += ","
+                }
+            }
         }
         
-        v = v.substringToIndex(v.endIndex.predecessor())
+       // v = v.substringToIndex(v.endIndex.predecessor())
  
         let q = "create table \(tableName) (\(v))"
         try self.exec(q)
@@ -96,15 +125,24 @@ public extension MySQL.Connection {
     public func createTable(tableName:String, object:Any) throws {
         var v = ""
         let mirror = Mirror(reflecting: object)
+        var count = mirror.children.count
         
         for case let (label?, value) in mirror.children {
-            v += label + " " + mysqlType(value) + ","
-            print (label, value)
+            let type = mysqlType(value)
+            count -= 1
+            
+            if type != "" {
+                v += label + " " + type
+                if count > 0 {
+                    v += ","
+                }
+            }
         }
         
-        v = v.substringToIndex(v.endIndex.predecessor())
+       // v = v.substringToIndex(v.endIndex.predecessor())
         
         let q = "create table \(tableName) (\(v))"
+        print(q)
         try self.exec(q)
     }
 
