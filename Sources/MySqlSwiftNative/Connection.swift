@@ -64,6 +64,55 @@ public extension MySQL.Connection {
         self.isConnected = true
     }
     
+    private func mysqlType(val:Any?) ->String {
+        
+        switch val {
+        case is Int:
+            return "INT"
+        case is UInt:
+            return "INT UNSIGNED"
+        case is Int64:
+            return "BIGINT"
+        case is UInt64:
+            return "BIGINT UNSIGNED"
+        default:
+            return ""
+        }
+    }
+    
+    public func createTable(tableName:String, row:MySQL.Row) throws {
+        var v = ""
+        
+        for (key, val) in row {
+            v += key + " " + mysqlType(val) + ","
+        }
+        
+        v = v.substringToIndex(v.endIndex.predecessor())
+ 
+        let q = "create table \(tableName) (\(v))"
+        try self.exec(q)
+    }
+
+    public func createTable(tableName:String, object:Any) throws {
+        var v = ""
+        let mirror = Mirror(reflecting: object)
+        
+        for case let (label?, value) in mirror.children {
+            v += label + " " + mysqlType(value) + ","
+            print (label, value)
+        }
+        
+        v = v.substringToIndex(v.endIndex.predecessor())
+        
+        let q = "create table \(tableName) (\(v))"
+        try self.exec(q)
+    }
+
+    public func dropTable(tableName:String) throws {
+        let q = "drop table if exists " + tableName
+        try self.exec(q)
+    }
+    
     private func readHandshake() throws -> MySQL.mysql_handshake {
         
         var msh = MySQL.mysql_handshake()
