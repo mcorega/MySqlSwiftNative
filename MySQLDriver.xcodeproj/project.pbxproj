@@ -163,6 +163,7 @@
 		3B28C47A1C2D91B6008CA202 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3B28C47D1C2D91B6008CA202 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		3B28C47F1C2D91B6008CA202 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3BDCF7241C3DB555008442DD /* tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = tests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -235,6 +236,7 @@
 				3B1392BB1C2F3C1C00AA463B /* Socket.swift */,
 				3B1392BC1C2F3C1C00AA463B /* Statement.swift */,
 				3B1392BD1C2F3C1C00AA463B /* Utils.swift */,
+				3BDCF7241C3DB555008442DD /* tests.swift */,
 			);
 			path = MySqlSwiftNative;
 			sourceTree = "<group>";

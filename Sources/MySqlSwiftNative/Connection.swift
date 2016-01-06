@@ -200,9 +200,13 @@ public extension MySQL.Connection {
         }
         
 //        res.append(0)
-//        let s = NSString(bytes: res, length: res.count, encoding: NSASCIIStringEncoding)
-        if let str = String(bytes: res, encoding: NSASCIIStringEncoding) {
-            return str
+        if let str = NSString(bytes: res, length: res.count, encoding: NSASCIIStringEncoding) {
+//        if let str = String(bytes: res, encoding: NSASCIIStringEncoding) {
+            #if os(Linux)
+                return str.bridge()
+            #else
+            return str as String
+            #endif
         }
         
         //return resStr

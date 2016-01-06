@@ -412,7 +412,7 @@ extension MySQL {
                         case 11:
                             // 2015-12-02 12:03:15.001004005
                             u = Int(data[pos+8..<pos+10].uInt32())
-                            res += String(format: ".%09d", u)
+                            res += String(format: ".%09d", arguments: [u])
                             fallthrough
                         case 7:
                             // 2015-12-02 12:03:15
