@@ -326,7 +326,7 @@ extension MySQL {
                         pos += n
                         break
                         
-                    case MysqlTypes.MYSQL_TYPE_DATE, MysqlTypes.MYSQL_TYPE_NEWDATE:
+                    case MysqlTypes.MYSQL_TYPE_DATE://, MysqlTypes.MYSQL_TYPE_NEWDATE:
                         let (dlen, n) = MySQL.Utils.lenEncInt(Array(data[pos..<data.count]))
                         
                         guard dlen != nil else {
@@ -430,6 +430,7 @@ extension MySQL {
                             break
                         default:break
                         }
+                        
                         
                         row[cols[i].name] = NSDate(dateTimeString: res)
                         pos += n + Int(dlen!)

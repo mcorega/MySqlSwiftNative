@@ -412,13 +412,26 @@ extension SequenceType where Generator.Element == UInt8 {
     }
     
     static func UInt24Array(val: UInt32) -> [UInt8]{
+        
+        
+        var byteArray = [UInt8](count: 3, repeatedValue: 0)
+        
+        for i in 0...2 {
+            byteArray[i] = UInt8(0x0000FF & val >> UInt32((i) * 8))
+        }
+        
+        return byteArray
+        
+        /*
+        
         var buf = [UInt8](count: 3, repeatedValue: 0)
         
-        buf[0] = UInt8(val)
+        buf[0] = UInt8(0x0000FF & val)
         buf[1] = UInt8(val >> 8)
         buf[2] = UInt8(val >> 16)
         
         return buf
+*/
     }
     
     static func DoubleArray(val: Double) -> [UInt8]{

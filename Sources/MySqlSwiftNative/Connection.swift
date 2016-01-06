@@ -110,13 +110,11 @@ public extension MySQL.Connection {
             
             if type != "" {
                 v += key + " " + type
-                if count > 1 {
+                if count > 0 {
                     v += ","
                 }
             }
         }
-        
-       // v = v.substringToIndex(v.endIndex.predecessor())
  
         let q = "create table \(tableName) (\(v))"
         try self.exec(q)
@@ -139,10 +137,129 @@ public extension MySQL.Connection {
             }
         }
         
-       // v = v.substringToIndex(v.endIndex.predecessor())
-        
         let q = "create table \(tableName) (\(v))"
         print(q)
+        try self.exec(q)
+    }
+    
+    private func escapeData(data:[UInt8]) -> String {
+        
+        var res = [UInt8]()
+        var resStr = ""
+        
+        for v in data {
+           // let s = Character(UnicodeScalar(v))
+           // switch s {
+            switch v {
+            case 0:
+           // case Character("\0"):
+                res += [UInt8]("\0".utf8)
+            //    resStr += "\\0"
+                break
+                
+            case 10:
+            //case Character("\n"):
+               res += [UInt8]("\n".utf8)
+              // resStr += "\\n"
+                break
+                
+            case 92:
+            //case Character("\\"):
+                res += [UInt8]("\\\\".utf8)
+              //  resStr += "\\\\"
+                break
+                
+            case 13:
+            //case Character("\r"):
+                res += [UInt8]("\\r".utf8)
+            //    resStr += "\\r"
+                break
+                
+            case 39:
+            //case Character("\'"):
+                res += [UInt8]("\\'".utf8)
+             //   resStr += "\\'"
+                break
+                
+            case 34:
+            //case Character("\""):
+                res += [UInt8]("\\\"".utf8)
+              //  resStr += "\\\""
+                break
+                
+            case 26:
+            //case Character(UnicodeScalar(0x1a)):
+                res += [UInt8]("\\Z".utf8)
+            //    resStr += "\\Z"
+                 break
+
+            default:
+                res.append(v)
+                //resStr.append(Character(UnicodeScalar(v)))
+            }
+        }
+        
+//        res.append(0)
+//        let s = NSString(bytes: res, length: res.count, encoding: NSASCIIStringEncoding)
+        if let str = String(bytes: res, encoding: NSASCIIStringEncoding) {
+            return str
+        }
+        
+        //return resStr
+        return ""
+    }
+    
+    private func stringValue(val:Any) -> String {
+        switch val {
+        case is UInt8, is Int8, is Int, is UInt, is UInt16, is Int16, is UInt32, is Int32,
+            is UInt64, is Int64, is Float, is Double:
+            return "\(val)"
+        case is String:
+            return "\"\(val)\""
+        case is NSData:
+            let v = val as! NSData
+            
+            let count = v.length / sizeof(UInt8)
+            
+            // create an array of Uint8
+            var array = [UInt8](count: count, repeatedValue: 0)
+            
+            // copy bytes into array
+            v.getBytes(&array, length:count * sizeof(UInt8))
+            
+            
+            let str = escapeData(array)
+            
+            return "\"\(str)\""
+            
+  
+        default:
+            return ""
+        }
+     }
+    
+    public func insertRecord(tableName:String, object:Any) throws {
+        var l = ""
+        var v = ""
+        let mirror = Mirror(reflecting: object)
+        var count = mirror.children.count
+        
+        for case let (label?, value) in mirror.children {
+            let val = stringValue(value)
+            count -= 1
+            
+            if val != "" {
+                l += label
+                v += val
+                if count > 0 {
+                    l += ","
+                    v += ","
+                }
+            }
+        }
+        
+        let q = "INSERT INTO \(tableName) (\(l)) VALUES (\(v))"
+      //  print(q)
         try self.exec(q)
     }
 
