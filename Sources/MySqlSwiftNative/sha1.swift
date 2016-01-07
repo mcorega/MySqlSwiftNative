@@ -251,5 +251,19 @@ final class Mysql_SHA1 {
     func rotateLeft(v:UInt32, _ n:UInt32) -> UInt32 {
         return ((v << n) & 0xFFFFFFFF) | (v >> (32 - n))
     }
-
+    
+    func equals(val:Mysql_SHA1) -> Bool {
+        
+        let v1 = self.calculate()
+        let v2 = val.calculate()
+        
+        for i in 0..<v1.count {
+            if v1[i] != v2[i] {
+                return false
+            }
+        }
+        
+        return true
+    }
+    
 }

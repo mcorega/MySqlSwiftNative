@@ -209,7 +209,8 @@ extension MySQL {
             }
             
             if !con.EOFfound, let cols = con.columns where cols.count > 0, let data = try con.socket?.readPacket() {
-                                
+                                print(data[0])
+                print(data[1])
                 //OK Packet
                 if data[0] != 0x00 {
                     // EOF Packet
@@ -232,7 +233,14 @@ extension MySQL {
                         throw con.handleErrorPacket(data)
                     }
                     
-                    return nil
+                    if data[0] > 0 && data[0] < 251 {
+                        //Result set header packet
+                        //Utils.le
+                    }
+                    else {
+                        return nil
+                    }
+                    
                 }
                 
                 var pos = 1 + (cols.count + 7 + 2)>>3
@@ -316,9 +324,15 @@ extension MySQL {
                         pos += n
                         break
 
+                    case MysqlTypes.MYSQL_TYPE_TINY_BLOB, MysqlTypes.MYSQL_TYPE_MEDIUM_BLOB,
+                        MysqlTypes.MYSQL_TYPE_LONG_BLOB, MysqlTypes.MYSQL_TYPE_BLOB:
+                        let (bres, n) = MySQL.Utils.lenEncBin(Array(data[pos..<data.count]))
+                        row[cols[i].name] = bres
+                        pos += n
+                        break
+                        
                     case MysqlTypes.MYSQL_TYPE_DECIMAL, MysqlTypes.MYSQL_TYPE_NEWDECIMAL,
-                        MysqlTypes.MYSQL_TYPE_BIT, MysqlTypes.MYSQL_TYPE_ENUM, MysqlTypes.MYSQL_TYPE_SET, MysqlTypes.MYSQL_TYPE_TINY_BLOB,
-                        MysqlTypes.MYSQL_TYPE_MEDIUM_BLOB, MysqlTypes.MYSQL_TYPE_LONG_BLOB, MysqlTypes.MYSQL_TYPE_BLOB,
+                        MysqlTypes.MYSQL_TYPE_BIT, MysqlTypes.MYSQL_TYPE_ENUM, MysqlTypes.MYSQL_TYPE_SET,
                         MysqlTypes.MYSQL_TYPE_GEOMETRY:
                         
                         let (str, n) = MySQL.Utils.lenEncStr(Array(data[pos..<data.count]))

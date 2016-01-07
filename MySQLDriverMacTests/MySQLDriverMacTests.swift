@@ -163,11 +163,12 @@ class MySQLDriverMacTests: XCTestCase {
             try con.dropTable("xctest_inserttable_obj")
             try con.createTable("xctest_inserttable_obj", object: o)
             try con.insertRecord("xctest_inserttable_obj", object: o)
+/*            try con.insertRecord("xctest_inserttable_obj", object: o)
             try con.insertRecord("xctest_inserttable_obj", object: o)
             try con.insertRecord("xctest_inserttable_obj", object: o)
             try con.insertRecord("xctest_inserttable_obj", object: o)
             try con.insertRecord("xctest_inserttable_obj", object: o)
-            try con.insertRecord("xctest_inserttable_obj", object: o)
+*/
         }
         catch(let e) {
             XCTAssertNil(e)
@@ -890,21 +891,22 @@ class MySQLDriverMacTests: XCTestCase {
     
     func testStatementReadRowResultUInt8Array() {
         do {
-            let data = NSData(contentsOfFile: "/Users/cipi/Pictures/team.jpg")!
+            let  data =  NSData(contentsOfFile: "/Users/cipi/Pictures/team.jpg")!
             let count = data.length / sizeof(UInt8)
             var array = [UInt8](count: count, repeatedValue: 0)
             data.getBytes(&array, length:count * sizeof(UInt8))
             
-            try con.exec("drop table if exists xctest_stmt_string")
-            try con.exec("create table xctest_stmt_string(id INT NOT NULL AUTO_INCREMENT, PRIMARY KEY (id), val LONGBLOB)")
-            //try con.exec("insert into xctest_stmt_string(val) VALUES('val')")
-            var stmt = try con.prepare("insert into xctest_stmt_string(val) VALUES(?)")
+            try con.exec("drop table if exists xctest_stmt_uint8array")
+            try con.exec("create table xctest_stmt_uint8array(id INT NOT NULL AUTO_INCREMENT, PRIMARY KEY (id), val LONGBLOB)")
+            var stmt = try con.prepare("insert into xctest_stmt_uint8array(val) VALUES(?)")
             try stmt.exec([array])
-            stmt = try con.prepare("select * from xctest_stmt_string where id=?")
-            let res = try stmt.query([1])
-            let row = try res.readRow()
             
-            if let val = row!["val"] as? [UInt8] /*where val == "val" */ {
+            stmt = try con.prepare("select * from xctest_stmt_uint8array where id=?")
+            let res = try stmt.query([1])
+
+            let row = try res.readRow()
+
+            if let val = row?["val"] as? [UInt8] where Mysql_SHA1(val).equals(Mysql_SHA1(array))  {
                 XCTAssert(true)
             }
             else {

@@ -35,6 +35,31 @@ extension MySQL {
             return n
         }
         
+        static func lenEncBin(b:[UInt8]) ->([UInt8]?, Int) {
+            
+            var (num, n) = lenEncInt(b)
+            
+            guard num != nil else {
+                return (nil, 0)
+            }
+            
+            if num < 1 {
+                
+                return (nil, n)
+            }
+            
+            n += Int(num!)
+            
+            if b.count >= n {
+                var str = Array(b[n-Int(num!)...n-1])
+                //str.append(0)
+                return (str, n)
+            }
+            
+            return (nil, n)
+        }
+
+        
         static func lenEncStr(b:[UInt8]) ->(String?, Int) {
             
             var (num, n) = lenEncInt(b)
@@ -62,17 +87,17 @@ extension MySQL {
         static func lenEncIntArray(v:UInt64) -> [UInt8] {
       
             if v <= 250 {
-                return [UInt8(v)]
+                return [UInt8(v & 0xff)]
             }
             else if v <= 0xffff {
-                return [0xfc, UInt8(v), UInt8(v>>8)]
+                return [0xfc, UInt8(v & 0xff), UInt8((v>>8)&0xff)]
             }
             else if v <= 0xffffff {
-                return [0xfd, UInt8(v & 0x0000FF), UInt8((v>>8)&0xff), UInt8((v>>16)&0xff)]
+                return [0xfd, UInt8(v & 0xff), UInt8((v>>8)&0xff), UInt8((v>>16)&0xff)]
             }
             
-            return [0xfe, UInt8(v), UInt8(v>>8), UInt8(v>>16), UInt8(v>>24),
-                UInt8(v>>32), UInt8(v>>40), UInt8(v>>48), UInt8(v>>56)]
+            return [0xfe, UInt8(v & 0xff), UInt8((v>>8) & 0xff), UInt8((v>>16) & 0xff), UInt8((v>>24) & 0xff),
+                UInt8((v>>32) & 0xff), UInt8((v>>40) & 0xff), UInt8((v>>48) & 0xff), UInt8((v>>56) & 0xff)]
         }
         
         static func lenEncInt(b: [UInt8]) -> (UInt64?, Int) {
