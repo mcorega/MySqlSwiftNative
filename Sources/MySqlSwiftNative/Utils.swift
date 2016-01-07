@@ -51,8 +51,7 @@ extension MySQL {
             n += Int(num!)
             
             if b.count >= n {
-                var str = Array(b[n-Int(num!)...n-1])
-                //str.append(0)
+                let str = Array(b[n-Int(num!)...n-1])
                 return (str, n)
             }
             
