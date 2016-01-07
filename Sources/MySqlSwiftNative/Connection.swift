@@ -153,13 +153,13 @@ public extension MySQL.Connection {
             switch v {
             case 0:
            // case Character("\0"):
-                res += [UInt8]("\0".utf8)
+                res += [UInt8]("\\0".utf8)
             //    resStr += "\\0"
                 break
                 
             case 10:
             //case Character("\n"):
-               res += [UInt8]("\n".utf8)
+               res += [UInt8]("\\n".utf8)
               // resStr += "\\n"
                 break
                 
@@ -187,7 +187,7 @@ public extension MySQL.Connection {
               //  resStr += "\\\""
                 break
                 
-            case 26:
+            case 0x1A:
             //case Character(UnicodeScalar(0x1a)):
                 res += [UInt8]("\\Z".utf8)
             //    resStr += "\\Z"

@@ -68,7 +68,7 @@ extension MySQL {
                 return [0xfc, UInt8(v), UInt8(v>>8)]
             }
             else if v <= 0xffffff {
-                return [0xfd, UInt8(v), UInt8(v>>8), UInt8(v>>16)]
+                return [0xfd, UInt8(v & 0x0000FF), UInt8((v>>8)&0xff), UInt8((v>>16)&0xff)]
             }
             
             return [0xfe, UInt8(v), UInt8(v>>8), UInt8(v>>16), UInt8(v>>24),

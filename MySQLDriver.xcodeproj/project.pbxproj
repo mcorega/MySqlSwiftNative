@@ -81,6 +81,7 @@
 		3B28C47E1C2D91B6008CA202 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3B28C47C1C2D91B6008CA202 /* LaunchScreen.storyboard */; };
 		3B28C4831C2D91D1008CA202 /* MySQLDriveriOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B28C4011C2D74D4008CA202 /* MySQLDriveriOS.framework */; };
 		3B28C4841C2D91D1008CA202 /* MySQLDriveriOS.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 3B28C4011C2D74D4008CA202 /* MySQLDriveriOS.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		3BB09DA81C3EE8FA00F7FD13 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BB09DA71C3EE8FA00F7FD13 /* main.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -163,6 +164,7 @@
 		3B28C47A1C2D91B6008CA202 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3B28C47D1C2D91B6008CA202 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		3B28C47F1C2D91B6008CA202 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3BB09DA71C3EE8FA00F7FD13 /* main.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		3BDCF7241C3DB555008442DD /* tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = tests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -226,6 +228,7 @@
 		3B1392B21C2F3C1C00AA463B /* MySqlSwiftNative */ = {
 			isa = PBXGroup;
 			children = (
+				3BB09DA71C3EE8FA00F7FD13 /* main.swift */,
 				3B1392B31C2F3C1C00AA463B /* Connection.swift */,
 				3B1392B41C2F3C1C00AA463B /* Constants.swift */,
 				3B1392B61C2F3C1C00AA463B /* mysql.swift */,
@@ -564,6 +567,7 @@
 				3B1392C41C2F3C1C00AA463B /* Constants.swift in Sources */,
 				3B1392EE1C2F3C1C00AA463B /* Socket.swift in Sources */,
 				3B1392E21C2F3C1C00AA463B /* Result.swift in Sources */,
+				3BB09DA81C3EE8FA00F7FD13 /* main.swift in Sources */,
 				3B1392FA1C2F3C1C00AA463B /* Utils.swift in Sources */,
 				3B1392DC1C2F3C1C00AA463B /* Query.swift in Sources */,
 				3B1392F41C2F3C1C00AA463B /* Statement.swift in Sources */,

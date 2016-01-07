@@ -887,5 +887,35 @@ class MySQLDriverMacTests: XCTestCase {
             XCTAssertNil(e)
         }
     }
+    
+    func testStatementReadRowResultUInt8Array() {
+        do {
+            let data = NSData(contentsOfFile: "/Users/cipi/Pictures/team.jpg")!
+            let count = data.length / sizeof(UInt8)
+            var array = [UInt8](count: count, repeatedValue: 0)
+            data.getBytes(&array, length:count * sizeof(UInt8))
+            
+            try con.exec("drop table if exists xctest_stmt_string")
+            try con.exec("create table xctest_stmt_string(id INT NOT NULL AUTO_INCREMENT, PRIMARY KEY (id), val LONGBLOB)")
+            //try con.exec("insert into xctest_stmt_string(val) VALUES('val')")
+            var stmt = try con.prepare("insert into xctest_stmt_string(val) VALUES(?)")
+            try stmt.exec([array])
+            stmt = try con.prepare("select * from xctest_stmt_string where id=?")
+            let res = try stmt.query([1])
+            let row = try res.readRow()
+            
+            if let val = row!["val"] as? [UInt8] /*where val == "val" */ {
+                XCTAssert(true)
+            }
+            else {
+                XCTAssert(false)
+            }
+        }
+        catch(let e) {
+            XCTAssertNil(e)
+        }
+    }
 
+
+   
 }

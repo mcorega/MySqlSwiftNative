@@ -14,7 +14,9 @@
 //
 //
 
+#if os(Linux)
 import XCTest
+
 import Foundation
 
 //@testable import MySQLDriverLinuxTests
@@ -1057,4 +1059,4 @@ class MySQLDriverLinuxTests: XCTestCase {
     }
     
 }
-
+#endif
