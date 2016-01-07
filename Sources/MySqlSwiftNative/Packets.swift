@@ -2,8 +2,8 @@
 //  Packets.swift
 //  mysql_driver
 //
-//  Created by cipi on 24/12/15.
-//  Copyright © 2015 cipi. All rights reserved.
+//  Created by Marius Corega on 24/12/15.
+//  Copyright © 2015 Marius Corega. All rights reserved.
 //
 
 

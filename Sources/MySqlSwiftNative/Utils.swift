@@ -2,8 +2,8 @@
 //  Utils.swift
 //  mysql_driver
 //
-//  Created by cipi on 19/12/15.
-//  Copyright © 2015 cipi. All rights reserved.
+//  Created by Marius Corega on 19/12/15.
+//  Copyright © 2015 Marius Corega. All rights reserved.
 //
 
 #if os(Linux)

@@ -2,7 +2,7 @@
 //  Connection.swift
 //  mysql_driver
 //
-//  Created by cipi on 18/12/15.
+//  Created by Marius Corega on 18/12/15.
 //  Copyright © 2015 Marius Corega. All rights reserved.
 //
 

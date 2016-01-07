@@ -2,8 +2,8 @@
 //  Rows.swift
 //  mysql_driver
 //
-//  Created by cipi on 23/12/15.
-//  Copyright © 2015 cipi. All rights reserved.
+//  Created by Marius Corega on 23/12/15.
+//  Copyright © 2015 Marius Corega. All rights reserved.
 //
 
 import Foundation
@@ -209,8 +209,6 @@ extension MySQL {
             }
             
             if !con.EOFfound, let cols = con.columns where cols.count > 0, let data = try con.socket?.readPacket() {
-                                print(data[0])
-                print(data[1])
                 //OK Packet
                 if data[0] != 0x00 {
                     // EOF Packet

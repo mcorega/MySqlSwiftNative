@@ -2,8 +2,8 @@
 //  Socket.swift
 //  mysql_driver
 //
-//  Created by cipi on 18/12/15.
-//  Copyright © 2015 cipi. All rights reserved.
+//  Created by Marius Corega on 18/12/15.
+//  Copyright © 2015 Marius Corega. All rights reserved.
 //
 
 #if os(Linux)

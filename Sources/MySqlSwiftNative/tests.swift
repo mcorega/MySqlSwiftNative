@@ -2,17 +2,10 @@
 //  tests.swift
 //  MySQLDriver
 //
-//  Created by cipi on 06/01/16.
-//
+//  Created by Marius Corega on 25/12/15.
+//  Copyright © 2015 Marius Corega. All rights reserved.
 //
 
-//
-//  MySQLDriverMacTests.swift
-//  MySQLDriverMacTests
-//
-//  Created by cipi on 25/12/15.
-//
-//
 
 #if os(Linux)
 import XCTest
