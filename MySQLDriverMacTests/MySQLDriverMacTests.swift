@@ -93,22 +93,26 @@ class MySQLDriverMacTests: XCTestCase {
         }
     }
 
+/*
     func testCreateTableArray() {
         do {
-            try con.exec("drop table if exists xctest_createtable")
-            try con.dropTable("xctest_createtable_obj")
-            try con.createTable("xctest_createtable", row: ["intval":Int(-1001), "uintval":UInt(1001), "int64val":Int64(-1001), "uint64val":UInt64(1001)])
+            //try con.exec("drop table if exists xctest_createtable")
+            let table = MySQL.Table(tableName: "xctest_createtable", connection: con)
+            try table.drop()
+            let row : [String:Any] = ["intval":Int(-1001), "uintval":UInt(1001), "int64val":Int64(-1001), "uint64val":UInt64(1001)]
+
+            try table.create(row)
         }
         catch(let e) {
             XCTAssertNil(e)
         }
     }
-
+*/
     func testCreateTableObject() {
 
         do {
-
-            try con.dropTable("xctest_createtable_obj")
+            let table = MySQL.Table(tableName: "xctest_createtable_obj", connection: con)
+            try table.drop()
             
             struct obj {
                 var iint8 : Int8 = -1
@@ -127,8 +131,9 @@ class MySQLDriverMacTests: XCTestCase {
             }
             
             let o = obj()
-              
-            try con.createTable("xctest_createtable_obj", object: o)
+   
+            try table.create(o)
+
         }
         catch(let e) {
             XCTAssertNil(e)
@@ -138,21 +143,22 @@ class MySQLDriverMacTests: XCTestCase {
     func testInsertTableObject() {
         
         do {
-            
-            try con.dropTable("xctest_inserttable_obj")
+            let table = MySQL.Table(tableName: "xctest_inserttable_obj", connection: con)
+            try table.drop()
             
             struct obj {
+                var oint: Int? 
                 var iint8 : Int8 = -1
                 var uint8: UInt8 = 1
                 var int16 : Int16 = -1
-                var uint16: UInt16 = 1
+                var uint16: UInt16 = 100
                 var id:Int = 1
-                var count:UInt = 10
+                var count:UInt? = 10
                 var uint64 : UInt64 = 19999999999
                 var int64 : Int64 = -19999999999
                 var ffloat : Float = 1.1
                 var ddouble : Double = 1.1
-//                var ddate = NSDate()
+                var ddate = NSDate(dateString: "2015-11-10")
                 var str = "test string"
                 //var ddata = "test data".dataUsingEncoding(NSUTF8StringEncoding)!
                 var ddata = NSData(contentsOfFile: "/Users/cipi/Pictures/team.jpg")!
@@ -160,15 +166,11 @@ class MySQLDriverMacTests: XCTestCase {
             
             let o = obj()
             
-            try con.dropTable("xctest_inserttable_obj")
-            try con.createTable("xctest_inserttable_obj", object: o)
-            try con.insertRecord("xctest_inserttable_obj", object: o)
-/*            try con.insertRecord("xctest_inserttable_obj", object: o)
-            try con.insertRecord("xctest_inserttable_obj", object: o)
-            try con.insertRecord("xctest_inserttable_obj", object: o)
-            try con.insertRecord("xctest_inserttable_obj", object: o)
-            try con.insertRecord("xctest_inserttable_obj", object: o)
-*/
+            print(o.oint.dynamicType)
+           // print(_stdlib_getDemangledTypeName(o.oint))
+            
+            try table.create(o)
+            try table.insert(o)
         }
         catch(let e) {
             XCTAssertNil(e)

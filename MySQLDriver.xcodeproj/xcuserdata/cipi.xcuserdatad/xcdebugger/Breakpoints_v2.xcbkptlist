@@ -2,4 +2,54 @@
 <Bucket
    type = "1"
    version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Sources/MySqlSwiftNative/Utils.swift"
+            timestampString = "473976335.55055"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "25"
+            endingLineNumber = "25"
+            landmarkName = "mysqlType(_:)"
+            landmarkType = "5">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "static MySQLDriverMacTests.MySQL.Utils.mysqlType (protocol&lt;&gt;) -&gt; Swift.String"
+                  moduleName = "MySQLDriverMacTests"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/cipi/tmp/MySQLDriver/Sources/MySqlSwiftNative/Utils.swift"
+                  timestampString = "473986034.942001"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "25"
+                  endingLineNumber = "25"
+                  offsetFromSymbolStart = "79">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "static MySQLDriverMac.MySQL.Utils.mysqlType (protocol&lt;&gt;) -&gt; Swift.String"
+                  moduleName = "MySQLDriverMac"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/cipi/tmp/MySQLDriver/Sources/MySqlSwiftNative/Utils.swift"
+                  timestampString = "473986034.942349"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "25"
+                  endingLineNumber = "25"
+                  offsetFromSymbolStart = "79">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
 </Bucket>

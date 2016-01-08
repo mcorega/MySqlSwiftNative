@@ -16,6 +16,152 @@
 extension MySQL {
     
     internal struct Utils {
+        
+        static func mysqlType(val:Any) ->String {
+            
+            var optional = false
+            var value = val
+            
+            let m = Mirror(reflecting: val)
+            if m.displayStyle == .Optional {
+                let desc = m.description
+                optional = true
+                //value = value!
+            }
+
+            
+            switch value {
+            case is Int8:
+                return "TINYINT"
+            case is UInt8:
+                return "TINYINT UNSIGNED"
+            case is Int16:
+                return "SMALLINT"
+            case is UInt16:
+                return "SMALLINT UNSIGNED"
+            case is Int:
+                return "INT"
+            case is UInt:
+                return "INT UNSIGNED"
+            case is Int64:
+                return "BIGINT"
+            case is UInt64:
+                return "BIGINT UNSIGNED"
+            case is Float:
+                return "FLOAT"
+            case is Double:
+                return "DOUBLE"
+            case is String:
+                return "MEDIUMTEXT"
+            case is NSDate:
+                return "DATETIME"
+            case is NSData:
+                return "LONGBLOB"
+            default:
+                return ""
+            }
+        }
+
+        private static func escapeData(data:[UInt8]) -> String {
+            
+            var res = [UInt8]()
+            //var resStr = ""
+            
+            for v in data {
+                // let s = Character(UnicodeScalar(v))
+                // switch s {
+                switch v {
+                case 0:
+                    // case Character("\0"):
+                    res += [UInt8]("\\0".utf8)
+                    //    resStr += "\\0"
+                    break
+                    
+                case 10:
+                    //case Character("\n"):
+                    res += [UInt8]("\\n".utf8)
+                    // resStr += "\\n"
+                    break
+                    
+                case 92:
+                    //case Character("\\"):
+                    res += [UInt8]("\\\\".utf8)
+                    //  resStr += "\\\\"
+                    break
+                    
+                case 13:
+                    //case Character("\r"):
+                    res += [UInt8]("\\r".utf8)
+                    //    resStr += "\\r"
+                    break
+                    
+                case 39:
+                    //case Character("\'"):
+                    res += [UInt8]("\\'".utf8)
+                    //   resStr += "\\'"
+                    break
+                    
+                case 34:
+                    //case Character("\""):
+                    res += [UInt8]("\\\"".utf8)
+                    //  resStr += "\\\""
+                    break
+                    
+                case 0x1A:
+                    //case Character(UnicodeScalar(0x1a)):
+                    res += [UInt8]("\\Z".utf8)
+                    //    resStr += "\\Z"
+                    break
+                    
+                default:
+                    res.append(v)
+                    //resStr.append(Character(UnicodeScalar(v)))
+                }
+            }
+            
+            //        res.append(0)
+            if let str = NSString(bytes: res, length: res.count, encoding: NSASCIIStringEncoding) {
+                //        if let str = String(bytes: res, encoding: NSASCIIStringEncoding) {
+                #if os(Linux)
+                    return str.bridge()
+                #else
+                    return str as String
+                #endif
+            }
+            
+            //return resStr
+            return ""
+        }
+        
+        static func stringValue(val:Any) -> String {
+            switch val {
+            case is UInt8, is Int8, is Int, is UInt, is UInt16, is Int16, is UInt32, is Int32,
+            is UInt64, is Int64, is Float, is Double:
+                return "\(val)"
+            case is String:
+                return "\"\(val)\""
+            case is NSData:
+                let v = val as! NSData
+                
+                let count = v.length / sizeof(UInt8)
+                
+                // create an array of Uint8
+                var array = [UInt8](count: count, repeatedValue: 0)
+                
+                // copy bytes into array
+                v.getBytes(&array, length:count * sizeof(UInt8))
+                
+                
+                let str = escapeData(array)
+                
+                return "\"\(str)\""
+                
+                
+            default:
+                return ""
+            }
+        }
+
         static func skipLenEncStr(data:[UInt8]) -> Int {
             var (num, n) = lenEncInt(data)
             
@@ -183,6 +329,28 @@ extension NSDate
         dateStringFormatter.locale = NSLocale(localeIdentifier: "en_US_POSIX")
         let d = dateStringFormatter.dateFromString(dateTimeString)!
         self.init(timeInterval:0, sinceDate:d)
+    }
+
+    func dateString() -> String {
+        let dateStringFormatter = NSDateFormatter()
+        dateStringFormatter.dateFormat = "yyyy-MM-dd"
+        dateStringFormatter.locale = NSLocale(localeIdentifier: "en_US_POSIX")
+        return dateStringFormatter.stringFromDate(self)
+    }
+
+    
+    func timeString() -> String {
+        let dateStringFormatter = NSDateFormatter()
+        dateStringFormatter.dateFormat = "hh-mm-ss"
+        dateStringFormatter.locale = NSLocale(localeIdentifier: "en_US_POSIX")
+        return dateStringFormatter.stringFromDate(self)
+    }
+    
+    func dateTimeString() -> String {
+        let dateStringFormatter = NSDateFormatter()
+        dateStringFormatter.dateFormat = "yyyy-MM-dd hh:mm:ss"
+        dateStringFormatter.locale = NSLocale(localeIdentifier: "en_US_POSIX")
+        return dateStringFormatter.stringFromDate(self)
     }
 
 }
