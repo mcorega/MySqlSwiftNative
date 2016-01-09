@@ -15,7 +15,7 @@ public extension MySQL {
         enum Error : ErrorType {
             case ArgsCountMismatch
             case StmtIdNotSet
-            case UnknownType
+            case UnknownType(String)
             case NilConnection
             case MySQLPacketToLarge
         }
@@ -127,7 +127,7 @@ public extension MySQL {
                     let mi = Mirror(reflecting: args[ii])
                    
                     //check for null value
-                    if (mi.displayStyle == .Optional) && (mi.children.count == 0) {
+                    if ((mi.displayStyle == .Optional) && (mi.children.count == 0)) || args[ii] is NSNull {
                         
                         let nullByte = ii >> 3
                         let nullMask = UInt8(UInt(1) << UInt(ii-(nullByte<<3)))
@@ -153,7 +153,7 @@ public extension MySQL {
                 for v in args {
                     let mi = Mirror(reflecting: v)
                     
-                    if (mi.displayStyle == .Optional) && (mi.children.count == 0) {
+                    if ((mi.displayStyle == .Optional) && (mi.children.count == 0)) || v is NSNull {
                         dataTypeArr += [UInt8].UInt16Array(UInt16(MysqlTypes.MYSQL_TYPE_NULL))
                         continue
                     }
@@ -249,7 +249,6 @@ public extension MySQL {
                             }
                             break
                             
-                            
                         case let str as String:
                             if str.characters.count < MySQL.maxPackAllowed - 1024*1024 {
                                 let lenArr = MySQL.Utils.lenEncIntArray(UInt64(str.characters.count))
@@ -270,7 +269,7 @@ public extension MySQL {
                             argsArr += arr
                             break
                         default:
-                            throw Error.UnknownType
+                            throw Error.UnknownType("\(mi.subjectType)")
                         }
                     }
                     

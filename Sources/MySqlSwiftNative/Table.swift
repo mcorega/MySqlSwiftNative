@@ -73,13 +73,15 @@ public extension MySQL {
                 return "DATETIME" + optional
             case "NSConcreteData", "NSConcreteMutableData":
                 return "LONGBLOB" + optional
+            case "Array<UInt8>":
+                return "LONGBLOB" + optional
             default:
                 throw Error.UnknownType(type)
             }
         }
 
         
-        /// Creates a new table using the connection
+        /// Creates a new table based on a Swift Object using the connection
         func create(object:Any, primaryKey:String?=nil, autoInc:Bool=false) throws {
             var v = ""
             let mirror = Mirror(reflecting: object)
@@ -106,19 +108,24 @@ public extension MySQL {
             }
             
             let q = "create table \(tableName) (\(v))"
-            print(q)
+            //print(q)
             try con.exec(q)
         }
 
-        func create(row:MySQL.Row) throws {
+        /// Creates a new table based on a MySQL.RowStructure using the connection
+        func create(row:MySQL.Row, primaryKey:String?=nil, autoInc:Bool=false) throws {
             var v = ""
             var count = row.count
             
             for (key, val) in row {
-                let type = Utils.mysqlType(val)
+                var type = try mysqlType(val)
                 count -= 1
                 
                 if type != "" {
+                    if let pkey = primaryKey where pkey == key {
+                        type += " AUTO_INCREMENT"
+                    }
+                    
                     v += key + " " + type
                     if count > 0 {
                         v += ","
@@ -127,6 +134,7 @@ public extension MySQL {
             }
             
             let q = "create table \(tableName) (\(v))"
+            print(q)
             try con.exec(q)
         }
         
@@ -155,6 +163,33 @@ public extension MySQL {
             let stmt = try con.prepare(q)
             try stmt.exec(args)
         }
+        
+        public func insert(row:Row) throws {
+            var l = ""
+            var v = ""
+
+            var count = row.count
+            var args = [Any]()
+            
+            for case let (label, value) in row {
+                
+                args.append(value)
+                
+                count -= 1
+                l += label
+                v += "?"
+                if count > 0 {
+                    l += ","
+                    v += ","
+                }
+            }
+            
+            let q = "INSERT INTO \(tableName) (\(l)) VALUES (\(v))"
+            //  print(q)
+            let stmt = try con.prepare(q)
+            try stmt.exec(args)
+        }
+
         
         private func parsePredicate(pred:[Any]) throws -> (String, [Any]) {
             

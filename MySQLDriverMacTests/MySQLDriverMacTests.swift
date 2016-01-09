@@ -93,21 +93,6 @@ class MySQLDriverMacTests: XCTestCase {
         }
     }
 
-/*
-    func testCreateTableArray() {
-        do {
-            //try con.exec("drop table if exists xctest_createtable")
-            let table = MySQL.Table(tableName: "xctest_createtable", connection: con)
-            try table.drop()
-            let row : [String:Any] = ["intval":Int(-1001), "uintval":UInt(1001), "int64val":Int64(-1001), "uint64val":UInt64(1001)]
-
-            try table.create(row)
-        }
-        catch(let e) {
-            XCTAssertNil(e)
-        }
-    }
-*/
     func testCreateTableObject() {
 
         do {
@@ -139,6 +124,40 @@ class MySQLDriverMacTests: XCTestCase {
             XCTAssertNil(e)
         }
     }
+    
+    func testCreateTableRow() {
+        
+        do {
+            let table = MySQL.Table(tableName: "xctest_createtable_row", connection: con)
+            try table.drop()
+            
+            let obj : MySQL.Row = [
+                "oint": Int?(0),
+                "iint8" : Int8(-1),
+                "uint8": UInt8(1),
+                "int16" : Int16(-1),
+                "uint16": UInt16(100),
+                "id":Int(1),
+                "count":UInt?(10),
+                "uint64" : UInt64(19999999999),
+                "int64" : Int64(-19999999999),
+                "ffloat" : Float(1.1),
+                "ddouble" : Double(1.1),
+                "ddate" : NSDate(dateString: "2015-11-10"),
+                "str" : "test string",
+                "nsdata" : "test data".dataUsingEncoding(NSUTF8StringEncoding)!,
+                "uint8_array" : [UInt8]("test data uint8 array".utf8),
+                //var ddata = NSData(contentsOfFile: "/Users/cipi/Pictures/team.jpg")!
+            ]
+            
+            
+            try table.create(obj)
+        }
+        catch(let e) {
+            XCTAssertNil(e)
+        }
+    }
+
 
     func testInsertTableObject() {
         
@@ -160,7 +179,8 @@ class MySQLDriverMacTests: XCTestCase {
                 var ddouble : Double = 1.1
                 var ddate = NSDate(dateString: "2015-11-10")
                 var str = "test string"
-                //var ddata = "test data".dataUsingEncoding(NSUTF8StringEncoding)!
+                var nsdata = "test data".dataUsingEncoding(NSUTF8StringEncoding)!
+                var uint8_array = [UInt8]("test data uint8 array".utf8)
                 //var ddata = NSData(contentsOfFile: "/Users/cipi/Pictures/team.jpg")!
             }
             
@@ -173,6 +193,42 @@ class MySQLDriverMacTests: XCTestCase {
             XCTAssertNil(e)
         }
     }
+    
+    func testInsertTableRow() {
+        
+        do {
+            let table = MySQL.Table(tableName: "xctest_inserttable_row", connection: con)
+            try table.drop()
+            
+            var obj : MySQL.Row = [
+                "oint": Int?(0),
+                "iint8" : Int8(-1),
+                "uint8": UInt8(1),
+                "int16" : Int16(-1),
+                "uint16": UInt16(100),
+                "id":Int(1),
+                "count":UInt?(10),
+                "uint64" : UInt64(19999999999),
+                "int64" : Int64(-19999999999),
+                "ffloat" : Float(1.1),
+                "ddouble" : Double(1.1),
+                "ddate" : NSDate(dateString: "2015-11-10"),
+                "str" : "test string",
+                "nsdata" : "test data".dataUsingEncoding(NSUTF8StringEncoding)!,
+                "uint8_array" : [UInt8]("test data uint8 array".utf8)
+                //var ddata = NSData(contentsOfFile: "/Users/cipi/Pictures/team.jpg")!
+            ]
+            
+            
+            try table.create(obj)
+            obj["oint"] = NSNull()
+            try table.insert(obj)
+        }
+        catch(let e) {
+            XCTAssertNil(e)
+        }
+    }
+
     
     func testTableSelect() {
         
@@ -195,6 +251,7 @@ class MySQLDriverMacTests: XCTestCase {
                 var ddate = NSDate(dateString: "2015-11-10")
                 var str = "test string"
                 var ddata = "test data".dataUsingEncoding(NSUTF8StringEncoding)!
+                var uint8_array = [UInt8]("test data uint8 array".utf8)
                 //var ddata = NSData(contentsOfFile: "/Users/cipi/Pictures/team.jpg")!
             }
             
@@ -205,7 +262,7 @@ class MySQLDriverMacTests: XCTestCase {
                 try table.insert(o)
             }
             
-            let row = try table.select(["str", "ddata"], Where: ["id=",90, "or id=",91, "or id>",95])
+            let row = try table.select(["str", "uint8_array"], Where: ["id=",90, "or id=",91, "or id>",95])
             print(row)
         }
         catch(let e) {
