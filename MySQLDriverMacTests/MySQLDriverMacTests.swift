@@ -202,8 +202,8 @@ class MySQLDriverMacTests: XCTestCase {
             
             try table.create(o)
             try table.insert(o)
-            let row = try table.getRecord(["id":1])
-            print(row?["id"])
+            let row = try table.getRecord(["id":1],columns: ["id", "count", "ddate"])
+            print(row)
         }
         catch(let e) {
             XCTAssertNil(e)

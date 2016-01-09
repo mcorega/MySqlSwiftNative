@@ -19,18 +19,18 @@ extension MySQL {
         
         static func mysqlType(val:Any) ->String {
             
-            var optional = false
-            var value = val
+            //var optional = false
+            //var value = val
             
             let m = Mirror(reflecting: val)
             if m.displayStyle == .Optional {
-                let desc = m.description
-                optional = true
+              //  let desc = m.description
+             //   optional = true
                 //value = value!
             }
 
             
-            switch value {
+            switch val {
             case is Int8:
                 return "TINYINT"
             case is UInt8:

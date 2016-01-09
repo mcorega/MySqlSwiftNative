@@ -145,11 +145,58 @@ public extension MySQL {
             let stmt = try con.prepare(q)
             try stmt.exec(args)
         }
-
-        public func getRecord(Where:[String: Any]) throws -> MySQL.Row? {
+        
+        public func select(columns:[String]?=nil, Where:[String: Any]) throws -> MySQL.Row? {
             
             var q = ""
             var res : MySQL.Row?
+            var cols = ""
+            
+            if let colsArg = columns where colsArg.count > 0 {
+                cols += colsArg[0]
+                for i in 1..<colsArg.count {
+                    cols += "," + colsArg[i]
+                }
+            }
+            else {
+                cols = "*"
+            }
+            
+            let keys = Array(Where.keys)
+            
+            if  keys.count > 0 {
+                let key = keys[0]
+                if let val = Where[key] {
+                    q = "SELECT \(cols) FROM \(tableName) WHERE \(key)=? LIMIT 1"
+
+                    let stmt = try con.prepare(q)
+                    let stRes = try stmt.query([val])
+                    
+                    if let rr = try stRes.readAllRows() {
+                        if rr.count > 0 && rr[0].count > 0 {
+                            res = rr[0][0]
+                        }
+                    }
+                    
+                }
+            }
+            
+            return res
+        }
+
+
+        public func getRecord(Where:[String: Any], columns:[String]?=nil) throws -> MySQL.Row? {
+            
+            var q = ""
+            var res : MySQL.Row?
+            var cols = ""
+            
+            if let colsArg = columns where colsArg.count > 0 {
+                cols += colsArg[0]
+                for i in 1..<colsArg.count {
+                    cols += "," + colsArg[i]
+                }
+            }
             
   //          if let wcl = Where {
                 let keys = Array(Where.keys)
@@ -157,7 +204,12 @@ public extension MySQL {
                 if  keys.count > 0 {
                     let key = keys[0]
                     if let val = Where[key] {
-                        q = "SELECT * FROM \(tableName) WHERE \(key)=? LIMIT 1"
+                        if cols == "" {
+                            q = "SELECT * FROM \(tableName) WHERE \(key)=? LIMIT 1"
+                        }
+                        else {
+                             q = "SELECT \(cols) FROM \(tableName) WHERE \(key)=? LIMIT 1"
+                        }
                         
                         let stmt = try con.prepare(q)
                         let stRes = try stmt.query([val])

@@ -12,25 +12,25 @@ import Foundation
 public extension MySQL.Connection {
 
     public enum QueryResultType {
-        case Success(MySQL.RowArray)
+        case Success(MySQL.ResultSet)
         case Error(ErrorType)
     }
     
     public class QueryResult {
         
-        var rows : MySQL.RowArray?
-        var succClosure : ((rows:MySQL.RowArray)->Void)? = nil
+        var rows : MySQL.ResultSet?
+        var succClosure : ((rows:MySQL.ResultSet)->Void)? = nil
         var errorClosure : ((error:ErrorType)->Void)? = nil
         
         init() {
         }
         
-        init(r:MySQL.RowArray) {
+        init(r:MySQL.ResultSet) {
             rows = r
             //succClosure = nil
         }
         
-        public func success(closure:(rows:MySQL.RowArray)->Void)->Self {
+        public func success(closure:(rows:MySQL.ResultSet)->Void)->Self {
             
             succClosure = closure
             

@@ -11,13 +11,13 @@ import Foundation
 public protocol Result {
     init(con:MySQL.Connection)
     func readRow() throws -> MySQL.Row?
-    func readAllRows() throws -> [MySQL.RowArray]?
+    func readAllRows() throws -> [MySQL.ResultSet]?
 }
 
 extension MySQL {
     
     public typealias Row = [String:Any]
-    public typealias RowArray = [Row]
+    public typealias ResultSet = [Row]
     
     class TextRow: Result {
         
@@ -163,9 +163,9 @@ extension MySQL {
 
         }
         
-        func readAllRows() throws -> [RowArray]? {
+        func readAllRows() throws -> [ResultSet]? {
             
-            var arr = [RowArray]()
+            var arr = [ResultSet]()
             
             repeat {
                 
@@ -173,7 +173,7 @@ extension MySQL {
                     try con.nextResult()
                 }
                 
-                var rows = RowArray()
+                var rows = ResultSet()
                 
                 while let row = try readRow() {
                     rows.append(row)
@@ -345,20 +345,20 @@ extension MySQL {
                             row[cols[i].name] = NSNull()
                             break
                         }
-                        var y = 0, mo = 0, d = 0, h = 0, m = 0, s = 0, u = 0
+                        var y = 0, mo = 0, d = 0//, h = 0, m = 0, s = 0, u = 0
                         var res = NSDate()
                         
                         switch Int(dlen!) {
                         case 11:
                             // 2015-12-02 12:03:15.000 001
-                            u = Int(data[pos+8..<pos+10].uInt32())
+                            //u = Int(data[pos+8..<pos+10].uInt32())
                             //res += String(format: ".%09d", u)
                             fallthrough
                         case 7:
                             // 2015-12-02 12:03:15
-                            h = Int(data[pos+5])
-                            m = Int(data[pos+6])
-                            s = Int(data[pos+7])
+                            //h = Int(data[pos+5])
+                            //m = Int(data[pos+6])
+                            //s = Int(data[pos+7])
                             //res = String(format: "%02d:%02d:%02d", arguments: [h, m, s]) + res
                             fallthrough
                         case 4:
@@ -459,9 +459,9 @@ extension MySQL {
             return nil
         }
         
-        func readAllRows() throws -> [RowArray]? {
+        func readAllRows() throws -> [ResultSet]? {
             
-            var arr = [RowArray]()
+            var arr = [ResultSet]()
             
             repeat {
             
@@ -469,7 +469,7 @@ extension MySQL {
                     try con.nextResult()
                 }
             
-                var rows = RowArray()
+                var rows = ResultSet()
                 
                 while let row = try readRow() {
                     rows.append(row)
