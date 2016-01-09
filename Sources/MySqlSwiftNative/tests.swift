@@ -59,9 +59,11 @@ class MySQLDriverLinuxTests: XCTestCase {
             ("testStatementReadRowResultFloat", testStatementReadRowResultFloat),
             ("testStatementReadRowResultDouble", testStatementReadRowResultDouble),
             ("testStatementReadRowResultString", testStatementReadRowResultString),
-            ("testCreateTableArray", testCreateTableArray),
             ("testCreateTableObject", testCreateTableObject),
-            ("testInsertTableObject", testInsertTableObject)
+            ("testCreateTableRow", testCreateTableRow),
+            ("testInsertTableObject", testInsertTableObject),
+            ("testInsertTableRow", testInsertTableRow),
+            ("testTableSelect", testTableSelect)
             ]
     }
     
@@ -162,24 +164,13 @@ class MySQLDriverLinuxTests: XCTestCase {
         }
     }
     
-    func testCreateTableArray() {
-       do {
-        open()
-            try con.exec("drop table if exists xctest_createtable")
-            try con.dropTable("xctest_createtable_obj")
-            try con.createTable("xctest_createtable", row: ["intval":Int(-1001), "uintval":UInt(1001), "int64val":Int64(-1001), "uint64val":UInt64(1001)])
-        try con.close()
-        }
-        catch(let e) {
-            XCTAssertNil(e)
-        }
-    }
-    
     func testCreateTableObject() {
         
         do {
             open()
-            try con.dropTable("xctest_createtable_obj")
+            let table = MySQL.Table(tableName: "xctest_createtable_obj", connection: con)
+            try table.drop()
+
             
             struct obj {
                 var iint8 : Int8 = -1
@@ -199,8 +190,43 @@ class MySQLDriverLinuxTests: XCTestCase {
             
             let o = obj()
             
-            try con.createTable("xctest_createtable_obj", object: o)
+            try table.create(o)
             try con.close()
+        }
+        catch(let e) {
+            print(e)
+            XCTAssertNil(e)
+        }
+    }
+    
+    func testCreateTableRow() {
+        
+        do {
+            open()
+            let table = MySQL.Table(tableName: "xctest_createtable_row", connection: con)
+            try table.drop()
+            
+            let obj : MySQL.Row = [
+                "oint": Int?(0),
+                "iint8" : Int8(-1),
+                "uint8": UInt8(1),
+                "int16" : Int16(-1),
+                "uint16": UInt16(100),
+                "id":Int(1),
+                "count":UInt?(10),
+                "uint64" : UInt64(19999999999),
+                "int64" : Int64(-19999999999),
+                "ffloat" : Float(1.1),
+                "ddouble" : Double(1.1),
+                "ddate" : NSDate(dateString: "2015-11-10"),
+                "str" : "test string",
+                "nsdata" : "test data".bridge().dataUsingEncoding(NSUTF8StringEncoding)!,
+                "uint8_array" : [UInt8]("test data uint8 array".utf8),
+                //var ddata = NSData(contentsOfFile: "/Users/cipi/Pictures/team.jpg")!
+            ]
+            
+            
+            try table.create(obj)
         }
         catch(let e) {
             XCTAssertNil(e)
@@ -211,42 +237,134 @@ class MySQLDriverLinuxTests: XCTestCase {
         
         do {
             open()
-            try con.dropTable("xctest_inserttable_obj")
+            let table = MySQL.Table(tableName: "xctest_inserttable_obj", connection: con)
+            try table.drop()
+
             
             struct obj {
+                var oint: Int?
                 var iint8 : Int8 = -1
                 var uint8: UInt8 = 1
                 var int16 : Int16 = -1
-                var uint16: UInt16 = 1
+                var uint16: UInt16 = 100
                 var id:Int = 1
-                var count:UInt = 10
+                var count:UInt? = 10
                 var uint64 : UInt64 = 19999999999
                 var int64 : Int64 = -19999999999
                 var ffloat : Float = 1.1
                 var ddouble : Double = 1.1
-                //                var ddate = NSDate()
+                var ddate = NSDate(dateString: "2015-11-10")
                 var str = "test string"
+                var nsdata = "test data".bridge().dataUsingEncoding(NSUTF8StringEncoding)!
+                var uint8_array = [UInt8]("test data uint8 array".utf8)
                 var ddata = "test data".bridge().dataUsingEncoding(NSUTF8StringEncoding)!
                 //var ddata = NSData(contentsOfFile: "/Users/cipi/Pictures/team.jpg")!
             }
             
             let o = obj()
             
-            try con.dropTable("xctest_inserttable_obj")
-            try con.createTable("xctest_inserttable_obj", object: o)
-            try con.insertRecord("xctest_inserttable_obj", object: o)
-            try con.insertRecord("xctest_inserttable_obj", object: o)
-            try con.insertRecord("xctest_inserttable_obj", object: o)
-            try con.insertRecord("xctest_inserttable_obj", object: o)
-            try con.insertRecord("xctest_inserttable_obj", object: o)
-            try con.insertRecord("xctest_inserttable_obj", object: o)
+            try table.create(o)
+            try table.insert(o)
             
             try con.close()
+        }
+        catch(let e) {
+            print(e)
+            XCTAssertNil(e)
+        }
+    }
+    
+    func testInsertTableRow() {
+        
+        do {
+            open()
+            let table = MySQL.Table(tableName: "xctest_inserttable_row", connection: con)
+            try table.drop()
+            
+            var obj : MySQL.Row = [
+                "oint": Int?(0),
+                "iint8" : Int8(-1),
+                "uint8": UInt8(1),
+                "int16" : Int16(-1),
+                "uint16": UInt16(100),
+                "id":Int(1),
+                "count":UInt?(10),
+                "uint64" : UInt64(19999999999),
+                "int64" : Int64(-19999999999),
+                "ffloat" : Float(1.1),
+                "ddouble" : Double(1.1),
+                "ddate" : NSDate(dateString: "2015-11-10"),
+                "str" : "test string",
+                "nsdata" : "test data".bridge().dataUsingEncoding(NSUTF8StringEncoding)!,
+                "uint8_array" : [UInt8]("test data uint8 array".utf8)
+                //var ddata = NSData(contentsOfFile: "/Users/cipi/Pictures/team.jpg")!
+            ]
+            
+            
+            try table.create(obj)
+            obj["oint"] = NSNull()
+            try table.insert(obj)
         }
         catch(let e) {
             XCTAssertNil(e)
         }
     }
+
+    func testTableSelect() {
+        
+        do {
+            open()
+            let table = MySQL.Table(tableName: "xctest_table_select", connection: con)
+            try table.drop()
+            
+            struct obj {
+                var id:Int? // = 1
+                var oint: Int?
+                var iint8 : Int8 = -1
+                var uint8: UInt8 = 1
+                var int16 : Int16 = -1
+                var uint16: UInt16 = 100
+                var count:UInt? = 10
+                var uint64 : UInt64 = 19999999999
+                var int64 : Int64 = -19999999999
+                var ffloat : Float = 1.1
+                var ddouble : Double = 1.1
+                var ddate = NSDate(dateString: "2015-11-10")
+                var str = "test string"
+                var ddata = "test data".bridge().dataUsingEncoding(NSUTF8StringEncoding)!
+                var uint8_array = [UInt8]("test data uint8 array".utf8)
+                //var ddata = NSData(contentsOfFile: "/Users/cipi/Pictures/team.jpg")!
+            }
+            
+            var o = obj()
+            
+            try table.create(o, primaryKey: "id", autoInc: true)
+            for i in 1...100 {
+                o.str = "test string \(i)"
+                try table.insert(o)
+            }
+            
+            if let row = try table.select(["str", "uint8_array"], Where: ["id=",90, "or id=",91, "or id>",95]) {
+                XCTAssert(row[0].count == 7)
+            }
+            else {
+                XCTAssert(false)
+            }
+            
+            if let row = try table.select(["id", "str"], Where: ["str=","test string 20"]) {
+                XCTAssert(row[0].count == 1)
+            }
+            else {
+                XCTAssert(false)
+            }
+            
+            
+        }
+        catch(let e) {
+            XCTAssertNil(e)
+        }
+    }
+
     
     func testQuery() {
         do {

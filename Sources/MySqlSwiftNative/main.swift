@@ -12,6 +12,7 @@ import Foundation
     
     XCTMain([MySQLDriverLinuxTests()])
 #endif
+
 /*
 print("Hello, World!")
 

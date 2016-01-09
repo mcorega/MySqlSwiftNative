@@ -6,12 +6,12 @@
 //  Copyright © 2015 Marius Corega. All rights reserved.
 //
 
+
 #if os(Linux)
     import Glibc
-#else
-    import Foundation
 #endif
 
+import Foundation
 
 extension MySQL {
     

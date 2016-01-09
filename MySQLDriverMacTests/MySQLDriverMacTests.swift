@@ -255,15 +255,29 @@ class MySQLDriverMacTests: XCTestCase {
                 //var ddata = NSData(contentsOfFile: "/Users/cipi/Pictures/team.jpg")!
             }
             
-            let o = obj()
+            var o = obj()
             
             try table.create(o, primaryKey: "id", autoInc: true)
-            for _ in 1...100 {
+            for i in 1...100 {
+                o.str = "test string \(i)"
                 try table.insert(o)
             }
             
-            let row = try table.select(["str", "uint8_array"], Where: ["id=",90, "or id=",91, "or id>",95])
-            print(row)
+            if let row = try table.select(["str", "uint8_array"], Where: ["id=",90, "or id=",91, "or id>",95]) {
+                XCTAssert(row[0].count == 7)
+            }
+            else {
+                XCTAssert(false)
+            }
+            
+            if let row = try table.select(["id", "str"], Where: ["str=","test string 20"]) {
+                XCTAssert(row[0].count == 1)
+            }
+            else {
+                XCTAssert(false)
+            }
+
+            
         }
         catch(let e) {
             XCTAssertNil(e)

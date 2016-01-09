@@ -37,6 +37,19 @@ public extension MySQL {
             let mi = Mirror(reflecting: val)
             let s = "\(mi.subjectType)"
             
+            #if os(Linux)
+                let range = s.bridge().rangeOfString("Optional<")
+                
+                if range.length != 0 {
+                    optional = ""
+                    let typePos = NSRange(location:range.length, length:s.bridge().length - range.length - 1)
+                    type = s.bridge().substringWithRange(typePos)
+                }
+                else {
+                    type = s
+                }
+            #else
+
             if let optPos = s.rangeOfString("Optional<") {
                 optional = ""
                 let typePos = optPos.endIndex..<s.endIndex.predecessor()
@@ -45,7 +58,7 @@ public extension MySQL {
             else {
                 type = s
             }
-
+                #endif
             switch type {
             case "Int8":
                 return "TINYINT" + optional
@@ -69,9 +82,9 @@ public extension MySQL {
                 return "DOUBLE" + optional
             case "String":
                 return "MEDIUMTEXT" + optional
-            case "__NSTaggedDate", "__NSDate":
+            case "__NSTaggedDate", "__NSDate", "NSDate":
                 return "DATETIME" + optional
-            case "NSConcreteData", "NSConcreteMutableData":
+            case "NSConcreteData", "NSConcreteMutableData", "NSMutableData":
                 return "LONGBLOB" + optional
             case "Array<UInt8>":
                 return "LONGBLOB" + optional
