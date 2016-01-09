@@ -13,7 +13,9 @@ public struct Field {
     var flags:UInt16 = 0
     var fieldType:UInt8 = 0
     var decimals:UInt8 = 0
-    
+    var origName:String = ""
+    var charSetNr:UInt8 = 0
+    var collation:UInt8 = 0
 }
 
 public struct MySQL {

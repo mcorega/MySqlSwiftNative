@@ -240,12 +240,17 @@ public extension MySQL.Connection {
                     pos += n
                     
                     // Original name [len coded string]
-                    n = MySQL.Utils.skipLenEncStr(Array(data[pos..<data.count]))
+                    (name,n) = MySQL.Utils.lenEncStr(Array(data[pos..<data.count]))
+                    columns![i].origName = name ?? ""
+                    pos += n
                     
                     // Filler [uint8]
+                    pos +=  1
                     // Charset [charset, collation uint8]
+                    columns![i].charSetNr = data[pos]
+                    columns![i].collation = data[pos + 1]
                     // Length [uint32]
-                    pos += n + 1 + 2 + 4
+                    pos +=  2 + 4
                     
                     // Field type [uint8]
                     columns![i].fieldType = data[pos]

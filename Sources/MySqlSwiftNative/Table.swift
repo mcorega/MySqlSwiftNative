@@ -15,7 +15,10 @@ public extension MySQL {
         
         enum Error : ErrorType {
             case TableExists
-
+            case NilWhereClause
+            case WrongParamCountInWhereClause
+            case WrongParamInWhereClause
+            case UnknownType(String)
         }
     
         var tableName : String
@@ -27,7 +30,7 @@ public extension MySQL {
         }
     
         
-        func mysqlType(val:Any) -> String {
+        func mysqlType(val:Any) throws -> String {
             
             var optional = " NOT NULL"
             var type = ""
@@ -65,34 +68,41 @@ public extension MySQL {
             case "Double":
                 return "DOUBLE" + optional
             case "String":
-                return "VARCHAR(21000)" + optional
-            case "__NSTaggedDate":
+                return "VARCHAR(1000)" + optional
+            case "__NSTaggedDate", "__NSDate":
                 return "DATETIME" + optional
-            case "NSConcreteData":
+            case "NSConcreteData", "NSConcreteMutableData":
                 return "LONGBLOB" + optional
             default:
-                return ""
+                throw Error.UnknownType(type)
             }
         }
 
         
-        
-        func create(object:Any) throws {
+        /// Creates a new table using the connection
+        func create(object:Any, primaryKey:String?=nil, autoInc:Bool=false) throws {
             var v = ""
             let mirror = Mirror(reflecting: object)
             var count = mirror.children.count
             
             for case let (label?, value) in mirror.children {
-                let type = mysqlType(value)
+                var type = try mysqlType(value)
                 count -= 1
                 
-                              
                 if type != "" {
+                    if let pkey = primaryKey where pkey == label {
+                        type += " AUTO_INCREMENT"
+                    }
+
                     v += label + " " + type
                     if count > 0 {
                         v += ","
                     }
                 }
+            }
+            
+            if let pkey = primaryKey {
+                v += ",PRIMARY KEY (\(pkey))"
             }
             
             let q = "create table \(tableName) (\(v))"
@@ -146,10 +156,42 @@ public extension MySQL {
             try stmt.exec(args)
         }
         
-        public func select(columns:[String]?=nil, Where:[String: Any]) throws -> MySQL.Row? {
+        private func parsePredicate(pred:[Any]) throws -> (String, [Any]) {
             
+            guard pred.count % 2 == 0 else {
+                throw Error.WrongParamCountInWhereClause
+            }
+            
+            var res = ""
+            var values = [Any]()
+            
+            for i in 0..<pred.count {
+                let val = pred[i]
+                
+                if let k = val as? String where i % 2 == 0 {
+                    res += " \(k)?"
+                }
+                else if i%2 == 1 {
+                    values.append(val)
+                }
+                else {
+                    throw Error.WrongParamInWhereClause
+                }
+            }
+            
+            return (res, values)
+        }
+        
+        public func select(columns:[String]?=nil, Where:[Any]) throws -> [MySQL.ResultSet]? {
+            
+            guard Where.count > 0 else {
+                throw Error.NilWhereClause
+            }
+            
+            let (predicate, vals) = try parsePredicate(Where)
+                    
             var q = ""
-            var res : MySQL.Row?
+            var res : [MySQL.ResultSet]?
             var cols = ""
             
             if let colsArg = columns where colsArg.count > 0 {
@@ -162,23 +204,13 @@ public extension MySQL {
                 cols = "*"
             }
             
-            let keys = Array(Where.keys)
-            
-            if  keys.count > 0 {
-                let key = keys[0]
-                if let val = Where[key] {
-                    q = "SELECT \(cols) FROM \(tableName) WHERE \(key)=? LIMIT 1"
+            q = "SELECT \(cols) FROM \(tableName) WHERE \(predicate)"
 
-                    let stmt = try con.prepare(q)
-                    let stRes = try stmt.query([val])
+            let stmt = try con.prepare(q)
+            let stRes = try stmt.query(vals)
                     
-                    if let rr = try stRes.readAllRows() {
-                        if rr.count > 0 && rr[0].count > 0 {
-                            res = rr[0][0]
-                        }
-                    }
-                    
-                }
+            if let rr = try stRes.readAllRows() {
+                res = rr
             }
             
             return res

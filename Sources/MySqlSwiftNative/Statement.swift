@@ -17,6 +17,7 @@ public extension MySQL {
             case StmtIdNotSet
             case UnknownType
             case NilConnection
+            case MySQLStringMaxLen1000
         }
     
         var con:Connection?
@@ -243,11 +244,14 @@ public extension MySQL {
                             
                             
                         case let str as String:
-                            if str.characters.count < MySQL.maxPackAllowed - 1024*1024 {
+                            if str.characters.count < 1000 {
                                 let lenArr = MySQL.Utils.lenEncIntArray(UInt64(str.characters.count))
                                 dataTypeArr += [UInt8].UInt16Array(UInt16(MysqlTypes.MYSQL_TYPE_STRING))
                                 argsArr += lenArr
                                 argsArr += [UInt8](str.utf8)
+                            }
+                            else {
+                                throw Error.MySQLStringMaxLen1000
                             }
                             break
                             

@@ -174,19 +174,19 @@ class MySQLDriverMacTests: XCTestCase {
         }
     }
     
-    func testTablegetRow() {
+    func testTableSelect() {
         
         do {
-            let table = MySQL.Table(tableName: "xctest_table_getRecord", connection: con)
+            let table = MySQL.Table(tableName: "xctest_table_select", connection: con)
             try table.drop()
             
             struct obj {
+                var id:Int? // = 1
                 var oint: Int?
                 var iint8 : Int8 = -1
                 var uint8: UInt8 = 1
                 var int16 : Int16 = -1
                 var uint16: UInt16 = 100
-                var id:Int = 1
                 var count:UInt? = 10
                 var uint64 : UInt64 = 19999999999
                 var int64 : Int64 = -19999999999
@@ -194,15 +194,18 @@ class MySQLDriverMacTests: XCTestCase {
                 var ddouble : Double = 1.1
                 var ddate = NSDate(dateString: "2015-11-10")
                 var str = "test string"
-                //var ddata = "test data".dataUsingEncoding(NSUTF8StringEncoding)!
-                var ddata = NSData(contentsOfFile: "/Users/cipi/Pictures/team.jpg")!
+                var ddata = "test data".dataUsingEncoding(NSUTF8StringEncoding)!
+                //var ddata = NSData(contentsOfFile: "/Users/cipi/Pictures/team.jpg")!
             }
             
             let o = obj()
             
-            try table.create(o)
-            try table.insert(o)
-            let row = try table.getRecord(["id":1],columns: ["id", "count", "ddate"])
+            try table.create(o, primaryKey: "id", autoInc: true)
+            for _ in 1...100 {
+                try table.insert(o)
+            }
+            
+            let row = try table.select(["id", "count", "ddate"], Where: ["id=",90, "or id=",91, "or id>",95])
             print(row)
         }
         catch(let e) {
