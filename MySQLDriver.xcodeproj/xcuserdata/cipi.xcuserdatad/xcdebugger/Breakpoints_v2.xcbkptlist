@@ -26,7 +26,7 @@
                   moduleName = "MySQLDriverMacTests"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/cipi/tmp/MySQLDriver/Sources/MySqlSwiftNative/Utils.swift"
-                  timestampString = "473986034.942001"
+                  timestampString = "474046545.393225"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "25"
@@ -41,7 +41,7 @@
                   moduleName = "MySQLDriverMac"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/cipi/tmp/MySQLDriver/Sources/MySqlSwiftNative/Utils.swift"
-                  timestampString = "473986034.942349"
+                  timestampString = "474046545.394038"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "25"
@@ -49,6 +49,22 @@
                   offsetFromSymbolStart = "79">
                </Location>
             </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "MySQLDriverMacTests/MySQLDriverMacTests.swift"
+            timestampString = "474046536.809165"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "206"
+            endingLineNumber = "206"
+            landmarkName = "testTablegetRow()"
+            landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

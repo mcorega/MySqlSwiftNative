@@ -144,7 +144,7 @@ public class Socket {
         var read = 0
         
         while read < Int(n) {
-            read += recv(s, &buffer + read, Int(n), 0)
+            read += recv(s, &buffer + read, Int(n) - read, 0)
             
             if read <= 0 {
                 throw Error.RecvFailed(Socket.descriptionOfLastError())

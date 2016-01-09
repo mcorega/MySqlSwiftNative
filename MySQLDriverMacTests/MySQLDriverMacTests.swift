@@ -127,7 +127,7 @@ class MySQLDriverMacTests: XCTestCase {
                 var ddouble : Double = 1.1
                 var ddate = NSDate()
                 var str = "test string"
-                var ddata = "test data".dataUsingEncoding(NSUTF8StringEncoding)!
+                //var ddata = "test data".dataUsingEncoding(NSUTF8StringEncoding)!
             }
             
             let o = obj()
@@ -161,13 +161,10 @@ class MySQLDriverMacTests: XCTestCase {
                 var ddate = NSDate(dateString: "2015-11-10")
                 var str = "test string"
                 //var ddata = "test data".dataUsingEncoding(NSUTF8StringEncoding)!
-                var ddata = NSData(contentsOfFile: "/Users/cipi/Pictures/team.jpg")!
+                //var ddata = NSData(contentsOfFile: "/Users/cipi/Pictures/team.jpg")!
             }
             
             let o = obj()
-            
-            print(o.oint.dynamicType)
-           // print(_stdlib_getDemangledTypeName(o.oint))
             
             try table.create(o)
             try table.insert(o)
@@ -176,6 +173,43 @@ class MySQLDriverMacTests: XCTestCase {
             XCTAssertNil(e)
         }
     }
+    
+    func testTablegetRow() {
+        
+        do {
+            let table = MySQL.Table(tableName: "xctest_table_getRecord", connection: con)
+            try table.drop()
+            
+            struct obj {
+                var oint: Int?
+                var iint8 : Int8 = -1
+                var uint8: UInt8 = 1
+                var int16 : Int16 = -1
+                var uint16: UInt16 = 100
+                var id:Int = 1
+                var count:UInt? = 10
+                var uint64 : UInt64 = 19999999999
+                var int64 : Int64 = -19999999999
+                var ffloat : Float = 1.1
+                var ddouble : Double = 1.1
+                var ddate = NSDate(dateString: "2015-11-10")
+                var str = "test string"
+                //var ddata = "test data".dataUsingEncoding(NSUTF8StringEncoding)!
+                var ddata = NSData(contentsOfFile: "/Users/cipi/Pictures/team.jpg")!
+            }
+            
+            let o = obj()
+            
+            try table.create(o)
+            try table.insert(o)
+            let row = try table.getRecord(["id":1])
+            print(row?["id"])
+        }
+        catch(let e) {
+            XCTAssertNil(e)
+        }
+    }
+
 
     func testQuery() {
         do {

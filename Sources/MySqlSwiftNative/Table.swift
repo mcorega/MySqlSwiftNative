@@ -65,7 +65,7 @@ public extension MySQL {
             case "Double":
                 return "DOUBLE" + optional
             case "String":
-                return "MEDIUMTEXT" + optional
+                return "VARCHAR(21000)" + optional
             case "__NSTaggedDate":
                 return "DATETIME" + optional
             case "NSConcreteData":
@@ -146,7 +146,36 @@ public extension MySQL {
             try stmt.exec(args)
         }
 
+        public func getRecord(Where:[String: Any]) throws -> MySQL.Row? {
+            
+            var q = ""
+            var res : MySQL.Row?
+            
+  //          if let wcl = Where {
+                let keys = Array(Where.keys)
+                
+                if  keys.count > 0 {
+                    let key = keys[0]
+                    if let val = Where[key] {
+                        q = "SELECT * FROM \(tableName) WHERE \(key)=? LIMIT 1"
+                        
+                        let stmt = try con.prepare(q)
+                        let stRes = try stmt.query([val])
+                        
+                        if let rr = try stRes.readAllRows() {
+                            if rr.count > 0 && rr[0].count > 0 {
+                                res = rr[0][0]
+                            }
+                        }
 
+                    }
+   //             }
+            }
+            
+            
+            return res
+         }
+        
         private func insertWithText(object:Any) throws {
             var l = ""
             var v = ""

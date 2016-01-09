@@ -16,7 +16,7 @@ public protocol Result {
 
 extension MySQL {
     
-    public typealias Row = [String:Any?]
+    public typealias Row = [String:Any]
     public typealias RowArray = [Row]
     
     class TextRow: Result {
@@ -66,7 +66,7 @@ extension MySQL {
                     throw con.handleErrorPacket(data)
                 }
                 
-                var row = [String:Any?]()
+                var row = Row()
                 var pos = 0
                 
                 if cols.count > 0 {
