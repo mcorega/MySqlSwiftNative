@@ -68,7 +68,7 @@ public extension MySQL {
             case "Double":
                 return "DOUBLE" + optional
             case "String":
-                return "VARCHAR(1000)" + optional
+                return "MEDIUMTEXT" + optional
             case "__NSTaggedDate", "__NSDate":
                 return "DATETIME" + optional
             case "NSConcreteData", "NSConcreteMutableData":

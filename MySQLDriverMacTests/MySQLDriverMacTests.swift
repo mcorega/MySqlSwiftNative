@@ -205,7 +205,7 @@ class MySQLDriverMacTests: XCTestCase {
                 try table.insert(o)
             }
             
-            let row = try table.select(["id", "count", "ddate"], Where: ["id=",90, "or id=",91, "or id>",95])
+            let row = try table.select(["str", "ddata"], Where: ["id=",90, "or id=",91, "or id>",95])
             print(row)
         }
         catch(let e) {

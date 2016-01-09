@@ -316,17 +316,21 @@ extension MySQL {
                         pos += 8
                         break
                         
-                    case MysqlTypes.MYSQL_TYPE_VARCHAR, MysqlTypes.MYSQL_TYPE_VAR_STRING, MysqlTypes.MYSQL_TYPE_STRING:
-                        let (str, n) = MySQL.Utils.lenEncStr(Array(data[pos..<data.count]))
-                        row[cols[i].name] = str
-                        pos += n
-                        break
+                    case MysqlTypes.MYSQL_TYPE_TINY_BLOB, MysqlTypes.MYSQL_TYPE_MEDIUM_BLOB, MysqlTypes.MYSQL_TYPE_VARCHAR,
+                        MysqlTypes.MYSQL_TYPE_VAR_STRING, MysqlTypes.MYSQL_TYPE_STRING, MysqlTypes.MYSQL_TYPE_LONG_BLOB,
+                        MysqlTypes.MYSQL_TYPE_BLOB:
+                        
+                        if cols[i].charSetNr == 63 {
+                            let (bres, n) = MySQL.Utils.lenEncBin(Array(data[pos..<data.count]))
+                            row[cols[i].name] = bres
+                            pos += n
 
-                    case MysqlTypes.MYSQL_TYPE_TINY_BLOB, MysqlTypes.MYSQL_TYPE_MEDIUM_BLOB,
-                        MysqlTypes.MYSQL_TYPE_LONG_BLOB, MysqlTypes.MYSQL_TYPE_BLOB:
-                        let (bres, n) = MySQL.Utils.lenEncBin(Array(data[pos..<data.count]))
-                        row[cols[i].name] = bres
-                        pos += n
+                        }
+                        else {
+                            let (str, n) = MySQL.Utils.lenEncStr(Array(data[pos..<data.count]))
+                            row[cols[i].name] = str
+                            pos += n
+                        }
                         break
                         
                     case MysqlTypes.MYSQL_TYPE_DECIMAL, MysqlTypes.MYSQL_TYPE_NEWDECIMAL,

@@ -17,7 +17,7 @@ public extension MySQL {
             case StmtIdNotSet
             case UnknownType
             case NilConnection
-            case MySQLStringMaxLen1000
+            case MySQLPacketToLarge
         }
     
         var con:Connection?
@@ -227,31 +227,38 @@ public extension MySQL {
                                 argsArr += lenArr
                                 argsArr += arr
                             }
+                            else {
+                                throw Error.MySQLPacketToLarge
+                            }
                             break
                             
                         case let data as NSData:
                             let count = data.length / sizeof(UInt8)
-                            var arr = [UInt8](count: count, repeatedValue: 0)
-                            data.getBytes(&arr, length: count)
                             
-                            if arr.count < MySQL.maxPackAllowed - 1024*1024 {
+                            if count < MySQL.maxPackAllowed - 1024*1024 {
+                                var arr = [UInt8](count: count, repeatedValue: 0)
+                                data.getBytes(&arr, length: count)
+
                                 let lenArr = MySQL.Utils.lenEncIntArray(UInt64(arr.count))
                                 dataTypeArr += [UInt8].UInt16Array(UInt16(MysqlTypes.MYSQL_TYPE_LONG_BLOB))
                                 argsArr += lenArr
                                 argsArr += arr
                             }
+                            else {
+                                throw Error.MySQLPacketToLarge
+                            }
                             break
                             
                             
                         case let str as String:
-                            if str.characters.count < 1000 {
+                            if str.characters.count < MySQL.maxPackAllowed - 1024*1024 {
                                 let lenArr = MySQL.Utils.lenEncIntArray(UInt64(str.characters.count))
                                 dataTypeArr += [UInt8].UInt16Array(UInt16(MysqlTypes.MYSQL_TYPE_STRING))
                                 argsArr += lenArr
                                 argsArr += [UInt8](str.utf8)
                             }
                             else {
-                                throw Error.MySQLStringMaxLen1000
+                                throw Error.MySQLPacketToLarge
                             }
                             break
                             
