@@ -894,18 +894,32 @@ class MySQLDriverMacTests: XCTestCase {
     func testStatementReadRowResultDateTime() {
         do {
             try con.exec("drop table if exists xctest_stmt_datetime")
-            try con.exec("create table xctest_stmt_datetime(id INT NOT NULL AUTO_INCREMENT, PRIMARY KEY (id), val DATETIME)")
-            try con.exec("insert into xctest_stmt_datetime(val) VALUES('2015-12-02 12:02:24')")
+            try con.exec("create table xctest_stmt_datetime(id INT NOT NULL AUTO_INCREMENT, PRIMARY KEY (id), val DATETIME, val1 DATETIME, val2 DATETIME(3), val3 TIMESTAMP(6))")
+            try con.exec("insert into xctest_stmt_datetime(val, val1, val2, val3) VALUES('2015-12-02', '2015-12-02 15:02:22', '2015-12-02 14:10:12.887435', '2015-12-02 14:10:12.000435')")
             let stmt = try con.prepare("select * from xctest_stmt_datetime where val=?")
-            let res = try stmt.query(["2015-12-02 12:02:24"])
+            let res = try stmt.query(["2015-12-02"])
             let row = try res.readRow()
-
-            if let val = row!["val"] as? NSDate where val == NSDate(dateTimeString: "2015-12-02 12:02:24") {
-                XCTAssert(true)
-            }
-            else {
+            
+            guard let val = row!["val"] as? NSDate where val == NSDate(dateString: "2015-12-02") else {
                 XCTAssert(false)
+                return
             }
+            
+            guard let val1 = row!["val1"] as? NSDate where val1 == NSDate(dateTimeString: "2015-12-02 15:02:22") else {
+                XCTAssert(false)
+                return
+            }
+
+            guard let val2 = row!["val2"] as? NSDate where val2.timeIntervalSinceReferenceDate == NSDate(dateTimeStringUsec: "2015-12-02 14:10:12.887435")!.timeIntervalSinceReferenceDate else {
+                XCTAssert(false)
+                return
+            }
+
+            guard let val3 = row!["val3"] as? NSDate where val3.timeIntervalSince1970 == NSDate(dateTimeStringUsec: "2015-12-02 14:10:12.000430")!.timeIntervalSince1970 else {
+                XCTAssert(false)
+                return
+            }
+
         }
         catch(let e) {
             XCTAssertNil(e)

@@ -350,7 +350,7 @@ extension MySQL {
                             break
                         }
                         var y = 0, mo = 0, d = 0//, h = 0, m = 0, s = 0, u = 0
-                        var res = NSDate()
+                        var res : NSDate?
                         
                         switch Int(dlen!) {
                         case 11:
@@ -375,7 +375,12 @@ extension MySQL {
                         default:break
                         }
                         
-                        row[cols[i].name] = res
+                        #if os(Linux)
+                            row[cols[i].name] = NSString(format: "%4d-%02d-%02d", y, mo, d).bridge()
+                        #else
+                            row[cols[i].name] = res ?? NSNull()
+                        #endif
+
                         pos += n + Int(dlen!)
                         
                         break
@@ -388,27 +393,33 @@ extension MySQL {
                             break
                         }
                         var h = 0, m = 0, s = 0, u = 0
-                        var res = NSDate()
+                        var res : NSDate?
                         
                         switch Int(dlen!) {
                         case 12:
                             //12:03:15.000 001
-                            u = Int(data[pos+8..<pos+10].uInt32())
-                            //res += String(format: ".%09d", u)
+                            u = Int(data[pos+9..<pos+13].uInt32())
+                            //res += String(format: ".%06d", u)
                             fallthrough
                         case 8:
                             //12:03:15
                             h = Int(data[pos+6])
                             m = Int(data[pos+7])
                             s = Int(data[pos+8])
-                            res = NSDate(timeString:String(format: "%02d:%02d:%02d", arguments: [h, m, s]))
+                            res = NSDate(timeStringUsec:String(format: "%02d:%02d:%02d.%06d", arguments: [h, m, s, u]))
                             break
                         default:
                             res = NSDate(timeString: "00:00:00")
                             break
                         }
                         
-                        row[cols[i].name] = res
+                        #if os(Linux)
+                           row[cols[i].name] = NSString(format: "%02d:%02d:%02d.%06d", h, m, s, u).bridge()
+                        #else
+                            row[cols[i].name] = res ?? NSNull()
+                        #endif
+                        
+                        
                         pos += n + Int(dlen!)
                         
                         break
@@ -422,33 +433,39 @@ extension MySQL {
                             break
                         }
                         var y = 0, mo = 0, d = 0, h = 0, m = 0, s = 0, u = 0
-                        var res = ""
+                        //var res = ""
                         
                         switch Int(dlen!) {
                         case 11:
                             // 2015-12-02 12:03:15.001004005
-                            u = Int(data[pos+8..<pos+10].uInt32())
-                            res += String(format: ".%09d", arguments: [u])
+                            u = Int(data[pos+8..<pos+12].uInt32())
+                            //res += String(format: ".%06d", arguments: [u])
                             fallthrough
                         case 7:
                             // 2015-12-02 12:03:15
                             h = Int(data[pos+5])
                             m = Int(data[pos+6])
                             s = Int(data[pos+7])
-                            res = String(format: "%02d:%02d:%02d", arguments: [h, m, s]) + res
+                            //res = String(format: "%02d:%02d:%02d", arguments: [h, m, s]) + res
                             fallthrough
                         case 4:
                             // 2015-12-02
                             y = Int(data[pos+1..<pos+3].uInt16())
                             mo = Int(data[pos+3])
                             d = Int(data[pos+4])
-                            res = String(format: "%4d-%02d-%02d", arguments: [y, mo, d]) + " " + res
+                            //res = String(format: "%4d-%02d-%02d", arguments: [y, mo, d]) + " " + res
                             break
+                            
                         default:break
                         }
                         
+                        #if os(Linux)
+                            row[cols[i].name] = NSString(format: "%4d-%02d-%02d %02d:%02d:%02d.%06d", y, mo, d, h, m, s, u).bridge()
+                        #else
+                            let dstr = String(format: "%4d-%02d-%02d %02d:%02d:%02d.%06d", arguments: [y, mo, d, h, m, s, u])
+                            row[cols[i].name] = NSDate(dateTimeStringUsec: dstr) ?? NSNull()
+                        #endif
                         
-                        row[cols[i].name] = NSDate(dateTimeString: res)
                         pos += n + Int(dlen!)
                         break
                     default:

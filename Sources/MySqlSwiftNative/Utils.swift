@@ -305,30 +305,67 @@ extension MySQL {
 extension NSDate
 {
     convenience
-    init(dateString:String) {
+    init?(dateString:String) {
         let dateStringFormatter = NSDateFormatter()
         dateStringFormatter.dateFormat = "yyyy-MM-dd"
         dateStringFormatter.locale = NSLocale(localeIdentifier: "en_US_POSIX")
-        let d = dateStringFormatter.dateFromString(dateString)!
-        self.init(timeInterval:0, sinceDate:d)
+        if let d = dateStringFormatter.dateFromString(dateString) {
+            self.init(timeInterval:0, sinceDate:d)
+            return
+        }
+        return nil
     }
 
     convenience
-    init(timeString:String) {
+    init?(timeString:String) {
         let dateStringFormatter = NSDateFormatter()
-        dateStringFormatter.dateFormat = "hh-mm-ss"
+        dateStringFormatter.dateFormat = "HH-mm-ss"
         dateStringFormatter.locale = NSLocale(localeIdentifier: "en_US_POSIX")
-        let d = dateStringFormatter.dateFromString(timeString)!
-        self.init(timeInterval:0, sinceDate:d)
+        if let d = dateStringFormatter.dateFromString(timeString) {
+            self.init(timeInterval:0, sinceDate:d)
+            return
+        }
+        return nil
     }
+
+    convenience
+    init?(timeStringUsec:String) {
+        let dateStringFormatter = NSDateFormatter()
+        dateStringFormatter.dateFormat = "HH-mm-ss.SSSSSS"
+        dateStringFormatter.locale = NSLocale(localeIdentifier: "en_US_POSIX")
+        if let d = dateStringFormatter.dateFromString(timeStringUsec) {
+            self.init(timeInterval:0, sinceDate:d)
+            return
+        }
+        return nil
+    }
+
     
     convenience
-    init(dateTimeString:String) {
+    init?(dateTimeString:String) {
         let dateStringFormatter = NSDateFormatter()
-        dateStringFormatter.dateFormat = "yyyy-MM-dd hh:mm:ss"
+        dateStringFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
         dateStringFormatter.locale = NSLocale(localeIdentifier: "en_US_POSIX")
-        let d = dateStringFormatter.dateFromString(dateTimeString)!
-        self.init(timeInterval:0, sinceDate:d)
+        if let d = dateStringFormatter.dateFromString(dateTimeString) {
+            self.init(timeInterval:0, sinceDate:d)
+        }
+        else {
+            return nil
+        }
+    }
+
+    convenience
+    init?(dateTimeStringUsec:String) {
+
+        let dateStringFormatter = NSDateFormatter()
+        dateStringFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss.SSSSSS"
+        dateStringFormatter.locale = NSLocale(localeIdentifier: "en_US_POSIX")
+        if let d = dateStringFormatter.dateFromString(dateTimeStringUsec) {
+            self.init(timeInterval:0, sinceDate:d)
+        }
+        else {
+            return nil
+        }
     }
 
     func dateString() -> String {
@@ -348,7 +385,7 @@ extension NSDate
     
     func dateTimeString() -> String {
         let dateStringFormatter = NSDateFormatter()
-        dateStringFormatter.dateFormat = "yyyy-MM-dd hh:mm:ss"
+        dateStringFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
         dateStringFormatter.locale = NSLocale(localeIdentifier: "en_US_POSIX")
         return dateStringFormatter.stringFromDate(self)
     }
