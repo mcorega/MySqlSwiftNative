@@ -510,11 +510,11 @@ class MySQLDriverMacTests: XCTestCase {
         do {
             try con.exec("drop table if exists xctest_time")
             try con.exec("create table xctest_time(id INT NOT NULL AUTO_INCREMENT, PRIMARY KEY (id), val TIME)")
-            try con.exec("insert into xctest_time(val) VALUES('12:02:24')")
+            try con.exec("insert into xctest_time(val) VALUES('13:02:24')")
             let res = try con.query("select * from xctest_time")
             let row = try res.readRow()
 
-            if let val = row!["val"] as? NSDate where val == NSDate(timeString: "12:02:24") {
+            if let val = row!["val"] as? NSDate where val == NSDate(timeString: "13:02:24") {
                 XCTAssert(true)
             }
             else {
@@ -530,11 +530,11 @@ class MySQLDriverMacTests: XCTestCase {
         do {
             try con.exec("drop table if exists xctest_datetime")
             try con.exec("create table xctest_datetime(id INT NOT NULL AUTO_INCREMENT, PRIMARY KEY (id), val DATETIME)")
-            try con.exec("insert into xctest_datetime(val) VALUES('2015-12-02 12:02:24')")
+            try con.exec("insert into xctest_datetime(val) VALUES('2015-12-02 13:02:24')")
             let res = try con.query("select * from xctest_datetime")
             let row = try res.readRow()
 
-            if let val = row!["val"] as? NSDate where val == NSDate(dateTimeString: "2015-12-02 12:02:24") {
+            if let val = row!["val"] as? NSDate where val == NSDate(dateTimeString: "2015-12-02 13:02:24") {
                 XCTAssert(true)
             }
             else {
@@ -550,11 +550,11 @@ class MySQLDriverMacTests: XCTestCase {
         do {
             try con.exec("drop table if exists xctest_timestamp")
             try con.exec("create table xctest_timestamp(id INT NOT NULL AUTO_INCREMENT, PRIMARY KEY (id), val TIMESTAMP)")
-            try con.exec("insert into xctest_timestamp(val) VALUES('2015-12-02 12:02:24')")
+            try con.exec("insert into xctest_timestamp(val) VALUES('2015-12-02 13:02:24')")
             let res = try con.query("select * from xctest_timestamp")
             let row = try res.readRow()
 
-            if let val = row!["val"] as? NSDate where val == NSDate(dateTimeString: "2015-12-02 12:02:24") {
+            if let val = row!["val"] as? NSDate where val == NSDate(dateTimeString: "2015-12-02 13:02:24") {
                 XCTAssert(true)
             }
             else {
@@ -874,12 +874,12 @@ class MySQLDriverMacTests: XCTestCase {
         do {
             try con.exec("drop table if exists xctest_stmt_time")
             try con.exec("create table xctest_stmt_time(id INT NOT NULL AUTO_INCREMENT, PRIMARY KEY (id), val TIME)")
-            try con.exec("insert into xctest_stmt_time(val) VALUES('12:02:24')")
+            try con.exec("insert into xctest_stmt_time(val) VALUES('13:02:24')")
             let stmt = try con.prepare("select * from xctest_stmt_time where val=?")
-            let res = try stmt.query(["12:02:24"])
+            let res = try stmt.query(["13:02:24"])
             let row = try res.readRow()
 
-            if let val = row!["val"] as? NSDate where val == NSDate(timeString: "12:02:24") {
+            if let val = row!["val"] as? NSDate where val == NSDate(timeString: "13:02:24") {
                 XCTAssert(true)
             }
             else {
@@ -895,12 +895,12 @@ class MySQLDriverMacTests: XCTestCase {
         do {
             try con.exec("drop table if exists xctest_stmt_datetime")
             try con.exec("create table xctest_stmt_datetime(id INT NOT NULL AUTO_INCREMENT, PRIMARY KEY (id), val DATETIME)")
-            try con.exec("insert into xctest_stmt_datetime(val) VALUES('2015-12-02 12:02:24')")
+            try con.exec("insert into xctest_stmt_datetime(val) VALUES('2015-12-02 13:02:24')")
             let stmt = try con.prepare("select * from xctest_stmt_datetime where val=?")
-            let res = try stmt.query(["2015-12-02 12:02:24"])
+            let res = try stmt.query(["2015-12-02 13:02:24"])
             let row = try res.readRow()
 
-            if let val = row!["val"] as? NSDate where val == NSDate(dateTimeString: "2015-12-02 12:02:24") {
+            if let val = row!["val"] as? NSDate where val == NSDate(dateTimeString: "2015-12-02 13:02:24") {
                 XCTAssert(true)
             }
             else {
@@ -917,12 +917,12 @@ class MySQLDriverMacTests: XCTestCase {
         do {
             try con.exec("drop table if exists xctest_stmt_timestamp")
             try con.exec("create table xctest_stmt_timestamp(id INT NOT NULL AUTO_INCREMENT, PRIMARY KEY (id), val TIMESTAMP)")
-            try con.exec("insert into xctest_stmt_timestamp(val) VALUES('2015-12-02 12:02:24')")
+            try con.exec("insert into xctest_stmt_timestamp(val) VALUES('2015-12-02 13:02:24')")
             let stmt = try con.prepare("select * from xctest_stmt_timestamp where val=?")
-            let res = try stmt.query(["2015-12-02 12:02:24"])
+            let res = try stmt.query(["2015-12-02 13:02:24"])
             let row = try res.readRow()
 
-            if let val = row!["val"] as? NSDate where val == NSDate(dateTimeString: "2015-12-02 12:02:24") {
+            if let val = row!["val"] as? NSDate where val == NSDate(dateTimeString: "2015-12-02 13:02:24") {
                 XCTAssert(true)
             }
             else {
