@@ -316,7 +316,7 @@ extension NSDate
     convenience
     init(timeString:String) {
         let dateStringFormatter = NSDateFormatter()
-        dateStringFormatter.dateFormat = "hh-mm-ss"
+        dateStringFormatter.dateFormat = "HH:mm:ss"
         dateStringFormatter.locale = NSLocale(localeIdentifier: "en_US_POSIX")
         let d = dateStringFormatter.dateFromString(timeString)!
         self.init(timeInterval:0, sinceDate:d)
@@ -325,7 +325,7 @@ extension NSDate
     convenience
     init(dateTimeString:String) {
         let dateStringFormatter = NSDateFormatter()
-        dateStringFormatter.dateFormat = "yyyy-MM-dd hh:mm:ss"
+        dateStringFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
         dateStringFormatter.locale = NSLocale(localeIdentifier: "en_US_POSIX")
         let d = dateStringFormatter.dateFromString(dateTimeString)!
         self.init(timeInterval:0, sinceDate:d)
@@ -341,14 +341,14 @@ extension NSDate
     
     func timeString() -> String {
         let dateStringFormatter = NSDateFormatter()
-        dateStringFormatter.dateFormat = "hh-mm-ss"
+        dateStringFormatter.dateFormat = "HH:mm:ss"
         dateStringFormatter.locale = NSLocale(localeIdentifier: "en_US_POSIX")
         return dateStringFormatter.stringFromDate(self)
     }
     
     func dateTimeString() -> String {
         let dateStringFormatter = NSDateFormatter()
-        dateStringFormatter.dateFormat = "yyyy-MM-dd hh:mm:ss"
+        dateStringFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
         dateStringFormatter.locale = NSLocale(localeIdentifier: "en_US_POSIX")
         return dateStringFormatter.stringFromDate(self)
     }
