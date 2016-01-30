@@ -229,6 +229,92 @@ class MySQLDriverMacTests: XCTestCase {
         }
     }
 
+    func testUpdateTableRow() {
+        
+        do {
+            let table = MySQL.Table(tableName: "xctest_updatetable_row", connection: con)
+            try table.drop()
+            
+            var obj : MySQL.Row = [
+                "oint": Int?(0),
+                "iint8" : Int8(-1),
+                "uint8": UInt8(1),
+                "iint16" : Int16(-1),
+                "uint16": UInt16(100),
+                "id":Int(1),
+                "iint32": 2000,
+                "count":UInt?(10),
+                "uint64" : UInt64(19999999999),
+                "int64" : Int64(-19999999999),
+                "ffloat" : Float(1.1),
+                "ddouble" : Double(1.1),
+                "ddate" : NSDate(dateString: "2015-11-10"),
+                "str" : "test string",
+                "nsdata" : "test data".dataUsingEncoding(NSUTF8StringEncoding)!,
+                "uint8_array" : [UInt8]("test data uint8 array".utf8)
+                //var ddata = NSData(contentsOfFile: "/Users/cipi/Pictures/team.jpg")!
+            ]
+            
+            
+            try table.create(obj)
+            obj["oint"] = NSNull()
+            try table.insert(obj)
+            
+            obj["iint32"] = 4000
+            obj["iint16"] = Int16(-100)
+            
+            try table.update(obj, key: "id")
+            
+        }
+        catch(let e) {
+            XCTAssertNil(e)
+        }
+    }
+
+    func testUpdateTableObject() {
+        
+        do {
+            let table = MySQL.Table(tableName: "xctest_updatetable_obj", connection: con)
+            try table.drop()
+            
+            struct obj {
+                var oint: Int?
+                var iint8 : Int8 = -1
+                var uint8: UInt8 = 1
+                var int16 : Int16 = -10
+                var uint16: UInt16 = 100
+                var iint32 : Int = -100
+                var uint32 : UInt = 100
+                var id:Int = 1
+                var count:UInt? = 10
+                var uint64 : UInt64 = 19999999999
+                var int64 : Int64 = -19999999999
+                var ffloat : Float = 1.1
+                var ddouble : Double = 1.1
+                var ddate = NSDate(dateString: "2015-11-10")
+                var str = "test string"
+                var nsdata = "test data".dataUsingEncoding(NSUTF8StringEncoding)!
+                var uint8_array = [UInt8]("test data uint8 array".utf8)
+            }
+            
+            var o = obj()
+            
+            try table.create(o)
+            try table.insert(o)
+            
+            o.iint8 = -100
+            o.uint8 = 100
+            o.int16 = -100
+            o.iint32 = -200
+            //o.ddate?.dateByAddingTimeInterval(20)
+            
+            try table.update(o, key:"id")
+        }
+        catch(let e) {
+            XCTAssertNil(e)
+        }
+    }
+
     
     func testTableSelect() {
         
@@ -257,8 +343,6 @@ class MySQLDriverMacTests: XCTestCase {
             
             var o = obj()
             
-
-            
             try table.create(o, primaryKey: "id", autoInc: true)
             for i in 1...100 {
                 o.str = "test string \(i)"
@@ -278,7 +362,6 @@ class MySQLDriverMacTests: XCTestCase {
             else {
                 XCTAssert(false)
             }
-
             
         }
         catch(let e) {
@@ -876,12 +959,12 @@ class MySQLDriverMacTests: XCTestCase {
         do {
             try con.exec("drop table if exists xctest_stmt_time")
             try con.exec("create table xctest_stmt_time(id INT NOT NULL AUTO_INCREMENT, PRIMARY KEY (id), val TIME)")
-            try con.exec("insert into xctest_stmt_time(val) VALUES('12:02:24')")
+            try con.exec("insert into xctest_stmt_time(val) VALUES('13:02:24')")
             let stmt = try con.prepare("select * from xctest_stmt_time where val=?")
-            let res = try stmt.query(["12:02:24"])
+            let res = try stmt.query(["13:02:24"])
             let row = try res.readRow()
 
-            if let val = row!["val"] as? NSDate where val == NSDate(timeString: "12:02:24") {
+            if let val = row!["val"] as? NSDate where val == NSDate(timeString: "13:02:24") {
                 XCTAssert(true)
             }
             else {

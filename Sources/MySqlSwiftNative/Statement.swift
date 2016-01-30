@@ -192,7 +192,7 @@ public extension MySQL {
                             
                         case let vv as Int16:
                             dataTypeArr += [UInt8].UInt16Array(UInt16(MysqlTypes.MYSQL_TYPE_SHORT)) //UInt16(MysqlTypes.MYSQL_TYPE_SHORT).array() //[UInt8].UInt16Array(UInt16(MysqlTypes.MYSQL_TYPE_LONG))
-                            argsArr +=  vv.array()
+                            argsArr +=  [UInt8].Int16Array(Int16(vv)) //vv.array()
                             break
                             
                         case let vv as UInt16:

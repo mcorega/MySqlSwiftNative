@@ -709,6 +709,16 @@ extension SequenceType where Generator.Element == UInt8 {
         return byteArray
     }
     
+    static func Int16Array(val: Int16) -> [UInt8]{
+        var byteArray = [UInt8](count: 2, repeatedValue: 0)
+        
+        for i in 0...1 {
+            byteArray[i] = UInt8(0x0000FF & val >> Int16((i) * 8))
+        }
+        
+        return byteArray
+    }
+    
     static func UInt16Array(val: UInt16) -> [UInt8]{
         var byteArray = [UInt8](count: 2, repeatedValue: 0)
         

@@ -10,7 +10,7 @@
 import Foundation
 
 public extension MySQL {
-
+    
     public class Table {
         
         enum Error : ErrorType {
@@ -20,7 +20,7 @@ public extension MySQL {
             case WrongParamInWhereClause
             case UnknownType(String)
         }
-    
+        
         var tableName : String
         var con : Connection
         
@@ -28,7 +28,7 @@ public extension MySQL {
             self.tableName = tableName
             con = connection
         }
-    
+        
         
         func mysqlType(val:Any) throws -> String {
             
@@ -49,16 +49,16 @@ public extension MySQL {
                     type = s
                 }
             #else
-
-            if let optPos = s.rangeOfString("Optional<") {
-                optional = ""
-                let typePos = optPos.endIndex..<s.endIndex.predecessor()
-                type = s.substringWithRange(typePos)
-            }
-            else {
-                type = s
-            }
-                #endif
+                
+                if let optPos = s.rangeOfString("Optional<") {
+                    optional = ""
+                    let typePos = optPos.endIndex..<s.endIndex.predecessor()
+                    type = s.substringWithRange(typePos)
+                }
+                else {
+                    type = s
+                }
+            #endif
             switch type {
             case "Int8":
                 return "TINYINT" + optional
@@ -92,7 +92,7 @@ public extension MySQL {
                 throw Error.UnknownType(type)
             }
         }
-
+        
         
         /// Creates a new table based on a Swift Object using the connection
         func create(object:Any, primaryKey:String?=nil, autoInc:Bool=false) throws {
@@ -108,7 +108,7 @@ public extension MySQL {
                     if let pkey = primaryKey where pkey == label {
                         type += " AUTO_INCREMENT"
                     }
-
+                    
                     v += label + " " + type
                     if count > 0 {
                         v += ","
@@ -124,7 +124,7 @@ public extension MySQL {
             //print(q)
             try con.exec(q)
         }
-
+        
         /// Creates a new table based on a MySQL.RowStructure using the connection
         func create(row:MySQL.Row, primaryKey:String?=nil, autoInc:Bool=false) throws {
             var v = ""
@@ -151,7 +151,7 @@ public extension MySQL {
             try con.exec(q)
         }
         
-        public func insert(object:Any) throws {
+        public func insert(object:Any, exclude:[String]? = nil) throws {
             var l = ""
             var v = ""
             let mirror = Mirror(reflecting: object)
@@ -160,14 +160,17 @@ public extension MySQL {
             
             for case let (label?, value) in mirror.children {
                 
-                args.append(value)
-                
-                count -= 1
-                l += label
-                v += "?"
-                if count > 0 {
-                    l += ","
-                    v += ","
+                if !excludeColumn(label, cols: exclude) {
+                    args.append(value)
+                    
+                    count -= 1
+                    l += label
+                    v += "?"
+                    if count > 0 {
+                        l += ","
+                        v += ","
+                    }
+
                 }
             }
             
@@ -177,23 +180,40 @@ public extension MySQL {
             try stmt.exec(args)
         }
         
-        public func insert(row:Row) throws {
+        private func excludeColumn(colName:String, cols:[String]?) -> Bool {
+            
+            guard cols != nil else {
+                return false
+            }
+            
+            for col in cols! {
+                if colName == col {
+                    return true
+                }
+            }
+            
+            return false
+        }
+        
+        public func insert(row:Row, exclude:[String]? = nil) throws {
             var l = ""
             var v = ""
-
+            
             var count = row.count
             var args = [Any]()
             
             for case let (label, value) in row {
                 
-                args.append(value)
-                
-                count -= 1
-                l += label
-                v += "?"
-                if count > 0 {
-                    l += ","
-                    v += ","
+                if !excludeColumn(label, cols: exclude) {
+                    args.append(value)
+                    
+                    count -= 1
+                    l += label
+                    v += "?"
+                    if count > 0 {
+                        l += ","
+                        v += ","
+                    }
                 }
             }
             
@@ -202,7 +222,83 @@ public extension MySQL {
             let stmt = try con.prepare(q)
             try stmt.exec(args)
         }
+        
+        public func update(row:Row, Where:[String:Any], exclude:[String]? = nil) throws {
+            var l = ""
+            //var v = ""
+            var excludeCount = 0
+            var excl : [String]
+            
+            if exclude == nil {
+                excl = [String]()
+            }
+            else {
+                excl = exclude!
+            }
+            
+            if Where.keys.count > 0 {
+                excl.append(Where.keys.first!)
+            }
+            
+            excludeCount = excl.count
+            
+            var count = row.count - excludeCount + 1
+            var args = [Any]()
+            
+            for case let (label, value) in row {
+                
+                if !excludeColumn(label, cols: exclude) {
+                    args.append(value)
+                    
+                    count -= 1
+                    l += label + "=?"
+                    //v += "?"
+                    if count > 0 {
+                        l += ","
+                        //  v += ","
+                    }
+                }
+            }
+            
+            let keys = Array(Where.keys)
+            let vals = Array(Where.values)
+            
+            if keys.count > 0 && vals.count > 0 {
+                let q = "UPDATE \(tableName) SET \(l) WHERE \(keys[0])=?"
+                let stmt = try con.prepare(q)
+                args.append(vals[0])
+                try stmt.exec(args)
+                
+            }
+            
+        }
+        
+        public func update(row:Row, key:String, exclude:[String]? = nil) throws {
+            try update(row, Where: [key : row[key]], exclude: exclude)
+        }
+        
+        public func update(object:Any, Where:[String:Any], exclude:[String]? = nil) throws {
 
+            let mirror = Mirror(reflecting: object)
+            var row = Row()
+            
+            for case let (label?, value) in mirror.children {
+                row[label] = value
+            }
+            
+            try update(row, Where: Where, exclude: exclude)
+        }
+        
+        public func update(object:Any, key:String, exclude:[String]? = nil) throws {
+            let mirror = Mirror(reflecting: object)
+            var row = Row()
+            
+            for case let (label?, value) in mirror.children {
+                row[label] = value
+            }
+            
+            try update(row, key: key, exclude: exclude)
+        }
         
         private func parsePredicate(pred:[Any]) throws -> (String, [Any]) {
             
@@ -237,7 +333,7 @@ public extension MySQL {
             }
             
             let (predicate, vals) = try parsePredicate(Where)
-                    
+            
             var q = ""
             var res : [MySQL.ResultSet]?
             var cols = ""
@@ -253,18 +349,18 @@ public extension MySQL {
             }
             
             q = "SELECT \(cols) FROM \(tableName) WHERE \(predicate)"
-
+            
             let stmt = try con.prepare(q)
             let stRes = try stmt.query(vals)
-                    
+            
             if let rr = try stRes.readAllRows() {
                 res = rr
             }
             
             return res
         }
-
-
+        
+        
         public func getRecord(Where:[String: Any], columns:[String]?=nil) throws -> MySQL.Row? {
             
             var q = ""
@@ -278,35 +374,35 @@ public extension MySQL {
                 }
             }
             
-  //          if let wcl = Where {
-                let keys = Array(Where.keys)
-                
-                if  keys.count > 0 {
-                    let key = keys[0]
-                    if let val = Where[key] {
-                        if cols == "" {
-                            q = "SELECT * FROM \(tableName) WHERE \(key)=? LIMIT 1"
-                        }
-                        else {
-                             q = "SELECT \(cols) FROM \(tableName) WHERE \(key)=? LIMIT 1"
-                        }
-                        
-                        let stmt = try con.prepare(q)
-                        let stRes = try stmt.query([val])
-                        
-                        if let rr = try stRes.readAllRows() {
-                            if rr.count > 0 && rr[0].count > 0 {
-                                res = rr[0][0]
-                            }
-                        }
-
+            //          if let wcl = Where {
+            let keys = Array(Where.keys)
+            
+            if  keys.count > 0 {
+                let key = keys[0]
+                if let val = Where[key] {
+                    if cols == "" {
+                        q = "SELECT * FROM \(tableName) WHERE \(key)=? LIMIT 1"
                     }
-   //             }
+                    else {
+                        q = "SELECT \(cols) FROM \(tableName) WHERE \(key)=? LIMIT 1"
+                    }
+                    
+                    let stmt = try con.prepare(q)
+                    let stRes = try stmt.query([val])
+                    
+                    if let rr = try stRes.readAllRows() {
+                        if rr.count > 0 && rr[0].count > 0 {
+                            res = rr[0][0]
+                        }
+                    }
+                    
+                }
+                //             }
             }
             
             
             return res
-         }
+        }
         
         private func insertWithText(object:Any) throws {
             var l = ""
@@ -337,6 +433,6 @@ public extension MySQL {
             let q = "drop table if exists " + tableName
             try con.exec(q)
         }
-
+        
     }
 }
