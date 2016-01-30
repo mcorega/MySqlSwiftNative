@@ -369,7 +369,50 @@ class MySQLDriverMacTests: XCTestCase {
         }
     }
 
+    // Not allways success
+    func testConnectionPool() {
+        do {
+            let connPool = try MySQL.ConnectionPool(num: 10, connection: con)
+            let table = MySQL.Table(tableName: "xctest_conn_pool", connection: con)
+            try table.drop()
 
+            class obj {
+                var id:Int?
+                var val : Int = 1
+            }
+            
+            let o = obj()
+            try table.create(o, primaryKey: "id", autoInc: true)
+            
+            for i in 1...500 {
+                dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), {
+
+                    if let c = connPool.getConnection() {
+                        
+                        let t = MySQL.Table(tableName: "xctest_conn_pool", connection: c)
+                        do {
+                            let o = obj()
+                            o.val = i
+                            try t.insert(o)
+                           
+                        }
+                        catch {
+                            print(error)
+                            XCTAssertNil(error)
+                            connPool.free(c)
+                            
+                        }
+                        connPool.free(c)
+                    }
+                })
+            }
+        }
+        catch {
+            XCTAssertNil(error)
+        }
+        sleep(2)
+    }
+    
     func testQuery() {
         do {
             try con.exec("drop table if exists xctest1")

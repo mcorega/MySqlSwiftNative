@@ -6,6 +6,7 @@
 //  Copyright © 2015 Marius Corega. All rights reserved.
 //
 
+import Foundation
 
 public struct Field {
     var tableName:String = ""
@@ -47,6 +48,7 @@ public struct MySQL {
         var affectedRows : UInt64 = 0
         var insertId : UInt64 = 0
         var status : UInt16 = 0
+        public var conID = NSUUID().UUIDString
         
         var socket:Socket?
         var mysql_Handshake: mysql_handshake?

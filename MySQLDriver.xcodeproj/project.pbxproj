@@ -88,6 +88,12 @@
 		3BB09DAD1C3F2B2100F7FD13 /* Table.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BB09DA91C3F2B2100F7FD13 /* Table.swift */; };
 		3BB09DAE1C3F2B2100F7FD13 /* Table.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BB09DA91C3F2B2100F7FD13 /* Table.swift */; };
 		3BB09DAF1C3F2B2100F7FD13 /* Table.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BB09DA91C3F2B2100F7FD13 /* Table.swift */; };
+		3BC18D891C5D51840060C292 /* ConnectionPool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BC18D881C5D51840060C292 /* ConnectionPool.swift */; };
+		3BC18D8A1C5D51840060C292 /* ConnectionPool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BC18D881C5D51840060C292 /* ConnectionPool.swift */; };
+		3BC18D8B1C5D51840060C292 /* ConnectionPool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BC18D881C5D51840060C292 /* ConnectionPool.swift */; };
+		3BC18D8C1C5D51840060C292 /* ConnectionPool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BC18D881C5D51840060C292 /* ConnectionPool.swift */; };
+		3BC18D8D1C5D51840060C292 /* ConnectionPool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BC18D881C5D51840060C292 /* ConnectionPool.swift */; };
+		3BC18D8E1C5D51840060C292 /* ConnectionPool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BC18D881C5D51840060C292 /* ConnectionPool.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -172,6 +178,7 @@
 		3B28C47F1C2D91B6008CA202 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3BB09DA71C3EE8FA00F7FD13 /* main.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		3BB09DA91C3F2B2100F7FD13 /* Table.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Table.swift; sourceTree = "<group>"; };
+		3BC18D881C5D51840060C292 /* ConnectionPool.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConnectionPool.swift; sourceTree = "<group>"; };
 		3BDCF7241C3DB555008442DD /* tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = tests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -248,6 +255,7 @@
 				3B1392BD1C2F3C1C00AA463B /* Utils.swift */,
 				3BDCF7241C3DB555008442DD /* tests.swift */,
 				3BB09DA91C3F2B2100F7FD13 /* Table.swift */,
+				3BC18D881C5D51840060C292 /* ConnectionPool.swift */,
 			);
 			path = MySqlSwiftNative;
 			sourceTree = "<group>";
@@ -575,6 +583,7 @@
 				3B1392C41C2F3C1C00AA463B /* Constants.swift in Sources */,
 				3B1392EE1C2F3C1C00AA463B /* Socket.swift in Sources */,
 				3BB09DAA1C3F2B2100F7FD13 /* Table.swift in Sources */,
+				3BC18D891C5D51840060C292 /* ConnectionPool.swift in Sources */,
 				3B1392E21C2F3C1C00AA463B /* Result.swift in Sources */,
 				3BB09DA81C3EE8FA00F7FD13 /* main.swift in Sources */,
 				3B1392FA1C2F3C1C00AA463B /* Utils.swift in Sources */,
@@ -594,6 +603,7 @@
 				3B1392E91C2F3C1C00AA463B /* sha1.swift in Sources */,
 				3B1392D11C2F3C1C00AA463B /* mysql.swift in Sources */,
 				3BB09DAB1C3F2B2100F7FD13 /* Table.swift in Sources */,
+				3BC18D8A1C5D51840060C292 /* ConnectionPool.swift in Sources */,
 				3B1392C51C2F3C1C00AA463B /* Constants.swift in Sources */,
 				3B1392E31C2F3C1C00AA463B /* Result.swift in Sources */,
 				3B1392D71C2F3C1C00AA463B /* Packets.swift in Sources */,
@@ -613,6 +623,7 @@
 				3B1392EA1C2F3C1C00AA463B /* sha1.swift in Sources */,
 				3B1392D21C2F3C1C00AA463B /* mysql.swift in Sources */,
 				3BB09DAC1C3F2B2100F7FD13 /* Table.swift in Sources */,
+				3BC18D8B1C5D51840060C292 /* ConnectionPool.swift in Sources */,
 				3B1392C61C2F3C1C00AA463B /* Constants.swift in Sources */,
 				3B1392E41C2F3C1C00AA463B /* Result.swift in Sources */,
 				3B1392D81C2F3C1C00AA463B /* Packets.swift in Sources */,
@@ -634,6 +645,7 @@
 				3B1392E51C2F3C1C00AA463B /* Result.swift in Sources */,
 				3B1392FD1C2F3C1C00AA463B /* Utils.swift in Sources */,
 				3B1392DF1C2F3C1C00AA463B /* Query.swift in Sources */,
+				3BC18D8C1C5D51840060C292 /* ConnectionPool.swift in Sources */,
 				3B1392F71C2F3C1C00AA463B /* Statement.swift in Sources */,
 				3BB09DAD1C3F2B2100F7FD13 /* Table.swift in Sources */,
 			);
@@ -650,6 +662,7 @@
 				3B1392EC1C2F3C1C00AA463B /* sha1.swift in Sources */,
 				3B1392D41C2F3C1C00AA463B /* mysql.swift in Sources */,
 				3BB09DAE1C3F2B2100F7FD13 /* Table.swift in Sources */,
+				3BC18D8D1C5D51840060C292 /* ConnectionPool.swift in Sources */,
 				3B1392C81C2F3C1C00AA463B /* Constants.swift in Sources */,
 				3B1392E61C2F3C1C00AA463B /* Result.swift in Sources */,
 				3B1392DA1C2F3C1C00AA463B /* Packets.swift in Sources */,
@@ -671,6 +684,7 @@
 				3B1392E11C2F3C1C00AA463B /* Query.swift in Sources */,
 				3B1392F31C2F3C1C00AA463B /* Socket.swift in Sources */,
 				3B1392ED1C2F3C1C00AA463B /* sha1.swift in Sources */,
+				3BC18D8E1C5D51840060C292 /* ConnectionPool.swift in Sources */,
 				3BB09DAF1C3F2B2100F7FD13 /* Table.swift in Sources */,
 				3B1392DB1C2F3C1C00AA463B /* Packets.swift in Sources */,
 				3B28C4741C2D91B6008CA202 /* AppDelegate.swift in Sources */,
