@@ -47,6 +47,7 @@ public extension MySQL.Connection {
     }
     
     public func close() throws {
+        try writeCommandPacket(MysqlCommands.COM_QUIT)
         try self.socket?.close()
         self.hasMoreResults = false
         self.EOFfound = true

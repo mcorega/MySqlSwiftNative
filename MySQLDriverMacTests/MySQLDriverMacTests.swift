@@ -257,6 +257,8 @@ class MySQLDriverMacTests: XCTestCase {
             
             var o = obj()
             
+
+            
             try table.create(o, primaryKey: "id", autoInc: true)
             for i in 1...100 {
                 o.str = "test string \(i)"

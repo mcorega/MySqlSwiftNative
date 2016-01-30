@@ -24,7 +24,7 @@ public extension MySQL {
         var tableName : String
         var con : Connection
         
-        init(tableName:String, connection:Connection) {
+        public init(tableName:String, connection:Connection) {
             self.tableName = tableName
             con = connection
         }

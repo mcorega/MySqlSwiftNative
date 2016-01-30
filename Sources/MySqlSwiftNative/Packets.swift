@@ -89,6 +89,17 @@ extension MySQL.Connection {
         try socket?.writePacket(data)
     }
     
+    func writeCommandPacket(cmd:UInt8) throws {
+        socket?.packnr = -1
+        
+        var data = [UInt8]()
+        
+        data.append(cmd)
+        
+        try socket?.writePacket(data)
+    }
+
+    
     func readResultSetHeaderPacket() throws ->Int {
         self.EOFfound = false
         if let data = try socket?.readPacket() {
