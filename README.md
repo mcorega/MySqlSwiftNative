@@ -164,6 +164,51 @@ if let rows = try table.select(["str", "uint8_array"], Where: ["id=",90, "or id=
     print(rows)
 }
 ```
+### Create a MySQL Connection Pool
+```swift
+// create a connection pool with 10 connections using con as prototype
+let connPool = try MySQL.ConnectionPool(num: 10, connection: con)
+//create a table object using the connection
+let table = MySQL.Table(tableName: "xctest_conn_pool", connection: con)
+// drop the table if it exists
+try table.drop()
+
+// declare a Swift object
+class obj {
+  var id:Int?
+  var val : Int = 1
+}
+            
+// create a new object
+let o = obj()
+// create a new MySQL Table using the object 
+try table.create(o, primaryKey: "id", autoInc: true)
+            
+// do 500 async inserts using the connections pool
+for i in 1...500 {
+  dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), {
+  //get a connection from the pool
+    if let c = connPool.getConnection() {
+    // get a Table reference using the connection from the pool
+      let t = MySQL.Table(tableName: "xctest_conn_pool", connection: c)
+      do {
+        let o = obj()
+        o.val = i
+        // insert the object
+        try t.insert(o)
+      }
+      catch {
+        print(error)
+        XCTAssertNil(error)
+        connPool.free(c)
+      }
+      // release the connection to the pool
+      connPool.free(c)
+    }
+  })
+}
+
+```
 
 ### CocoaPods.
 ```
