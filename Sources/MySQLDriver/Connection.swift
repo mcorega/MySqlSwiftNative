@@ -67,7 +67,9 @@ public extension MySQL.Connection {
         self.isConnected = true
     }
     
-    
+    public func getTable(name: String) -> MySQL.Table {
+        return MySQL.Table(tableName: name, connection: self)
+    }
     
     private func readHandshake() throws -> MySQL.mysql_handshake {
         
