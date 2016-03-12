@@ -67,6 +67,8 @@ public extension MySQL.Connection {
         self.isConnected = true
     }
     
+    
+    
     private func readHandshake() throws -> MySQL.mysql_handshake {
         
         var msh = MySQL.mysql_handshake()
@@ -129,7 +131,7 @@ public extension MySQL.Connection {
     }
     
     private func connect() throws {
-        self.socket = try Socket(host: self.addr!, port: 3306)
+        self.socket = try Socket(host: self.addr!, port: self.port!)
         try self.socket?.Connect()
         self.mysql_Handshake = try readHandshake()
     }

@@ -44,6 +44,7 @@ public struct MySQL {
         var user:String?
         var passwd:String?
         var dbname:String?
+        var port : Int?
         
         var affectedRows : UInt64 = 0
         public var insertId : UInt64 = 0
@@ -61,12 +62,13 @@ public struct MySQL {
         public init() {
         }
         
-        public init(addr:String, user:String, passwd:String? = nil, dbname:String? = nil) throws {
+        public init(addr:String, user:String, passwd:String? = nil, dbname:String? = nil, port:Int? = 3306) throws {
             
             self.addr = addr
             self.user = user
             self.passwd = passwd
             self.dbname = dbname
+            self.port = port
         }
 
     }
