@@ -1,0 +1,17 @@
+version: "Apple Swift version 2.2-dev (LLVM 3ebdbb2c7e, Clang f66c5bb67b, Swift 54dcd16759)"
+options: "cecb6411fa266abb1abaab0412259b6a"
+build_time: [505687100, 190904000]
+inputs:
+  "/Users/cipi/tmp/MySQLDriver/Sources/MySqlSwiftNative/Connection.swift": [505681403, 0]
+  "/Users/cipi/tmp/MySQLDriver/Sources/MySqlSwiftNative/Constants.swift": [505523628, 0]
+  "/Users/cipi/tmp/MySQLDriver/Sources/MySqlSwiftNative/main.swift": !private [505687097, 0]
+  "/Users/cipi/tmp/MySQLDriver/Sources/MySqlSwiftNative/mysql.swift": [505681350, 0]
+  "/Users/cipi/tmp/MySQLDriver/Sources/MySqlSwiftNative/Packets.swift": [505523649, 0]
+  "/Users/cipi/tmp/MySQLDriver/Sources/MySqlSwiftNative/Query.swift": [505671732, 0]
+  "/Users/cipi/tmp/MySQLDriver/Sources/MySqlSwiftNative/Result.swift": [505682865, 0]
+  "/Users/cipi/tmp/MySQLDriver/Sources/MySqlSwiftNative/sha1.swift": [505522095, 0]
+  "/Users/cipi/tmp/MySQLDriver/Sources/MySqlSwiftNative/Socket.swift": [505667569, 0]
+  "/Users/cipi/tmp/MySQLDriver/Sources/MySqlSwiftNative/Statement.swift": [505685073, 0]
+  "/Users/cipi/tmp/MySQLDriver/Sources/MySqlSwiftNative/Table.swift": [505685450, 0]
+  "/Users/cipi/tmp/MySQLDriver/Sources/MySqlSwiftNative/tests.swift": [505523757, 0]
+  "/Users/cipi/tmp/MySQLDriver/Sources/MySqlSwiftNative/Utils.swift": [505672058, 0]

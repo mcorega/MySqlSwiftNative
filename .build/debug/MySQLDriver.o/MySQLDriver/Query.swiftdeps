@@ -1,0 +1,168 @@
+### Swift dependencies file v0 ###
+provides-top-level:
+provides-nominal:
+- "OCV11MySQLDriver5MySQL10Connection15QueryResultType"
+- "CCV11MySQLDriver5MySQL10Connection11QueryResult"
+provides-member:
+- ["CV11MySQLDriver5MySQL10Connection", ""]
+- ["OCV11MySQLDriver5MySQL10Connection15QueryResultType", ""]
+- ["CCV11MySQLDriver5MySQL10Connection11QueryResult", ""]
+- ["CV11MySQLDriver5MySQL10Connection", "QueryResultType"]
+- ["CV11MySQLDriver5MySQL10Connection", "QueryResult"]
+- ["CV11MySQLDriver5MySQL10Connection", "query"]
+- ["CV11MySQLDriver5MySQL10Connection", "nextResult"]
+- ["CV11MySQLDriver5MySQL10Connection", "prepare"]
+- ["CV11MySQLDriver5MySQL10Connection", "exec"]
+- ["CV11MySQLDriver5MySQL10Connection", "select"]
+provides-dynamic-lookup:
+depends-top-level:
+- !private "StringLiteralType"
+- !private ">"
+- !private "+"
+- "String"
+- !private "!"
+- "Void"
+- !private "IntegerLiteralType"
+- "ErrorType"
+- "Result"
+- !private "MysqlCommands"
+- !private "FloatLiteralType"
+- !private "!="
+- "MySQL"
+- !private "&&"
+depends-member:
+- !private ["Ps9AnyObject", "EOFfound"]
+- !private ["Ps9AnyObject", "Error"]
+- !private ["Ps9AnyObject", "MySQL"]
+- !private ["Ps9AnyObject", "MysqlCommands"]
+- !private ["Ps9AnyObject", "columns"]
+- !private ["Ps9AnyObject", "errorClosure"]
+- !private ["Ps9AnyObject", "exec"]
+- !private ["Ps9AnyObject", "hasMoreResults"]
+- !private ["Ps9AnyObject", "init"]
+- !private ["Ps9AnyObject", "paramCount"]
+- !private ["Ps9AnyObject", "readColumns"]
+- !private ["Ps9AnyObject", "readPrepareResultPacket"]
+- !private ["Ps9AnyObject", "readResultSetHeaderPacket"]
+- !private ["Ps9AnyObject", "readUntilEOF"]
+- !private ["Ps9AnyObject", "rows"]
+- !private ["Ps9AnyObject", "socket"]
+- !private ["Ps9AnyObject", "succClosure"]
+- !private ["Ps9AnyObject", "writeCommandPacketStr"]
+- ["Ps9AnyObject", ""]
+- !private ["Sb", "_getBuiltinLogicValue"]
+- !private ["Ps25BooleanLiteralConvertible", "_getBuiltinLogicValue"]
+- !private ["Ps11BooleanType", "_getBuiltinLogicValue"]
+- !private ["CV11MySQLDriver5MySQL10Connection", "EOFfound"]
+- !private ["CV11MySQLDriver5MySQL10Connection", "Error"]
+- ["CV11MySQLDriver5MySQL10Connection", "ErrorType"]
+- ["CV11MySQLDriver5MySQL10Connection", "MySQL"]
+- !private ["CV11MySQLDriver5MySQL10Connection", "MysqlCommands"]
+- ["CV11MySQLDriver5MySQL10Connection", "QueryResult"]
+- ["CV11MySQLDriver5MySQL10Connection", "QueryResultType"]
+- ["CV11MySQLDriver5MySQL10Connection", "Result"]
+- ["CV11MySQLDriver5MySQL10Connection", "String"]
+- ["CV11MySQLDriver5MySQL10Connection", "Void"]
+- !private ["CV11MySQLDriver5MySQL10Connection", "columns"]
+- ["CV11MySQLDriver5MySQL10Connection", "exec"]
+- !private ["CV11MySQLDriver5MySQL10Connection", "hasMoreResults"]
+- ["CV11MySQLDriver5MySQL10Connection", "nextResult"]
+- ["CV11MySQLDriver5MySQL10Connection", "prepare"]
+- ["CV11MySQLDriver5MySQL10Connection", "query"]
+- !private ["CV11MySQLDriver5MySQL10Connection", "readColumns"]
+- !private ["CV11MySQLDriver5MySQL10Connection", "readResultSetHeaderPacket"]
+- !private ["CV11MySQLDriver5MySQL10Connection", "readUntilEOF"]
+- ["CV11MySQLDriver5MySQL10Connection", "select"]
+- !private ["CV11MySQLDriver5MySQL10Connection", "socket"]
+- !private ["CV11MySQLDriver5MySQL10Connection", "writeCommandPacketStr"]
+- ["Ps28CustomDebugStringConvertible", "Some"]
+- !private ["Ps23CustomStringConvertible", "_getBuiltinLogicValue"]
+- !private ["Ps9Equatable", "_getBuiltinLogicValue"]
+- !private ["OCV11MySQLDriver5MySQL10Connection5Error", "NotConnected"]
+- !private ["OCV11MySQLDriver5MySQL10Connection5Error", "QueryInProgress"]
+- !private ["OCV11MySQLDriver5MySQL10Connection5Error", "StatementPrepareError"]
+- !private ["OCV11MySQLDriver5MySQL10Connection5Error", "deinit"]
+- !private ["Ps9ErrorType", "NotConnected"]
+- !private ["Ps9ErrorType", "QueryInProgress"]
+- !private ["Ps9ErrorType", "StatementPrepareError"]
+- !private ["Ps8Hashable", "_getBuiltinLogicValue"]
+- ["V11MySQLDriver5MySQL", "Connection"]
+- ["V11MySQLDriver5MySQL", "RowArray"]
+- ["V11MySQLDriver5MySQL", "Statement"]
+- !private ["V11MySQLDriver5MySQL", "TextRow"]
+- !private ["V11MySQLDriver13MysqlCommands", "COM_QUERY"]
+- !private ["V11MySQLDriver13MysqlCommands", "COM_STMT_PREPARE"]
+- ["Ps21NilLiteralConvertible", "Some"]
+- ["Sq", "Some"]
+- !private ["Sq", "deinit"]
+- ["CCV11MySQLDriver5MySQL10Connection11QueryResult", "ErrorType"]
+- ["CCV11MySQLDriver5MySQL10Connection11QueryResult", "MySQL"]
+- ["CCV11MySQLDriver5MySQL10Connection11QueryResult", "Void"]
+- ["CCV11MySQLDriver5MySQL10Connection11QueryResult", "deinit"]
+- ["CCV11MySQLDriver5MySQL10Connection11QueryResult", "error"]
+- ["CCV11MySQLDriver5MySQL10Connection11QueryResult", "errorClosure"]
+- ["CCV11MySQLDriver5MySQL10Connection11QueryResult", "init"]
+- ["CCV11MySQLDriver5MySQL10Connection11QueryResult", "rows"]
+- ["CCV11MySQLDriver5MySQL10Connection11QueryResult", "succClosure"]
+- ["CCV11MySQLDriver5MySQL10Connection11QueryResult", "success"]
+- ["OCV11MySQLDriver5MySQL10Connection15QueryResultType", "Error"]
+- ["OCV11MySQLDriver5MySQL10Connection15QueryResultType", "ErrorType"]
+- ["OCV11MySQLDriver5MySQL10Connection15QueryResultType", "MySQL"]
+- ["OCV11MySQLDriver5MySQL10Connection15QueryResultType", "Success"]
+- !private ["P11MySQLDriver6Result", "init"]
+- !private ["C11MySQLDriver6Socket", "deinit"]
+- !private ["CV11MySQLDriver5MySQL9Statement", "init"]
+- !private ["CV11MySQLDriver5MySQL9Statement", "paramCount"]
+- !private ["CV11MySQLDriver5MySQL9Statement", "readPrepareResultPacket"]
+- !private ["CV11MySQLDriver5MySQL7TextRow", "deinit"]
+- !private ["CV11MySQLDriver5MySQL7TextRow", "init"]
+- !private ["Ps33_BuiltinBooleanLiteralConvertible", "_getBuiltinLogicValue"]
+- !private ["Ps21_ObjectiveCBridgeable", "_getBuiltinLogicValue"]
+- ["Ps12_Reflectable", "Some"]
+- !private ["Ps12_Reflectable", "_getBuiltinLogicValue"]
+depends-nominal:
+- "Ps9AnyObject"
+- !private "Sb"
+- !private "Ps25BooleanLiteralConvertible"
+- !private "Ps11BooleanType"
+- "CV11MySQLDriver5MySQL10Connection"
+- "Ps28CustomDebugStringConvertible"
+- !private "Ps23CustomStringConvertible"
+- !private "Ps9Equatable"
+- !private "OCV11MySQLDriver5MySQL10Connection5Error"
+- !private "Ps9ErrorType"
+- !private "Ps8Hashable"
+- "V11MySQLDriver5MySQL"
+- !private "V11MySQLDriver13MysqlCommands"
+- "Ps21NilLiteralConvertible"
+- "Sq"
+- "CCV11MySQLDriver5MySQL10Connection11QueryResult"
+- "OCV11MySQLDriver5MySQL10Connection15QueryResultType"
+- !private "P11MySQLDriver6Result"
+- !private "C11MySQLDriver6Socket"
+- !private "CV11MySQLDriver5MySQL9Statement"
+- !private "CV11MySQLDriver5MySQL7TextRow"
+- !private "Ps33_BuiltinBooleanLiteralConvertible"
+- !private "Ps21_ObjectiveCBridgeable"
+- "Ps12_Reflectable"
+depends-dynamic-lookup:
+depends-external:
+- "/Library/Developer/Toolchains/swift-2.2-SNAPSHOT-2015-12-22-a.xctoolchain/usr/lib/swift/macosx/x86_64/Swift.swiftmodule"
+- "/Library/Developer/Toolchains/swift-2.2-SNAPSHOT-2015-12-22-a.xctoolchain/usr/lib/swift/shims/UnicodeShims.h"
+- "/Library/Developer/Toolchains/swift-2.2-SNAPSHOT-2015-12-22-a.xctoolchain/usr/lib/swift/shims/RuntimeStubs.h"
+- "/Library/Developer/Toolchains/swift-2.2-SNAPSHOT-2015-12-22-a.xctoolchain/usr/lib/swift/shims/SwiftStdint.h"
+- "/Library/Developer/Toolchains/swift-2.2-SNAPSHOT-2015-12-22-a.xctoolchain/usr/lib/swift/shims/SwiftStddef.h"
+- "/Library/Developer/Toolchains/swift-2.2-SNAPSHOT-2015-12-22-a.xctoolchain/usr/lib/swift/shims/RuntimeShims.h"
+- "/Library/Developer/Toolchains/swift-2.2-SNAPSHOT-2015-12-22-a.xctoolchain/usr/lib/swift/shims/LibcShims.h"
+- "/Library/Developer/Toolchains/swift-2.2-SNAPSHOT-2015-12-22-a.xctoolchain/usr/lib/swift/shims/RefCount.h"
+- "/Library/Developer/Toolchains/swift-2.2-SNAPSHOT-2015-12-22-a.xctoolchain/usr/lib/swift/shims/HeapObject.h"
+- "/Library/Developer/Toolchains/swift-2.2-SNAPSHOT-2015-12-22-a.xctoolchain/usr/lib/swift/shims/GlobalObjects.h"
+- "/Library/Developer/Toolchains/swift-2.2-SNAPSHOT-2015-12-22-a.xctoolchain/usr/lib/swift/shims/FoundationShims.h"
+- "/Library/Developer/Toolchains/swift-2.2-SNAPSHOT-2015-12-22-a.xctoolchain/usr/lib/swift/shims/CoreFoundationShims.h"
+- "/Library/Developer/Toolchains/swift-2.2-SNAPSHOT-2015-12-22-a.xctoolchain/usr/lib/swift/shims/module.map"
+- "/Library/Developer/Toolchains/swift-2.2-SNAPSHOT-2015-12-22-a.xctoolchain/usr/lib/swift/macosx/x86_64/Foundation.swiftmodule"
+- "/Library/Developer/Toolchains/swift-2.2-SNAPSHOT-2015-12-22-a.xctoolchain/usr/lib/swift/macosx/x86_64/Darwin.swiftmodule"
+- "/Library/Developer/Toolchains/swift-2.2-SNAPSHOT-2015-12-22-a.xctoolchain/usr/lib/swift/macosx/x86_64/Dispatch.swiftmodule"
+- "/Library/Developer/Toolchains/swift-2.2-SNAPSHOT-2015-12-22-a.xctoolchain/usr/lib/swift/macosx/x86_64/ObjectiveC.swiftmodule"
+- "/Library/Developer/Toolchains/swift-2.2-SNAPSHOT-2015-12-22-a.xctoolchain/usr/lib/swift/macosx/x86_64/CoreGraphics.swiftmodule"
+interface-hash: "4311cf24d95ce5e3af4c897dd70ae436"

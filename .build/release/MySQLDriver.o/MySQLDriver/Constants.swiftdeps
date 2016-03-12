@@ -1,0 +1,137 @@
+### Swift dependencies file v0 ###
+provides-top-level:
+- "MysqlClientCaps"
+- "MysqlCommands"
+- "MysqlTypes"
+- "MysqlServerStatus"
+provides-nominal:
+- "V11MySQLDriver15MysqlClientCaps"
+- "V11MySQLDriver13MysqlCommands"
+- "V11MySQLDriver10MysqlTypes"
+- "V11MySQLDriver17MysqlServerStatus"
+provides-member:
+- ["V11MySQLDriver15MysqlClientCaps", ""]
+- ["V11MySQLDriver13MysqlCommands", ""]
+- ["V11MySQLDriver10MysqlTypes", ""]
+- ["V11MySQLDriver17MysqlServerStatus", ""]
+provides-dynamic-lookup:
+depends-top-level:
+- "MysqlServerStatus"
+- "MysqlCommands"
+- "FloatLiteralType"
+- "MysqlClientCaps"
+- "UInt32"
+- "MysqlTypes"
+- "UInt16"
+- "IntegerLiteralType"
+- "UInt8"
+depends-member:
+- ["V11MySQLDriver15MysqlClientCaps", "CLIENT_COMPRESS"]
+- ["V11MySQLDriver15MysqlClientCaps", "CLIENT_CONNECT_WITH_DB"]
+- ["V11MySQLDriver15MysqlClientCaps", "CLIENT_FOUND_ROWS"]
+- ["V11MySQLDriver15MysqlClientCaps", "CLIENT_IGNORE_SIGPIPE"]
+- ["V11MySQLDriver15MysqlClientCaps", "CLIENT_IGNORE_SPACE"]
+- ["V11MySQLDriver15MysqlClientCaps", "CLIENT_INTERACTIVE"]
+- ["V11MySQLDriver15MysqlClientCaps", "CLIENT_LOCAL_FILES"]
+- ["V11MySQLDriver15MysqlClientCaps", "CLIENT_LONG_FLAG"]
+- ["V11MySQLDriver15MysqlClientCaps", "CLIENT_LONG_PASSWORD"]
+- ["V11MySQLDriver15MysqlClientCaps", "CLIENT_MULTI_RESULTS"]
+- ["V11MySQLDriver15MysqlClientCaps", "CLIENT_MULTI_STATEMENTS"]
+- ["V11MySQLDriver15MysqlClientCaps", "CLIENT_NO_SCHEMA"]
+- ["V11MySQLDriver15MysqlClientCaps", "CLIENT_ODBC"]
+- ["V11MySQLDriver15MysqlClientCaps", "CLIENT_PROTOCOL_41"]
+- ["V11MySQLDriver15MysqlClientCaps", "CLIENT_RESERVED"]
+- ["V11MySQLDriver15MysqlClientCaps", "CLIENT_SECURE_CONN"]
+- ["V11MySQLDriver15MysqlClientCaps", "CLIENT_SSL"]
+- ["V11MySQLDriver15MysqlClientCaps", "CLIENT_TRANSACTIONS"]
+- ["V11MySQLDriver15MysqlClientCaps", "UInt32"]
+- ["V11MySQLDriver15MysqlClientCaps", "init"]
+- ["V11MySQLDriver13MysqlCommands", "COM_BINLOG_DUMP"]
+- ["V11MySQLDriver13MysqlCommands", "COM_CHANGE_USER"]
+- ["V11MySQLDriver13MysqlCommands", "COM_CONNECT"]
+- ["V11MySQLDriver13MysqlCommands", "COM_CONNECT_OUT"]
+- ["V11MySQLDriver13MysqlCommands", "COM_CREATE_DB"]
+- ["V11MySQLDriver13MysqlCommands", "COM_DEBUG"]
+- ["V11MySQLDriver13MysqlCommands", "COM_DELAYED_INSERT"]
+- ["V11MySQLDriver13MysqlCommands", "COM_DROP_DB"]
+- ["V11MySQLDriver13MysqlCommands", "COM_FIELD_LIST"]
+- ["V11MySQLDriver13MysqlCommands", "COM_INIT_DB"]
+- ["V11MySQLDriver13MysqlCommands", "COM_PING"]
+- ["V11MySQLDriver13MysqlCommands", "COM_PROCESS_INFO"]
+- ["V11MySQLDriver13MysqlCommands", "COM_PROCESS_KILL"]
+- ["V11MySQLDriver13MysqlCommands", "COM_QUERY"]
+- ["V11MySQLDriver13MysqlCommands", "COM_QUIT"]
+- ["V11MySQLDriver13MysqlCommands", "COM_REFRESH"]
+- ["V11MySQLDriver13MysqlCommands", "COM_REGISTER_SLAVE"]
+- ["V11MySQLDriver13MysqlCommands", "COM_SET_OPTION"]
+- ["V11MySQLDriver13MysqlCommands", "COM_SHUTDOWN"]
+- ["V11MySQLDriver13MysqlCommands", "COM_STATISTICS"]
+- ["V11MySQLDriver13MysqlCommands", "COM_STMT_CLOSE"]
+- ["V11MySQLDriver13MysqlCommands", "COM_STMT_EXECUTE"]
+- ["V11MySQLDriver13MysqlCommands", "COM_STMT_FETCH"]
+- ["V11MySQLDriver13MysqlCommands", "COM_STMT_PREPARE"]
+- ["V11MySQLDriver13MysqlCommands", "COM_STMT_RESET"]
+- ["V11MySQLDriver13MysqlCommands", "COM_STMT_SEND_LONG_DATA"]
+- ["V11MySQLDriver13MysqlCommands", "COM_TABLE_DUMP"]
+- ["V11MySQLDriver13MysqlCommands", "COM_TIME"]
+- ["V11MySQLDriver13MysqlCommands", "UInt8"]
+- ["V11MySQLDriver13MysqlCommands", "init"]
+- ["V11MySQLDriver17MysqlServerStatus", "SERVER_MORE_RESULTS_EXISTS"]
+- ["V11MySQLDriver17MysqlServerStatus", "UInt16"]
+- ["V11MySQLDriver17MysqlServerStatus", "init"]
+- ["V11MySQLDriver10MysqlTypes", "MYSQL_TYPE_BIT"]
+- ["V11MySQLDriver10MysqlTypes", "MYSQL_TYPE_BLOB"]
+- ["V11MySQLDriver10MysqlTypes", "MYSQL_TYPE_DATE"]
+- ["V11MySQLDriver10MysqlTypes", "MYSQL_TYPE_DATETIME"]
+- ["V11MySQLDriver10MysqlTypes", "MYSQL_TYPE_DECIMAL"]
+- ["V11MySQLDriver10MysqlTypes", "MYSQL_TYPE_DOUBLE"]
+- ["V11MySQLDriver10MysqlTypes", "MYSQL_TYPE_ENUM"]
+- ["V11MySQLDriver10MysqlTypes", "MYSQL_TYPE_FLOAT"]
+- ["V11MySQLDriver10MysqlTypes", "MYSQL_TYPE_GEOMETRY"]
+- ["V11MySQLDriver10MysqlTypes", "MYSQL_TYPE_INT24"]
+- ["V11MySQLDriver10MysqlTypes", "MYSQL_TYPE_LONG"]
+- ["V11MySQLDriver10MysqlTypes", "MYSQL_TYPE_LONGLONG"]
+- ["V11MySQLDriver10MysqlTypes", "MYSQL_TYPE_LONG_BLOB"]
+- ["V11MySQLDriver10MysqlTypes", "MYSQL_TYPE_MEDIUM_BLOB"]
+- ["V11MySQLDriver10MysqlTypes", "MYSQL_TYPE_NEWDATE"]
+- ["V11MySQLDriver10MysqlTypes", "MYSQL_TYPE_NEWDECIMAL"]
+- ["V11MySQLDriver10MysqlTypes", "MYSQL_TYPE_NULL"]
+- ["V11MySQLDriver10MysqlTypes", "MYSQL_TYPE_SET"]
+- ["V11MySQLDriver10MysqlTypes", "MYSQL_TYPE_SHORT"]
+- ["V11MySQLDriver10MysqlTypes", "MYSQL_TYPE_STRING"]
+- ["V11MySQLDriver10MysqlTypes", "MYSQL_TYPE_TIME"]
+- ["V11MySQLDriver10MysqlTypes", "MYSQL_TYPE_TIMESTAMP"]
+- ["V11MySQLDriver10MysqlTypes", "MYSQL_TYPE_TINY"]
+- ["V11MySQLDriver10MysqlTypes", "MYSQL_TYPE_TINY_BLOB"]
+- ["V11MySQLDriver10MysqlTypes", "MYSQL_TYPE_VARCHAR"]
+- ["V11MySQLDriver10MysqlTypes", "MYSQL_TYPE_VAR_STRING"]
+- ["V11MySQLDriver10MysqlTypes", "MYSQL_TYPE_YEAR"]
+- ["V11MySQLDriver10MysqlTypes", "MYSQL_UNSIGNED_MASK"]
+- ["V11MySQLDriver10MysqlTypes", "UInt8"]
+- ["V11MySQLDriver10MysqlTypes", "init"]
+depends-nominal:
+- "V11MySQLDriver15MysqlClientCaps"
+- "V11MySQLDriver13MysqlCommands"
+- "V11MySQLDriver17MysqlServerStatus"
+- "V11MySQLDriver10MysqlTypes"
+depends-dynamic-lookup:
+depends-external:
+- "/Library/Developer/Toolchains/swift-2.2-SNAPSHOT-2015-12-22-a.xctoolchain/usr/lib/swift/macosx/x86_64/Swift.swiftmodule"
+- "/Library/Developer/Toolchains/swift-2.2-SNAPSHOT-2015-12-22-a.xctoolchain/usr/lib/swift/shims/UnicodeShims.h"
+- "/Library/Developer/Toolchains/swift-2.2-SNAPSHOT-2015-12-22-a.xctoolchain/usr/lib/swift/shims/RuntimeStubs.h"
+- "/Library/Developer/Toolchains/swift-2.2-SNAPSHOT-2015-12-22-a.xctoolchain/usr/lib/swift/shims/SwiftStdint.h"
+- "/Library/Developer/Toolchains/swift-2.2-SNAPSHOT-2015-12-22-a.xctoolchain/usr/lib/swift/shims/SwiftStddef.h"
+- "/Library/Developer/Toolchains/swift-2.2-SNAPSHOT-2015-12-22-a.xctoolchain/usr/lib/swift/shims/RuntimeShims.h"
+- "/Library/Developer/Toolchains/swift-2.2-SNAPSHOT-2015-12-22-a.xctoolchain/usr/lib/swift/shims/LibcShims.h"
+- "/Library/Developer/Toolchains/swift-2.2-SNAPSHOT-2015-12-22-a.xctoolchain/usr/lib/swift/shims/RefCount.h"
+- "/Library/Developer/Toolchains/swift-2.2-SNAPSHOT-2015-12-22-a.xctoolchain/usr/lib/swift/shims/HeapObject.h"
+- "/Library/Developer/Toolchains/swift-2.2-SNAPSHOT-2015-12-22-a.xctoolchain/usr/lib/swift/shims/GlobalObjects.h"
+- "/Library/Developer/Toolchains/swift-2.2-SNAPSHOT-2015-12-22-a.xctoolchain/usr/lib/swift/shims/FoundationShims.h"
+- "/Library/Developer/Toolchains/swift-2.2-SNAPSHOT-2015-12-22-a.xctoolchain/usr/lib/swift/shims/CoreFoundationShims.h"
+- "/Library/Developer/Toolchains/swift-2.2-SNAPSHOT-2015-12-22-a.xctoolchain/usr/lib/swift/shims/module.map"
+- "/Library/Developer/Toolchains/swift-2.2-SNAPSHOT-2015-12-22-a.xctoolchain/usr/lib/swift/macosx/x86_64/Foundation.swiftmodule"
+- "/Library/Developer/Toolchains/swift-2.2-SNAPSHOT-2015-12-22-a.xctoolchain/usr/lib/swift/macosx/x86_64/Darwin.swiftmodule"
+- "/Library/Developer/Toolchains/swift-2.2-SNAPSHOT-2015-12-22-a.xctoolchain/usr/lib/swift/macosx/x86_64/Dispatch.swiftmodule"
+- "/Library/Developer/Toolchains/swift-2.2-SNAPSHOT-2015-12-22-a.xctoolchain/usr/lib/swift/macosx/x86_64/ObjectiveC.swiftmodule"
+- "/Library/Developer/Toolchains/swift-2.2-SNAPSHOT-2015-12-22-a.xctoolchain/usr/lib/swift/macosx/x86_64/CoreGraphics.swiftmodule"
+interface-hash: "bf3d9be4a916e277f5c534b5b6dbac65"

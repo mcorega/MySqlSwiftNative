@@ -1,0 +1,157 @@
+### Swift dependencies file v0 ###
+provides-top-level:
+- "MysqlClientCaps"
+- "MysqlFieldFlag"
+- "MysqlCommands"
+- "MysqlTypes"
+- "MysqlServerStatus"
+provides-nominal:
+- "V16MySqlSwiftNative15MysqlClientCaps"
+- "V16MySqlSwiftNative14MysqlFieldFlag"
+- "V16MySqlSwiftNative13MysqlCommands"
+- "V16MySqlSwiftNative10MysqlTypes"
+- "V16MySqlSwiftNative17MysqlServerStatus"
+provides-member:
+- ["V16MySqlSwiftNative15MysqlClientCaps", ""]
+- ["V16MySqlSwiftNative14MysqlFieldFlag", ""]
+- ["V16MySqlSwiftNative13MysqlCommands", ""]
+- ["V16MySqlSwiftNative10MysqlTypes", ""]
+- ["V16MySqlSwiftNative17MysqlServerStatus", ""]
+provides-dynamic-lookup:
+depends-top-level:
+- "FloatLiteralType"
+- "MysqlFieldFlag"
+- "IntegerLiteralType"
+- "UInt8"
+- "MysqlServerStatus"
+- "MysqlTypes"
+- "MysqlCommands"
+- "UInt32"
+- "UInt16"
+- "MysqlClientCaps"
+depends-member:
+- ["V16MySqlSwiftNative15MysqlClientCaps", "CLIENT_COMPRESS"]
+- ["V16MySqlSwiftNative15MysqlClientCaps", "CLIENT_CONNECT_WITH_DB"]
+- ["V16MySqlSwiftNative15MysqlClientCaps", "CLIENT_FOUND_ROWS"]
+- ["V16MySqlSwiftNative15MysqlClientCaps", "CLIENT_IGNORE_SIGPIPE"]
+- ["V16MySqlSwiftNative15MysqlClientCaps", "CLIENT_IGNORE_SPACE"]
+- ["V16MySqlSwiftNative15MysqlClientCaps", "CLIENT_INTERACTIVE"]
+- ["V16MySqlSwiftNative15MysqlClientCaps", "CLIENT_LOCAL_FILES"]
+- ["V16MySqlSwiftNative15MysqlClientCaps", "CLIENT_LONG_FLAG"]
+- ["V16MySqlSwiftNative15MysqlClientCaps", "CLIENT_LONG_PASSWORD"]
+- ["V16MySqlSwiftNative15MysqlClientCaps", "CLIENT_MULTI_RESULTS"]
+- ["V16MySqlSwiftNative15MysqlClientCaps", "CLIENT_MULTI_STATEMENTS"]
+- ["V16MySqlSwiftNative15MysqlClientCaps", "CLIENT_NO_SCHEMA"]
+- ["V16MySqlSwiftNative15MysqlClientCaps", "CLIENT_ODBC"]
+- ["V16MySqlSwiftNative15MysqlClientCaps", "CLIENT_PROTOCOL_41"]
+- ["V16MySqlSwiftNative15MysqlClientCaps", "CLIENT_RESERVED"]
+- ["V16MySqlSwiftNative15MysqlClientCaps", "CLIENT_SECURE_CONN"]
+- ["V16MySqlSwiftNative15MysqlClientCaps", "CLIENT_SSL"]
+- ["V16MySqlSwiftNative15MysqlClientCaps", "CLIENT_TRANSACTIONS"]
+- ["V16MySqlSwiftNative15MysqlClientCaps", "UInt32"]
+- ["V16MySqlSwiftNative15MysqlClientCaps", "init"]
+- ["V16MySqlSwiftNative13MysqlCommands", "COM_BINLOG_DUMP"]
+- ["V16MySqlSwiftNative13MysqlCommands", "COM_CHANGE_USER"]
+- ["V16MySqlSwiftNative13MysqlCommands", "COM_CONNECT"]
+- ["V16MySqlSwiftNative13MysqlCommands", "COM_CONNECT_OUT"]
+- ["V16MySqlSwiftNative13MysqlCommands", "COM_CREATE_DB"]
+- ["V16MySqlSwiftNative13MysqlCommands", "COM_DEBUG"]
+- ["V16MySqlSwiftNative13MysqlCommands", "COM_DELAYED_INSERT"]
+- ["V16MySqlSwiftNative13MysqlCommands", "COM_DROP_DB"]
+- ["V16MySqlSwiftNative13MysqlCommands", "COM_FIELD_LIST"]
+- ["V16MySqlSwiftNative13MysqlCommands", "COM_INIT_DB"]
+- ["V16MySqlSwiftNative13MysqlCommands", "COM_PING"]
+- ["V16MySqlSwiftNative13MysqlCommands", "COM_PROCESS_INFO"]
+- ["V16MySqlSwiftNative13MysqlCommands", "COM_PROCESS_KILL"]
+- ["V16MySqlSwiftNative13MysqlCommands", "COM_QUERY"]
+- ["V16MySqlSwiftNative13MysqlCommands", "COM_QUIT"]
+- ["V16MySqlSwiftNative13MysqlCommands", "COM_REFRESH"]
+- ["V16MySqlSwiftNative13MysqlCommands", "COM_REGISTER_SLAVE"]
+- ["V16MySqlSwiftNative13MysqlCommands", "COM_SET_OPTION"]
+- ["V16MySqlSwiftNative13MysqlCommands", "COM_SHUTDOWN"]
+- ["V16MySqlSwiftNative13MysqlCommands", "COM_STATISTICS"]
+- ["V16MySqlSwiftNative13MysqlCommands", "COM_STMT_CLOSE"]
+- ["V16MySqlSwiftNative13MysqlCommands", "COM_STMT_EXECUTE"]
+- ["V16MySqlSwiftNative13MysqlCommands", "COM_STMT_FETCH"]
+- ["V16MySqlSwiftNative13MysqlCommands", "COM_STMT_PREPARE"]
+- ["V16MySqlSwiftNative13MysqlCommands", "COM_STMT_RESET"]
+- ["V16MySqlSwiftNative13MysqlCommands", "COM_STMT_SEND_LONG_DATA"]
+- ["V16MySqlSwiftNative13MysqlCommands", "COM_TABLE_DUMP"]
+- ["V16MySqlSwiftNative13MysqlCommands", "COM_TIME"]
+- ["V16MySqlSwiftNative13MysqlCommands", "UInt8"]
+- ["V16MySqlSwiftNative13MysqlCommands", "init"]
+- ["V16MySqlSwiftNative14MysqlFieldFlag", "AUTOINCREMENT"]
+- ["V16MySqlSwiftNative14MysqlFieldFlag", "BINARY"]
+- ["V16MySqlSwiftNative14MysqlFieldFlag", "BLOB"]
+- ["V16MySqlSwiftNative14MysqlFieldFlag", "ENUM"]
+- ["V16MySqlSwiftNative14MysqlFieldFlag", "MULTI_KEY"]
+- ["V16MySqlSwiftNative14MysqlFieldFlag", "NOT_NULL"]
+- ["V16MySqlSwiftNative14MysqlFieldFlag", "PRI_KEY"]
+- ["V16MySqlSwiftNative14MysqlFieldFlag", "SET"]
+- ["V16MySqlSwiftNative14MysqlFieldFlag", "TIMESTAMP"]
+- ["V16MySqlSwiftNative14MysqlFieldFlag", "UInt16"]
+- ["V16MySqlSwiftNative14MysqlFieldFlag", "UNIQUE_KEY"]
+- ["V16MySqlSwiftNative14MysqlFieldFlag", "UNSIGNED"]
+- ["V16MySqlSwiftNative14MysqlFieldFlag", "ZERO_FILL"]
+- ["V16MySqlSwiftNative14MysqlFieldFlag", "init"]
+- ["V16MySqlSwiftNative17MysqlServerStatus", "SERVER_MORE_RESULTS_EXISTS"]
+- ["V16MySqlSwiftNative17MysqlServerStatus", "UInt16"]
+- ["V16MySqlSwiftNative17MysqlServerStatus", "init"]
+- ["V16MySqlSwiftNative10MysqlTypes", "MYSQL_TYPE_BIT"]
+- ["V16MySqlSwiftNative10MysqlTypes", "MYSQL_TYPE_BLOB"]
+- ["V16MySqlSwiftNative10MysqlTypes", "MYSQL_TYPE_DATE"]
+- ["V16MySqlSwiftNative10MysqlTypes", "MYSQL_TYPE_DATETIME"]
+- ["V16MySqlSwiftNative10MysqlTypes", "MYSQL_TYPE_DECIMAL"]
+- ["V16MySqlSwiftNative10MysqlTypes", "MYSQL_TYPE_DOUBLE"]
+- ["V16MySqlSwiftNative10MysqlTypes", "MYSQL_TYPE_ENUM"]
+- ["V16MySqlSwiftNative10MysqlTypes", "MYSQL_TYPE_FLOAT"]
+- ["V16MySqlSwiftNative10MysqlTypes", "MYSQL_TYPE_GEOMETRY"]
+- ["V16MySqlSwiftNative10MysqlTypes", "MYSQL_TYPE_INT24"]
+- ["V16MySqlSwiftNative10MysqlTypes", "MYSQL_TYPE_LONG"]
+- ["V16MySqlSwiftNative10MysqlTypes", "MYSQL_TYPE_LONGLONG"]
+- ["V16MySqlSwiftNative10MysqlTypes", "MYSQL_TYPE_LONG_BLOB"]
+- ["V16MySqlSwiftNative10MysqlTypes", "MYSQL_TYPE_MEDIUM_BLOB"]
+- ["V16MySqlSwiftNative10MysqlTypes", "MYSQL_TYPE_NEWDATE"]
+- ["V16MySqlSwiftNative10MysqlTypes", "MYSQL_TYPE_NEWDECIMAL"]
+- ["V16MySqlSwiftNative10MysqlTypes", "MYSQL_TYPE_NULL"]
+- ["V16MySqlSwiftNative10MysqlTypes", "MYSQL_TYPE_SET"]
+- ["V16MySqlSwiftNative10MysqlTypes", "MYSQL_TYPE_SHORT"]
+- ["V16MySqlSwiftNative10MysqlTypes", "MYSQL_TYPE_STRING"]
+- ["V16MySqlSwiftNative10MysqlTypes", "MYSQL_TYPE_TIME"]
+- ["V16MySqlSwiftNative10MysqlTypes", "MYSQL_TYPE_TIMESTAMP"]
+- ["V16MySqlSwiftNative10MysqlTypes", "MYSQL_TYPE_TINY"]
+- ["V16MySqlSwiftNative10MysqlTypes", "MYSQL_TYPE_TINY_BLOB"]
+- ["V16MySqlSwiftNative10MysqlTypes", "MYSQL_TYPE_VARCHAR"]
+- ["V16MySqlSwiftNative10MysqlTypes", "MYSQL_TYPE_VAR_STRING"]
+- ["V16MySqlSwiftNative10MysqlTypes", "MYSQL_TYPE_YEAR"]
+- ["V16MySqlSwiftNative10MysqlTypes", "MYSQL_UNSIGNED_MASK"]
+- ["V16MySqlSwiftNative10MysqlTypes", "UInt8"]
+- ["V16MySqlSwiftNative10MysqlTypes", "init"]
+depends-nominal:
+- "V16MySqlSwiftNative15MysqlClientCaps"
+- "V16MySqlSwiftNative13MysqlCommands"
+- "V16MySqlSwiftNative14MysqlFieldFlag"
+- "V16MySqlSwiftNative17MysqlServerStatus"
+- "V16MySqlSwiftNative10MysqlTypes"
+depends-dynamic-lookup:
+depends-external:
+- "/Library/Developer/Toolchains/swift-2.2-SNAPSHOT-2016-01-06-a.xctoolchain/usr/lib/swift/macosx/x86_64/Swift.swiftmodule"
+- "/Library/Developer/Toolchains/swift-2.2-SNAPSHOT-2016-01-06-a.xctoolchain/usr/lib/swift/shims/UnicodeShims.h"
+- "/Library/Developer/Toolchains/swift-2.2-SNAPSHOT-2016-01-06-a.xctoolchain/usr/lib/swift/shims/RuntimeStubs.h"
+- "/Library/Developer/Toolchains/swift-2.2-SNAPSHOT-2016-01-06-a.xctoolchain/usr/lib/swift/shims/SwiftStdint.h"
+- "/Library/Developer/Toolchains/swift-2.2-SNAPSHOT-2016-01-06-a.xctoolchain/usr/lib/swift/shims/SwiftStddef.h"
+- "/Library/Developer/Toolchains/swift-2.2-SNAPSHOT-2016-01-06-a.xctoolchain/usr/lib/swift/shims/RuntimeShims.h"
+- "/Library/Developer/Toolchains/swift-2.2-SNAPSHOT-2016-01-06-a.xctoolchain/usr/lib/swift/shims/LibcShims.h"
+- "/Library/Developer/Toolchains/swift-2.2-SNAPSHOT-2016-01-06-a.xctoolchain/usr/lib/swift/shims/RefCount.h"
+- "/Library/Developer/Toolchains/swift-2.2-SNAPSHOT-2016-01-06-a.xctoolchain/usr/lib/swift/shims/HeapObject.h"
+- "/Library/Developer/Toolchains/swift-2.2-SNAPSHOT-2016-01-06-a.xctoolchain/usr/lib/swift/shims/GlobalObjects.h"
+- "/Library/Developer/Toolchains/swift-2.2-SNAPSHOT-2016-01-06-a.xctoolchain/usr/lib/swift/shims/FoundationShims.h"
+- "/Library/Developer/Toolchains/swift-2.2-SNAPSHOT-2016-01-06-a.xctoolchain/usr/lib/swift/shims/CoreFoundationShims.h"
+- "/Library/Developer/Toolchains/swift-2.2-SNAPSHOT-2016-01-06-a.xctoolchain/usr/lib/swift/shims/module.map"
+- "/Library/Developer/Toolchains/swift-2.2-SNAPSHOT-2016-01-06-a.xctoolchain/usr/lib/swift/macosx/x86_64/Foundation.swiftmodule"
+- "/usr/local/include/clang-c/module.modulemap"
+- "/Library/Developer/Toolchains/swift-2.2-SNAPSHOT-2016-01-06-a.xctoolchain/usr/lib/swift/macosx/x86_64/Darwin.swiftmodule"
+- "/Library/Developer/Toolchains/swift-2.2-SNAPSHOT-2016-01-06-a.xctoolchain/usr/lib/swift/macosx/x86_64/Dispatch.swiftmodule"
+- "/Library/Developer/Toolchains/swift-2.2-SNAPSHOT-2016-01-06-a.xctoolchain/usr/lib/swift/macosx/x86_64/ObjectiveC.swiftmodule"
+- "/Library/Developer/Toolchains/swift-2.2-SNAPSHOT-2016-01-06-a.xctoolchain/usr/lib/swift/macosx/x86_64/CoreGraphics.swiftmodule"
+interface-hash: "8c6dfb8b8da1eecb19b30eee3bf6cb1b"

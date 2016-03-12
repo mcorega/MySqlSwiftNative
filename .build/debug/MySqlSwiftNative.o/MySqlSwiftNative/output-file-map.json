@@ -1,0 +1,83 @@
+{
+  "": {
+    "swift-dependencies": "/Users/cipi/tmp/MySQLDriver/.build/debug/MySqlSwiftNative.o/MySqlSwiftNative/master.swiftdeps"
+  },
+  "/Users/cipi/tmp/MySQLDriver/Sources/MySqlSwiftNative/Connection.swift": {
+    "dependencies": "/Users/cipi/tmp/MySQLDriver/.build/debug/MySqlSwiftNative.o/MySqlSwiftNative/Connection.d",
+    "object": "/Users/cipi/tmp/MySQLDriver/.build/debug/MySqlSwiftNative.o/Sources/MySqlSwiftNative/Connection.swift.o",
+    "swiftmodule": "/Users/cipi/tmp/MySQLDriver/.build/debug/MySqlSwiftNative.o/MySqlSwiftNative/Connection~partial.swiftmodule",
+    "swift-dependencies": "/Users/cipi/tmp/MySQLDriver/.build/debug/MySqlSwiftNative.o/MySqlSwiftNative/Connection.swiftdeps"
+  },
+  "/Users/cipi/tmp/MySQLDriver/Sources/MySqlSwiftNative/Constants.swift": {
+    "dependencies": "/Users/cipi/tmp/MySQLDriver/.build/debug/MySqlSwiftNative.o/MySqlSwiftNative/Constants.d",
+    "object": "/Users/cipi/tmp/MySQLDriver/.build/debug/MySqlSwiftNative.o/Sources/MySqlSwiftNative/Constants.swift.o",
+    "swiftmodule": "/Users/cipi/tmp/MySQLDriver/.build/debug/MySqlSwiftNative.o/MySqlSwiftNative/Constants~partial.swiftmodule",
+    "swift-dependencies": "/Users/cipi/tmp/MySQLDriver/.build/debug/MySqlSwiftNative.o/MySqlSwiftNative/Constants.swiftdeps"
+  },
+  "/Users/cipi/tmp/MySQLDriver/Sources/MySqlSwiftNative/main.swift": {
+    "dependencies": "/Users/cipi/tmp/MySQLDriver/.build/debug/MySqlSwiftNative.o/MySqlSwiftNative/main.d",
+    "object": "/Users/cipi/tmp/MySQLDriver/.build/debug/MySqlSwiftNative.o/Sources/MySqlSwiftNative/main.swift.o",
+    "swiftmodule": "/Users/cipi/tmp/MySQLDriver/.build/debug/MySqlSwiftNative.o/MySqlSwiftNative/main~partial.swiftmodule",
+    "swift-dependencies": "/Users/cipi/tmp/MySQLDriver/.build/debug/MySqlSwiftNative.o/MySqlSwiftNative/main.swiftdeps"
+  },
+  "/Users/cipi/tmp/MySQLDriver/Sources/MySqlSwiftNative/mysql.swift": {
+    "dependencies": "/Users/cipi/tmp/MySQLDriver/.build/debug/MySqlSwiftNative.o/MySqlSwiftNative/mysql.d",
+    "object": "/Users/cipi/tmp/MySQLDriver/.build/debug/MySqlSwiftNative.o/Sources/MySqlSwiftNative/mysql.swift.o",
+    "swiftmodule": "/Users/cipi/tmp/MySQLDriver/.build/debug/MySqlSwiftNative.o/MySqlSwiftNative/mysql~partial.swiftmodule",
+    "swift-dependencies": "/Users/cipi/tmp/MySQLDriver/.build/debug/MySqlSwiftNative.o/MySqlSwiftNative/mysql.swiftdeps"
+  },
+  "/Users/cipi/tmp/MySQLDriver/Sources/MySqlSwiftNative/Packets.swift": {
+    "dependencies": "/Users/cipi/tmp/MySQLDriver/.build/debug/MySqlSwiftNative.o/MySqlSwiftNative/Packets.d",
+    "object": "/Users/cipi/tmp/MySQLDriver/.build/debug/MySqlSwiftNative.o/Sources/MySqlSwiftNative/Packets.swift.o",
+    "swiftmodule": "/Users/cipi/tmp/MySQLDriver/.build/debug/MySqlSwiftNative.o/MySqlSwiftNative/Packets~partial.swiftmodule",
+    "swift-dependencies": "/Users/cipi/tmp/MySQLDriver/.build/debug/MySqlSwiftNative.o/MySqlSwiftNative/Packets.swiftdeps"
+  },
+  "/Users/cipi/tmp/MySQLDriver/Sources/MySqlSwiftNative/Query.swift": {
+    "dependencies": "/Users/cipi/tmp/MySQLDriver/.build/debug/MySqlSwiftNative.o/MySqlSwiftNative/Query.d",
+    "object": "/Users/cipi/tmp/MySQLDriver/.build/debug/MySqlSwiftNative.o/Sources/MySqlSwiftNative/Query.swift.o",
+    "swiftmodule": "/Users/cipi/tmp/MySQLDriver/.build/debug/MySqlSwiftNative.o/MySqlSwiftNative/Query~partial.swiftmodule",
+    "swift-dependencies": "/Users/cipi/tmp/MySQLDriver/.build/debug/MySqlSwiftNative.o/MySqlSwiftNative/Query.swiftdeps"
+  },
+  "/Users/cipi/tmp/MySQLDriver/Sources/MySqlSwiftNative/Result.swift": {
+    "dependencies": "/Users/cipi/tmp/MySQLDriver/.build/debug/MySqlSwiftNative.o/MySqlSwiftNative/Result.d",
+    "object": "/Users/cipi/tmp/MySQLDriver/.build/debug/MySqlSwiftNative.o/Sources/MySqlSwiftNative/Result.swift.o",
+    "swiftmodule": "/Users/cipi/tmp/MySQLDriver/.build/debug/MySqlSwiftNative.o/MySqlSwiftNative/Result~partial.swiftmodule",
+    "swift-dependencies": "/Users/cipi/tmp/MySQLDriver/.build/debug/MySqlSwiftNative.o/MySqlSwiftNative/Result.swiftdeps"
+  },
+  "/Users/cipi/tmp/MySQLDriver/Sources/MySqlSwiftNative/sha1.swift": {
+    "dependencies": "/Users/cipi/tmp/MySQLDriver/.build/debug/MySqlSwiftNative.o/MySqlSwiftNative/sha1.d",
+    "object": "/Users/cipi/tmp/MySQLDriver/.build/debug/MySqlSwiftNative.o/Sources/MySqlSwiftNative/sha1.swift.o",
+    "swiftmodule": "/Users/cipi/tmp/MySQLDriver/.build/debug/MySqlSwiftNative.o/MySqlSwiftNative/sha1~partial.swiftmodule",
+    "swift-dependencies": "/Users/cipi/tmp/MySQLDriver/.build/debug/MySqlSwiftNative.o/MySqlSwiftNative/sha1.swiftdeps"
+  },
+  "/Users/cipi/tmp/MySQLDriver/Sources/MySqlSwiftNative/Socket.swift": {
+    "dependencies": "/Users/cipi/tmp/MySQLDriver/.build/debug/MySqlSwiftNative.o/MySqlSwiftNative/Socket.d",
+    "object": "/Users/cipi/tmp/MySQLDriver/.build/debug/MySqlSwiftNative.o/Sources/MySqlSwiftNative/Socket.swift.o",
+    "swiftmodule": "/Users/cipi/tmp/MySQLDriver/.build/debug/MySqlSwiftNative.o/MySqlSwiftNative/Socket~partial.swiftmodule",
+    "swift-dependencies": "/Users/cipi/tmp/MySQLDriver/.build/debug/MySqlSwiftNative.o/MySqlSwiftNative/Socket.swiftdeps"
+  },
+  "/Users/cipi/tmp/MySQLDriver/Sources/MySqlSwiftNative/Statement.swift": {
+    "dependencies": "/Users/cipi/tmp/MySQLDriver/.build/debug/MySqlSwiftNative.o/MySqlSwiftNative/Statement.d",
+    "object": "/Users/cipi/tmp/MySQLDriver/.build/debug/MySqlSwiftNative.o/Sources/MySqlSwiftNative/Statement.swift.o",
+    "swiftmodule": "/Users/cipi/tmp/MySQLDriver/.build/debug/MySqlSwiftNative.o/MySqlSwiftNative/Statement~partial.swiftmodule",
+    "swift-dependencies": "/Users/cipi/tmp/MySQLDriver/.build/debug/MySqlSwiftNative.o/MySqlSwiftNative/Statement.swiftdeps"
+  },
+  "/Users/cipi/tmp/MySQLDriver/Sources/MySqlSwiftNative/Table.swift": {
+    "dependencies": "/Users/cipi/tmp/MySQLDriver/.build/debug/MySqlSwiftNative.o/MySqlSwiftNative/Table.d",
+    "object": "/Users/cipi/tmp/MySQLDriver/.build/debug/MySqlSwiftNative.o/Sources/MySqlSwiftNative/Table.swift.o",
+    "swiftmodule": "/Users/cipi/tmp/MySQLDriver/.build/debug/MySqlSwiftNative.o/MySqlSwiftNative/Table~partial.swiftmodule",
+    "swift-dependencies": "/Users/cipi/tmp/MySQLDriver/.build/debug/MySqlSwiftNative.o/MySqlSwiftNative/Table.swiftdeps"
+  },
+  "/Users/cipi/tmp/MySQLDriver/Sources/MySqlSwiftNative/tests.swift": {
+    "dependencies": "/Users/cipi/tmp/MySQLDriver/.build/debug/MySqlSwiftNative.o/MySqlSwiftNative/tests.d",
+    "object": "/Users/cipi/tmp/MySQLDriver/.build/debug/MySqlSwiftNative.o/Sources/MySqlSwiftNative/tests.swift.o",
+    "swiftmodule": "/Users/cipi/tmp/MySQLDriver/.build/debug/MySqlSwiftNative.o/MySqlSwiftNative/tests~partial.swiftmodule",
+    "swift-dependencies": "/Users/cipi/tmp/MySQLDriver/.build/debug/MySqlSwiftNative.o/MySqlSwiftNative/tests.swiftdeps"
+  },
+  "/Users/cipi/tmp/MySQLDriver/Sources/MySqlSwiftNative/Utils.swift": {
+    "dependencies": "/Users/cipi/tmp/MySQLDriver/.build/debug/MySqlSwiftNative.o/MySqlSwiftNative/Utils.d",
+    "object": "/Users/cipi/tmp/MySQLDriver/.build/debug/MySqlSwiftNative.o/Sources/MySqlSwiftNative/Utils.swift.o",
+    "swiftmodule": "/Users/cipi/tmp/MySQLDriver/.build/debug/MySqlSwiftNative.o/MySqlSwiftNative/Utils~partial.swiftmodule",
+    "swift-dependencies": "/Users/cipi/tmp/MySQLDriver/.build/debug/MySqlSwiftNative.o/MySqlSwiftNative/Utils.swiftdeps"
+  }
+}

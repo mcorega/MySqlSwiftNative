@@ -1,0 +1,71 @@
+{
+  "": {
+    "swift-dependencies": "/Users/cipi/tmp/MySQLDriver/.build/debug/MySQLDriver.o/MySQLDriver/master.swiftdeps"
+  },
+  "/Users/cipi/tmp/MySQLDriver/Sources/MySQLDriver/Connection.swift": {
+    "dependencies": "/Users/cipi/tmp/MySQLDriver/.build/debug/MySQLDriver.o/MySQLDriver/Connection.d",
+    "object": "/Users/cipi/tmp/MySQLDriver/.build/debug/MySQLDriver.o/Sources/MySQLDriver/Connection.swift.o",
+    "swiftmodule": "/Users/cipi/tmp/MySQLDriver/.build/debug/MySQLDriver.o/MySQLDriver/Connection~partial.swiftmodule",
+    "swift-dependencies": "/Users/cipi/tmp/MySQLDriver/.build/debug/MySQLDriver.o/MySQLDriver/Connection.swiftdeps"
+  },
+  "/Users/cipi/tmp/MySQLDriver/Sources/MySQLDriver/Constants.swift": {
+    "dependencies": "/Users/cipi/tmp/MySQLDriver/.build/debug/MySQLDriver.o/MySQLDriver/Constants.d",
+    "object": "/Users/cipi/tmp/MySQLDriver/.build/debug/MySQLDriver.o/Sources/MySQLDriver/Constants.swift.o",
+    "swiftmodule": "/Users/cipi/tmp/MySQLDriver/.build/debug/MySQLDriver.o/MySQLDriver/Constants~partial.swiftmodule",
+    "swift-dependencies": "/Users/cipi/tmp/MySQLDriver/.build/debug/MySQLDriver.o/MySQLDriver/Constants.swiftdeps"
+  },
+  "/Users/cipi/tmp/MySQLDriver/Sources/MySQLDriver/main.swift": {
+    "dependencies": "/Users/cipi/tmp/MySQLDriver/.build/debug/MySQLDriver.o/MySQLDriver/main.d",
+    "object": "/Users/cipi/tmp/MySQLDriver/.build/debug/MySQLDriver.o/Sources/MySQLDriver/main.swift.o",
+    "swiftmodule": "/Users/cipi/tmp/MySQLDriver/.build/debug/MySQLDriver.o/MySQLDriver/main~partial.swiftmodule",
+    "swift-dependencies": "/Users/cipi/tmp/MySQLDriver/.build/debug/MySQLDriver.o/MySQLDriver/main.swiftdeps"
+  },
+  "/Users/cipi/tmp/MySQLDriver/Sources/MySQLDriver/mysql.swift": {
+    "dependencies": "/Users/cipi/tmp/MySQLDriver/.build/debug/MySQLDriver.o/MySQLDriver/mysql.d",
+    "object": "/Users/cipi/tmp/MySQLDriver/.build/debug/MySQLDriver.o/Sources/MySQLDriver/mysql.swift.o",
+    "swiftmodule": "/Users/cipi/tmp/MySQLDriver/.build/debug/MySQLDriver.o/MySQLDriver/mysql~partial.swiftmodule",
+    "swift-dependencies": "/Users/cipi/tmp/MySQLDriver/.build/debug/MySQLDriver.o/MySQLDriver/mysql.swiftdeps"
+  },
+  "/Users/cipi/tmp/MySQLDriver/Sources/MySQLDriver/Packets.swift": {
+    "dependencies": "/Users/cipi/tmp/MySQLDriver/.build/debug/MySQLDriver.o/MySQLDriver/Packets.d",
+    "object": "/Users/cipi/tmp/MySQLDriver/.build/debug/MySQLDriver.o/Sources/MySQLDriver/Packets.swift.o",
+    "swiftmodule": "/Users/cipi/tmp/MySQLDriver/.build/debug/MySQLDriver.o/MySQLDriver/Packets~partial.swiftmodule",
+    "swift-dependencies": "/Users/cipi/tmp/MySQLDriver/.build/debug/MySQLDriver.o/MySQLDriver/Packets.swiftdeps"
+  },
+  "/Users/cipi/tmp/MySQLDriver/Sources/MySQLDriver/Query.swift": {
+    "dependencies": "/Users/cipi/tmp/MySQLDriver/.build/debug/MySQLDriver.o/MySQLDriver/Query.d",
+    "object": "/Users/cipi/tmp/MySQLDriver/.build/debug/MySQLDriver.o/Sources/MySQLDriver/Query.swift.o",
+    "swiftmodule": "/Users/cipi/tmp/MySQLDriver/.build/debug/MySQLDriver.o/MySQLDriver/Query~partial.swiftmodule",
+    "swift-dependencies": "/Users/cipi/tmp/MySQLDriver/.build/debug/MySQLDriver.o/MySQLDriver/Query.swiftdeps"
+  },
+  "/Users/cipi/tmp/MySQLDriver/Sources/MySQLDriver/Result.swift": {
+    "dependencies": "/Users/cipi/tmp/MySQLDriver/.build/debug/MySQLDriver.o/MySQLDriver/Result.d",
+    "object": "/Users/cipi/tmp/MySQLDriver/.build/debug/MySQLDriver.o/Sources/MySQLDriver/Result.swift.o",
+    "swiftmodule": "/Users/cipi/tmp/MySQLDriver/.build/debug/MySQLDriver.o/MySQLDriver/Result~partial.swiftmodule",
+    "swift-dependencies": "/Users/cipi/tmp/MySQLDriver/.build/debug/MySQLDriver.o/MySQLDriver/Result.swiftdeps"
+  },
+  "/Users/cipi/tmp/MySQLDriver/Sources/MySQLDriver/sha1.swift": {
+    "dependencies": "/Users/cipi/tmp/MySQLDriver/.build/debug/MySQLDriver.o/MySQLDriver/sha1.d",
+    "object": "/Users/cipi/tmp/MySQLDriver/.build/debug/MySQLDriver.o/Sources/MySQLDriver/sha1.swift.o",
+    "swiftmodule": "/Users/cipi/tmp/MySQLDriver/.build/debug/MySQLDriver.o/MySQLDriver/sha1~partial.swiftmodule",
+    "swift-dependencies": "/Users/cipi/tmp/MySQLDriver/.build/debug/MySQLDriver.o/MySQLDriver/sha1.swiftdeps"
+  },
+  "/Users/cipi/tmp/MySQLDriver/Sources/MySQLDriver/Socket.swift": {
+    "dependencies": "/Users/cipi/tmp/MySQLDriver/.build/debug/MySQLDriver.o/MySQLDriver/Socket.d",
+    "object": "/Users/cipi/tmp/MySQLDriver/.build/debug/MySQLDriver.o/Sources/MySQLDriver/Socket.swift.o",
+    "swiftmodule": "/Users/cipi/tmp/MySQLDriver/.build/debug/MySQLDriver.o/MySQLDriver/Socket~partial.swiftmodule",
+    "swift-dependencies": "/Users/cipi/tmp/MySQLDriver/.build/debug/MySQLDriver.o/MySQLDriver/Socket.swiftdeps"
+  },
+  "/Users/cipi/tmp/MySQLDriver/Sources/MySQLDriver/Statement.swift": {
+    "dependencies": "/Users/cipi/tmp/MySQLDriver/.build/debug/MySQLDriver.o/MySQLDriver/Statement.d",
+    "object": "/Users/cipi/tmp/MySQLDriver/.build/debug/MySQLDriver.o/Sources/MySQLDriver/Statement.swift.o",
+    "swiftmodule": "/Users/cipi/tmp/MySQLDriver/.build/debug/MySQLDriver.o/MySQLDriver/Statement~partial.swiftmodule",
+    "swift-dependencies": "/Users/cipi/tmp/MySQLDriver/.build/debug/MySQLDriver.o/MySQLDriver/Statement.swiftdeps"
+  },
+  "/Users/cipi/tmp/MySQLDriver/Sources/MySQLDriver/Utils.swift": {
+    "dependencies": "/Users/cipi/tmp/MySQLDriver/.build/debug/MySQLDriver.o/MySQLDriver/Utils.d",
+    "object": "/Users/cipi/tmp/MySQLDriver/.build/debug/MySQLDriver.o/Sources/MySQLDriver/Utils.swift.o",
+    "swiftmodule": "/Users/cipi/tmp/MySQLDriver/.build/debug/MySQLDriver.o/MySQLDriver/Utils~partial.swiftmodule",
+    "swift-dependencies": "/Users/cipi/tmp/MySQLDriver/.build/debug/MySQLDriver.o/MySQLDriver/Utils.swiftdeps"
+  }
+}

@@ -1,0 +1,5 @@
+version: "Apple Swift version 2.2-dev (LLVM 3ebdbb2c7e, Clang f66c5bb67b, Swift 17fe37d715)"
+options: "4ebdc79d5c51adcd1a7a2eb7400acf5c"
+build_time: [504382246, 915600000]
+inputs:
+  "/Users/cipi/tmp/MySQLDriver/Sources/main/main.swift": !private [504382242, 0]

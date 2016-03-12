@@ -1,7 +1,7 @@
 import PackageDescription
 
 let package = Package(
-    name: "MySqlSwiftNative",
+    name: "MySQLDriver",
     dependencies: [
     ]
 )

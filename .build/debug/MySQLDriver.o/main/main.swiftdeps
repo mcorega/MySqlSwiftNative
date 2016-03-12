@@ -1,0 +1,154 @@
+### Swift dependencies file v0 ###
+provides-top-level:
+- "con"
+- "db_name"
+provides-nominal:
+provides-member:
+provides-dynamic-lookup:
+depends-top-level:
+- "print"
+- "Float"
+- "db_name"
+- "FloatLiteralType"
+- "..."
+- "/"
+- "+"
+- "MySQL"
+- "IntegerLiteralType"
+- "StringLiteralType"
+- "-"
+- "con"
+depends-member:
+- ["Ps22BidirectionalIndexType", "Distance"]
+- ["Ps22BidirectionalIndexType", "IntegerLiteralType"]
+- ["Ps22BidirectionalIndexType", "_DisabledRangeIndex"]
+- ["Ps21BitwiseOperationsType", "Distance"]
+- ["Ps21BitwiseOperationsType", "IntegerLiteralType"]
+- ["Ps21BitwiseOperationsType", "_DisabledRangeIndex"]
+- ["Ps11CVarArgType", "Distance"]
+- ["Ps11CVarArgType", "IntegerLiteralType"]
+- ["Ps11CVarArgType", "_DisabledRangeIndex"]
+- ["Vs14ClosedInterval", "deinit"]
+- ["Ps14CollectionType", "Generator"]
+- ["Ps10Comparable", "Distance"]
+- ["Ps10Comparable", "IntegerLiteralType"]
+- ["Ps10Comparable", "_DisabledRangeIndex"]
+- ["Ps28CustomDebugStringConvertible", "Generator"]
+- ["Ps23CustomStringConvertible", "Distance"]
+- ["Ps23CustomStringConvertible", "Generator"]
+- ["Ps23CustomStringConvertible", "IntegerLiteralType"]
+- ["Ps23CustomStringConvertible", "_DisabledRangeIndex"]
+- ["Ps9Equatable", "Distance"]
+- ["Ps9Equatable", "Generator"]
+- ["Ps9Equatable", "IntegerLiteralType"]
+- ["Ps9Equatable", "_DisabledRangeIndex"]
+- ["Ps16ForwardIndexType", "Distance"]
+- ["Ps16ForwardIndexType", "IntegerLiteralType"]
+- ["Ps16ForwardIndexType", "_DisabledRangeIndex"]
+- ["Ps13GeneratorType", "Element"]
+- ["Ps8Hashable", "Distance"]
+- ["Ps8Hashable", "IntegerLiteralType"]
+- ["Ps8Hashable", "_DisabledRangeIndex"]
+- ["Ps9Indexable", "Generator"]
+- ["Si", "Distance"]
+- ["Si", "IntegerLiteralType"]
+- ["Si", "_DisabledRangeIndex"]
+- ["Ps21IntegerArithmeticType", "Distance"]
+- ["Ps21IntegerArithmeticType", "IntegerLiteralType"]
+- ["Ps21IntegerArithmeticType", "_DisabledRangeIndex"]
+- ["Ps25IntegerLiteralConvertible", "Distance"]
+- ["Ps25IntegerLiteralConvertible", "IntegerLiteralType"]
+- ["Ps25IntegerLiteralConvertible", "_DisabledRangeIndex"]
+- ["Ps11IntegerType", "Distance"]
+- ["Ps11IntegerType", "IntegerLiteralType"]
+- ["Ps11IntegerType", "_DisabledRangeIndex"]
+- ["Ps14MirrorPathType", "Distance"]
+- ["Ps14MirrorPathType", "IntegerLiteralType"]
+- ["Ps14MirrorPathType", "_DisabledRangeIndex"]
+- ["Ps21RandomAccessIndexType", "Distance"]
+- ["Ps21RandomAccessIndexType", "IntegerLiteralType"]
+- ["Ps21RandomAccessIndexType", "_DisabledRangeIndex"]
+- ["Vs5Range", "Generator"]
+- ["Vs14RangeGenerator", "Element"]
+- ["Ps12SequenceType", "Element"]
+- ["Ps12SequenceType", "Generator"]
+- ["Ps17SignedIntegerType", "Distance"]
+- ["Ps17SignedIntegerType", "IntegerLiteralType"]
+- ["Ps17SignedIntegerType", "_DisabledRangeIndex"]
+- ["Ps16SignedNumberType", "Distance"]
+- ["Ps16SignedNumberType", "IntegerLiteralType"]
+- ["Ps16SignedNumberType", "_DisabledRangeIndex"]
+- ["Ps10Strideable", "Distance"]
+- ["Ps10Strideable", "IntegerLiteralType"]
+- ["Ps10Strideable", "_DisabledRangeIndex"]
+- ["Ps33_BuiltinIntegerLiteralConvertible", "Distance"]
+- ["Ps33_BuiltinIntegerLiteralConvertible", "IntegerLiteralType"]
+- ["Ps33_BuiltinIntegerLiteralConvertible", "_DisabledRangeIndex"]
+- ["Ps14_Incrementable", "Distance"]
+- ["Ps14_Incrementable", "IntegerLiteralType"]
+- ["Ps14_Incrementable", "_DisabledRangeIndex"]
+- ["Ps22_IntegerArithmeticType", "Distance"]
+- ["Ps22_IntegerArithmeticType", "IntegerLiteralType"]
+- ["Ps22_IntegerArithmeticType", "_DisabledRangeIndex"]
+- ["Ps12_IntegerType", "Distance"]
+- ["Ps12_IntegerType", "IntegerLiteralType"]
+- ["Ps12_IntegerType", "_DisabledRangeIndex"]
+- ["Ps22_RandomAccessAmbiguity", "Distance"]
+- ["Ps22_RandomAccessAmbiguity", "IntegerLiteralType"]
+- ["Ps22_RandomAccessAmbiguity", "_DisabledRangeIndex"]
+- ["Ps12_Reflectable", "Distance"]
+- ["Ps12_Reflectable", "Generator"]
+- ["Ps12_Reflectable", "IntegerLiteralType"]
+- ["Ps12_Reflectable", "_DisabledRangeIndex"]
+- ["Ps18_SignedIntegerType", "Distance"]
+- ["Ps18_SignedIntegerType", "IntegerLiteralType"]
+- ["Ps18_SignedIntegerType", "_DisabledRangeIndex"]
+depends-nominal:
+- "Ps22BidirectionalIndexType"
+- "Ps21BitwiseOperationsType"
+- "Ps11CVarArgType"
+- "Vs14ClosedInterval"
+- "Ps14CollectionType"
+- "Ps10Comparable"
+- "Ps28CustomDebugStringConvertible"
+- "Ps23CustomStringConvertible"
+- "Ps9Equatable"
+- "Ps16ForwardIndexType"
+- "Ps13GeneratorType"
+- "Ps8Hashable"
+- "Ps9Indexable"
+- "Si"
+- "Ps21IntegerArithmeticType"
+- "Ps25IntegerLiteralConvertible"
+- "Ps11IntegerType"
+- "Ps14MirrorPathType"
+- "Ps21RandomAccessIndexType"
+- "Vs5Range"
+- "Vs14RangeGenerator"
+- "Ps12SequenceType"
+- "Ps17SignedIntegerType"
+- "Ps16SignedNumberType"
+- "Ps10Strideable"
+- "Ps33_BuiltinIntegerLiteralConvertible"
+- "Ps14_Incrementable"
+- "Ps22_IntegerArithmeticType"
+- "Ps12_IntegerType"
+- "Ps22_RandomAccessAmbiguity"
+- "Ps12_Reflectable"
+- "Ps18_SignedIntegerType"
+depends-dynamic-lookup:
+depends-external:
+- "/Library/Developer/Toolchains/swift-2.2-SNAPSHOT-2015-12-22-a.xctoolchain/usr/lib/swift/macosx/x86_64/Swift.swiftmodule"
+- "/Library/Developer/Toolchains/swift-2.2-SNAPSHOT-2015-12-22-a.xctoolchain/usr/lib/swift/shims/UnicodeShims.h"
+- "/Library/Developer/Toolchains/swift-2.2-SNAPSHOT-2015-12-22-a.xctoolchain/usr/lib/swift/shims/RuntimeStubs.h"
+- "/Library/Developer/Toolchains/swift-2.2-SNAPSHOT-2015-12-22-a.xctoolchain/usr/lib/swift/shims/SwiftStdint.h"
+- "/Library/Developer/Toolchains/swift-2.2-SNAPSHOT-2015-12-22-a.xctoolchain/usr/lib/swift/shims/SwiftStddef.h"
+- "/Library/Developer/Toolchains/swift-2.2-SNAPSHOT-2015-12-22-a.xctoolchain/usr/lib/swift/shims/RuntimeShims.h"
+- "/Library/Developer/Toolchains/swift-2.2-SNAPSHOT-2015-12-22-a.xctoolchain/usr/lib/swift/shims/LibcShims.h"
+- "/Library/Developer/Toolchains/swift-2.2-SNAPSHOT-2015-12-22-a.xctoolchain/usr/lib/swift/shims/RefCount.h"
+- "/Library/Developer/Toolchains/swift-2.2-SNAPSHOT-2015-12-22-a.xctoolchain/usr/lib/swift/shims/HeapObject.h"
+- "/Library/Developer/Toolchains/swift-2.2-SNAPSHOT-2015-12-22-a.xctoolchain/usr/lib/swift/shims/GlobalObjects.h"
+- "/Library/Developer/Toolchains/swift-2.2-SNAPSHOT-2015-12-22-a.xctoolchain/usr/lib/swift/shims/FoundationShims.h"
+- "/Library/Developer/Toolchains/swift-2.2-SNAPSHOT-2015-12-22-a.xctoolchain/usr/lib/swift/shims/CoreFoundationShims.h"
+- "/Library/Developer/Toolchains/swift-2.2-SNAPSHOT-2015-12-22-a.xctoolchain/usr/lib/swift/shims/module.map"
+interface-hash: "df5d24346e6f603f23852590e8be4b1e"

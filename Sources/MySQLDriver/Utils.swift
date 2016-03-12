@@ -302,7 +302,7 @@ extension MySQL {
     }
 }
 
-extension NSDate
+public extension NSDate
 {
     convenience
     init?(dateString:String) {
@@ -357,10 +357,18 @@ extension NSDate
     convenience
     init?(dateTimeStringUsec:String) {
 
-        let dateStringFormatter = NSDateFormatter()
-        dateStringFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss.SSSSSS"
-        dateStringFormatter.locale = NSLocale(localeIdentifier: "en_US_POSIX")
-        if let d = dateStringFormatter.dateFromString(dateTimeStringUsec) {
+        struct statDFT {
+            static var dateStringFormatter :  NSDateFormatter? = nil
+            static var token : dispatch_once_t = 0
+        }
+        
+        dispatch_once(&statDFT.token) {
+            statDFT.dateStringFormatter = NSDateFormatter()
+            statDFT.dateStringFormatter!.dateFormat = "yyyy-MM-dd HH:mm:ss.SSSSSS"
+            statDFT.dateStringFormatter!.locale = NSLocale(localeIdentifier: "en_US_POSIX")
+        }
+        
+        if let d = statDFT.dateStringFormatter!.dateFromString(dateTimeStringUsec) {
             self.init(timeInterval:0, sinceDate:d)
         }
         else {
@@ -384,10 +392,19 @@ extension NSDate
     }
     
     func dateTimeString() -> String {
-        let dateStringFormatter = NSDateFormatter()
-        dateStringFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
-        dateStringFormatter.locale = NSLocale(localeIdentifier: "en_US_POSIX")
-        return dateStringFormatter.stringFromDate(self)
+        
+        struct statDFT {
+            static var dateStringFormatter :  NSDateFormatter? = nil
+            static var token : dispatch_once_t = 0
+        }
+        
+        dispatch_once(&statDFT.token) {
+            statDFT.dateStringFormatter = NSDateFormatter()
+            statDFT.dateStringFormatter!.dateFormat = "yyyy-MM-dd HH:mm:ss"
+            statDFT.dateStringFormatter!.locale = NSLocale(localeIdentifier: "en_US_POSIX")
+        }
+
+        return statDFT.dateStringFormatter!.stringFromDate(self)
     }
 
 }

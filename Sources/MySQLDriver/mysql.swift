@@ -46,7 +46,7 @@ public struct MySQL {
         var dbname:String?
         
         var affectedRows : UInt64 = 0
-        var insertId : UInt64 = 0
+        public var insertId : UInt64 = 0
         var status : UInt16 = 0
         public var conID = NSUUID().UUIDString
         
@@ -56,7 +56,7 @@ public struct MySQL {
         var columns:[Field]?
         var hasMoreResults = false
         var EOFfound = true
-        var isConnected = false
+        public var isConnected = false
 
         public init() {
         }

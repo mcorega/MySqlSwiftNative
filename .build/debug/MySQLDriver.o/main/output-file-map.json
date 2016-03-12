@@ -1,0 +1,11 @@
+{
+  "": {
+    "swift-dependencies": "/Users/cipi/tmp/MySQLDriver/.build/debug/MySQLDriver.o/main/master.swiftdeps"
+  },
+  "/Users/cipi/tmp/MySQLDriver/Sources/main/main.swift": {
+    "dependencies": "/Users/cipi/tmp/MySQLDriver/.build/debug/MySQLDriver.o/main/main.d",
+    "object": "/Users/cipi/tmp/MySQLDriver/.build/debug/MySQLDriver.o/Sources/main/main.swift.o",
+    "swiftmodule": "/Users/cipi/tmp/MySQLDriver/.build/debug/MySQLDriver.o/main/main~partial.swiftmodule",
+    "swift-dependencies": "/Users/cipi/tmp/MySQLDriver/.build/debug/MySQLDriver.o/main/main.swiftdeps"
+  }
+}
