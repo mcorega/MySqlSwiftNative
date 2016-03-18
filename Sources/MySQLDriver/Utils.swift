@@ -305,11 +305,14 @@ extension MySQL {
 public extension NSDate
 {
     convenience
-    init?(dateString:String) {
+    init?(dateString:String?) {
+        guard dateString != nil else {
+            return nil
+        }
         let dateStringFormatter = NSDateFormatter()
         dateStringFormatter.dateFormat = "yyyy-MM-dd"
         dateStringFormatter.locale = NSLocale(localeIdentifier: "en_US_POSIX")
-        if let d = dateStringFormatter.dateFromString(dateString) {
+        if let d = dateStringFormatter.dateFromString(dateString!) {
             self.init(timeInterval:0, sinceDate:d)
             return
         }

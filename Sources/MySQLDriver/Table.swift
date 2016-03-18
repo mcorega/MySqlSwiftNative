@@ -404,6 +404,13 @@ public extension MySQL {
             return res
         }
         
+        public func getRecord<T:RowType>(Where:[String: Any], columns:[String]?=nil) throws -> T? {
+            if let r = try getRecord(Where, columns: columns) {
+                return T(dict: r)
+            }
+            return nil
+        }
+        
         private func insertWithText(object:Any) throws {
             var l = ""
             var v = ""

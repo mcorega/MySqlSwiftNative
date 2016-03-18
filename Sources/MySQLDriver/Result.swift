@@ -14,6 +14,10 @@ public protocol Result {
     func readAllRows() throws -> [MySQL.ResultSet]?
 }
 
+public protocol RowType {
+    init(dict:MySQL.Row)
+}
+
 extension MySQL {
     
     public typealias Row = [String:Any]
@@ -480,6 +484,11 @@ extension MySQL {
             return nil
         }
         
+        func readRow<T:RowType>() throws -> T? {
+            let rres = try readRow()
+            return T(dict:rres!)
+        }
+        
         func readAllRows() throws -> [ResultSet]? {
             
             var arr = [ResultSet]()
@@ -504,5 +513,31 @@ extension MySQL {
             
             return arr
         }
+        
+        func readAllRows<T:RowType>() throws -> [[T]]? {
+            
+            var arr = [[T]]()
+            
+            repeat {
+                
+                if con.hasMoreResults {
+                    try con.nextResult()
+                }
+                
+                var rows = [T]()
+                
+                while let row = try readRow() as? T {
+                    rows.append(row)
+                }
+                if (rows.count > 0){
+                    arr.append(rows)
+                }
+                
+                
+            } while con.hasMoreResults
+            
+            return arr
+        }
+
     }
 }

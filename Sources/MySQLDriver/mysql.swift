@@ -10,9 +10,9 @@ import Foundation
 
 public struct Field {
     var tableName:String = ""
-    var name:String = ""
+    public var name:String = ""
     var flags:UInt16 = 0
-    var fieldType:UInt8 = 0
+    public var fieldType:UInt8 = 0
     var decimals:UInt8 = 0
     var origName:String = ""
     var charSetNr:UInt8 = 0
@@ -54,7 +54,7 @@ public struct MySQL {
         var socket:Socket?
         var mysql_Handshake: mysql_handshake?
         
-        var columns:[Field]?
+        public var columns:[Field]?
         var hasMoreResults = false
         var EOFfound = true
         public var isConnected = false

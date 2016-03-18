@@ -74,36 +74,36 @@ struct MysqlCommands  {
    static let COM_STMT_FETCH            : UInt8 = 0x1c
 }
 
-struct MysqlTypes {
-   static let MYSQL_TYPE_DECIMAL    : UInt8  = 0x00
-   static let MYSQL_TYPE_TINY       : UInt8  = 0x01 // int8, uint8, bool
-   static let MYSQL_TYPE_SHORT      : UInt8  = 0x02 // int16, uint16
-   static let MYSQL_TYPE_LONG       : UInt8  = 0x03 // int32, uint32
-   static let MYSQL_TYPE_FLOAT      : UInt8  = 0x04 // float32
-   static let MYSQL_TYPE_DOUBLE     : UInt8  = 0x05 // float64
-   static let MYSQL_TYPE_NULL       : UInt8  = 0x06 // nil
-   static let MYSQL_TYPE_TIMESTAMP  : UInt8  = 0x07 // Timestamp
-   static let MYSQL_TYPE_LONGLONG   : UInt8  = 0x08 // int64, uint64
-   static let MYSQL_TYPE_INT24      : UInt8  = 0x09
-   static let MYSQL_TYPE_DATE       : UInt8  = 0x0a // Date
-   static let MYSQL_TYPE_TIME       : UInt8  = 0x0b // Time
-   static let MYSQL_TYPE_DATETIME   : UInt8  = 0x0c // time.Time
-   static let MYSQL_TYPE_YEAR       : UInt8  = 0x0d
-   static let MYSQL_TYPE_NEWDATE    : UInt8  = 0x0e
-   static let MYSQL_TYPE_VARCHAR    : UInt8  = 0x0f
-   static let MYSQL_TYPE_BIT        : UInt8  = 0x10
-   static let MYSQL_TYPE_NEWDECIMAL : UInt8  = 0xf6
-   static let MYSQL_TYPE_ENUM       : UInt8  = 0xf7
-   static let MYSQL_TYPE_SET        : UInt8  = 0xf8
-   static let MYSQL_TYPE_TINY_BLOB  : UInt8  = 0xf9
-   static let MYSQL_TYPE_MEDIUM_BLOB : UInt8 = 0xfa
-   static let MYSQL_TYPE_LONG_BLOB  : UInt8  = 0xfb
-   static let MYSQL_TYPE_BLOB       : UInt8  = 0xfc // Blob
-   static let MYSQL_TYPE_VAR_STRING : UInt8  = 0xfd // []byte
-   static let MYSQL_TYPE_STRING     : UInt8  = 0xfe // string
-   static let MYSQL_TYPE_GEOMETRY   : UInt8  = 0xff
+public struct MysqlTypes {
+   public static let MYSQL_TYPE_DECIMAL    : UInt8  = 0x00
+   public static let MYSQL_TYPE_TINY       : UInt8  = 0x01 // int8, uint8, bool
+   public static let MYSQL_TYPE_SHORT      : UInt8  = 0x02 // int16, uint16
+   public static let MYSQL_TYPE_LONG       : UInt8  = 0x03 // int32, uint32
+   public static let MYSQL_TYPE_FLOAT      : UInt8  = 0x04 // float32
+   public static let MYSQL_TYPE_DOUBLE     : UInt8  = 0x05 // float64
+   public static let MYSQL_TYPE_NULL       : UInt8  = 0x06 // nil
+   public static let MYSQL_TYPE_TIMESTAMP  : UInt8  = 0x07 // Timestamp
+   public static let MYSQL_TYPE_LONGLONG   : UInt8  = 0x08 // int64, uint64
+   public static let MYSQL_TYPE_INT24      : UInt8  = 0x09
+   public static let MYSQL_TYPE_DATE       : UInt8  = 0x0a // Date
+   public static let MYSQL_TYPE_TIME       : UInt8  = 0x0b // Time
+   public static let MYSQL_TYPE_DATETIME   : UInt8  = 0x0c // time.Time
+   public static let MYSQL_TYPE_YEAR       : UInt8  = 0x0d
+   public static let MYSQL_TYPE_NEWDATE    : UInt8  = 0x0e
+   public static let MYSQL_TYPE_VARCHAR    : UInt8  = 0x0f
+   public static let MYSQL_TYPE_BIT        : UInt8  = 0x10
+   public static let MYSQL_TYPE_NEWDECIMAL : UInt8  = 0xf6
+   public static let MYSQL_TYPE_ENUM       : UInt8  = 0xf7
+   public static let MYSQL_TYPE_SET        : UInt8  = 0xf8
+   public static let MYSQL_TYPE_TINY_BLOB  : UInt8  = 0xf9
+   public static let MYSQL_TYPE_MEDIUM_BLOB : UInt8 = 0xfa
+   public static let MYSQL_TYPE_LONG_BLOB  : UInt8  = 0xfb
+   public static let MYSQL_TYPE_BLOB       : UInt8  = 0xfc // Blob
+   public static let MYSQL_TYPE_VAR_STRING : UInt8  = 0xfd // []byte
+   public static let MYSQL_TYPE_STRING     : UInt8  = 0xfe // string
+   public static let MYSQL_TYPE_GEOMETRY   : UInt8  = 0xff
     
-   static let MYSQL_UNSIGNED_MASK = 0x200000
+   public static let MYSQL_UNSIGNED_MASK = 0x200000
 }
 
 struct MysqlServerStatus {

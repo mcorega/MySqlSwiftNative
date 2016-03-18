@@ -49,8 +49,8 @@ func integerWithBytes<T: IntegerType where T:ByteConvertible, T: BitshiftOperati
 protocol BitshiftOperationsType {
     func <<(lhs: Self, rhs: Self) -> Self
     func >>(lhs: Self, rhs: Self) -> Self
-    func <<=(inout lhs: Self, rhs: Self)
-    func >>=(inout lhs: Self, rhs: Self)
+    func <<=( lhs: inout Self, rhs: Self)
+    func >>=( lhs: inout Self, rhs: Self)
 }
 
 // MARK: - shiftLeft
