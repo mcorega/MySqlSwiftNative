@@ -13,7 +13,7 @@ public extension MySQL {
     
     public class Table {
         
-        enum Error : ErrorType {
+        enum Error : ErrorProtocol {
             case TableExists
             case NilWhereClause
             case WrongParamCountInWhereClause
@@ -49,11 +49,11 @@ public extension MySQL {
                     type = s
                 }
             #else
-                
-                if let optPos = s.rangeOfString("Optional<") {
+            
+                if let optPos = s.range(of: "Optional<") {
                     optional = ""
                     let typePos = optPos.endIndex..<s.endIndex.predecessor()
-                    type = s.substringWithRange(typePos)
+                    type = s.substring(with: typePos)
                 }
                 else {
                     type = s

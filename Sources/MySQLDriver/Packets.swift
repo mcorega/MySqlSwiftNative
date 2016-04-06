@@ -84,7 +84,7 @@ extension MySQL.Connection {
         var data = [UInt8]()
         
         data.append(cmd)
-        data.appendContentsOf(q.utf8)
+        data.append(contentsOf:q.utf8)
         
         try socket?.writePacket(data)
     }

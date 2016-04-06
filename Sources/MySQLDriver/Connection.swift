@@ -10,7 +10,7 @@ import Foundation
 
 public extension MySQL.Connection {
 
-    public enum Error:ErrorType {
+    public enum Error:ErrorProtocol {
         case AddressNotSet
         case UsernameNotSet
         case NotConnected
@@ -96,7 +96,7 @@ public extension MySQL.Connection {
                 pos += 1 + 2 + 2 + 1 + 10
                 
                 let c = Array(data[pos..<pos+12])
-                msh.scramble?.appendContentsOf(c)
+                msh.scramble?.append(contentsOf:c)
             }
         }
         
@@ -176,30 +176,30 @@ public extension MySQL.Connection {
         var arr = [UInt8]()
         
         //write flags
-        arr.appendContentsOf([UInt8].UInt32Array(UInt32(flags)))
+        arr.append(contentsOf:[UInt8].UInt32Array(UInt32(flags)))
         //write max len packet
-        arr.appendContentsOf([UInt8].UInt32Array(16777215))
+        arr.append(contentsOf:[UInt8].UInt32Array(16777215))
         
         //  socket!.writeUInt8(33) //socket!.writeUInt8(mysql_Handshake!.lang!)
         arr.append(UInt8(33))
         
-        arr.appendContentsOf([UInt8](count: 23, repeatedValue: 0))
+        arr.append(contentsOf:[UInt8](repeating:0, count: 23))
         
         //send username
-        arr.appendContentsOf(user!.utf8)
+        arr.append(contentsOf:user!.utf8)
         arr.append(0)
         
         //send hashed password
         arr.append(UInt8(epwd.count))
-        arr.appendContentsOf(epwd)
+        arr.append(contentsOf:epwd)
         
         //db name
         if self.dbname != nil {
-            arr.appendContentsOf(self.dbname!.utf8)
+            arr.append(contentsOf:self.dbname!.utf8)
         }
         arr.append(0)
         
-        arr.appendContentsOf("mysql_native_password".utf8)
+        arr.append(contentsOf:"mysql_native_password".utf8)
         arr.append(0)
         
         //print(arr)
@@ -211,7 +211,7 @@ public extension MySQL.Connection {
     
     func readColumns(count:Int) throws ->[Field]? {
         
-        self.columns = [Field](count: count, repeatedValue: Field())
+        self.columns = [Field](repeating:Field(), count: count)
         
         if count > 0 {
             var i = 0

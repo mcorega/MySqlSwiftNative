@@ -12,7 +12,7 @@ public extension MySQL {
     
     public class Statement {
 
-        enum Error : ErrorType {
+        enum Error : ErrorProtocol {
             case ArgsCountMismatch
             case StmtIdNotSet
             case UnknownType(String)
@@ -111,23 +111,23 @@ public extension MySQL {
             }
             
             // statement_id [4 bytes]
-            data.appendContentsOf([UInt8].UInt32Array(self.id!))
+            data.append(contentsOf:[UInt8].UInt32Array(self.id!))
             
             // flags (0: CURSOR_TYPE_NO_CURSOR) [1 byte]
             data.append(0)
             
             // iteration_count (uint32(1)) [4 bytes]
-            data.appendContentsOf([1,0,0,0])
+            data.append(contentsOf:[1,0,0,0])
             
             if args.count > 0 {
                 let nmLen = (args.count + 7)/8 //(args.count + 7)>>3
-                var nullBitmap = [UInt8](count: nmLen, repeatedValue: 0)
+                var nullBitmap = [UInt8](repeating:0, count: nmLen)
                 
                 for ii in 0..<args.count {
                     let mi = Mirror(reflecting: args[ii])
                    
                     //check for null value
-                    if ((mi.displayStyle == .Optional) && (mi.children.count == 0)) || args[ii] is NSNull {
+                    if ((mi.displayStyle == .optional) && (mi.children.count == 0)) || args[ii] is NSNull {
                         
                         let nullByte = ii >> 3
                         let nullMask = UInt8(UInt(1) << UInt(ii-(nullByte<<3)))
@@ -136,7 +136,7 @@ public extension MySQL {
                 }
                 
                 //null Mask
-                data.appendContentsOf(nullBitmap)
+                data.append(contentsOf: nullBitmap)
                 //Types
                 data.append(1)
                 //Data Type
@@ -153,7 +153,7 @@ public extension MySQL {
                 for v in args {
                     let mi = Mirror(reflecting: v)
                     
-                    if ((mi.displayStyle == .Optional) && (mi.children.count == 0)) || v is NSNull {
+                    if ((mi.displayStyle == .optional) && (mi.children.count == 0)) || v is NSNull {
                         dataTypeArr += [UInt8].UInt16Array(UInt16(MysqlTypes.MYSQL_TYPE_NULL))
                         continue
                     }
@@ -236,7 +236,7 @@ public extension MySQL {
                             let count = data.length / sizeof(UInt8)
                             
                             if count < MySQL.maxPackAllowed - 1024*1024 {
-                                var arr = [UInt8](count: count, repeatedValue: 0)
+                                var arr = [UInt8](repeating:0, count: count)
                                 data.getBytes(&arr, length: count)
 
                                 let lenArr = MySQL.Utils.lenEncIntArray(UInt64(arr.count))

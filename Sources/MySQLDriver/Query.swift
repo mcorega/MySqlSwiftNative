@@ -13,14 +13,14 @@ public extension MySQL.Connection {
 
     public enum QueryResultType {
         case Success(MySQL.ResultSet)
-        case Error(ErrorType)
+        case Error(ErrorProtocol)
     }
     
     public class QueryResult {
         
         var rows : MySQL.ResultSet?
         var succClosure : ((rows:MySQL.ResultSet)->Void)? = nil
-        var errorClosure : ((error:ErrorType)->Void)? = nil
+        var errorClosure : ((error:ErrorProtocol)->Void)? = nil
         
         init() {
         }
@@ -37,7 +37,7 @@ public extension MySQL.Connection {
             return self
         }
         
-        public func error(closure:(error:ErrorType)->Void)->Self {
+        public func error(closure:(error:ErrorProtocol)->Void)->Self {
             
             errorClosure = closure
             

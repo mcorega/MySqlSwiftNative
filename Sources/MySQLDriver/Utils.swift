@@ -23,7 +23,7 @@ extension MySQL {
             //var value = val
             
             let m = Mirror(reflecting: val)
-            if m.displayStyle == .Optional {
+            if m.displayStyle == .optional {
               //  let desc = m.description
              //   optional = true
                 //value = value!
@@ -146,7 +146,7 @@ extension MySQL {
                 let count = v.length / sizeof(UInt8)
                 
                 // create an array of Uint8
-                var array = [UInt8](count: count, repeatedValue: 0)
+                var array = [UInt8](repeating:0, count: count)
                 
                 // copy bytes into array
                 v.getBytes(&array, length:count * sizeof(UInt8))
@@ -289,7 +289,7 @@ extension MySQL {
             let s2 = Mysql_SHA1(s1).calculate()
             
             var scr = scramble
-            scr.appendContentsOf(s2)
+            scr.append(contentsOf:s2)
             
             var s3 = Mysql_SHA1(scr).calculate()
             
@@ -312,8 +312,9 @@ public extension NSDate
         let dateStringFormatter = NSDateFormatter()
         dateStringFormatter.dateFormat = "yyyy-MM-dd"
         dateStringFormatter.locale = NSLocale(localeIdentifier: "en_US_POSIX")
-        if let d = dateStringFormatter.dateFromString(dateString!) {
-            self.init(timeInterval:0, sinceDate:d)
+        
+        if let d = dateStringFormatter.date(from: dateString!) {
+            self.init(timeInterval:0, since:d)
             return
         }
         return nil
@@ -324,8 +325,8 @@ public extension NSDate
         let dateStringFormatter = NSDateFormatter()
         dateStringFormatter.dateFormat = "HH-mm-ss"
         dateStringFormatter.locale = NSLocale(localeIdentifier: "en_US_POSIX")
-        if let d = dateStringFormatter.dateFromString(timeString) {
-            self.init(timeInterval:0, sinceDate:d)
+        if let d = dateStringFormatter.date(from: timeString) {
+            self.init(timeInterval:0, since:d)
             return
         }
         return nil
@@ -336,8 +337,8 @@ public extension NSDate
         let dateStringFormatter = NSDateFormatter()
         dateStringFormatter.dateFormat = "HH-mm-ss.SSSSSS"
         dateStringFormatter.locale = NSLocale(localeIdentifier: "en_US_POSIX")
-        if let d = dateStringFormatter.dateFromString(timeStringUsec) {
-            self.init(timeInterval:0, sinceDate:d)
+        if let d = dateStringFormatter.date(from: timeStringUsec) {
+            self.init(timeInterval:0, since:d)
             return
         }
         return nil
@@ -349,8 +350,8 @@ public extension NSDate
         let dateStringFormatter = NSDateFormatter()
         dateStringFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
         dateStringFormatter.locale = NSLocale(localeIdentifier: "en_US_POSIX")
-        if let d = dateStringFormatter.dateFromString(dateTimeString) {
-            self.init(timeInterval:0, sinceDate:d)
+        if let d = dateStringFormatter.date(from: dateTimeString) {
+            self.init(timeInterval:0, since:d)
         }
         else {
             return nil
@@ -371,8 +372,8 @@ public extension NSDate
             statDFT.dateStringFormatter!.locale = NSLocale(localeIdentifier: "en_US_POSIX")
         }
         
-        if let d = statDFT.dateStringFormatter!.dateFromString(dateTimeStringUsec) {
-            self.init(timeInterval:0, sinceDate:d)
+        if let d = statDFT.dateStringFormatter!.date(from: dateTimeStringUsec) {
+            self.init(timeInterval:0, since:d)
         }
         else {
             return nil
@@ -383,7 +384,7 @@ public extension NSDate
         let dateStringFormatter = NSDateFormatter()
         dateStringFormatter.dateFormat = "yyyy-MM-dd"
         dateStringFormatter.locale = NSLocale(localeIdentifier: "en_US_POSIX")
-        return dateStringFormatter.stringFromDate(self)
+        return dateStringFormatter.string(from: self)
     }
 
     
@@ -391,7 +392,7 @@ public extension NSDate
         let dateStringFormatter = NSDateFormatter()
         dateStringFormatter.dateFormat = "hh-mm-ss"
         dateStringFormatter.locale = NSLocale(localeIdentifier: "en_US_POSIX")
-        return dateStringFormatter.stringFromDate(self)
+        return dateStringFormatter.string(from: self)
     }
     
     func dateTimeString() -> String {
@@ -407,7 +408,7 @@ public extension NSDate
             statDFT.dateStringFormatter!.locale = NSLocale(localeIdentifier: "en_US_POSIX")
         }
 
-        return statDFT.dateStringFormatter!.stringFromDate(self)
+        return statDFT.dateStringFormatter!.string(from: self)
     }
 
 }
@@ -542,7 +543,7 @@ extension UInt64 {
 }
 
 
-extension SequenceType where Generator.Element == UInt8 {
+extension Sequence where Iterator.Element == UInt8 {
     func uInt16() -> UInt16 {
        let arr = self.map { (elem) -> UInt8 in
         return elem
@@ -657,13 +658,13 @@ extension SequenceType where Generator.Element == UInt8 {
             return ""
         }
         
-        return String.fromCString(UnsafeMutablePointer<CChar>(arr))
+        return String(cString: UnsafeMutablePointer<CChar>(arr))
     }
     
     static func UInt24Array(val: UInt32) -> [UInt8]{
         
         
-        var byteArray = [UInt8](count: 3, repeatedValue: 0)
+        var byteArray = [UInt8](repeating: 0, count: 3)
         
         for i in 0...2 {
             byteArray[i] = UInt8(0x0000FF & val >> UInt32((i) * 8))
@@ -685,20 +686,20 @@ extension SequenceType where Generator.Element == UInt8 {
     
     static func DoubleArray(val: Double) -> [UInt8]{
         var d = val
-        var arr = [UInt8](count: 8, repeatedValue: 0)
+        var arr = [UInt8](repeating:0, count: 8)
         memccpy(&arr, &d, 8, 8)
         return arr
     }
     
     static func FloatArray(val: Float) -> [UInt8]{
         var d = val
-        var arr = [UInt8](count: 4, repeatedValue: 0)
+        var arr = [UInt8](repeating: 0, count: 4)
         memccpy(&arr, &d, 4, 4)
         return arr
     }
     
     static func Int32Array(val: Int32) -> [UInt8]{
-        var byteArray = [UInt8](count: 4, repeatedValue: 0)
+        var byteArray = [UInt8](repeating:0, count: 4)
         
         for i in 0...3 {
             byteArray[i] = UInt8(0x0000FF & val >> Int32((i) * 8))
@@ -709,7 +710,7 @@ extension SequenceType where Generator.Element == UInt8 {
     }
 
     static func Int64Array(val: Int64) -> [UInt8]{
-        var byteArray = [UInt8](count: 8, repeatedValue: 0)
+        var byteArray = [UInt8](repeating:0, count: 8)
         
         for i in 0...7 {
             byteArray[i] = UInt8(0x0000FF & val >> Int64((i) * 8))
@@ -720,7 +721,7 @@ extension SequenceType where Generator.Element == UInt8 {
 
     
     static func UInt32Array(val: UInt32) -> [UInt8]{
-        var byteArray = [UInt8](count: 4, repeatedValue: 0)
+        var byteArray = [UInt8](repeating:0, count: 4)
         
         for i in 0...3 {
             byteArray[i] = UInt8(0x0000FF & val >> UInt32((i) * 8))
@@ -730,7 +731,7 @@ extension SequenceType where Generator.Element == UInt8 {
     }
     
     static func Int16Array(val: Int16) -> [UInt8]{
-        var byteArray = [UInt8](count: 2, repeatedValue: 0)
+        var byteArray = [UInt8](repeating:0, count: 2)
         
         for i in 0...1 {
             byteArray[i] = UInt8(0x0000FF & val >> Int16((i) * 8))
@@ -740,7 +741,7 @@ extension SequenceType where Generator.Element == UInt8 {
     }
     
     static func UInt16Array(val: UInt16) -> [UInt8]{
-        var byteArray = [UInt8](count: 2, repeatedValue: 0)
+        var byteArray = [UInt8](repeating:0, count: 2)
         
         for i in 0...1 {
             byteArray[i] = UInt8(0x0000FF & val >> UInt16((i) * 8))
@@ -751,7 +752,7 @@ extension SequenceType where Generator.Element == UInt8 {
 
     
     static func IntArray(val: Int) -> [UInt8]{
-        var byteArray = [UInt8](count: 4, repeatedValue: 0)
+        var byteArray = [UInt8](repeating:0, count: 4)
         
         for i in 0...3 {
             byteArray[i] = UInt8(0x0000FF & val >> Int((i) * 8))
@@ -761,7 +762,7 @@ extension SequenceType where Generator.Element == UInt8 {
     }
     
     static func UIntArray(val: UInt) -> [UInt8]{
-        var byteArray = [UInt8](count: 4, repeatedValue: 0)
+        var byteArray = [UInt8](repeating:0, count: 4)
         
         for i in 0...3 {
             byteArray[i] = UInt8(0x0000FF & val >> UInt((i) * 8))
@@ -771,7 +772,7 @@ extension SequenceType where Generator.Element == UInt8 {
     }
     
     static func UInt64Array(val: UInt64) -> [UInt8]{
-        var byteArray = [UInt8](count: 8, repeatedValue: 0)
+        var byteArray = [UInt8](repeating:0, count: 8)
         
         for i in 0...7 {
             byteArray[i] = UInt8(0x0000FF & val >> UInt64((i) * 8))

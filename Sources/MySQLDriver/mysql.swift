@@ -34,7 +34,7 @@ public struct MySQL {
         var scramble2:[UInt8]?
     }
     
-    public enum Error:ErrorType {
+    public enum Error:ErrorProtocol {
         case Error(Int, String)
     }
     
@@ -49,7 +49,7 @@ public struct MySQL {
         var affectedRows : UInt64 = 0
         public var insertId : UInt64 = 0
         var status : UInt16 = 0
-        public var conID = NSUUID().UUIDString
+        public var conID = NSUUID().uuidString
         
         var socket:Socket?
         var mysql_Handshake: mysql_handshake?

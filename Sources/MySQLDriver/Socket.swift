@@ -13,7 +13,7 @@
 #endif
 
 extension Socket {
-    enum Error: ErrorType {
+    enum Error: ErrorProtocol {
         case SocketCreationFailed(String)
         case SocketShutdownFailed(String)
         case SocketSettingReUseAddrFailed(String)
@@ -127,20 +127,20 @@ public class Socket {
             throw Error.GetHostIPFailed
         }
         
-        let p1 = he.memory.h_addr_list[0]
+        let p1 = he.pointee.h_addr_list[0]
         let p2 = UnsafePointer<in_addr>(p1)
         
-        let p3 = inet_ntoa(p2.memory)
+        let p3 = inet_ntoa(p2.pointee)
         
-        return String.fromCString(p3)!
+        return String(cString:p3)
     }
 
     private class func descriptionOfLastError() -> String {
-        return String.fromCString(UnsafePointer(strerror(errno))) ?? "Error: \(errno)"
+        return String(cString:UnsafePointer(strerror(errno))) ?? "Error: \(errno)"
     }
     
     func readNUInt8(n:UInt32) throws -> [UInt8] {
-        var buffer = [UInt8](count: Int(n), repeatedValue: 0)
+        var buffer = [UInt8](repeating: 0, count: Int(n))
         var read = 0
         
         while read < Int(n) {
