@@ -30,7 +30,7 @@ public extension MySQL {
         }
         
         
-        func mysqlType(val:Any) throws -> String {
+        func mysqlType(_ val:Any) throws -> String {
             
             var optional = " NOT NULL"
             var type = ""
@@ -180,7 +180,7 @@ public extension MySQL {
             try stmt.exec(args)
         }
         
-        private func excludeColumn(colName:String, cols:[String]?) -> Bool {
+        private func excludeColumn(_ colName:String, cols:[String]?) -> Bool {
             
             guard cols != nil else {
                 return false
@@ -195,7 +195,7 @@ public extension MySQL {
             return false
         }
         
-        public func insert(row:Row, exclude:[String]? = nil) throws {
+        public func insert(_ row:Row, exclude:[String]? = nil) throws {
             var l = ""
             var v = ""
             
@@ -223,7 +223,7 @@ public extension MySQL {
             try stmt.exec(args)
         }
         
-        public func update(row:Row, Where:[String:Any], exclude:[String]? = nil) throws {
+        public func update(_ row:Row, Where:[String:Any], exclude:[String]? = nil) throws {
             var l = ""
             //var v = ""
             var excludeCount = 0
@@ -277,7 +277,7 @@ public extension MySQL {
             try update(row, Where: [key : row[key]], exclude: exclude)
         }
         
-        public func update(object:Any, Where:[String:Any], exclude:[String]? = nil) throws {
+        public func update(_ object:Any, Where:[String:Any], exclude:[String]? = nil) throws {
 
             let mirror = Mirror(reflecting: object)
             var row = Row()
@@ -289,7 +289,7 @@ public extension MySQL {
             try update(row, Where: Where, exclude: exclude)
         }
         
-        public func update(object:Any, key:String, exclude:[String]? = nil) throws {
+        public func update(_ object:Any, key:String, exclude:[String]? = nil) throws {
             let mirror = Mirror(reflecting: object)
             var row = Row()
             
@@ -300,7 +300,7 @@ public extension MySQL {
             try update(row, key: key, exclude: exclude)
         }
         
-        private func parsePredicate(pred:[Any]) throws -> (String, [Any]) {
+        private func parsePredicate(_ pred:[Any]) throws -> (String, [Any]) {
             
             guard pred.count % 2 == 0 else {
                 throw Error.WrongParamCountInWhereClause
@@ -326,7 +326,7 @@ public extension MySQL {
             return (res, values)
         }
         
-        public func select(columns:[String]?=nil, Where:[Any]) throws -> [MySQL.ResultSet]? {
+        public func select(_ columns:[String]?=nil, Where:[Any]) throws -> [MySQL.ResultSet]? {
             
             guard Where.count > 0 else {
                 throw Error.NilWhereClause
@@ -405,7 +405,7 @@ public extension MySQL {
         }
         
         public func getRecord<T:RowType>(Where:[String: Any], columns:[String]?=nil) throws -> T? {
-            if let r = try getRecord(Where, columns: columns) {
+            if let r = try getRecord(Where: Where, columns: columns) {
                 return T(dict: r)
             }
             return nil

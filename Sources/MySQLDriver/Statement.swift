@@ -30,7 +30,7 @@ public extension MySQL {
             self.con = con
         }
         
-        public func query(args:[Any]) throws -> Result{
+        public func query(_ args:[Any]) throws -> Result{
             
             guard self.con != nil else {
                 throw Error.NilConnection
@@ -49,7 +49,7 @@ public extension MySQL {
             //     throw Connection.Error.QueryInProgress
         }
 
-        public func exec(args:[Any]) throws {
+        public func exec(_ args:[Any]) throws {
 
             guard self.con != nil else {
                 throw Error.NilConnection
@@ -92,7 +92,7 @@ public extension MySQL {
             return 0
         }
     
-        func writeExecutePacket(args: [Any]) throws {
+        func writeExecutePacket(_ args: [Any]) throws {
 
             if args.count != paramCount {
                 throw Error.ArgsCountMismatch

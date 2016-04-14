@@ -46,10 +46,10 @@ public extension MySQL.Connection {
     }
 
 
-    func query(q:String) throws -> Result {
+    func query(_ q:String) throws -> Result {
         
      //   if self.EOFfound && !self.hasMoreResults {
-            try writeCommandPacketStr(MysqlCommands.COM_QUERY, q: q)
+            try writeCommandPacketStr(cmd: MysqlCommands.COM_QUERY, q: q)
             
             let resLen = try readResultSetHeaderPacket()
             self.columns = try readColumns(resLen)
@@ -68,13 +68,13 @@ public extension MySQL.Connection {
         
     }
     
-    func prepare(q:String) throws -> MySQL.Statement {
+    func prepare(_ q:String) throws -> MySQL.Statement {
         
         guard self.socket != nil else {
             throw MySQL.Connection.Error.NotConnected
         }
         
-        try writeCommandPacketStr(MysqlCommands.COM_STMT_PREPARE, q: q)
+        try writeCommandPacketStr(cmd: MysqlCommands.COM_STMT_PREPARE, q: q)
         let stmt = MySQL.Statement(con: self)
         
         if let colCount = try stmt.readPrepareResultPacket(), let  paramCount = stmt.paramCount {
@@ -93,8 +93,8 @@ public extension MySQL.Connection {
         return stmt
     }
     
-    func exec(q:String) throws {
-        try writeCommandPacketStr(MysqlCommands.COM_QUERY, q: q)
+    func exec(_ q:String) throws {
+        try writeCommandPacketStr(cmd: MysqlCommands.COM_QUERY, q: q)
         
         let resLen = try readResultSetHeaderPacket()
         
@@ -104,8 +104,8 @@ public extension MySQL.Connection {
         }
     }
     
-    func use(dbname:String) throws {
-        try writeCommandPacketStr(MysqlCommands.COM_INIT_DB, q: dbname)
+    func use(_ dbname:String) throws {
+        try writeCommandPacketStr(cmd: MysqlCommands.COM_INIT_DB, q: dbname)
         self.dbname = dbname
         
         let resLen = try readResultSetHeaderPacket()

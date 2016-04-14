@@ -25,7 +25,7 @@ extension MySQL.Connection {
         }
     }
     
-    private func handleOKPacket(data:[UInt8]) -> Int {
+    private func handleOKPacket(_ data:[UInt8]) -> Int {
         var n, m : Int
         var ar, insId : UInt64?
         
@@ -44,7 +44,7 @@ extension MySQL.Connection {
         return 0
     }
     
-    func handleErrorPacket(data:[UInt8]) -> MySQL.Error {
+    func handleErrorPacket(_ data:[UInt8]) -> MySQL.Error {
         
         if data[0] != 0xff {
             return MySQL.Error.Error(-1, "EOF encountered")

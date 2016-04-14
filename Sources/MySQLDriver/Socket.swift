@@ -68,7 +68,7 @@ public class Socket {
                 throw Error.SetSockOptFailed(Socket.descriptionOfLastError())
         }
         
-        let hostIP = try getHostIP(host)
+        let hostIP = try getHostIP(host: host)
         
         #if os(Linux)
             
@@ -85,7 +85,7 @@ public class Socket {
             
             addr = sockaddr_in(sin_len: __uint8_t(sizeof(sockaddr_in)),
                 sin_family: sa_family_t(AF_INET),
-                sin_port: Socket.porthtons(in_port_t(port)),
+                sin_port: Socket.porthtons(port: in_port_t(port)),
                 sin_addr: in_addr(s_addr: inet_addr(hostIP)),
                 sin_zero: (0, 0, 0, 0, 0, 0, 0, 0))
             
@@ -130,7 +130,7 @@ public class Socket {
         let p1 = he.pointee.h_addr_list[0]
         let p2 = UnsafePointer<in_addr>(p1)
         
-        let p3 = inet_ntoa(p2.pointee)
+        let p3 = inet_ntoa(p2!.pointee)
         
         return String(cString:p3)
     }
@@ -139,7 +139,7 @@ public class Socket {
         return String(cString:UnsafePointer(strerror(errno))) ?? "Error: \(errno)"
     }
     
-    func readNUInt8(n:UInt32) throws -> [UInt8] {
+    func readNUInt8(_ n:UInt32) throws -> [UInt8] {
         var buffer = [UInt8](repeating: 0, count: Int(n))
         var read = 0
         
@@ -175,12 +175,12 @@ public class Socket {
         return try readNUInt8(len)
     }
     
-    func writePacket(data:[UInt8]) throws {
+    func writePacket(_ data:[UInt8]) throws {
         try writeHeader(UInt32(data.count), pn: UInt8(self.packnr + 1))
         try  writeBuffer(data)
     }
     
-    func writeBuffer(buffer:[UInt8]) throws  {
+    func writeBuffer(_ buffer:[UInt8]) throws  {
         
         try buffer.withUnsafeBufferPointer {
             var sent = 0
@@ -188,7 +188,7 @@ public class Socket {
                 #if os(Linux)
                     let s = send(self.s, $0.baseAddress + sent, Int(buffer.count - sent), Int32(MSG_NOSIGNAL))
                 #else
-                    let s = write(self.s, $0.baseAddress + sent, Int(buffer.count - sent))
+                    let s = write(self.s, $0.baseAddress! + sent, Int(buffer.count - sent))
                 #endif
                 if s <= 0 {
                     throw Error.WriteFailed(Socket.descriptionOfLastError())
@@ -199,7 +199,7 @@ public class Socket {
         }
     }
     
-    func writeHeader(len:UInt32, pn:UInt8) throws {
+    func writeHeader(_ len:UInt32, pn:UInt8) throws {
         var ph = [UInt8].UInt24Array(len)
         ph.append(pn)
         try writeBuffer(ph)

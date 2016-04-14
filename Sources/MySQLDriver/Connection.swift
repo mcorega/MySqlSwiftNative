@@ -33,7 +33,7 @@ public extension MySQL.Connection {
         try self.open(self.addr!, user: self.user!, passwd: self.passwd, dbname: self.dbname)
     }
     
-    public func open(addr:String, user:String, passwd:String? = nil, dbname:String? = nil) throws {
+    public func open(_ addr:String, user:String, passwd:String? = nil, dbname:String? = nil) throws {
         
         self.addr = addr
         self.user = user
@@ -47,7 +47,7 @@ public extension MySQL.Connection {
     }
     
     public func close() throws {
-        try writeCommandPacket(MysqlCommands.COM_QUIT)
+        try writeCommandPacket(cmd: MysqlCommands.COM_QUIT)
         try self.socket?.close()
         self.hasMoreResults = false
         self.EOFfound = true
@@ -67,7 +67,7 @@ public extension MySQL.Connection {
         self.isConnected = true
     }
     
-    public func getTable(name: String) -> MySQL.Table {
+    public func getTable(_ name: String) -> MySQL.Table {
         return MySQL.Table(tableName: name, connection: self)
     }
     
@@ -176,7 +176,8 @@ public extension MySQL.Connection {
         var arr = [UInt8]()
         
         //write flags
-        arr.append(contentsOf:[UInt8].UInt32Array(UInt32(flags)))
+        arr.append(contentsOf: [UInt8].UInt32Array(UInt32(flags)))
+        
         //write max len packet
         arr.append(contentsOf:[UInt8].UInt32Array(16777215))
         
@@ -209,7 +210,7 @@ public extension MySQL.Connection {
     }
     
     
-    func readColumns(count:Int) throws ->[Field]? {
+    func readColumns(_ count:Int) throws ->[Field]? {
         
         self.columns = [Field](repeating:Field(), count: count)
         

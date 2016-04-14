@@ -62,7 +62,7 @@ extension MySQL {
             }
         }
 
-        private static func escapeData(data:[UInt8]) -> String {
+        private static func escapeData(_ data:[UInt8]) -> String {
             
             var res = [UInt8]()
             //var resStr = ""
@@ -133,7 +133,7 @@ extension MySQL {
             return ""
         }
         
-        static func stringValue(val:Any) -> String {
+        static func stringValue(_ val:Any) -> String {
             switch val {
             case is UInt8, is Int8, is Int, is UInt, is UInt16, is Int16, is UInt32, is Int32,
             is UInt64, is Int64, is Float, is Double:
@@ -162,7 +162,7 @@ extension MySQL {
             }
         }
 
-        static func skipLenEncStr(data:[UInt8]) -> Int {
+        static func skipLenEncStr(_ data:[UInt8]) -> Int {
             var (num, n) = lenEncInt(data)
             
             guard num != nil else {
@@ -181,7 +181,7 @@ extension MySQL {
             return n
         }
         
-        static func lenEncBin(b:[UInt8]) ->([UInt8]?, Int) {
+        static func lenEncBin(_ b:[UInt8]) ->([UInt8]?, Int) {
             
             var (num, n) = lenEncInt(b)
             
@@ -205,7 +205,7 @@ extension MySQL {
         }
 
         
-        static func lenEncStr(b:[UInt8]) ->(String?, Int) {
+        static func lenEncStr(_ b:[UInt8]) ->(String?, Int) {
             
             var (num, n) = lenEncInt(b)
             
@@ -229,7 +229,7 @@ extension MySQL {
             return ("", n)
         }
         
-        static func lenEncIntArray(v:UInt64) -> [UInt8] {
+        static func lenEncIntArray(_ v:UInt64) -> [UInt8] {
       
             if v <= 250 {
                 return [UInt8(v & 0xff)]
@@ -245,7 +245,7 @@ extension MySQL {
                 UInt8((v>>32) & 0xff), UInt8((v>>40) & 0xff), UInt8((v>>48) & 0xff), UInt8((v>>56) & 0xff)]
         }
         
-        static func lenEncInt(b: [UInt8]) -> (UInt64?, Int) {
+        static func lenEncInt(_ b: [UInt8]) -> (UInt64?, Int) {
             
             if b.count == 0 {
                 return (nil, 1)
@@ -277,7 +277,7 @@ extension MySQL {
             return (UInt64(b[0]), 1)
         }
         
-        static func encPasswd(pwd:String, scramble:[UInt8]) -> [UInt8]{
+        static func encPasswd(_ pwd:String, scramble:[UInt8]) -> [UInt8]{
             
             if pwd.characters.count == 0 {
                 return [UInt8]()
@@ -661,7 +661,7 @@ extension Sequence where Iterator.Element == UInt8 {
         return String(cString: UnsafeMutablePointer<CChar>(arr))
     }
     
-    static func UInt24Array(val: UInt32) -> [UInt8]{
+    static func UInt24Array(_ val: UInt32) -> [UInt8]{
         
         
         var byteArray = [UInt8](repeating: 0, count: 3)
@@ -684,21 +684,21 @@ extension Sequence where Iterator.Element == UInt8 {
 */
     }
     
-    static func DoubleArray(val: Double) -> [UInt8]{
+    static func DoubleArray(_ val: Double) -> [UInt8]{
         var d = val
         var arr = [UInt8](repeating:0, count: 8)
         memccpy(&arr, &d, 8, 8)
         return arr
     }
     
-    static func FloatArray(val: Float) -> [UInt8]{
+    static func FloatArray(_ val: Float) -> [UInt8]{
         var d = val
         var arr = [UInt8](repeating: 0, count: 4)
         memccpy(&arr, &d, 4, 4)
         return arr
     }
     
-    static func Int32Array(val: Int32) -> [UInt8]{
+    static func Int32Array(_ val: Int32) -> [UInt8]{
         var byteArray = [UInt8](repeating:0, count: 4)
         
         for i in 0...3 {
@@ -709,7 +709,7 @@ extension Sequence where Iterator.Element == UInt8 {
 
     }
 
-    static func Int64Array(val: Int64) -> [UInt8]{
+    static func Int64Array(_ val: Int64) -> [UInt8]{
         var byteArray = [UInt8](repeating:0, count: 8)
         
         for i in 0...7 {
@@ -720,7 +720,7 @@ extension Sequence where Iterator.Element == UInt8 {
     }
 
     
-    static func UInt32Array(val: UInt32) -> [UInt8]{
+    static func UInt32Array(_ val: UInt32) -> [UInt8]{
         var byteArray = [UInt8](repeating:0, count: 4)
         
         for i in 0...3 {
@@ -730,7 +730,7 @@ extension Sequence where Iterator.Element == UInt8 {
         return byteArray
     }
     
-    static func Int16Array(val: Int16) -> [UInt8]{
+    static func Int16Array(_ val: Int16) -> [UInt8]{
         var byteArray = [UInt8](repeating:0, count: 2)
         
         for i in 0...1 {
@@ -740,7 +740,7 @@ extension Sequence where Iterator.Element == UInt8 {
         return byteArray
     }
     
-    static func UInt16Array(val: UInt16) -> [UInt8]{
+    static func UInt16Array(_ val: UInt16) -> [UInt8]{
         var byteArray = [UInt8](repeating:0, count: 2)
         
         for i in 0...1 {
@@ -751,7 +751,7 @@ extension Sequence where Iterator.Element == UInt8 {
     }
 
     
-    static func IntArray(val: Int) -> [UInt8]{
+    static func IntArray(_ val: Int) -> [UInt8]{
         var byteArray = [UInt8](repeating:0, count: 4)
         
         for i in 0...3 {
@@ -761,7 +761,7 @@ extension Sequence where Iterator.Element == UInt8 {
         return byteArray
     }
     
-    static func UIntArray(val: UInt) -> [UInt8]{
+    static func UIntArray(_ val: UInt) -> [UInt8]{
         var byteArray = [UInt8](repeating:0, count: 4)
         
         for i in 0...3 {
@@ -771,7 +771,7 @@ extension Sequence where Iterator.Element == UInt8 {
         return byteArray
     }
     
-    static func UInt64Array(val: UInt64) -> [UInt8]{
+    static func UInt64Array(_ val: UInt64) -> [UInt8]{
         var byteArray = [UInt8](repeating:0, count: 8)
         
         for i in 0...7 {

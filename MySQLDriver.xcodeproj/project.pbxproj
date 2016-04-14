@@ -40,11 +40,7 @@
 		3BC37AEE1C948A3F00C0B9E7 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BC37AD21C948A3E00C0B9E7 /* Constants.swift */; };
 		3BC37AEF1C948A3F00C0B9E7 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BC37AD21C948A3E00C0B9E7 /* Constants.swift */; };
 		3BC37AF01C948A3F00C0B9E7 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BC37AD31C948A3E00C0B9E7 /* main.swift */; };
-		3BC37AF11C948A3F00C0B9E7 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BC37AD31C948A3E00C0B9E7 /* main.swift */; };
-		3BC37AF21C948A3F00C0B9E7 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BC37AD31C948A3E00C0B9E7 /* main.swift */; };
-		3BC37AF31C948A3F00C0B9E7 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BC37AD31C948A3E00C0B9E7 /* main.swift */; };
 		3BC37AF41C948A3F00C0B9E7 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BC37AD31C948A3E00C0B9E7 /* main.swift */; };
-		3BC37AF51C948A3F00C0B9E7 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BC37AD31C948A3E00C0B9E7 /* main.swift */; };
 		3BC37AF61C948A3F00C0B9E7 /* mysql.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BC37AD41C948A3E00C0B9E7 /* mysql.swift */; };
 		3BC37AF71C948A3F00C0B9E7 /* mysql.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BC37AD41C948A3E00C0B9E7 /* mysql.swift */; };
 		3BC37AF81C948A3F00C0B9E7 /* mysql.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BC37AD41C948A3E00C0B9E7 /* mysql.swift */; };
@@ -611,7 +607,6 @@
 			files = (
 				3BC37B091C948A3F00C0B9E7 /* Result.swift in Sources */,
 				3BC37AE51C948A3F00C0B9E7 /* ConnectionPool.swift in Sources */,
-				3BC37AF11C948A3F00C0B9E7 /* main.swift in Sources */,
 				3BC37B1B1C948A3F00C0B9E7 /* Statement.swift in Sources */,
 				3BC37AF71C948A3F00C0B9E7 /* mysql.swift in Sources */,
 				3BC37B2D1C948A3F00C0B9E7 /* Utils.swift in Sources */,
@@ -633,7 +628,6 @@
 			files = (
 				3BC37B0A1C948A3F00C0B9E7 /* Result.swift in Sources */,
 				3BC37AE61C948A3F00C0B9E7 /* ConnectionPool.swift in Sources */,
-				3BC37AF21C948A3F00C0B9E7 /* main.swift in Sources */,
 				3BC37B1C1C948A3F00C0B9E7 /* Statement.swift in Sources */,
 				3BC37AF81C948A3F00C0B9E7 /* mysql.swift in Sources */,
 				3BC37B2E1C948A3F00C0B9E7 /* Utils.swift in Sources */,
@@ -658,7 +652,6 @@
 				3BC37B171C948A3F00C0B9E7 /* Socket.swift in Sources */,
 				3BC37B2F1C948A3F00C0B9E7 /* Utils.swift in Sources */,
 				3BC37AE71C948A3F00C0B9E7 /* ConnectionPool.swift in Sources */,
-				3BC37AF31C948A3F00C0B9E7 /* main.swift in Sources */,
 				3BC37B111C948A3F00C0B9E7 /* sha1.swift in Sources */,
 				3BC37B231C948A3F00C0B9E7 /* Table.swift in Sources */,
 				3BC37AF91C948A3F00C0B9E7 /* mysql.swift in Sources */,
@@ -702,7 +695,6 @@
 				3B28C4761C2D91B6008CA202 /* ViewController.swift in Sources */,
 				3BC37B1F1C948A3F00C0B9E7 /* Statement.swift in Sources */,
 				3BC37B011C948A3F00C0B9E7 /* Packets.swift in Sources */,
-				3BC37AF51C948A3F00C0B9E7 /* main.swift in Sources */,
 				3BC37B311C948A3F00C0B9E7 /* Utils.swift in Sources */,
 				3BC37B0D1C948A3F00C0B9E7 /* Result.swift in Sources */,
 				3BC37B251C948A3F00C0B9E7 /* Table.swift in Sources */,

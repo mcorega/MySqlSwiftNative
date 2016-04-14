@@ -77,7 +77,7 @@ protocol ByteConvertible {
 
 // Array of bytes, little-endian representation. Don't use if not necessary.
 /// I found this method slow
-func arrayOfBytes<T>(value:T, length:Int? = nil) -> [UInt8] {
+func arrayOfBytes<T>(_ value:T, length:Int? = nil) -> [UInt8] {
     let totalBytes = length ?? sizeof(T)
     
     let valuePointer = UnsafeMutablePointer<T>(allocatingCapacity:1)
@@ -126,7 +126,7 @@ struct BytesSequence: Sequence {
  
 }
 
-func toUInt32Array(slice: ArraySlice<UInt8>) -> Array<UInt32> {
+func toUInt32Array(_ slice: ArraySlice<UInt8>) -> Array<UInt32> {
     var result = Array<UInt32>()
     result.reserveCapacity(16)
 
@@ -148,7 +148,7 @@ final class Mysql_SHA1 {
     
     private let h:[UInt32] = [0x67452301, 0xEFCDAB89, 0x98BADCFE, 0x10325476, 0xC3D2E1F0]
     
-    func prepare(len:Int) -> Array<UInt8> {
+    func prepare(_ len:Int) -> Array<UInt8> {
         var tmpMessage = message
         
         // Step 1. Append Padding Bits
@@ -175,7 +175,7 @@ final class Mysql_SHA1 {
         var hh = h
         
         // append message length, in a 64-bit big-endian integer. So now the message length is a multiple of 512 bits.
-        tmpMessage += (self.message.count * 8).bytes(64 / 8)
+        tmpMessage += (self.message.count * 8).bytes(totalBytes: 64 / 8)
         
         // Process the message in successive 512-bit chunks:
         let chunkSizeBytes = 512 / 8 // 64
@@ -254,11 +254,11 @@ final class Mysql_SHA1 {
         return result
     }
     
-    func rotateLeft(v:UInt32, _ n:UInt32) -> UInt32 {
+    func rotateLeft(_ v:UInt32, _ n:UInt32) -> UInt32 {
         return ((v << n) & 0xFFFFFFFF) | (v >> (32 - n))
     }
     
-    func equals(val:Mysql_SHA1) -> Bool {
+    func equals(_ val:Mysql_SHA1) -> Bool {
         
         let v1 = self.calculate()
         let v2 = val.calculate()
