@@ -13,12 +13,12 @@ public extension MySQL {
     
     public class Table {
         
-        enum Error : ErrorProtocol {
-            case TableExists
-            case NilWhereClause
-            case WrongParamCountInWhereClause
-            case WrongParamInWhereClause
-            case UnknownType(String)
+        enum TableError : Error {
+            case tableExists
+            case nilWhereClause
+            case wrongParamCountInWhereClause
+            case wrongParamInWhereClause
+            case unknownType(String)
         }
         
         var tableName : String
@@ -52,7 +52,7 @@ public extension MySQL {
             
                 if let optPos = s.range(of: "Optional<") {
                     optional = ""
-                    let typePos = optPos.endIndex..<s.endIndex.predecessor()
+                    let typePos = optPos.upperBound..<s.endIndex.predecessor()
                     type = s.substring(with: typePos)
                 }
                 else {
@@ -89,13 +89,13 @@ public extension MySQL {
             case "Array<UInt8>":
                 return "LONGBLOB" + optional
             default:
-                throw Error.UnknownType(type)
+                throw TableError.unknownType(type)
             }
         }
         
         
         /// Creates a new table based on a Swift Object using the connection
-        func create(object:Any, primaryKey:String?=nil, autoInc:Bool=false) throws {
+        func create(_ object:Any, primaryKey:String?=nil, autoInc:Bool=false) throws {
             var v = ""
             let mirror = Mirror(reflecting: object)
             var count = mirror.children.count
@@ -105,7 +105,7 @@ public extension MySQL {
                 count -= 1
                 
                 if type != "" {
-                    if let pkey = primaryKey where pkey == label {
+                    if let pkey = primaryKey, pkey == label {
                         type += " AUTO_INCREMENT"
                     }
                     
@@ -126,7 +126,7 @@ public extension MySQL {
         }
         
         /// Creates a new table based on a MySQL.RowStructure using the connection
-        func create(row:MySQL.Row, primaryKey:String?=nil, autoInc:Bool=false) throws {
+        func create(_ row:MySQL.Row, primaryKey:String?=nil, autoInc:Bool=false) throws {
             var v = ""
             var count = row.count
             
@@ -135,7 +135,7 @@ public extension MySQL {
                 count -= 1
                 
                 if type != "" {
-                    if let pkey = primaryKey where pkey == key {
+                    if let pkey = primaryKey, pkey == key {
                         type += " AUTO_INCREMENT"
                     }
                     
@@ -151,7 +151,7 @@ public extension MySQL {
             try con.exec(q)
         }
         
-        public func insert(object:Any, exclude:[String]? = nil) throws {
+        open func insert(_ object:Any, exclude:[String]? = nil) throws {
             var l = ""
             var v = ""
             let mirror = Mirror(reflecting: object)
@@ -180,7 +180,7 @@ public extension MySQL {
             try stmt.exec(args)
         }
         
-        private func excludeColumn(_ colName:String, cols:[String]?) -> Bool {
+        fileprivate func excludeColumn(_ colName:String, cols:[String]?) -> Bool {
             
             guard cols != nil else {
                 return false
@@ -195,7 +195,7 @@ public extension MySQL {
             return false
         }
         
-        public func insert(_ row:Row, exclude:[String]? = nil) throws {
+        open func insert(_ row:Row, exclude:[String]? = nil) throws {
             var l = ""
             var v = ""
             
@@ -223,7 +223,7 @@ public extension MySQL {
             try stmt.exec(args)
         }
         
-        public func update(_ row:Row, Where:[String:Any], exclude:[String]? = nil) throws {
+        open func update(_ row:Row, Where:[String:Any], exclude:[String]? = nil) throws {
             var l = ""
             //var v = ""
             var excludeCount = 0
@@ -273,11 +273,11 @@ public extension MySQL {
             
         }
         
-        public func update(row:Row, key:String, exclude:[String]? = nil) throws {
+        open func update(_ row:Row, key:String, exclude:[String]? = nil) throws {
             try update(row, Where: [key : row[key]], exclude: exclude)
         }
         
-        public func update(_ object:Any, Where:[String:Any], exclude:[String]? = nil) throws {
+        open func update(_ object:Any, Where:[String:Any], exclude:[String]? = nil) throws {
 
             let mirror = Mirror(reflecting: object)
             var row = Row()
@@ -289,7 +289,7 @@ public extension MySQL {
             try update(row, Where: Where, exclude: exclude)
         }
         
-        public func update(_ object:Any, key:String, exclude:[String]? = nil) throws {
+        open func update(_ object:Any, key:String, exclude:[String]? = nil) throws {
             let mirror = Mirror(reflecting: object)
             var row = Row()
             
@@ -300,10 +300,10 @@ public extension MySQL {
             try update(row, key: key, exclude: exclude)
         }
         
-        private func parsePredicate(_ pred:[Any]) throws -> (String, [Any]) {
+        fileprivate func parsePredicate(_ pred:[Any]) throws -> (String, [Any]) {
             
             guard pred.count % 2 == 0 else {
-                throw Error.WrongParamCountInWhereClause
+                throw TableError.wrongParamCountInWhereClause
             }
             
             var res = ""
@@ -312,24 +312,24 @@ public extension MySQL {
             for i in 0..<pred.count {
                 let val = pred[i]
                 
-                if let k = val as? String where i % 2 == 0 {
+                if let k = val as? String, i % 2 == 0 {
                     res += " \(k)?"
                 }
                 else if i%2 == 1 {
                     values.append(val)
                 }
                 else {
-                    throw Error.WrongParamInWhereClause
+                    throw TableError.wrongParamInWhereClause
                 }
             }
             
             return (res, values)
         }
         
-        public func select(_ columns:[String]?=nil, Where:[Any]) throws -> [MySQL.ResultSet]? {
+        open func select(_ columns:[String]?=nil, Where:[Any]) throws -> [MySQL.ResultSet]? {
             
             guard Where.count > 0 else {
-                throw Error.NilWhereClause
+                throw TableError.nilWhereClause
             }
             
             let (predicate, vals) = try parsePredicate(Where)
@@ -338,7 +338,7 @@ public extension MySQL {
             var res : [MySQL.ResultSet]?
             var cols = ""
             
-            if let colsArg = columns where colsArg.count > 0 {
+            if let colsArg = columns, colsArg.count > 0 {
                 cols += colsArg[0]
                 for i in 1..<colsArg.count {
                     cols += "," + colsArg[i]
@@ -361,13 +361,13 @@ public extension MySQL {
         }
         
         
-        public func getRecord(Where:[String: Any], columns:[String]?=nil) throws -> MySQL.Row? {
+        open func getRecord(_ Where:[String: Any], columns:[String]?=nil) throws -> MySQL.Row? {
             
             var q = ""
             var res : MySQL.Row?
             var cols = ""
             
-            if let colsArg = columns where colsArg.count > 0 {
+            if let colsArg = columns, colsArg.count > 0 {
                 cols += colsArg[0]
                 for i in 1..<colsArg.count {
                     cols += "," + colsArg[i]
@@ -404,14 +404,14 @@ public extension MySQL {
             return res
         }
         
-        public func getRecord<T:RowType>(Where:[String: Any], columns:[String]?=nil) throws -> T? {
-            if let r = try getRecord(Where: Where, columns: columns) {
+        open func getRecord<T:RowType>(_ Where:[String: Any], columns:[String]?=nil) throws -> T? {
+            if let r = try getRecord(Where, columns: columns) {
                 return T(dict: r)
             }
             return nil
         }
         
-        private func insertWithText(object:Any) throws {
+        fileprivate func insertWithText(_ object:Any) throws {
             var l = ""
             var v = ""
             let mirror = Mirror(reflecting: object)
@@ -436,7 +436,7 @@ public extension MySQL {
             try con.exec(q)
         }
         
-        public func drop() throws {
+        open func drop() throws {
             let q = "drop table if exists " + tableName
             try con.exec(q)
         }

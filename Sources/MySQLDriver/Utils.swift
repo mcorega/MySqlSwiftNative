@@ -12,12 +12,25 @@
 #endif
 
 import Foundation
+// FIXME: comparison operators with optionals were removed from the Swift Standard Libary.
+// Consider refactoring the code to use the non-optional operators.
+fileprivate func < <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
+  switch (lhs, rhs) {
+  case let (l?, r?):
+    return l < r
+  case (nil, _?):
+    return true
+  default:
+    return false
+  }
+}
+
 
 extension MySQL {
     
     internal struct Utils {
         
-        static func mysqlType(val:Any) ->String {
+        static func mysqlType(_ val:Any) ->String {
             
             //var optional = false
             //var value = val
@@ -53,16 +66,16 @@ extension MySQL {
                 return "DOUBLE"
             case is String:
                 return "MEDIUMTEXT"
-            case is NSDate:
+            case is Date:
                 return "DATETIME"
-            case is NSData:
+            case is Data:
                 return "LONGBLOB"
             default:
                 return ""
             }
         }
 
-        private static func escapeData(_ data:[UInt8]) -> String {
+        fileprivate static func escapeData(_ data:[UInt8]) -> String {
             
             var res = [UInt8]()
             //var resStr = ""
@@ -120,7 +133,7 @@ extension MySQL {
             }
             
             //        res.append(0)
-            if let str = NSString(bytes: res, length: res.count, encoding: NSASCIIStringEncoding) {
+            if let str = NSString(bytes: res, length: res.count, encoding: String.Encoding.ascii.rawValue) {
                 //        if let str = String(bytes: res, encoding: NSASCIIStringEncoding) {
                 #if os(Linux)
                     return str.bridge()
@@ -140,16 +153,16 @@ extension MySQL {
                 return "\(val)"
             case is String:
                 return "\"\(val)\""
-            case is NSData:
-                let v = val as! NSData
+            case is Data:
+                let v = val as! Data
                 
-                let count = v.length / sizeof(UInt8)
+                let count = v.count / MemoryLayout<UInt8>.size
                 
                 // create an array of Uint8
                 var array = [UInt8](repeating:0, count: count)
                 
                 // copy bytes into array
-                v.getBytes(&array, length:count * sizeof(UInt8))
+                v.copyBytes(to: &array, count:count * MemoryLayout<UInt8>.size)
                 
                 
                 let str = escapeData(array)
@@ -302,16 +315,16 @@ extension MySQL {
     }
 }
 
-public extension NSDate
+public extension Date
 {
-    convenience
+    
     init?(dateString:String?) {
         guard dateString != nil else {
             return nil
         }
-        let dateStringFormatter = NSDateFormatter()
+        let dateStringFormatter = DateFormatter()
         dateStringFormatter.dateFormat = "yyyy-MM-dd"
-        dateStringFormatter.locale = NSLocale(localeIdentifier: "en_US_POSIX")
+        dateStringFormatter.locale = Locale(identifier: "en_US_POSIX")
         
         if let d = dateStringFormatter.date(from: dateString!) {
             self.init(timeInterval:0, since:d)
@@ -320,11 +333,11 @@ public extension NSDate
         return nil
     }
 
-    convenience
+    
     init?(timeString:String) {
-        let dateStringFormatter = NSDateFormatter()
+        let dateStringFormatter = DateFormatter()
         dateStringFormatter.dateFormat = "HH-mm-ss"
-        dateStringFormatter.locale = NSLocale(localeIdentifier: "en_US_POSIX")
+        dateStringFormatter.locale = Locale(identifier: "en_US_POSIX")
         if let d = dateStringFormatter.date(from: timeString) {
             self.init(timeInterval:0, since:d)
             return
@@ -332,11 +345,11 @@ public extension NSDate
         return nil
     }
 
-    convenience
+    
     init?(timeStringUsec:String) {
-        let dateStringFormatter = NSDateFormatter()
+        let dateStringFormatter = DateFormatter()
         dateStringFormatter.dateFormat = "HH-mm-ss.SSSSSS"
-        dateStringFormatter.locale = NSLocale(localeIdentifier: "en_US_POSIX")
+        dateStringFormatter.locale = Locale(identifier: "en_US_POSIX")
         if let d = dateStringFormatter.date(from: timeStringUsec) {
             self.init(timeInterval:0, since:d)
             return
@@ -345,11 +358,11 @@ public extension NSDate
     }
 
     
-    convenience
+    
     init?(dateTimeString:String) {
-        let dateStringFormatter = NSDateFormatter()
+        let dateStringFormatter = DateFormatter()
         dateStringFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
-        dateStringFormatter.locale = NSLocale(localeIdentifier: "en_US_POSIX")
+        dateStringFormatter.locale = Locale(identifier: "en_US_POSIX")
         if let d = dateStringFormatter.date(from: dateTimeString) {
             self.init(timeInterval:0, since:d)
         }
@@ -358,18 +371,18 @@ public extension NSDate
         }
     }
 
-    convenience
+    
     init?(dateTimeStringUsec:String) {
 
         struct statDFT {
-            static var dateStringFormatter :  NSDateFormatter? = nil
-            static var token : dispatch_once_t = 0
+            static var dateStringFormatter :  DateFormatter? = nil
+            static var token : Int = 0
         }
         
         dispatch_once(&statDFT.token) {
-            statDFT.dateStringFormatter = NSDateFormatter()
+            statDFT.dateStringFormatter = DateFormatter()
             statDFT.dateStringFormatter!.dateFormat = "yyyy-MM-dd HH:mm:ss.SSSSSS"
-            statDFT.dateStringFormatter!.locale = NSLocale(localeIdentifier: "en_US_POSIX")
+            statDFT.dateStringFormatter!.locale = Locale(identifier: "en_US_POSIX")
         }
         
         if let d = statDFT.dateStringFormatter!.date(from: dateTimeStringUsec) {
@@ -381,31 +394,31 @@ public extension NSDate
     }
 
     func dateString() -> String {
-        let dateStringFormatter = NSDateFormatter()
+        let dateStringFormatter = DateFormatter()
         dateStringFormatter.dateFormat = "yyyy-MM-dd"
-        dateStringFormatter.locale = NSLocale(localeIdentifier: "en_US_POSIX")
+        dateStringFormatter.locale = Locale(identifier: "en_US_POSIX")
         return dateStringFormatter.string(from: self)
     }
 
     
     func timeString() -> String {
-        let dateStringFormatter = NSDateFormatter()
+        let dateStringFormatter = DateFormatter()
         dateStringFormatter.dateFormat = "hh-mm-ss"
-        dateStringFormatter.locale = NSLocale(localeIdentifier: "en_US_POSIX")
+        dateStringFormatter.locale = Locale(identifier: "en_US_POSIX")
         return dateStringFormatter.string(from: self)
     }
     
     func dateTimeString() -> String {
         
         struct statDFT {
-            static var dateStringFormatter :  NSDateFormatter? = nil
-            static var token : dispatch_once_t = 0
+            static var dateStringFormatter :  DateFormatter? = nil
+            static var token : Int = 0
         }
         
         dispatch_once(&statDFT.token) {
-            statDFT.dateStringFormatter = NSDateFormatter()
+            statDFT.dateStringFormatter = DateFormatter()
             statDFT.dateStringFormatter!.dateFormat = "yyyy-MM-dd HH:mm:ss"
-            statDFT.dateStringFormatter!.locale = NSLocale(localeIdentifier: "en_US_POSIX")
+            statDFT.dateStringFormatter!.locale = Locale(identifier: "en_US_POSIX")
         }
 
         return statDFT.dateStringFormatter!.string(from: self)
@@ -658,7 +671,7 @@ extension Sequence where Iterator.Element == UInt8 {
             return ""
         }
         
-        return String(cString: UnsafeMutablePointer<CChar>(arr))
+        return String(cString: UnsafePointer<UInt8>(arr))
     }
     
     static func UInt24Array(_ val: UInt32) -> [UInt8]{

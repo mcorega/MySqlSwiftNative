@@ -11,7 +11,7 @@ import Foundation
 
 public extension MySQL {
     
-public class ConnectionPool {
+open class ConnectionPool {
     
     struct ConStruct {
         var con : MySQL.Connection
@@ -20,7 +20,7 @@ public class ConnectionPool {
     
     let numCon : Int
     var cons : [ConStruct]
-    let q = dispatch_queue_create("conpoolqueue", DISPATCH_QUEUE_SERIAL)
+    let q = DispatchQueue(label: "conpoolqueue", attributes: [])
     let conn : MySQL.Connection
     
     public init(num:Int, connection: MySQL.Connection) throws {
@@ -35,11 +35,11 @@ public class ConnectionPool {
         }
     }
     
-    public func getConnection() -> MySQL.Connection? {
+    open func getConnection() -> MySQL.Connection? {
         
         var con : MySQL.Connection? = nil
         
-        dispatch_sync(q) { 
+        q.sync { 
             for i in 0..<self.cons.count {
                 if !self.cons[i].connected {
                     self.cons[i].connected = true
@@ -60,10 +60,10 @@ public class ConnectionPool {
         return con
     }
     
-    public func free(con: MySQL.Connection?) {
+    open func free(_ con: MySQL.Connection?) {
         
         if (con != nil) {
-            dispatch_sync(q) {
+            q.sync {
                 for i in 0..<self.cons.count {
                     if self.cons[i].con.conID == con!.conID {
                         self.cons[i].connected = false

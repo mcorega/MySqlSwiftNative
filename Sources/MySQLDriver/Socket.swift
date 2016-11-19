@@ -13,25 +13,25 @@
 #endif
 
 extension Socket {
-    enum Error: ErrorProtocol {
-        case SocketCreationFailed(String)
-        case SocketShutdownFailed(String)
-        case SocketSettingReUseAddrFailed(String)
-        case ConnectFailed(String)
-        case BindFailed(String)
-        case ListenFailed(String)
-        case WriteFailed(String)
-        case GetPeerNameFailed(String)
-        case ConvertingPeerNameFailed
-        case GetNameInfoFailed(String)
-        case AcceptFailed(String)
-        case RecvFailed(String)
-        case SetSockOptFailed(String)
-        case GetHostIPFailed
+    enum SocketError: Error {
+        case socketCreationFailed(String)
+        case socketShutdownFailed(String)
+        case socketSettingReUseAddrFailed(String)
+        case connectFailed(String)
+        case bindFailed(String)
+        case listenFailed(String)
+        case writeFailed(String)
+        case getPeerNameFailed(String)
+        case convertingPeerNameFailed
+        case getNameInfoFailed(String)
+        case acceptFailed(String)
+        case recvFailed(String)
+        case setSockOptFailed(String)
+        case getHostIPFailed
     }
 }
 
-public class Socket {
+open class Socket {
  
     let s : Int32
     var bytesToRead : UInt32
@@ -53,22 +53,22 @@ public class Socket {
         #endif
         
         guard self.s != -1 else {
-            throw Error.SocketCreationFailed(Socket.descriptionOfLastError())
+            throw SocketError.socketCreationFailed(Socket.descriptionOfLastError())
         }
         
         // set socket options
         var value : Int32 = 1;
         guard setsockopt(self.s, SOL_SOCKET, SO_REUSEADDR, &value,
-            socklen_t(sizeof(Int32))) != -1 else {
-                throw Error.SetSockOptFailed(Socket.descriptionOfLastError())
+            socklen_t(MemoryLayout<Int32>.size)) != -1 else {
+                throw SocketError.setSockOptFailed(Socket.descriptionOfLastError())
         }
         
         guard setsockopt(self.s, SOL_SOCKET,  SO_KEEPALIVE, &value,
-            socklen_t(sizeof(Int32))) != -1 else {
-                throw Error.SetSockOptFailed(Socket.descriptionOfLastError())
+            socklen_t(MemoryLayout<Int32>.size)) != -1 else {
+                throw SocketError.setSockOptFailed(Socket.descriptionOfLastError())
         }
         
-        let hostIP = try getHostIP(host: host)
+        let hostIP = try getHostIP(host)
         
         #if os(Linux)
             
@@ -83,15 +83,15 @@ public class Socket {
             
         #else
             
-            addr = sockaddr_in(sin_len: __uint8_t(sizeof(sockaddr_in)),
+            addr = sockaddr_in(sin_len: __uint8_t(MemoryLayout<sockaddr_in>.size),
                 sin_family: sa_family_t(AF_INET),
-                sin_port: Socket.porthtons(port: in_port_t(port)),
+                sin_port: Socket.porthtons(in_port_t(port)),
                 sin_addr: in_addr(s_addr: inet_addr(hostIP)),
                 sin_zero: (0, 0, 0, 0, 0, 0, 0, 0))
             
             guard setsockopt(self.s, SOL_SOCKET,  SO_NOSIGPIPE, &value,
-                socklen_t(sizeof(Int32))) != -1 else {
-                    throw Error.SetSockOptFailed(Socket.descriptionOfLastError())
+                socklen_t(MemoryLayout<Int32>.size)) != -1 else {
+                    throw SocketError.setSockOptFailed(Socket.descriptionOfLastError())
             }
             
         #endif
@@ -107,35 +107,35 @@ public class Socket {
 
         #endif
         
-        memcpy(&saddr, &addr, Int(sizeof(sockaddr_in)))
-        guard connect(self.s, &saddr, socklen_t(sizeof(sockaddr_in))) != -1 else {
-            throw Error.ConnectFailed(Socket.descriptionOfLastError())
+        memcpy(&saddr, &addr, Int(MemoryLayout<sockaddr_in>.size))
+        guard connect(self.s, &saddr, socklen_t(MemoryLayout<sockaddr_in>.size)) != -1 else {
+            throw SocketError.connectFailed(Socket.descriptionOfLastError())
         }
 
     }
     
     func close() throws {
         guard shutdown(self.s, 2) == 0 else {
-            throw Error.SocketShutdownFailed(Socket.descriptionOfLastError())
+            throw SocketError.socketShutdownFailed(Socket.descriptionOfLastError())
         }
     }
     
-    func getHostIP(host:String) throws ->String{
+    func getHostIP(_ host:String) throws ->String{
         let he = gethostbyname(host)
         
         guard he != nil else {
-            throw Error.GetHostIPFailed
+            throw SocketError.getHostIPFailed
         }
         
-        let p1 = he.pointee.h_addr_list[0]
-        let p2 = UnsafePointer<in_addr>(p1)
+        let p1 = he?.pointee.h_addr_list[0]
+        let p2 = UnsafeRawPointer(p1)?.assumingMemoryBound(to: in_addr.self)
         
         let p3 = inet_ntoa(p2!.pointee)
         
-        return String(cString:p3)
+        return String(cString:p3!)
     }
 
-    private class func descriptionOfLastError() -> String {
+    fileprivate class func descriptionOfLastError() -> String {
         return String(cString:UnsafePointer(strerror(errno))) ?? "Error: \(errno)"
     }
     
@@ -147,7 +147,7 @@ public class Socket {
             read += recv(s, &buffer + read, Int(n) - read, 0)
             
             if read <= 0 {
-                throw Error.RecvFailed(Socket.descriptionOfLastError())
+                throw SocketError.recvFailed(Socket.descriptionOfLastError())
             }
         }
         
@@ -191,7 +191,7 @@ public class Socket {
                     let s = write(self.s, $0.baseAddress! + sent, Int(buffer.count - sent))
                 #endif
                 if s <= 0 {
-                    throw Error.WriteFailed(Socket.descriptionOfLastError())
+                    throw SocketError.writeFailed(Socket.descriptionOfLastError())
                     
                 }
                 sent += s
@@ -205,7 +205,7 @@ public class Socket {
         try writeBuffer(ph)
     }
     
-    private static func porthtons(port: in_port_t) -> in_port_t {
+    fileprivate static func porthtons(_ port: in_port_t) -> in_port_t {
         #if os(Linux)
             return htons(port)
         #else

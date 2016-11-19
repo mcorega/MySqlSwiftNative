@@ -10,14 +10,14 @@ import Foundation
 
 public extension MySQL {
     
-    public class Statement {
+    open class Statement {
 
-        enum Error : ErrorProtocol {
-            case ArgsCountMismatch
-            case StmtIdNotSet
-            case UnknownType(String)
-            case NilConnection
-            case MySQLPacketToLarge
+        enum StatementError : Error {
+            case argsCountMismatch
+            case stmtIdNotSet
+            case unknownType(String)
+            case nilConnection
+            case mySQLPacketToLarge
         }
     
         var con:Connection?
@@ -30,10 +30,10 @@ public extension MySQL {
             self.con = con
         }
         
-        public func query(_ args:[Any]) throws -> Result{
+        open func query(_ args:[Any]) throws -> Result{
             
             guard self.con != nil else {
-                throw Error.NilConnection
+                throw StatementError.nilConnection
             }
             
             //      if con!.EOFfound && !con!.hasMoreResults {
@@ -49,10 +49,10 @@ public extension MySQL {
             //     throw Connection.Error.QueryInProgress
         }
 
-        public func exec(_ args:[Any]) throws {
+        open func exec(_ args:[Any]) throws {
 
             guard self.con != nil else {
-                throw Error.NilConnection
+                throw StatementError.nilConnection
             }
 
           //  if con!.EOFfound && !con!.hasMoreResults {
@@ -95,7 +95,7 @@ public extension MySQL {
         func writeExecutePacket(_ args: [Any]) throws {
 
             if args.count != paramCount {
-                throw Error.ArgsCountMismatch
+                throw StatementError.argsCountMismatch
             }
             
             //let pktLen = 4 + 1 + 4 + 1 //+ 4
@@ -107,7 +107,7 @@ public extension MySQL {
             data.append(MysqlCommands.COM_STMT_EXECUTE)
             
             guard self.id != nil else {
-                throw Error.StmtIdNotSet
+                throw StatementError.stmtIdNotSet
             }
             
             // statement_id [4 bytes]
@@ -228,16 +228,16 @@ public extension MySQL {
                                 argsArr += arr
                             }
                             else {
-                                throw Error.MySQLPacketToLarge
+                                throw StatementError.mySQLPacketToLarge
                             }
                             break
                             
-                        case let data as NSData:
-                            let count = data.length / sizeof(UInt8)
+                        case let data as Data:
+                            let count = data.count / MemoryLayout<UInt8>.size
                             
                             if count < MySQL.maxPackAllowed - 1024*1024 {
                                 var arr = [UInt8](repeating:0, count: count)
-                                data.getBytes(&arr, length: count)
+                                data.copyBytes(to: &arr, count: count)
 
                                 let lenArr = MySQL.Utils.lenEncIntArray(UInt64(arr.count))
                                 dataTypeArr += [UInt8].UInt16Array(UInt16(MysqlTypes.MYSQL_TYPE_LONG_BLOB))
@@ -245,7 +245,7 @@ public extension MySQL {
                                 argsArr += arr
                             }
                             else {
-                                throw Error.MySQLPacketToLarge
+                                throw StatementError.mySQLPacketToLarge
                             }
                             break
                             
@@ -257,11 +257,11 @@ public extension MySQL {
                                 argsArr += [UInt8](str.utf8)
                             }
                             else {
-                                throw Error.MySQLPacketToLarge
+                                throw StatementError.mySQLPacketToLarge
                             }
                             break
                             
-                        case let date as NSDate:
+                        case let date as Date:
                             let arr = [UInt8](date.dateTimeString().utf8)
                             let lenArr = MySQL.Utils.lenEncIntArray(UInt64(arr.count))
                             dataTypeArr += [UInt8].UInt16Array(UInt16(MysqlTypes.MYSQL_TYPE_STRING))
@@ -269,7 +269,7 @@ public extension MySQL {
                             argsArr += arr
                             break
                         default:
-                            throw Error.UnknownType("\(mi.subjectType)")
+                            throw StatementError.unknownType("\(mi.subjectType)")
                         }
                     }
                     

@@ -34,7 +34,7 @@ extension MySQL {
         func readRow() throws -> MySQL.Row?{
             
             guard con.isConnected == true else {
-                throw Connection.Error.NotConnected
+                throw Connection.ConnectionError.notConnected
             }
             
             if con.columns?.count == 0 {
@@ -42,7 +42,7 @@ extension MySQL {
                 con.EOFfound = true
             }
             
-            if !con.EOFfound, let cols = con.columns where cols.count > 0, let data = try con.socket?.readPacket()  {
+            if !con.EOFfound, let cols = con.columns, cols.count > 0, let data = try con.socket?.readPacket()  {
                 
        /*
                 for val in data {
@@ -128,20 +128,20 @@ extension MySQL {
                                 break
 
                             case MysqlTypes.MYSQL_TYPE_DATE:
-                                row[cols[i].name] = NSDate(dateString: String(val))
+                                row[cols[i].name] = Date(dateString: String(val))
                                 break
 
                             case MysqlTypes.MYSQL_TYPE_TIME:
-                                row[cols[i].name] = NSDate(timeString: String(val))
+                                row[cols[i].name] = Date(timeString: String(val))
                                 break
 
                             case MysqlTypes.MYSQL_TYPE_DATETIME:
-                                row[cols[i].name] = NSDate(dateTimeString: String(val))
+                                row[cols[i].name] = Date(dateTimeString: String(val))
                                 break
 
                             case MysqlTypes.MYSQL_TYPE_TIMESTAMP:
                                 
-                                row[cols[i].name] = NSDate(dateTimeString: String(val))
+                                row[cols[i].name] = Date(dateTimeString: String(val))
                                 break
                                 
                             case MysqlTypes.MYSQL_TYPE_NULL:
@@ -195,7 +195,7 @@ extension MySQL {
     
     class BinaryRow: Result {
         
-        private var con:Connection
+        fileprivate var con:Connection
         
         required init(con:Connection) {
             self.con = con
@@ -204,7 +204,7 @@ extension MySQL {
         func readRow() throws -> MySQL.Row?{
             
             guard con.isConnected == true else {
-                throw Connection.Error.NotConnected
+                throw Connection.ConnectionError.notConnected
             }
             
             if con.columns?.count == 0 {
@@ -212,7 +212,7 @@ extension MySQL {
                 con.EOFfound = true
             }
             
-            if !con.EOFfound, let cols = con.columns where cols.count > 0, let data = try con.socket?.readPacket() {
+            if !con.EOFfound, let cols = con.columns, cols.count > 0, let data = try con.socket?.readPacket() {
                 //OK Packet
                 if data[0] != 0x00 {
                     // EOF Packet
@@ -354,7 +354,7 @@ extension MySQL {
                             break
                         }
                         var y = 0, mo = 0, d = 0//, h = 0, m = 0, s = 0, u = 0
-                        var res : NSDate?
+                        var res : Date?
                         
                         switch Int(dlen!) {
                         case 11:
@@ -374,7 +374,7 @@ extension MySQL {
                             y = Int(data[pos+1..<pos+3].uInt16())
                             mo = Int(data[pos+3])
                             d = Int(data[pos+4])
-                            res = NSDate(dateString: String(format: "%4d-%02d-%02d", arguments: [y, mo, d]))
+                            res = Date(dateString: String(format: "%4d-%02d-%02d", arguments: [y, mo, d]))
                             break
                         default:break
                         }
@@ -397,7 +397,7 @@ extension MySQL {
                             break
                         }
                         var h = 0, m = 0, s = 0, u = 0
-                        var res : NSDate?
+                        var res : Date?
                         
                         switch Int(dlen!) {
                         case 12:
@@ -410,10 +410,10 @@ extension MySQL {
                             h = Int(data[pos+6])
                             m = Int(data[pos+7])
                             s = Int(data[pos+8])
-                            res = NSDate(timeStringUsec:String(format: "%02d:%02d:%02d.%06d", arguments: [h, m, s, u]))
+                            res = Date(timeStringUsec:String(format: "%02d:%02d:%02d.%06d", arguments: [h, m, s, u]))
                             break
                         default:
-                            res = NSDate(timeString: "00:00:00")
+                            res = Date(timeString: "00:00:00")
                             break
                         }
                         
@@ -467,7 +467,7 @@ extension MySQL {
                             row[cols[i].name] = NSString(format: "%4d-%02d-%02d %02d:%02d:%02d.%06d", y, mo, d, h, m, s, u).bridge()
                         #else
                             let dstr = String(format: "%4d-%02d-%02d %02d:%02d:%02d.%06d", arguments: [y, mo, d, h, m, s, u])
-                            row[cols[i].name] = NSDate(dateTimeStringUsec: dstr) ?? NSNull()
+                            row[cols[i].name] = Date(dateTimeStringUsec: dstr) ?? NSNull()
                         #endif
                         
                         pos += n + Int(dlen!)

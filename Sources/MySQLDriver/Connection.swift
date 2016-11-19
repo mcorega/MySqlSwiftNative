@@ -10,24 +10,24 @@ import Foundation
 
 public extension MySQL.Connection {
 
-    public enum Error:ErrorProtocol {
-        case AddressNotSet
-        case UsernameNotSet
-        case NotConnected
-        case StatementPrepareError(String)
-        case DataReadingError
-        case QueryInProgress
-        case WrongHandshake
+    public enum ConnectionError : Error {
+        case addressNotSet
+        case usernameNotSet
+        case notConnected
+        case statementPrepareError(String)
+        case dataReadingError
+        case queryInProgress
+        case wrongHandshake
     }
     
    public func open() throws {
         
         guard self.addr != nil else {
-            throw Error.AddressNotSet
+            throw ConnectionError.addressNotSet
         }
         
         guard self.user != nil else {
-            throw Error.UsernameNotSet
+            throw ConnectionError.usernameNotSet
         }
         
         try self.open(self.addr!, user: self.user!, passwd: self.passwd, dbname: self.dbname)
@@ -47,7 +47,7 @@ public extension MySQL.Connection {
     }
     
     public func close() throws {
-        try writeCommandPacket(cmd: MysqlCommands.COM_QUIT)
+        try writeCommandPacket(MysqlCommands.COM_QUIT)
         try self.socket?.close()
         self.hasMoreResults = false
         self.EOFfound = true
@@ -161,11 +161,11 @@ public extension MySQL.Connection {
         if self.passwd != nil {
             
             guard mysql_Handshake != nil else {
-                throw Error.WrongHandshake
+                throw ConnectionError.wrongHandshake
             }
 
             guard mysql_Handshake!.scramble != nil else {
-                throw Error.WrongHandshake
+                throw ConnectionError.wrongHandshake
             }
 
             epwd = MySQL.Utils.encPasswd(self.passwd!, scramble: self.mysql_Handshake!.scramble!)
