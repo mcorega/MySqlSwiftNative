@@ -379,11 +379,11 @@ public extension Date
             static var token : Int = 0
         }
         
-        dispatch_once(&statDFT.token) {
+       // dispatch_once(&statDFT.token) {
             statDFT.dateStringFormatter = DateFormatter()
             statDFT.dateStringFormatter!.dateFormat = "yyyy-MM-dd HH:mm:ss.SSSSSS"
             statDFT.dateStringFormatter!.locale = Locale(identifier: "en_US_POSIX")
-        }
+      //  }
         
         if let d = statDFT.dateStringFormatter!.date(from: dateTimeStringUsec) {
             self.init(timeInterval:0, since:d)
@@ -415,11 +415,11 @@ public extension Date
             static var token : Int = 0
         }
         
-        dispatch_once(&statDFT.token) {
+      //  dispatch_once(&statDFT.token) {
             statDFT.dateStringFormatter = DateFormatter()
             statDFT.dateStringFormatter!.dateFormat = "yyyy-MM-dd HH:mm:ss"
             statDFT.dateStringFormatter!.locale = Locale(identifier: "en_US_POSIX")
-        }
+     //   }
 
         return statDFT.dateStringFormatter!.string(from: self)
     }
