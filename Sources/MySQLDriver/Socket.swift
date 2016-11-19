@@ -128,7 +128,7 @@ open class Socket {
         }
         
         let p1 = he?.pointee.h_addr_list[0]
-        let p2 = UnsafePointer<in_addr>(p1)
+        let p2 = UnsafeRawPointer(p1)?.assumingMemoryBound(to: in_addr.self)
         
         let p3 = inet_ntoa(p2!.pointee)
         

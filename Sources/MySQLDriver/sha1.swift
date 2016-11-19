@@ -74,22 +74,17 @@ protocol ByteConvertible {
     init(truncatingBitPattern: UInt64)
 }
 
-
-// Array of bytes, little-endian representation. Don't use if not necessary.
-/// I found this method slow
-func arrayOfBytes<T>(_ value:T, length:Int? = nil) -> [UInt8] {
-    let totalBytes = length ?? MemoryLayout<T>.size
-    
-    let valuePointer = UnsafeMutablePointer<T>(allocatingCapacity:1)
+func arrayOfBytes<T: Integer>(_ value: T, length totalBytes: Int = MemoryLayout<T>.size) -> Array<UInt8> {
+    let valuePointer = UnsafeMutablePointer<T>.allocate(capacity: 1)
     valuePointer.pointee = value
     
-    let bytesPointer = UnsafeMutablePointer<UInt8>(valuePointer)
-    var bytes = [UInt8](repeating:0, count: totalBytes)
-    for j in 0..<min(MemoryLayout<T>.size,totalBytes) {
+    let bytesPointer = UnsafeMutablePointer<UInt8>(OpaquePointer(valuePointer))
+    var bytes = Array<UInt8>(repeating: 0, count: totalBytes)
+    for j in 0 ..< min(MemoryLayout<T>.size, totalBytes) {
         bytes[totalBytes - 1 - j] = (bytesPointer + j).pointee
     }
     
-    valuePointer.deinitialize(count:)()
+    valuePointer.deinitialize()
     valuePointer.deallocate(capacity: 1)
     
     return bytes
