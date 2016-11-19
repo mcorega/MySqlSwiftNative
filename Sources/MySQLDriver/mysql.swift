@@ -34,11 +34,11 @@ public struct MySQL {
         var scramble2:[UInt8]?
     }
     
-    public enum Error:ErrorProtocol {
-        case Error(Int, String)
+    public enum Error:Error {
+        case error(Int, String)
     }
     
-    public class Connection {
+    open class Connection {
         
         var addr:String?
         var user:String?
@@ -47,17 +47,17 @@ public struct MySQL {
         var port : Int?
         
         var affectedRows : UInt64 = 0
-        public var insertId : UInt64 = 0
+        open var insertId : UInt64 = 0
         var status : UInt16 = 0
-        public var conID = NSUUID().uuidString
+        open var conID = UUID().uuidString
         
         var socket:Socket?
         var mysql_Handshake: mysql_handshake?
         
-        public var columns:[Field]?
+        open var columns:[Field]?
         var hasMoreResults = false
         var EOFfound = true
-        public var isConnected = false
+        open var isConnected = false
 
         public init() {
         }

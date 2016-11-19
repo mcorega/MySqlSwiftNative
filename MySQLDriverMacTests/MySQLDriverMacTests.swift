@@ -43,7 +43,7 @@ class MySQLDriverMacTests: XCTestCase {
     
     func testPerformanceExample() {
         // This is an example of a performance test case.
-        self.measureBlock {
+        self.measure {
             // Put the code you want to measure the time of here.
         }
     }
@@ -110,7 +110,7 @@ class MySQLDriverMacTests: XCTestCase {
                 var int64 : Int64 = -19999999999
                 var ffloat : Float = 1.1
                 var ddouble : Double = 1.1
-                var ddate = NSDate()
+                var ddate = Date()
                 var str = "test string"
                 //var ddata = "test data".dataUsingEncoding(NSUTF8StringEncoding)!
             }
@@ -143,9 +143,9 @@ class MySQLDriverMacTests: XCTestCase {
                 "int64" : Int64(-19999999999),
                 "ffloat" : Float(1.1),
                 "ddouble" : Double(1.1),
-                "ddate" : NSDate(dateString: "2015-11-10"),
+                "ddate" : Date(dateString: "2015-11-10"),
                 "str" : "test string",
-                "nsdata" : "test data".dataUsingEncoding(NSUTF8StringEncoding)!,
+                "nsdata" : "test data".data(using: String.Encoding.utf8)!,
                 "uint8_array" : [UInt8]("test data uint8 array".utf8),
                 //var ddata = NSData(contentsOfFile: "/Users/cipi/Pictures/team.jpg")!
             ]
@@ -177,9 +177,9 @@ class MySQLDriverMacTests: XCTestCase {
                 var int64 : Int64 = -19999999999
                 var ffloat : Float = 1.1
                 var ddouble : Double = 1.1
-                var ddate = NSDate(dateString: "2015-11-10")
+                var ddate = Date(dateString: "2015-11-10")
                 var str = "test string"
-                var nsdata = "test data".dataUsingEncoding(NSUTF8StringEncoding)!
+                var nsdata = "test data".data(using: String.Encoding.utf8)!
                 var uint8_array = [UInt8]("test data uint8 array".utf8)
                 //var ddata = NSData(contentsOfFile: "/Users/cipi/Pictures/team.jpg")!
             }
@@ -212,9 +212,9 @@ class MySQLDriverMacTests: XCTestCase {
                 "int64" : Int64(-19999999999),
                 "ffloat" : Float(1.1),
                 "ddouble" : Double(1.1),
-                "ddate" : NSDate(dateString: "2015-11-10"),
+                "ddate" : Date(dateString: "2015-11-10"),
                 "str" : "test string",
-                "nsdata" : "test data".dataUsingEncoding(NSUTF8StringEncoding)!,
+                "nsdata" : "test data".data(using: String.Encoding.utf8)!,
                 "uint8_array" : [UInt8]("test data uint8 array".utf8)
                 //var ddata = NSData(contentsOfFile: "/Users/cipi/Pictures/team.jpg")!
             ]
@@ -248,9 +248,9 @@ class MySQLDriverMacTests: XCTestCase {
                 "int64" : Int64(-19999999999),
                 "ffloat" : Float(1.1),
                 "ddouble" : Double(1.1),
-                "ddate" : NSDate(dateString: "2015-11-10"),
+                "ddate" : Date(dateString: "2015-11-10"),
                 "str" : "test string",
-                "nsdata" : "test data".dataUsingEncoding(NSUTF8StringEncoding)!,
+                "nsdata" : "test data".data(using: String.Encoding.utf8)!,
                 "uint8_array" : [UInt8]("test data uint8 array".utf8)
                 //var ddata = NSData(contentsOfFile: "/Users/cipi/Pictures/team.jpg")!
             ]
@@ -291,9 +291,9 @@ class MySQLDriverMacTests: XCTestCase {
                 var int64 : Int64 = -19999999999
                 var ffloat : Float = 1.1
                 var ddouble : Double = 1.1
-                var ddate = NSDate(dateString: "2015-11-10")
+                var ddate = Date(dateString: "2015-11-10")
                 var str = "test string"
-                var nsdata = "test data".dataUsingEncoding(NSUTF8StringEncoding)!
+                var nsdata = "test data".data(using: String.Encoding.utf8)!
                 var uint8_array = [UInt8]("test data uint8 array".utf8)
             }
             
@@ -334,9 +334,9 @@ class MySQLDriverMacTests: XCTestCase {
                 var int64 : Int64 = -19999999999
                 var ffloat : Float = 1.1
                 var ddouble : Double = 1.1
-                var ddate = NSDate(dateString: "2015-11-10")
+                var ddate = Date(dateString: "2015-11-10")
                 var str = "test string"
-                var ddata = "test data".dataUsingEncoding(NSUTF8StringEncoding)!
+                var ddata = "test data".data(using: String.Encoding.utf8)!
                 var uint8_array = [UInt8]("test data uint8 array".utf8)
                 //var ddata = NSData(contentsOfFile: "/Users/cipi/Pictures/team.jpg")!
             }
@@ -385,7 +385,7 @@ class MySQLDriverMacTests: XCTestCase {
             try table.create(o, primaryKey: "id", autoInc: true)
             
             for i in 1...500 {
-                dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), {
+                DispatchQueue.global(priority: DispatchQueue.GlobalQueuePriority.background).async(execute: {
 
                     if let c = connPool.getConnection() {
                         
@@ -462,7 +462,7 @@ class MySQLDriverMacTests: XCTestCase {
             let res = try con.query("select * from xctest_int64")
             let row = try res.readRow()
 
-            if let val = row!["val"] as? Int64 where val == 1435353345 {
+            if let val = row!["val"] as? Int64, val == 1435353345 {
                 XCTAssert(true)
             }
             else {
@@ -482,7 +482,7 @@ class MySQLDriverMacTests: XCTestCase {
             let res = try con.query("select * from xctest_uint64")
             let row = try res.readRow()
             
-            if let val = row!["val"] as? UInt64 where val == 1 {
+            if let val = row!["val"] as? UInt64, val == 1 {
                 XCTAssert(true)
             }
             else {
@@ -502,7 +502,7 @@ class MySQLDriverMacTests: XCTestCase {
             let res = try con.query("select * from xctest_int")
             let row = try res.readRow()
 
-            if let val = row!["val"] as? Int where val == 1 {
+            if let val = row!["val"] as? Int, val == 1 {
                 XCTAssert(true)
             }
             else {
@@ -522,7 +522,7 @@ class MySQLDriverMacTests: XCTestCase {
             let res = try con.query("select * from xctest_uint")
             let row = try res.readRow()
 
-            if let val = row!["val"] as? UInt where val == 1 {
+            if let val = row!["val"] as? UInt, val == 1 {
                 XCTAssert(true)
             }
             else {
@@ -542,7 +542,7 @@ class MySQLDriverMacTests: XCTestCase {
             let res = try con.query("select * from xctest_int16")
             let row = try res.readRow()
 
-            if let val = row!["val"] as? Int16 where val == 1 {
+            if let val = row!["val"] as? Int16, val == 1 {
                 XCTAssert(true)
             }
             else {
@@ -562,7 +562,7 @@ class MySQLDriverMacTests: XCTestCase {
             let res = try con.query("select * from xctest_uint16")
             let row = try res.readRow()
 
-            if let val = row!["val"] as? UInt16 where val == 1 {
+            if let val = row!["val"] as? UInt16, val == 1 {
                 XCTAssert(true)
             }
             else {
@@ -582,7 +582,7 @@ class MySQLDriverMacTests: XCTestCase {
             let res = try con.query("select * from xctest_int8")
             let row = try res.readRow()
 
-            if let val = row!["val"] as? Int8 where val == 1 {
+            if let val = row!["val"] as? Int8, val == 1 {
                 XCTAssert(true)
             }
             else {
@@ -602,7 +602,7 @@ class MySQLDriverMacTests: XCTestCase {
             let res = try con.query("select * from xctest_uint8")
             let row = try res.readRow()
             
-            if let val = row!["val"] as? UInt8 where val == 1 {
+            if let val = row!["val"] as? UInt8, val == 1 {
                 XCTAssert(true)
             }
             else {
@@ -622,7 +622,7 @@ class MySQLDriverMacTests: XCTestCase {
             let res = try con.query("select * from xctest_date")
             let row = try res.readRow()
 
-            if let val = row!["val"] as? NSDate where val == NSDate(dateString: "2015-12-02") {
+            if let val = row!["val"] as? Date, val == Date(dateString: "2015-12-02") {
                 XCTAssert(true)
             }
             else {
@@ -642,7 +642,7 @@ class MySQLDriverMacTests: XCTestCase {
             let res = try con.query("select * from xctest_time")
             let row = try res.readRow()
 
-            if let val = row!["val"] as? NSDate where val == NSDate(timeString: "12:02:24") {
+            if let val = row!["val"] as? Date, val == Date(timeString: "12:02:24") {
                 XCTAssert(true)
             }
             else {
@@ -662,7 +662,7 @@ class MySQLDriverMacTests: XCTestCase {
             let res = try con.query("select * from xctest_datetime")
             let row = try res.readRow()
 
-            if let val = row!["val"] as? NSDate where val == NSDate(dateTimeString: "2015-12-02 12:02:24") {
+            if let val = row!["val"] as? Date, val == Date(dateTimeString: "2015-12-02 12:02:24") {
                 XCTAssert(true)
             }
             else {
@@ -682,7 +682,7 @@ class MySQLDriverMacTests: XCTestCase {
             let res = try con.query("select * from xctest_timestamp")
             let row = try res.readRow()
 
-            if let val = row!["val"] as? NSDate where val == NSDate(dateTimeString: "2015-12-02 12:02:24") {
+            if let val = row!["val"] as? Date, val == Date(dateTimeString: "2015-12-02 12:02:24") {
                 XCTAssert(true)
             }
             else {
@@ -702,7 +702,7 @@ class MySQLDriverMacTests: XCTestCase {
             let res = try con.query("select * from xctest_float")
             let row = try res.readRow()
 
-            if let val = row!["val"] as? Float  where val == Float(1.1) {
+            if let val = row!["val"] as? Float, val == Float(1.1) {
                 XCTAssert(true)
             }
             else {
@@ -722,7 +722,7 @@ class MySQLDriverMacTests: XCTestCase {
             let res = try con.query("select * from xctest_double")
             let row = try res.readRow()
 
-            if let val = row!["val"] as? Double  where val == Double(1.1) {
+            if let val = row!["val"] as? Double, val == Double(1.1) {
                 XCTAssert(true)
             }
             else {
@@ -743,7 +743,7 @@ class MySQLDriverMacTests: XCTestCase {
             let res = try con.query("select * from xctest4")
             let row = try res.readRow()
 
-            if let val = row!["val"] as? String where val=="val" {
+            if let val = row!["val"] as? String, val=="val" {
                 XCTAssert(true)
             }
             else {
@@ -815,7 +815,7 @@ class MySQLDriverMacTests: XCTestCase {
             let res = try stmt.query([-1435353345])
             let row = try res.readRow()
 
-            if let val = row!["val"] as? Int64 where val == -1435353345 {
+            if let val = row!["val"] as? Int64, val == -1435353345 {
                 XCTAssert(true)
             }
             else {
@@ -836,7 +836,7 @@ class MySQLDriverMacTests: XCTestCase {
             let res = try stmt.query([13423423])
             let row = try res.readRow()
 
-            if let val = row!["val"] as? UInt64 where val == 13423423 {
+            if let val = row!["val"] as? UInt64, val == 13423423 {
                 XCTAssert(true)
             }
             else {
@@ -857,7 +857,7 @@ class MySQLDriverMacTests: XCTestCase {
             let res = try stmt.query([-12345])
             let row = try res.readRow()
 
-            if let val = row!["val"] as? Int where val == -12345 {
+            if let val = row!["val"] as? Int, val == -12345 {
                 XCTAssert(true)
             }
             else {
@@ -879,7 +879,7 @@ class MySQLDriverMacTests: XCTestCase {
             let res = try stmt.query([12345])
             let row = try res.readRow()
 
-            if let val = row!["val"] as? UInt where val == 12345 {
+            if let val = row!["val"] as? UInt, val == 12345 {
                 XCTAssert(true)
             }
             else {
@@ -901,7 +901,7 @@ class MySQLDriverMacTests: XCTestCase {
             let res = try stmt.query([-12345])
             let row = try res.readRow()
 
-            if let val = row!["val"] as? Int16 where val == -12345 {
+            if let val = row!["val"] as? Int16, val == -12345 {
                 XCTAssert(true)
             }
             else {
@@ -923,7 +923,7 @@ class MySQLDriverMacTests: XCTestCase {
             let res = try stmt.query([12345])
             let row = try res.readRow()
 
-            if let val = row!["val"] as? UInt16 where val == 12345 {
+            if let val = row!["val"] as? UInt16, val == 12345 {
                 XCTAssert(true)
             }
             else {
@@ -944,7 +944,7 @@ class MySQLDriverMacTests: XCTestCase {
             let res = try stmt.query([-12])
             let row = try res.readRow()
 
-            if let val = row!["val"] as? Int8 where val == -12 {
+            if let val = row!["val"] as? Int8, val == -12 {
                 XCTAssert(true)
             }
             else {
@@ -965,7 +965,7 @@ class MySQLDriverMacTests: XCTestCase {
             let res = try stmt.query([12])
             let row = try res.readRow()
 
-            if let val = row!["val"] as? UInt8 where val == 12 {
+            if let val = row!["val"] as? UInt8, val == 12 {
                 XCTAssert(true)
             }
             else {
@@ -986,7 +986,7 @@ class MySQLDriverMacTests: XCTestCase {
             let res = try stmt.query(["2015-12-02"])
             let row = try res.readRow()
 
-            if let val = row!["val"] as? NSDate where val == NSDate(dateString: "2015-12-02") {
+            if let val = row!["val"] as? Date, val == Date(dateString: "2015-12-02") {
                 XCTAssert(true)
             }
             else {
@@ -1007,7 +1007,7 @@ class MySQLDriverMacTests: XCTestCase {
             let res = try stmt.query(["13:02:24"])
             let row = try res.readRow()
 
-            if let val = row!["val"] as? NSDate where val == NSDate(timeString: "13:02:24") {
+            if let val = row!["val"] as? Date, val == Date(timeString: "13:02:24") {
                 XCTAssert(true)
             }
             else {
@@ -1028,22 +1028,22 @@ class MySQLDriverMacTests: XCTestCase {
             let res = try stmt.query(["2015-12-02"])
             let row = try res.readRow()
             
-            guard let val = row!["val"] as? NSDate where val == NSDate(dateString: "2015-12-02") else {
+            guard let val = row!["val"] as? Date, val == Date(dateString: "2015-12-02") else {
                 XCTAssert(false)
                 return
             }
             
-            guard let val1 = row!["val1"] as? NSDate where val1 == NSDate(dateTimeString: "2015-12-02 15:02:22") else {
+            guard let val1 = row!["val1"] as? Date, val1 == Date(dateTimeString: "2015-12-02 15:02:22") else {
                 XCTAssert(false)
                 return
             }
 
-            guard let val2 = row!["val2"] as? NSDate where val2.timeIntervalSinceReferenceDate == NSDate(dateTimeStringUsec: "2015-12-02 14:10:12.887435")!.timeIntervalSinceReferenceDate else {
+            guard let val2 = row!["val2"] as? Date, val2.timeIntervalSinceReferenceDate == Date(dateTimeStringUsec: "2015-12-02 14:10:12.887435")!.timeIntervalSinceReferenceDate else {
                 XCTAssert(false)
                 return
             }
 
-            guard let val3 = row!["val3"] as? NSDate where val3.timeIntervalSince1970 == NSDate(dateTimeStringUsec: "2015-12-02 14:10:12.000430")!.timeIntervalSince1970 else {
+            guard let val3 = row!["val3"] as? Date, val3.timeIntervalSince1970 == Date(dateTimeStringUsec: "2015-12-02 14:10:12.000430")!.timeIntervalSince1970 else {
                 XCTAssert(false)
                 return
             }
@@ -1064,7 +1064,7 @@ class MySQLDriverMacTests: XCTestCase {
             let res = try stmt.query(["2015-12-02 12:02:24"])
             let row = try res.readRow()
 
-            if let val = row!["val"] as? NSDate where val == NSDate(dateTimeString: "2015-12-02 12:02:24") {
+            if let val = row!["val"] as? Date, val == Date(dateTimeString: "2015-12-02 12:02:24") {
                 XCTAssert(true)
             }
             else {
@@ -1086,7 +1086,7 @@ class MySQLDriverMacTests: XCTestCase {
             let res = try stmt.query([Float(1.1)])
             let row = try res.readRow()
 
-            if let val = row!["val"] as? Float  where val == Float(1.1) {
+            if let val = row!["val"] as? Float, val == Float(1.1) {
                 XCTAssert(true)
             }
             else {
@@ -1107,7 +1107,7 @@ class MySQLDriverMacTests: XCTestCase {
             let res = try stmt.query([Double(1.1)])
             let row = try res.readRow()
             
-            if let val = row!["val"] as? Double  where val == Double(1.1) {
+            if let val = row!["val"] as? Double, val == Double(1.1) {
                 XCTAssert(true)
             }
             else {
@@ -1129,7 +1129,7 @@ class MySQLDriverMacTests: XCTestCase {
             let res = try stmt.query(["val"])
             let row = try res.readRow()
             
-            if let val = row!["val"] as? String where val == "val" {
+            if let val = row!["val"] as? String, val == "val" {
                 XCTAssert(true)
             }
             else {
@@ -1143,10 +1143,10 @@ class MySQLDriverMacTests: XCTestCase {
     
     func testStatementReadRowResultUInt8Array() {
         do {
-            let  data =  NSData(contentsOfFile: "/Users/cipi/Pictures/team.jpg")!
-            let count = data.length / sizeof(UInt8)
-            var array = [UInt8](count: count, repeatedValue: 0)
-            data.getBytes(&array, length:count * sizeof(UInt8))
+            let  data =  try! Data(contentsOf: URL(fileURLWithPath: "/Users/cipi/Pictures/team.jpg"))
+            let count = data.count / MemoryLayout<UInt8>.size
+            var array = [UInt8](repeating: 0, count: count)
+            (data as NSData).getBytes(&array, length:count * MemoryLayout<UInt8>.size)
             
             try con.exec("drop table if exists xctest_stmt_uint8array")
             try con.exec("create table xctest_stmt_uint8array(id INT NOT NULL AUTO_INCREMENT, PRIMARY KEY (id), val LONGBLOB)")
@@ -1158,7 +1158,7 @@ class MySQLDriverMacTests: XCTestCase {
 
             let row = try res.readRow()
 
-            if let val = row?["val"] as? [UInt8] where Mysql_SHA1(val).equals(Mysql_SHA1(array))  {
+            if let val = row?["val"] as? [UInt8], Mysql_SHA1(val).equals(Mysql_SHA1(array))  {
                 XCTAssert(true)
             }
             else {

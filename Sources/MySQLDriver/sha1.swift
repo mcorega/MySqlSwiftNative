@@ -18,23 +18,23 @@
 /* array of bytes */
 extension Int {
     /** Array of bytes with optional padding (little-endian) */
-    public func bytes(totalBytes: Int = sizeof(Int)) -> [UInt8] {
+    public func bytes(_ totalBytes: Int = MemoryLayout<Int>.size) -> [UInt8] {
         return arrayOfBytes(self, length: totalBytes)
     }
 }
 
 /// Initialize integer from array of bytes.
 /// This method may be slow
-func integerWithBytes<T: Integer where T:ByteConvertible, T: BitshiftOperationsType>(bytes: [UInt8]) -> T {
+func integerWithBytes<T: Integer>(_ bytes: [UInt8]) -> T where T:ByteConvertible, T: BitshiftOperationsType {
     var bytes = bytes.reversed() as Array<UInt8> //FIXME: check it this is equivalent of Array(...)
-    if bytes.count < sizeof(T) {
-        let paddingCount = sizeof(T) - bytes.count
+    if bytes.count < MemoryLayout<T>.size {
+        let paddingCount = MemoryLayout<T>.size - bytes.count
         if (paddingCount > 0) {
             bytes += [UInt8](repeating: 0, count: paddingCount)
         }
     }
     
-    if sizeof(T) == 1 {
+    if MemoryLayout<T>.size == 1 {
         return T(truncatingBitPattern: UInt64(bytes.first!))
     }
     
@@ -47,10 +47,10 @@ func integerWithBytes<T: Integer where T:ByteConvertible, T: BitshiftOperationsT
 
 
 protocol BitshiftOperationsType {
-    func <<(lhs: Self, rhs: Self) -> Self
-    func >>(lhs: Self, rhs: Self) -> Self
-    func <<=( lhs: inout Self, rhs: Self)
-    func >>=( lhs: inout Self, rhs: Self)
+    static func <<(lhs: Self, rhs: Self) -> Self
+    static func >>(lhs: Self, rhs: Self) -> Self
+    static func <<=( lhs: inout Self, rhs: Self)
+    static func >>=( lhs: inout Self, rhs: Self)
 }
 
 // MARK: - shiftLeft
@@ -78,24 +78,24 @@ protocol ByteConvertible {
 // Array of bytes, little-endian representation. Don't use if not necessary.
 /// I found this method slow
 func arrayOfBytes<T>(_ value:T, length:Int? = nil) -> [UInt8] {
-    let totalBytes = length ?? sizeof(T)
+    let totalBytes = length ?? MemoryLayout<T>.size
     
     let valuePointer = UnsafeMutablePointer<T>(allocatingCapacity:1)
     valuePointer.pointee = value
     
     let bytesPointer = UnsafeMutablePointer<UInt8>(valuePointer)
     var bytes = [UInt8](repeating:0, count: totalBytes)
-    for j in 0..<min(sizeof(T),totalBytes) {
+    for j in 0..<min(MemoryLayout<T>.size,totalBytes) {
         bytes[totalBytes - 1 - j] = (bytesPointer + j).pointee
     }
     
     valuePointer.deinitialize(count:)()
-    valuePointer.deallocateCapacity(1)
+    valuePointer.deallocate(capacity: 1)
     
     return bytes
 }
 
-private func CS_AnyGenerator<Element>(body: () -> Element?) -> AnyIterator<Element> {
+private func CS_AnyGenerator<Element>(_ body: () -> Element?) -> AnyIterator<Element> {
     #if os(Linux)
         return AnyGenerator(body: body)
     #else
@@ -130,7 +130,7 @@ func toUInt32Array(_ slice: ArraySlice<UInt8>) -> Array<UInt32> {
     var result = Array<UInt32>()
     result.reserveCapacity(16)
 
-    for idx in stride(from: slice.startIndex, to: slice.endIndex, by: sizeof(UInt32)) {
+    for idx in stride(from: slice.startIndex, to: slice.endIndex, by: MemoryLayout<UInt32>.size) {
         let val:UInt32 = (UInt32(slice[idx+3]) << 24) | (UInt32(slice[idx+2]) << 16) | (UInt32(slice[idx+1]) << 8) | UInt32(slice[idx])
         result.append(val)
     }
@@ -146,7 +146,7 @@ final class Mysql_SHA1 {
         self.message = message
     }
     
-    private let h:[UInt32] = [0x67452301, 0xEFCDAB89, 0x98BADCFE, 0x10325476, 0xC3D2E1F0]
+    fileprivate let h:[UInt32] = [0x67452301, 0xEFCDAB89, 0x98BADCFE, 0x10325476, 0xC3D2E1F0]
     
     func prepare(_ len:Int) -> Array<UInt8> {
         var tmpMessage = message
@@ -175,7 +175,7 @@ final class Mysql_SHA1 {
         var hh = h
         
         // append message length, in a 64-bit big-endian integer. So now the message length is a multiple of 512 bits.
-        tmpMessage += (self.message.count * 8).bytes(totalBytes: 64 / 8)
+        tmpMessage += (self.message.count * 8).bytes(64 / 8)
         
         // Process the message in successive 512-bit chunks:
         let chunkSizeBytes = 512 / 8 // 64
@@ -186,8 +186,8 @@ final class Mysql_SHA1 {
             for x in 0..<M.count {
                 switch (x) {
                 case 0...15:
-                    let start = chunk.startIndex + (x * sizeofValue(M[x]))
-                    let end = start + sizeofValue(M[x])
+                    let start = chunk.startIndex + (x * MemoryLayout.size(ofValue: M[x]))
+                    let end = start + MemoryLayout.size(ofValue: M[x])
                     let le = toUInt32Array(chunk[start..<end])[0]
                     M[x] = le.bigEndian
                     break

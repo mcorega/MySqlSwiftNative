@@ -25,7 +25,7 @@ extension MySQL.Connection {
         }
     }
     
-    private func handleOKPacket(_ data:[UInt8]) -> Int {
+    fileprivate func handleOKPacket(_ data:[UInt8]) -> Int {
         var n, m : Int
         var ar, insId : UInt64?
         
@@ -47,7 +47,7 @@ extension MySQL.Connection {
     func handleErrorPacket(_ data:[UInt8]) -> MySQL.Error {
         
         if data[0] != 0xff {
-            return MySQL.Error.Error(-1, "EOF encountered")
+            return MySQL.Error.error(-1, "EOF encountered")
         }
         
         let errno = data[1...3].uInt16()
@@ -78,7 +78,7 @@ extension MySQL.Connection {
         }
     }
     
-    func writeCommandPacketStr(cmd:UInt8, q:String) throws {
+    func writeCommandPacketStr(_ cmd:UInt8, q:String) throws {
         socket?.packnr = -1
         
         var data = [UInt8]()
@@ -89,7 +89,7 @@ extension MySQL.Connection {
         try socket?.writePacket(data)
     }
     
-    func writeCommandPacket(cmd:UInt8) throws {
+    func writeCommandPacket(_ cmd:UInt8) throws {
         socket?.packnr = -1
         
         var data = [UInt8]()

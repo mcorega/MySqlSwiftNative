@@ -431,7 +431,7 @@ class MySQLDriverLinuxTests: XCTestCase {
             let row = try res.readRow()
             try con.close()
             
-            if let val = row!["val"] as? Int64 where val == 1435353345 {
+            if let val = row!["val"] as? Int64, val == 1435353345 {
                 XCTAssert(true)
             }
             else {
@@ -455,7 +455,7 @@ class MySQLDriverLinuxTests: XCTestCase {
             let row = try res.readRow()
             try con.close()
             
-            if let val = row!["val"] as? UInt64 where val == 1 {
+            if let val = row!["val"] as? UInt64, val == 1 {
                 XCTAssert(true)
             }
             else {
@@ -479,7 +479,7 @@ class MySQLDriverLinuxTests: XCTestCase {
             let row = try res.readRow()
             try con.close()
             
-            if let val = row!["val"] as? Int where val == 1 {
+            if let val = row!["val"] as? Int, val == 1 {
                 XCTAssert(true)
             }
             else {
@@ -504,7 +504,7 @@ class MySQLDriverLinuxTests: XCTestCase {
             let row = try res.readRow()
             try con.close()
             
-            if let val = row!["val"] as? UInt where val == 1 {
+            if let val = row!["val"] as? UInt, val == 1 {
                 XCTAssert(true)
             }
             else {
@@ -529,7 +529,7 @@ class MySQLDriverLinuxTests: XCTestCase {
             let row = try res.readRow()
             try con.close()
             
-            if let val = row!["val"] as? Int16 where val == 1 {
+            if let val = row!["val"] as? Int16, val == 1 {
                 XCTAssert(true)
             }
             else {
@@ -551,7 +551,7 @@ class MySQLDriverLinuxTests: XCTestCase {
             let row = try res.readRow()
             try con.close()
             
-            if let val = row!["val"] as? UInt16 where val == 1 {
+            if let val = row!["val"] as? UInt16, val == 1 {
                 XCTAssert(true)
             }
             else {
@@ -573,7 +573,7 @@ class MySQLDriverLinuxTests: XCTestCase {
             let row = try res.readRow()
             try con.close()
             
-            if let val = row!["val"] as? Int8 where val == 1 {
+            if let val = row!["val"] as? Int8, val == 1 {
                 XCTAssert(true)
             }
             else {
@@ -595,7 +595,7 @@ class MySQLDriverLinuxTests: XCTestCase {
             let row = try res.readRow()
             try con.close()
             
-            if let val = row!["val"] as? UInt8 where val == 1 {
+            if let val = row!["val"] as? UInt8, val == 1 {
                 XCTAssert(true)
             }
             else {
@@ -617,7 +617,7 @@ class MySQLDriverLinuxTests: XCTestCase {
             let row = try res.readRow()
             try con.close()
             
-            if let val = row!["val"] as? NSDate where val == NSDate(dateString: "2015-12-02") {
+            if let val = row!["val"] as? NSDate, val == NSDate(dateString: "2015-12-02") {
                 XCTAssert(true)
             }
             else {
@@ -639,7 +639,7 @@ class MySQLDriverLinuxTests: XCTestCase {
             let row = try res.readRow()
             try con.close()
             
-            if let val = row!["val"] as? NSDate where val == NSDate(timeString: "12:02:24") {
+            if let val = row!["val"] as? NSDate, val == NSDate(timeString: "12:02:24") {
                 XCTAssert(true)
             }
             else {
@@ -661,7 +661,7 @@ class MySQLDriverLinuxTests: XCTestCase {
             let row = try res.readRow()
             try con.close()
             
-            if let val = row!["val"] as? NSDate where val == NSDate(dateTimeString: "2015-12-02 12:02:24") {
+            if let val = row!["val"] as? NSDate, val == NSDate(dateTimeString: "2015-12-02 12:02:24") {
                 XCTAssert(true)
             }
             else {
@@ -683,7 +683,7 @@ class MySQLDriverLinuxTests: XCTestCase {
             let row = try res.readRow()
             try con.close()
             
-            if let val = row!["val"] as? NSDate where val == NSDate(dateTimeString: "2015-12-02 12:02:24") {
+            if let val = row!["val"] as? NSDate, val == NSDate(dateTimeString: "2015-12-02 12:02:24") {
                 XCTAssert(true)
             }
             else {
@@ -705,7 +705,7 @@ class MySQLDriverLinuxTests: XCTestCase {
             let row = try res.readRow()
             try con.close()
             
-            if let val = row!["val"] as? Float  where val == Float(1.1) {
+            if let val = row!["val"] as? Float, val == Float(1.1) {
                 XCTAssert(true)
             }
             else {
@@ -727,7 +727,7 @@ class MySQLDriverLinuxTests: XCTestCase {
             let row = try res.readRow()
             try con.close()
             
-            if let val = row!["val"] as? Double  where val == Double(1.1) {
+            if let val = row!["val"] as? Double, val == Double(1.1) {
                 XCTAssert(true)
             }
             else {
@@ -750,7 +750,7 @@ class MySQLDriverLinuxTests: XCTestCase {
             let row = try res.readRow()
             try con.close()
             
-            if let val = row!["val"] as? String where val=="val" {
+            if let val = row!["val"] as? String, val=="val" {
                 XCTAssert(true)
             }
             else {
@@ -830,7 +830,7 @@ class MySQLDriverLinuxTests: XCTestCase {
             let row = try res.readRow()
             try con.close()
             
-            if let val = row!["val"] as? Int64 where val == -1435353345 {
+            if let val = row!["val"] as? Int64, val == -1435353345 {
                 XCTAssert(true)
             }
             else {
@@ -853,7 +853,7 @@ class MySQLDriverLinuxTests: XCTestCase {
             let row = try res.readRow()
             try con.close()
             
-            if let val = row!["val"] as? UInt64 where val == 13423423 {
+            if let val = row!["val"] as? UInt64, val == 13423423 {
                 XCTAssert(true)
             }
             else {
@@ -876,7 +876,7 @@ class MySQLDriverLinuxTests: XCTestCase {
             let row = try res.readRow()
             try con.close()
             
-            if let val = row!["val"] as? Int where val == -12345 {
+            if let val = row!["val"] as? Int, val == -12345 {
                 XCTAssert(true)
             }
             else {
@@ -900,7 +900,7 @@ class MySQLDriverLinuxTests: XCTestCase {
             let row = try res.readRow()
             try con.close()
             
-            if let val = row!["val"] as? UInt where val == 12345 {
+            if let val = row!["val"] as? UInt, val == 12345 {
                 XCTAssert(true)
             }
             else {
@@ -924,7 +924,7 @@ class MySQLDriverLinuxTests: XCTestCase {
             let row = try res.readRow()
             try con.close()
             
-            if let val = row!["val"] as? Int16 where val == -12345 {
+            if let val = row!["val"] as? Int16, val == -12345 {
                 XCTAssert(true)
             }
             else {
@@ -948,7 +948,7 @@ class MySQLDriverLinuxTests: XCTestCase {
             let row = try res.readRow()
             try con.close()
             
-            if let val = row!["val"] as? UInt16 where val == 12345 {
+            if let val = row!["val"] as? UInt16, val == 12345 {
                 XCTAssert(true)
             }
             else {
@@ -971,7 +971,7 @@ class MySQLDriverLinuxTests: XCTestCase {
             let row = try res.readRow()
             try con.close()
             
-            if let val = row!["val"] as? Int8 where val == -12 {
+            if let val = row!["val"] as? Int8, val == -12 {
                 XCTAssert(true)
             }
             else {
@@ -994,7 +994,7 @@ class MySQLDriverLinuxTests: XCTestCase {
             let row = try res.readRow()
             try con.close()
             
-            if let val = row!["val"] as? UInt8 where val == 12 {
+            if let val = row!["val"] as? UInt8, val == 12 {
                 XCTAssert(true)
             }
             else {
@@ -1017,7 +1017,7 @@ class MySQLDriverLinuxTests: XCTestCase {
             let row = try res.readRow()
             try con.close()
             
-            if let val = row!["val"] as? NSDate where val == NSDate(dateString: "2015-12-02") {
+            if let val = row!["val"] as? NSDate, val == NSDate(dateString: "2015-12-02") {
                 XCTAssert(true)
             }
             else {
@@ -1040,7 +1040,7 @@ class MySQLDriverLinuxTests: XCTestCase {
             let row = try res.readRow()
             try con.close()
             
-            if let val = row!["val"] as? NSDate where val == NSDate(timeString: "12:02:24") {
+            if let val = row!["val"] as? NSDate, val == NSDate(timeString: "12:02:24") {
                 XCTAssert(true)
             }
             else {
@@ -1063,7 +1063,7 @@ class MySQLDriverLinuxTests: XCTestCase {
             let row = try res.readRow()
             try con.close()
             
-            if let val = row!["val"] as? NSDate where val == NSDate(dateTimeString: "2015-12-02 12:02:24") {
+            if let val = row!["val"] as? NSDate, val == NSDate(dateTimeString: "2015-12-02 12:02:24") {
                 XCTAssert(true)
             }
             else {
@@ -1087,7 +1087,7 @@ class MySQLDriverLinuxTests: XCTestCase {
             let row = try res.readRow()
             try con.close()
             
-            if let val = row!["val"] as? NSDate where val == NSDate(dateTimeString: "2015-12-02 12:02:24") {
+            if let val = row!["val"] as? NSDate, val == NSDate(dateTimeString: "2015-12-02 12:02:24") {
                 XCTAssert(true)
             }
             else {
@@ -1110,7 +1110,7 @@ class MySQLDriverLinuxTests: XCTestCase {
             let row = try res.readRow()
             try con.close()
             
-            if let val = row!["val"] as? Float  where val == Float(1.1) {
+            if let val = row!["val"] as? Float, val == Float(1.1) {
                 XCTAssert(true)
             }
             else {
@@ -1133,7 +1133,7 @@ class MySQLDriverLinuxTests: XCTestCase {
             let row = try res.readRow()
             try con.close()
             
-            if let val = row!["val"] as? Double  where val == Double(1.1) {
+            if let val = row!["val"] as? Double, val == Double(1.1) {
                 XCTAssert(true)
             }
             else {
@@ -1157,7 +1157,7 @@ class MySQLDriverLinuxTests: XCTestCase {
             let row = try res.readRow()
             try con.close()
             
-            if let val = row!["val"] as? String where val == "val" {
+            if let val = row!["val"] as? String, val == "val" {
                 XCTAssert(true)
             }
             else {

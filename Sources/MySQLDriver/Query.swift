@@ -12,15 +12,15 @@ import Foundation
 public extension MySQL.Connection {
 
     public enum QueryResultType {
-        case Success(MySQL.ResultSet)
-        case Error(ErrorProtocol)
+        case success(MySQL.ResultSet)
+        case error(Error)
     }
     
     public class QueryResult {
         
         var rows : MySQL.ResultSet?
-        var succClosure : ((rows:MySQL.ResultSet)->Void)? = nil
-        var errorClosure : ((error:ErrorProtocol)->Void)? = nil
+        var succClosure : ((_ rows:MySQL.ResultSet)->Void)? = nil
+        var errorClosure : ((_ error:Error)->Void)? = nil
         
         init() {
         }
@@ -30,14 +30,14 @@ public extension MySQL.Connection {
             //succClosure = nil
         }
         
-        public func success(closure:(rows:MySQL.ResultSet)->Void)->Self {
+        open func success(_ closure:@escaping (_ rows:MySQL.ResultSet)->Void)->Self {
             
             succClosure = closure
             
             return self
         }
         
-        public func error(closure:(error:ErrorProtocol)->Void)->Self {
+        open func error(_ closure:@escaping (_ error:Error)->Void)->Self {
             
             errorClosure = closure
             
@@ -49,7 +49,7 @@ public extension MySQL.Connection {
     func query(_ q:String) throws -> Result {
         
      //   if self.EOFfound && !self.hasMoreResults {
-            try writeCommandPacketStr(cmd: MysqlCommands.COM_QUERY, q: q)
+            try writeCommandPacketStr(MysqlCommands.COM_QUERY, q: q)
             
             let resLen = try readResultSetHeaderPacket()
             self.columns = try readColumns(resLen)
@@ -71,10 +71,10 @@ public extension MySQL.Connection {
     func prepare(_ q:String) throws -> MySQL.Statement {
         
         guard self.socket != nil else {
-            throw MySQL.Connection.Error.NotConnected
+            throw MySQL.Connection.MySQLError.notConnected
         }
         
-        try writeCommandPacketStr(cmd: MysqlCommands.COM_STMT_PREPARE, q: q)
+        try writeCommandPacketStr(MysqlCommands.COM_STMT_PREPARE, q: q)
         let stmt = MySQL.Statement(con: self)
         
         if let colCount = try stmt.readPrepareResultPacket(), let  paramCount = stmt.paramCount {
@@ -87,14 +87,14 @@ public extension MySQL.Connection {
             }
         }
         else {
-            throw MySQL.Connection.Error.StatementPrepareError("Could not get col and param count")
+            throw MySQL.Connection.MySQLError.statementPrepareError("Could not get col and param count")
         }
         
         return stmt
     }
     
     func exec(_ q:String) throws {
-        try writeCommandPacketStr(cmd: MysqlCommands.COM_QUERY, q: q)
+        try writeCommandPacketStr(MysqlCommands.COM_QUERY, q: q)
         
         let resLen = try readResultSetHeaderPacket()
         
@@ -105,7 +105,7 @@ public extension MySQL.Connection {
     }
     
     func use(_ dbname:String) throws {
-        try writeCommandPacketStr(cmd: MysqlCommands.COM_INIT_DB, q: dbname)
+        try writeCommandPacketStr(MysqlCommands.COM_INIT_DB, q: dbname)
         self.dbname = dbname
         
         let resLen = try readResultSetHeaderPacket()
