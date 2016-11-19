@@ -133,7 +133,7 @@ public extension MySQL.Connection {
     }
     
     private func connect() throws {
-        self.socket = try Socket(host: self.addr!, port: self.port!)
+        self.socket = try Socket(host: self.addr!, port: self.port ?? 3306)
         try self.socket?.Connect()
         self.mysql_Handshake = try readHandshake()
     }

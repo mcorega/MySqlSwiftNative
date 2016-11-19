@@ -8,7 +8,7 @@
 
 import XCTest
 
-@testable import MySQLDriverMac
+@testable import MySQLDriver
 
 class MySQLDriverMacTests: XCTestCase {
     let con = MySQL.Connection()
