@@ -11,7 +11,7 @@ import Foundation
 
 public extension MySQL {
     
-open class ConnectionPool {
+public class ConnectionPool {
     
     struct ConStruct {
         var con : MySQL.Connection

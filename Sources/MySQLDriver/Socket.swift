@@ -136,7 +136,7 @@ open class Socket {
     }
 
     fileprivate class func descriptionOfLastError() -> String {
-        return String(cString:UnsafePointer(strerror(errno))) ?? "Error: \(errno)"
+        return String(cString:UnsafePointer(strerror(errno))) //?? "Error: \(errno)"
     }
     
     func readNUInt8(_ n:UInt32) throws -> [UInt8] {

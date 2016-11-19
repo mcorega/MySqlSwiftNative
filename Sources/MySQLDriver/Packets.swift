@@ -14,7 +14,7 @@ extension MySQL.Connection {
         if let data = try socket?.readPacket() {
             switch data[0] {
             case 0x00:
-                handleOKPacket(data)
+                _ = handleOKPacket(data)
                 break
             case 0xfe:
                 break

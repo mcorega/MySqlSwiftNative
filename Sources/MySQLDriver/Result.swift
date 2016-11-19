@@ -174,7 +174,7 @@ extension MySQL {
             repeat {
                 
                 if con.hasMoreResults {
-                    try con.nextResult()
+                    try _ = con.nextResult()
                 }
                 
                 var rows = ResultSet()
@@ -496,7 +496,7 @@ extension MySQL {
             repeat {
             
                 if con.hasMoreResults {
-                    try con.nextResult()
+                    try _ = con.nextResult()
                 }
             
                 var rows = ResultSet()
@@ -521,7 +521,7 @@ extension MySQL {
             repeat {
                 
                 if con.hasMoreResults {
-                    try con.nextResult()
+                    try _ = con.nextResult()
                 }
                 
                 var rows = [T]()
