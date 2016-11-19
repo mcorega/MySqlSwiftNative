@@ -671,7 +671,7 @@ extension Sequence where Iterator.Element == UInt8 {
             return ""
         }
         
-        return String(cString: UnsafeMutablePointer<CChar>(arr))
+        return String(cString: UnsafePointer<UInt8>(arr))
     }
     
     static func UInt24Array(_ val: UInt32) -> [UInt8]{
