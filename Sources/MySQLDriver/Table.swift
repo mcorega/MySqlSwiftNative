@@ -82,9 +82,9 @@ public extension MySQL {
                 return "DOUBLE" + optional
             case "String":
                 return "MEDIUMTEXT" + optional
-            case "__NSTaggedDate", "__NSDate", "NSDate":
+            case "__NSTaggedDate", "__NSDate", "NSDate", "Date":
                 return "DATETIME" + optional
-            case "NSConcreteData", "NSConcreteMutableData", "NSMutableData":
+            case "NSConcreteData", "NSConcreteMutableData", "NSMutableData", "Data":
                 return "LONGBLOB" + optional
             case "Array<UInt8>":
                 return "LONGBLOB" + optional
