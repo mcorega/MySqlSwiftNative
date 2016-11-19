@@ -34,7 +34,7 @@ public struct MySQL {
         var scramble2:[UInt8]?
     }
     
-    public enum Error:Error {
+    public enum MySQLError : Error {
         case error(Int, String)
     }
     

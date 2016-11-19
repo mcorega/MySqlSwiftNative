@@ -71,7 +71,7 @@ public extension MySQL.Connection {
     func prepare(_ q:String) throws -> MySQL.Statement {
         
         guard self.socket != nil else {
-            throw MySQL.Connection.MySQLError.notConnected
+            throw MySQL.Connection.ConnectionError.notConnected
         }
         
         try writeCommandPacketStr(MysqlCommands.COM_STMT_PREPARE, q: q)
@@ -87,7 +87,7 @@ public extension MySQL.Connection {
             }
         }
         else {
-            throw MySQL.Connection.MySQLError.statementPrepareError("Could not get col and param count")
+            throw MySQL.Connection.ConnectionError.statementPrepareError("Could not get col and param count")
         }
         
         return stmt

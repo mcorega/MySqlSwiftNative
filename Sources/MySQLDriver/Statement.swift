@@ -12,7 +12,7 @@ public extension MySQL {
     
     open class Statement {
 
-        enum Error : Error {
+        enum StatementError : Error {
             case argsCountMismatch
             case stmtIdNotSet
             case unknownType(String)
@@ -33,7 +33,7 @@ public extension MySQL {
         open func query(_ args:[Any]) throws -> Result{
             
             guard self.con != nil else {
-                throw Error.NilConnection
+                throw StatementError.nilConnection
             }
             
             //      if con!.EOFfound && !con!.hasMoreResults {
@@ -52,7 +52,7 @@ public extension MySQL {
         open func exec(_ args:[Any]) throws {
 
             guard self.con != nil else {
-                throw Error.NilConnection
+                throw StatementError.nilConnection
             }
 
           //  if con!.EOFfound && !con!.hasMoreResults {
@@ -95,7 +95,7 @@ public extension MySQL {
         func writeExecutePacket(_ args: [Any]) throws {
 
             if args.count != paramCount {
-                throw Error.ArgsCountMismatch
+                throw StatementError.argsCountMismatch
             }
             
             //let pktLen = 4 + 1 + 4 + 1 //+ 4
@@ -107,7 +107,7 @@ public extension MySQL {
             data.append(MysqlCommands.COM_STMT_EXECUTE)
             
             guard self.id != nil else {
-                throw Error.StmtIdNotSet
+                throw StatementError.stmtIdNotSet
             }
             
             // statement_id [4 bytes]
@@ -228,7 +228,7 @@ public extension MySQL {
                                 argsArr += arr
                             }
                             else {
-                                throw Error.MySQLPacketToLarge
+                                throw StatementError.mySQLPacketToLarge
                             }
                             break
                             
@@ -245,7 +245,7 @@ public extension MySQL {
                                 argsArr += arr
                             }
                             else {
-                                throw Error.MySQLPacketToLarge
+                                throw StatementError.mySQLPacketToLarge
                             }
                             break
                             
@@ -257,7 +257,7 @@ public extension MySQL {
                                 argsArr += [UInt8](str.utf8)
                             }
                             else {
-                                throw Error.MySQLPacketToLarge
+                                throw StatementError.mySQLPacketToLarge
                             }
                             break
                             
@@ -269,7 +269,7 @@ public extension MySQL {
                             argsArr += arr
                             break
                         default:
-                            throw Error.unknownType("\(mi.subjectType)")
+                            throw StatementError.unknownType("\(mi.subjectType)")
                         }
                     }
                     

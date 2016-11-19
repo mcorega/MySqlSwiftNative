@@ -34,7 +34,7 @@ extension MySQL {
         func readRow() throws -> MySQL.Row?{
             
             guard con.isConnected == true else {
-                throw Connection.Error.NotConnected
+                throw Connection.ConnectionError.notConnected
             }
             
             if con.columns?.count == 0 {
@@ -204,7 +204,7 @@ extension MySQL {
         func readRow() throws -> MySQL.Row?{
             
             guard con.isConnected == true else {
-                throw Connection.Error.NotConnected
+                throw Connection.ConnectionError.notConnected
             }
             
             if con.columns?.count == 0 {

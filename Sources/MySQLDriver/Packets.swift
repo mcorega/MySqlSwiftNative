@@ -44,10 +44,10 @@ extension MySQL.Connection {
         return 0
     }
     
-    func handleErrorPacket(_ data:[UInt8]) -> MySQL.Error {
+    func handleErrorPacket(_ data:[UInt8]) -> MySQL.MySQLError {
         
         if data[0] != 0xff {
-            return MySQL.Error.error(-1, "EOF encountered")
+            return MySQL.MySQLError.error(-1, "EOF encountered")
         }
         
         let errno = data[1...3].uInt16()
@@ -65,7 +65,7 @@ extension MySQL.Connection {
         
         print("MySQL errstr: \(errStr)")
         
-        return MySQL.Error.Error(Int(errno), errStr!)
+        return MySQL.MySQLError.error(Int(errno), errStr!)
     }
     
     

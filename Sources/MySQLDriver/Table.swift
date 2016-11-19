@@ -11,9 +11,9 @@ import Foundation
 
 public extension MySQL {
     
-    open class Table {
+    public class Table {
         
-        enum Error : Error {
+        enum TableError : Error {
             case tableExists
             case nilWhereClause
             case wrongParamCountInWhereClause
@@ -89,7 +89,7 @@ public extension MySQL {
             case "Array<UInt8>":
                 return "LONGBLOB" + optional
             default:
-                throw Error.unknownType(type)
+                throw TableError.unknownType(type)
             }
         }
         
@@ -303,7 +303,7 @@ public extension MySQL {
         fileprivate func parsePredicate(_ pred:[Any]) throws -> (String, [Any]) {
             
             guard pred.count % 2 == 0 else {
-                throw Error.WrongParamCountInWhereClause
+                throw TableError.wrongParamCountInWhereClause
             }
             
             var res = ""
@@ -319,7 +319,7 @@ public extension MySQL {
                     values.append(val)
                 }
                 else {
-                    throw Error.WrongParamInWhereClause
+                    throw TableError.wrongParamInWhereClause
                 }
             }
             
@@ -329,7 +329,7 @@ public extension MySQL {
         open func select(_ columns:[String]?=nil, Where:[Any]) throws -> [MySQL.ResultSet]? {
             
             guard Where.count > 0 else {
-                throw Error.NilWhereClause
+                throw TableError.nilWhereClause
             }
             
             let (predicate, vals) = try parsePredicate(Where)
