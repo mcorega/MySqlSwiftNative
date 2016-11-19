@@ -90,11 +90,11 @@ func arrayOfBytes<T: Integer>(_ value: T, length totalBytes: Int = MemoryLayout<
     return bytes
 }
 
-private func CS_AnyGenerator<Element>(_ body: () -> Element?) -> AnyIterator<Element> {
+private func CS_AnyGenerator<Element>(_ body: @escaping () -> Element?) -> AnyIterator<Element> {
     #if os(Linux)
-        return AnyGenerator(body: body)
+        return AnyGenerator(body)
     #else
-        return AnyIterator(body: body)
+        return AnyIterator(body)
     #endif
 }
 
