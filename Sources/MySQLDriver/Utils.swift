@@ -223,7 +223,7 @@ extension MySQL {
             var (num, n) = lenEncInt(b)
             
             guard num != nil else {
-                return (nil, 0)
+                return (nil, n)
             }
             
             if num < 1 {
