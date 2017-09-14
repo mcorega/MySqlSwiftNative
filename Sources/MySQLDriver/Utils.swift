@@ -280,10 +280,18 @@ extension MySQL {
                 
                 // 254: value of following 8
             case 0xfe:
-                return (UInt64(b[1]) | UInt64(b[2])<<8 | UInt64(b[3])<<16 |
-                    UInt64(b[4])<<24 | UInt64(b[5])<<32 | UInt64(b[6])<<40 |
-                    UInt64(b[7])<<48 | UInt64(b[8])<<56, 9)
-            default: break
+				let byteCount = b.count - 1
+				var val:UInt64 = 0
+				
+				for i in 1..<byteCount
+				{
+					let shift:UInt64 = UInt64(8^(i-1))
+					val = val | UInt64(b[i])<<shift
+					
+				}
+				//				Response is only 4 values
+				return (val, b.count)
+			default: break
             }
             
             // 0-250: value of first byte
