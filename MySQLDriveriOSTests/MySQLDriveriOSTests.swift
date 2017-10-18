@@ -16,7 +16,7 @@ class MySQLDriveriOSTests: XCTestCase {
         super.setUp()
         // Put setup code here. This method is called before the invocation of each test method in the class.
         do {
-            try con.open("localhost", user: "test", passwd: "test", dbname: "swift_test")
+            try con.open("192.168.1.122", user: "test", passwd: "test", dbname: "swift_test")
             XCTAssertNotNil(con)
         }
         catch(let e) {

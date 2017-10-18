@@ -274,7 +274,7 @@ public extension MySQL {
         }
         
         open func update(_ row:Row, key:String, exclude:[String]? = nil) throws {
-            try update(row, Where: [key : row[key]], exclude: exclude)
+            try update(row, Where: [key : row[key] as Any], exclude: exclude)
         }
         
         open func update(_ object:Any, Where:[String:Any], exclude:[String]? = nil) throws {
@@ -357,6 +357,22 @@ public extension MySQL {
                 res = rr
             }
             
+            return res
+        }
+        
+        open func select<T:Codable>(_ columns:[String]?=nil, Where:[Any]) throws -> [T] {
+            
+            var res = [T]();
+            
+            if let rs = try select(columns, Where:Where) {
+                for rr in rs {
+                    for r in rr {
+                        let data = try JSONSerialization.data(withJSONObject: r)
+                        let tr:T = try JSONDecoder().decode(T.self, from: data)
+                        res.append(tr)
+                    }
+                }
+            }
             return res
         }
         

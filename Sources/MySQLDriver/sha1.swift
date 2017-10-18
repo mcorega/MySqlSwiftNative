@@ -25,7 +25,7 @@ extension Int {
 
 /// Initialize integer from array of bytes.
 /// This method may be slow
-func integerWithBytes<T: Integer>(_ bytes: [UInt8]) -> T where T:ByteConvertible, T: BitshiftOperationsType {
+func integerWithBytes<T: BinaryInteger>(_ bytes: [UInt8]) -> T where T:ByteConvertible, T: BitshiftOperationsType {
     var bytes = bytes.reversed() as Array<UInt8> //FIXME: check it this is equivalent of Array(...)
     if bytes.count < MemoryLayout<T>.size {
         let paddingCount = MemoryLayout<T>.size - bytes.count
@@ -74,7 +74,7 @@ protocol ByteConvertible {
     init(truncatingBitPattern: UInt64)
 }
 
-func arrayOfBytes<T: Integer>(_ value: T, length totalBytes: Int = MemoryLayout<T>.size) -> Array<UInt8> {
+func arrayOfBytes<T: BinaryInteger>(_ value: T, length totalBytes: Int = MemoryLayout<T>.size) -> Array<UInt8> {
     let valuePointer = UnsafeMutablePointer<T>.allocate(capacity: 1)
     valuePointer.pointee = value
     
@@ -126,7 +126,12 @@ func toUInt32Array(_ slice: ArraySlice<UInt8>) -> Array<UInt32> {
     result.reserveCapacity(16)
 
     for idx in stride(from: slice.startIndex, to: slice.endIndex, by: MemoryLayout<UInt32>.size) {
-        let val:UInt32 = (UInt32(slice[idx+3]) << 24) | (UInt32(slice[idx+2]) << 16) | (UInt32(slice[idx+1]) << 8) | UInt32(slice[idx])
+        //let val:UInt32 = (UInt32(slice[idx+3]) << 24) | (UInt32(slice[idx+2]) << 16) | (UInt32(slice[idx+1]) << 8) | UInt32(slice[idx])
+        
+        var val:UInt32 = (UInt32(slice[idx+3]) << 24)
+        val = val | (UInt32(slice[idx+2]) << 16)
+        val = val | (UInt32(slice[idx+1]) << 8)
+        val = val | UInt32(slice[idx])
         result.append(val)
     }
     return result

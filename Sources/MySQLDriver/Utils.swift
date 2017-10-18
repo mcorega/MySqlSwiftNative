@@ -280,9 +280,17 @@ extension MySQL {
                 
                 // 254: value of following 8
             case 0xfe:
-                return (UInt64(b[1]) | UInt64(b[2])<<8 | UInt64(b[3])<<16 |
+               /* return (UInt64(b[1]) | UInt64(b[2])<<8 | UInt64(b[3])<<16 |
                     UInt64(b[4])<<24 | UInt64(b[5])<<32 | UInt64(b[6])<<40 |
                     UInt64(b[7])<<48 | UInt64(b[8])<<56, 9)
+ */
+                var a = UInt64(b[1]) | UInt64(b[2])<<8 | UInt64(b[3])<<16
+                a = a | UInt64(b[4])<<24 | UInt64(b[5])<<32
+                a = a | UInt64(b[6])<<40
+                a = a | UInt64(b[7])<<48 | UInt64(b[8])<<56
+                
+                return(a, 9)
+                
             default: break
             }
             
@@ -505,7 +513,14 @@ extension Int {
             res |= Int(arr[arr.startIndex + i]) << Int(i*8)
         }
         //self = res
-        self = Int(arr[arr.startIndex + 3])<<24 | Int(arr[arr.startIndex + 2])<<16 | Int(arr[arr.startIndex + 1])<<8 | Int(arr[arr.startIndex])
+       // self = Int(arr[arr.startIndex + 3])<<24 | Int(arr[arr.startIndex + 2])<<16 | Int(arr[arr.startIndex + 1])<<8 | Int(arr[arr.startIndex])
+        var a =  Int(arr[arr.startIndex + 3])<<24
+        a = a | Int(arr[arr.startIndex + 2])<<16
+        a = a | Int(arr[arr.startIndex + 1])<<8
+        a = a | Int(arr[arr.startIndex])
+        
+        self = a
+        
     }
     
     func array() ->[UInt8] {
@@ -584,7 +599,13 @@ extension Sequence where Iterator.Element == UInt8 {
             return elem
         }
         
-        return Int32(arr[3])<<24 | Int32(arr[2])<<16 | Int32(arr[1])<<8 | Int32(arr[0])
+        var a: Int32 = Int32(arr[3])<<24
+        a = a | Int32(arr[2])<<16
+        a = a | Int32(arr[1])<<8
+        a = a | Int32(arr[0])
+
+       // return Int32(arr[3])<<24 | Int32(arr[2])<<16 | Int32(arr[1])<<8 | Int32(arr[0])
+        return a
     }
     
     func uInt32() -> UInt32 {
@@ -592,7 +613,13 @@ extension Sequence where Iterator.Element == UInt8 {
             return elem
         }
         
-        return UInt32(arr[3])<<24 | UInt32(arr[2])<<16 | UInt32(arr[1])<<8 | UInt32(arr[0])
+        var a: UInt32 = UInt32(arr[3])<<24
+        a = a | UInt32(arr[2])<<16
+        a = a | UInt32(arr[1])<<8
+        a = a | UInt32(arr[0])
+        
+       // return UInt32(arr[3])<<24 | UInt32(arr[2])<<16 | UInt32(arr[1])<<8 | UInt32(arr[0])
+        return a
     }
     
     func uInt64() -> UInt64 {

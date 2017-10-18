@@ -63,7 +63,7 @@ extension MySQL.Connection {
         let errStr = d1.string()
         //let errStr = String.fromCString(UnsafePointer<CChar>(Array(data[pos...data.count-1])))! //data[pos..<data.count].string()
         
-        print("MySQL errstr: \(errStr)")
+        print("MySQL errstr: \(String(describing: errStr))")
         
         return MySQL.MySQLError.error(Int(errno), errStr!)
     }
