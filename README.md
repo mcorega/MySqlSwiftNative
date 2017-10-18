@@ -218,7 +218,7 @@ pod 'MySqlSwiftNative', '~> 1.0.10'
 
 ### Carthage.
 ```
-github "mcorega/MySqlSwiftNative" == 1.0.10
+github "mcorega/MySqlSwiftNative" == 1.4.0
 ```
 
 ### License
