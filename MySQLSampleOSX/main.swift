@@ -35,12 +35,26 @@ do{
     try con.exec("INSERT INTO  User(id,name) VALUES (1, 'John')")
     try con.exec("INSERT INTO  User(id,name) VALUES (2, 'Jack')")
     
-    let users: [User] = try con.getTable("User").select(Where: ["id>", 0]) 
+    let users: [User] = try con.getTable("User").select(Where: ["id>", 0])
     
     for u in users {
         print(u.name)
     }
     
+    var user = User(id: 1, name: "John")
+    
+    let table = MySQL.Table(tableName: "User2", connection: con)
+    try table.create(user)
+    try table.insert(user)
+    
+    user = User(id: 2, name: "Jack")
+    try table.insert(user)
+    
+    let users2: [User] = try con.getTable("User2").select(Where: ["id>", 0])
+    
+    for u in users2 {
+        print(u.name)
+    }
     
     /*
 
