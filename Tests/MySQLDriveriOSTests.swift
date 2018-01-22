@@ -7,7 +7,7 @@
 //
 
 import XCTest
-@testable import MySQLDriveriOS
+@testable import MySQLDriver
 
 class MySQLDriveriOSTests: XCTestCase {
     

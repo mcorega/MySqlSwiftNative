@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "3B28C3D81C2D73E8008CA202"
+               BlueprintIdentifier = "3B28C4001C2D74D4008CA202"
                BuildableName = "MySQLDriver.framework"
-               BlueprintName = "MySQLDriver"
+               BlueprintName = "MySQLDriver-iOS"
                ReferencedContainer = "container:MySQLDriver.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -33,9 +33,9 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "B0F16B481F97728700AAAFDB"
-               BuildableName = "MySQLDriverTests.xctest"
-               BlueprintName = "MySQLDriverTests"
+               BlueprintIdentifier = "3B28C4091C2D74D4008CA202"
+               BuildableName = "MySQLDriverTests-iOS.xctest"
+               BlueprintName = "MySQLDriverTests-iOS"
                ReferencedContainer = "container:MySQLDriver.xcodeproj">
             </BuildableReference>
          </TestableReference>
@@ -43,9 +43,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "3B28C3D81C2D73E8008CA202"
+            BlueprintIdentifier = "3B28C4001C2D74D4008CA202"
             BuildableName = "MySQLDriver.framework"
-            BlueprintName = "MySQLDriver"
+            BlueprintName = "MySQLDriver-iOS"
             ReferencedContainer = "container:MySQLDriver.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -66,9 +66,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "3B28C3D81C2D73E8008CA202"
+            BlueprintIdentifier = "3B28C4001C2D74D4008CA202"
             BuildableName = "MySQLDriver.framework"
-            BlueprintName = "MySQLDriver"
+            BlueprintName = "MySQLDriver-iOS"
             ReferencedContainer = "container:MySQLDriver.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -84,9 +84,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "3B28C3D81C2D73E8008CA202"
+            BlueprintIdentifier = "3B28C4001C2D74D4008CA202"
             BuildableName = "MySQLDriver.framework"
-            BlueprintName = "MySQLDriver"
+            BlueprintName = "MySQLDriver-iOS"
             ReferencedContainer = "container:MySQLDriver.xcodeproj">
          </BuildableReference>
       </MacroExpansion>

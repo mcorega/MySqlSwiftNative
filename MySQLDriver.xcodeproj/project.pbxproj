@@ -7,18 +7,16 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		3B28C3DD1C2D73E8008CA202 /* MySQLDriverMac.h in Headers */ = {isa = PBXBuildFile; fileRef = 3B28C3DC1C2D73E8008CA202 /* MySQLDriverMac.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3B28C3F81C2D7423008CA202 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B28C3F71C2D7423008CA202 /* main.swift */; };
-		3B28C4041C2D74D4008CA202 /* MySQLDriveriOS.h in Headers */ = {isa = PBXBuildFile; fileRef = 3B28C4031C2D74D4008CA202 /* MySQLDriveriOS.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		3B28C40B1C2D74D4008CA202 /* MySQLDriveriOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B28C4011C2D74D4008CA202 /* MySQLDriveriOS.framework */; };
+		3B28C40B1C2D74D4008CA202 /* MySQLDriver.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B28C4011C2D74D4008CA202 /* MySQLDriver.framework */; };
 		3B28C4101C2D74D4008CA202 /* MySQLDriveriOSTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B28C40F1C2D74D4008CA202 /* MySQLDriveriOSTests.swift */; };
 		3B28C4741C2D91B6008CA202 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B28C4731C2D91B6008CA202 /* AppDelegate.swift */; };
 		3B28C4761C2D91B6008CA202 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B28C4751C2D91B6008CA202 /* ViewController.swift */; };
 		3B28C4791C2D91B6008CA202 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3B28C4771C2D91B6008CA202 /* Main.storyboard */; };
 		3B28C47B1C2D91B6008CA202 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3B28C47A1C2D91B6008CA202 /* Assets.xcassets */; };
 		3B28C47E1C2D91B6008CA202 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3B28C47C1C2D91B6008CA202 /* LaunchScreen.storyboard */; };
-		3B28C4831C2D91D1008CA202 /* MySQLDriveriOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B28C4011C2D74D4008CA202 /* MySQLDriveriOS.framework */; };
-		3B28C4841C2D91D1008CA202 /* MySQLDriveriOS.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 3B28C4011C2D74D4008CA202 /* MySQLDriveriOS.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		3B28C4831C2D91D1008CA202 /* MySQLDriver.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B28C4011C2D74D4008CA202 /* MySQLDriver.framework */; };
+		3B28C4841C2D91D1008CA202 /* MySQLDriver.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 3B28C4011C2D74D4008CA202 /* MySQLDriver.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		3BC37ADE1C948A3E00C0B9E7 /* Connection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BC37AD01C948A3E00C0B9E7 /* Connection.swift */; };
 		3BC37AE01C948A3E00C0B9E7 /* Connection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BC37AD01C948A3E00C0B9E7 /* Connection.swift */; };
 		3BC37AE11C948A3E00C0B9E7 /* Connection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BC37AD01C948A3E00C0B9E7 /* Connection.swift */; };
@@ -84,9 +82,8 @@
 		3BC37B2F1C948A3F00C0B9E7 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BC37ADD1C948A3E00C0B9E7 /* Utils.swift */; };
 		3BC37B301C948A3F00C0B9E7 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BC37ADD1C948A3E00C0B9E7 /* Utils.swift */; };
 		3BC37B311C948A3F00C0B9E7 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BC37ADD1C948A3E00C0B9E7 /* Utils.swift */; };
-		B0F16B4C1F97728700AAAFDB /* MySQLDriverTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0F16B4B1F97728700AAAFDB /* MySQLDriverTests.swift */; };
+		627B380E2016625F0029FDC1 /* MySQLDriverMacTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B28C3E81C2D73E8008CA202 /* MySQLDriverMacTests.swift */; };
 		B0F16B4E1F97728700AAAFDB /* MySQLDriver.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B28C3D91C2D73E8008CA202 /* MySQLDriver.framework */; };
-		B0F16B541F9772DB00AAAFDB /* MySQLDriverMacTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B28C3E81C2D73E8008CA202 /* MySQLDriverMacTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -129,7 +126,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				3B28C4841C2D91D1008CA202 /* MySQLDriveriOS.framework in Embed Frameworks */,
+				3B28C4841C2D91D1008CA202 /* MySQLDriver.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -138,18 +135,13 @@
 
 /* Begin PBXFileReference section */
 		3B28C3D91C2D73E8008CA202 /* MySQLDriver.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = MySQLDriver.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		3B28C3DC1C2D73E8008CA202 /* MySQLDriverMac.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MySQLDriverMac.h; sourceTree = "<group>"; };
-		3B28C3DE1C2D73E8008CA202 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3B28C3E81C2D73E8008CA202 /* MySQLDriverMacTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MySQLDriverMacTests.swift; sourceTree = "<group>"; };
-		3B28C3EA1C2D73E8008CA202 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3B28C3F51C2D7423008CA202 /* MySQLSampleOSX */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = MySQLSampleOSX; sourceTree = BUILT_PRODUCTS_DIR; };
 		3B28C3F71C2D7423008CA202 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
-		3B28C4011C2D74D4008CA202 /* MySQLDriveriOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = MySQLDriveriOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		3B28C4031C2D74D4008CA202 /* MySQLDriveriOS.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MySQLDriveriOS.h; sourceTree = "<group>"; };
+		3B28C4011C2D74D4008CA202 /* MySQLDriver.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = MySQLDriver.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3B28C4051C2D74D4008CA202 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		3B28C40A1C2D74D4008CA202 /* MySQLDriveriOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MySQLDriveriOSTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		3B28C40A1C2D74D4008CA202 /* MySQLDriverTests-iOS.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "MySQLDriverTests-iOS.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3B28C40F1C2D74D4008CA202 /* MySQLDriveriOSTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MySQLDriveriOSTests.swift; sourceTree = "<group>"; };
-		3B28C4111C2D74D4008CA202 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3B28C4181C2D74FD008CA202 /* Package.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Package.swift; sourceTree = "<group>"; };
 		3B28C4711C2D91B5008CA202 /* MySQLSampleiOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MySQLSampleiOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3B28C4731C2D91B6008CA202 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -171,9 +163,7 @@
 		3BC37ADB1C948A3E00C0B9E7 /* Table.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Table.swift; sourceTree = "<group>"; };
 		3BC37ADC1C948A3E00C0B9E7 /* tests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = tests.swift; sourceTree = "<group>"; };
 		3BC37ADD1C948A3E00C0B9E7 /* Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
-		B0F16B491F97728700AAAFDB /* MySQLDriverTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MySQLDriverTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		B0F16B4B1F97728700AAAFDB /* MySQLDriverTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MySQLDriverTests.swift; sourceTree = "<group>"; };
-		B0F16B4D1F97728700AAAFDB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B0F16B491F97728700AAAFDB /* MySQLDriverTests-macOS.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "MySQLDriverTests-macOS.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -202,7 +192,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3B28C40B1C2D74D4008CA202 /* MySQLDriveriOS.framework in Frameworks */,
+				3B28C40B1C2D74D4008CA202 /* MySQLDriver.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -210,7 +200,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3B28C4831C2D91D1008CA202 /* MySQLDriveriOS.framework in Frameworks */,
+				3B28C4831C2D91D1008CA202 /* MySQLDriver.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -228,6 +218,7 @@
 		3B1392B11C2F3C1C00AA463B /* Sources */ = {
 			isa = PBXGroup;
 			children = (
+				3B28C4051C2D74D4008CA202 /* Info.plist */,
 				3BC37ACF1C948A3E00C0B9E7 /* MySQLDriver */,
 			);
 			path = Sources;
@@ -238,13 +229,8 @@
 			children = (
 				3B28C4181C2D74FD008CA202 /* Package.swift */,
 				3B1392B11C2F3C1C00AA463B /* Sources */,
-				3B28C3DB1C2D73E8008CA202 /* MySQLDriver */,
-				3B28C3E71C2D73E8008CA202 /* MySQLDriverMacTests */,
-				3B28C3F61C2D7423008CA202 /* MySQLSampleOSX */,
-				3B28C4021C2D74D4008CA202 /* MySQLDriveriOS */,
-				3B28C40E1C2D74D4008CA202 /* MySQLDriveriOSTests */,
-				3B28C4721C2D91B6008CA202 /* MySQLSampleiOS */,
-				B0F16B4A1F97728700AAAFDB /* MySQLDriverTests */,
+				627B380B2016612B0029FDC1 /* Tests */,
+				627B380D201661A90029FDC1 /* Samples */,
 				3B28C3DA1C2D73E8008CA202 /* Products */,
 				B0F16B431F976B2600AAAFDB /* Frameworks */,
 			);
@@ -255,31 +241,12 @@
 			children = (
 				3B28C3D91C2D73E8008CA202 /* MySQLDriver.framework */,
 				3B28C3F51C2D7423008CA202 /* MySQLSampleOSX */,
-				3B28C4011C2D74D4008CA202 /* MySQLDriveriOS.framework */,
-				3B28C40A1C2D74D4008CA202 /* MySQLDriveriOSTests.xctest */,
+				3B28C4011C2D74D4008CA202 /* MySQLDriver.framework */,
+				3B28C40A1C2D74D4008CA202 /* MySQLDriverTests-iOS.xctest */,
 				3B28C4711C2D91B5008CA202 /* MySQLSampleiOS.app */,
-				B0F16B491F97728700AAAFDB /* MySQLDriverTests.xctest */,
+				B0F16B491F97728700AAAFDB /* MySQLDriverTests-macOS.xctest */,
 			);
 			name = Products;
-			sourceTree = "<group>";
-		};
-		3B28C3DB1C2D73E8008CA202 /* MySQLDriver */ = {
-			isa = PBXGroup;
-			children = (
-				3B28C3DC1C2D73E8008CA202 /* MySQLDriverMac.h */,
-				3B28C3DE1C2D73E8008CA202 /* Info.plist */,
-			);
-			name = MySQLDriver;
-			path = MySQLDriverMac;
-			sourceTree = "<group>";
-		};
-		3B28C3E71C2D73E8008CA202 /* MySQLDriverMacTests */ = {
-			isa = PBXGroup;
-			children = (
-				3B28C3E81C2D73E8008CA202 /* MySQLDriverMacTests.swift */,
-				3B28C3EA1C2D73E8008CA202 /* Info.plist */,
-			);
-			path = MySQLDriverMacTests;
 			sourceTree = "<group>";
 		};
 		3B28C3F61C2D7423008CA202 /* MySQLSampleOSX */ = {
@@ -288,24 +255,6 @@
 				3B28C3F71C2D7423008CA202 /* main.swift */,
 			);
 			path = MySQLSampleOSX;
-			sourceTree = "<group>";
-		};
-		3B28C4021C2D74D4008CA202 /* MySQLDriveriOS */ = {
-			isa = PBXGroup;
-			children = (
-				3B28C4031C2D74D4008CA202 /* MySQLDriveriOS.h */,
-				3B28C4051C2D74D4008CA202 /* Info.plist */,
-			);
-			path = MySQLDriveriOS;
-			sourceTree = "<group>";
-		};
-		3B28C40E1C2D74D4008CA202 /* MySQLDriveriOSTests */ = {
-			isa = PBXGroup;
-			children = (
-				3B28C40F1C2D74D4008CA202 /* MySQLDriveriOSTests.swift */,
-				3B28C4111C2D74D4008CA202 /* Info.plist */,
-			);
-			path = MySQLDriveriOSTests;
 			sourceTree = "<group>";
 		};
 		3B28C4721C2D91B6008CA202 /* MySQLSampleiOS */ = {
@@ -341,20 +290,29 @@
 			path = MySQLDriver;
 			sourceTree = "<group>";
 		};
+		627B380B2016612B0029FDC1 /* Tests */ = {
+			isa = PBXGroup;
+			children = (
+				3B28C3E81C2D73E8008CA202 /* MySQLDriverMacTests.swift */,
+				3B28C40F1C2D74D4008CA202 /* MySQLDriveriOSTests.swift */,
+			);
+			path = Tests;
+			sourceTree = "<group>";
+		};
+		627B380D201661A90029FDC1 /* Samples */ = {
+			isa = PBXGroup;
+			children = (
+				3B28C4721C2D91B6008CA202 /* MySQLSampleiOS */,
+				3B28C3F61C2D7423008CA202 /* MySQLSampleOSX */,
+			);
+			path = Samples;
+			sourceTree = "<group>";
+		};
 		B0F16B431F976B2600AAAFDB /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
 			);
 			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		B0F16B4A1F97728700AAAFDB /* MySQLDriverTests */ = {
-			isa = PBXGroup;
-			children = (
-				B0F16B4B1F97728700AAAFDB /* MySQLDriverTests.swift */,
-				B0F16B4D1F97728700AAAFDB /* Info.plist */,
-			);
-			path = MySQLDriverTests;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -364,7 +322,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3B28C3DD1C2D73E8008CA202 /* MySQLDriverMac.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -372,16 +329,15 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3B28C4041C2D74D4008CA202 /* MySQLDriveriOS.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		3B28C3D81C2D73E8008CA202 /* MySQLDriver */ = {
+		3B28C3D81C2D73E8008CA202 /* MySQLDriver-macOS */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 3B28C3EB1C2D73E8008CA202 /* Build configuration list for PBXNativeTarget "MySQLDriver" */;
+			buildConfigurationList = 3B28C3EB1C2D73E8008CA202 /* Build configuration list for PBXNativeTarget "MySQLDriver-macOS" */;
 			buildPhases = (
 				3B28C3D41C2D73E8008CA202 /* Sources */,
 				3B28C3D51C2D73E8008CA202 /* Frameworks */,
@@ -392,7 +348,7 @@
 			);
 			dependencies = (
 			);
-			name = MySQLDriver;
+			name = "MySQLDriver-macOS";
 			productName = MySQLDriverMac;
 			productReference = 3B28C3D91C2D73E8008CA202 /* MySQLDriver.framework */;
 			productType = "com.apple.product-type.framework";
@@ -414,9 +370,9 @@
 			productReference = 3B28C3F51C2D7423008CA202 /* MySQLSampleOSX */;
 			productType = "com.apple.product-type.tool";
 		};
-		3B28C4001C2D74D4008CA202 /* MySQLDriveriOS */ = {
+		3B28C4001C2D74D4008CA202 /* MySQLDriver-iOS */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 3B28C4121C2D74D4008CA202 /* Build configuration list for PBXNativeTarget "MySQLDriveriOS" */;
+			buildConfigurationList = 3B28C4121C2D74D4008CA202 /* Build configuration list for PBXNativeTarget "MySQLDriver-iOS" */;
 			buildPhases = (
 				3B28C3FC1C2D74D4008CA202 /* Sources */,
 				3B28C3FD1C2D74D4008CA202 /* Frameworks */,
@@ -427,14 +383,14 @@
 			);
 			dependencies = (
 			);
-			name = MySQLDriveriOS;
+			name = "MySQLDriver-iOS";
 			productName = MySQLDriveriOS;
-			productReference = 3B28C4011C2D74D4008CA202 /* MySQLDriveriOS.framework */;
+			productReference = 3B28C4011C2D74D4008CA202 /* MySQLDriver.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		3B28C4091C2D74D4008CA202 /* MySQLDriveriOSTests */ = {
+		3B28C4091C2D74D4008CA202 /* MySQLDriverTests-iOS */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 3B28C4151C2D74D4008CA202 /* Build configuration list for PBXNativeTarget "MySQLDriveriOSTests" */;
+			buildConfigurationList = 3B28C4151C2D74D4008CA202 /* Build configuration list for PBXNativeTarget "MySQLDriverTests-iOS" */;
 			buildPhases = (
 				3B28C4061C2D74D4008CA202 /* Sources */,
 				3B28C4071C2D74D4008CA202 /* Frameworks */,
@@ -445,9 +401,9 @@
 			dependencies = (
 				3B28C40D1C2D74D4008CA202 /* PBXTargetDependency */,
 			);
-			name = MySQLDriveriOSTests;
+			name = "MySQLDriverTests-iOS";
 			productName = MySQLDriveriOSTests;
-			productReference = 3B28C40A1C2D74D4008CA202 /* MySQLDriveriOSTests.xctest */;
+			productReference = 3B28C40A1C2D74D4008CA202 /* MySQLDriverTests-iOS.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 		3B28C4701C2D91B5008CA202 /* MySQLSampleiOS */ = {
@@ -469,9 +425,9 @@
 			productReference = 3B28C4711C2D91B5008CA202 /* MySQLSampleiOS.app */;
 			productType = "com.apple.product-type.application";
 		};
-		B0F16B481F97728700AAAFDB /* MySQLDriverTests */ = {
+		B0F16B481F97728700AAAFDB /* MySQLDriverTests-macOS */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = B0F16B511F97728700AAAFDB /* Build configuration list for PBXNativeTarget "MySQLDriverTests" */;
+			buildConfigurationList = B0F16B511F97728700AAAFDB /* Build configuration list for PBXNativeTarget "MySQLDriverTests-macOS" */;
 			buildPhases = (
 				B0F16B451F97728700AAAFDB /* Sources */,
 				B0F16B461F97728700AAAFDB /* Frameworks */,
@@ -482,9 +438,9 @@
 			dependencies = (
 				B0F16B501F97728700AAAFDB /* PBXTargetDependency */,
 			);
-			name = MySQLDriverTests;
+			name = "MySQLDriverTests-macOS";
 			productName = MySQLDriverTests;
-			productReference = B0F16B491F97728700AAAFDB /* MySQLDriverTests.xctest */;
+			productReference = B0F16B491F97728700AAAFDB /* MySQLDriverTests-macOS.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -510,7 +466,7 @@
 					};
 					3B28C4091C2D74D4008CA202 = {
 						CreatedOnToolsVersion = 7.2;
-						DevelopmentTeam = V78YG58T49;
+						DevelopmentTeam = A76BV63T8L;
 						LastSwiftMigration = 0810;
 					};
 					3B28C4701C2D91B5008CA202 = {
@@ -519,7 +475,7 @@
 					};
 					B0F16B481F97728700AAAFDB = {
 						CreatedOnToolsVersion = 9.0.1;
-						DevelopmentTeam = V78YG58T49;
+						DevelopmentTeam = A76BV63T8L;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -537,11 +493,11 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				3B28C3D81C2D73E8008CA202 /* MySQLDriver */,
-				B0F16B481F97728700AAAFDB /* MySQLDriverTests */,
+				3B28C3D81C2D73E8008CA202 /* MySQLDriver-macOS */,
+				3B28C4001C2D74D4008CA202 /* MySQLDriver-iOS */,
+				B0F16B481F97728700AAAFDB /* MySQLDriverTests-macOS */,
 				3B28C3F41C2D7423008CA202 /* MySQLSampleOSX */,
-				3B28C4001C2D74D4008CA202 /* MySQLDriveriOS */,
-				3B28C4091C2D74D4008CA202 /* MySQLDriveriOSTests */,
+				3B28C4091C2D74D4008CA202 /* MySQLDriverTests-iOS */,
 				3B28C4701C2D91B5008CA202 /* MySQLSampleiOS */,
 			);
 		};
@@ -697,8 +653,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B0F16B541F9772DB00AAAFDB /* MySQLDriverMacTests.swift in Sources */,
-				B0F16B4C1F97728700AAAFDB /* MySQLDriverTests.swift in Sources */,
+				627B380E2016625F0029FDC1 /* MySQLDriverMacTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -707,17 +662,17 @@
 /* Begin PBXTargetDependency section */
 		3B28C40D1C2D74D4008CA202 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 3B28C4001C2D74D4008CA202 /* MySQLDriveriOS */;
+			target = 3B28C4001C2D74D4008CA202 /* MySQLDriver-iOS */;
 			targetProxy = 3B28C40C1C2D74D4008CA202 /* PBXContainerItemProxy */;
 		};
 		3B28C4861C2D91D1008CA202 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 3B28C4001C2D74D4008CA202 /* MySQLDriveriOS */;
+			target = 3B28C4001C2D74D4008CA202 /* MySQLDriver-iOS */;
 			targetProxy = 3B28C4851C2D91D1008CA202 /* PBXContainerItemProxy */;
 		};
 		B0F16B501F97728700AAAFDB /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 3B28C3D81C2D73E8008CA202 /* MySQLDriver */;
+			target = 3B28C3D81C2D73E8008CA202 /* MySQLDriver-macOS */;
 			targetProxy = B0F16B4F1F97728700AAAFDB /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -858,7 +813,7 @@
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = mcorega.MySQLDriver;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = MySQLDriver;
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -912,7 +867,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = mcorega.MySQLDriver;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = MySQLDriver;
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 4.0;
@@ -1046,14 +1001,14 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				INFOPLIST_FILE = MySQLDriveriOS/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/Sources/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = mcorega.MySQLDriveriOS;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_BUNDLE_IDENTIFIER = mcorega.MySQLDriver;
+				PRODUCT_NAME = MySQLDriver;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -1099,13 +1054,13 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				INFOPLIST_FILE = MySQLDriveriOS/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/Sources/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MTL_ENABLE_DEBUG_INFO = NO;
-				PRODUCT_BUNDLE_IDENTIFIER = mcorega.MySQLDriveriOS;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_BUNDLE_IDENTIFIER = mcorega.MySQLDriver;
+				PRODUCT_NAME = MySQLDriver;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 3.0;
@@ -1136,6 +1091,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = A76BV63T8L;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -1185,6 +1141,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = A76BV63T8L;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -1323,7 +1280,7 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
-				DEVELOPMENT_TEAM = V78YG58T49;
+				DEVELOPMENT_TEAM = A76BV63T8L;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -1366,7 +1323,7 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEVELOPMENT_TEAM = V78YG58T49;
+				DEVELOPMENT_TEAM = A76BV63T8L;
 				ENABLE_NS_ASSERTIONS = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
@@ -1395,7 +1352,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		3B28C3EB1C2D73E8008CA202 /* Build configuration list for PBXNativeTarget "MySQLDriver" */ = {
+		3B28C3EB1C2D73E8008CA202 /* Build configuration list for PBXNativeTarget "MySQLDriver-macOS" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				3B28C3EC1C2D73E8008CA202 /* Debug */,
@@ -1413,7 +1370,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		3B28C4121C2D74D4008CA202 /* Build configuration list for PBXNativeTarget "MySQLDriveriOS" */ = {
+		3B28C4121C2D74D4008CA202 /* Build configuration list for PBXNativeTarget "MySQLDriver-iOS" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				3B28C4131C2D74D4008CA202 /* Debug */,
@@ -1422,7 +1379,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		3B28C4151C2D74D4008CA202 /* Build configuration list for PBXNativeTarget "MySQLDriveriOSTests" */ = {
+		3B28C4151C2D74D4008CA202 /* Build configuration list for PBXNativeTarget "MySQLDriverTests-iOS" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				3B28C4161C2D74D4008CA202 /* Debug */,
@@ -1440,7 +1397,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		B0F16B511F97728700AAAFDB /* Build configuration list for PBXNativeTarget "MySQLDriverTests" */ = {
+		B0F16B511F97728700AAAFDB /* Build configuration list for PBXNativeTarget "MySQLDriverTests-macOS" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				B0F16B521F97728700AAAFDB /* Debug */,
