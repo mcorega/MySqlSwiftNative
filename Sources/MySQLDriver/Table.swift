@@ -95,7 +95,7 @@ public extension MySQL {
         
         
         /// Creates a new table based on a Swift Object using the connection
-        func create(_ object:Any, primaryKey:String?=nil, autoInc:Bool=false) throws {
+        open func create(_ object:Any, primaryKey:String?=nil, autoInc:Bool=false) throws {
             var v = ""
             let mirror = Mirror(reflecting: object)
             var count = mirror.children.count
@@ -126,7 +126,7 @@ public extension MySQL {
         }
         
         /// Creates a new table based on a MySQL.RowStructure using the connection
-        func create(_ row:MySQL.Row, primaryKey:String?=nil, autoInc:Bool=false) throws {
+        open func create(_ row:MySQL.Row, primaryKey:String?=nil, autoInc:Bool=false) throws {
             var v = ""
             var count = row.count
             
