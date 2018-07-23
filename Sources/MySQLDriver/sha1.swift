@@ -59,6 +59,10 @@ protocol BitshiftOperationsType {
 func << <T:SignedInteger>(lhs: T, rhs: Int) -> Int {
     let a = lhs as! Int
     let b = rhs
+    if a == 00
+    {
+      return 0
+    }
     return a << b
 }
 
