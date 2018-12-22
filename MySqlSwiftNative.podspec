@@ -1,7 +1,7 @@
 Pod::Spec.new do |s|
 
   s.name                  = "MySqlSwiftNative"
-  s.version               = "1.0.10"
+  s.version               = "1.4.1"
   s.summary               = "MySQL Native Swift Driver."
   s.homepage              = "https://github.com/mcorega/MySqlSwiftNative"
   s.license               = { :type => 'Copyright', :file => 'LICENSE' }
