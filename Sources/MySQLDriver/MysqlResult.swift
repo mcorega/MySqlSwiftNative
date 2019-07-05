@@ -8,7 +8,7 @@
 
 import Foundation
 
-public protocol Result {
+public protocol MysqlResult {
     init(con:MySQL.Connection)
     func readRow() throws -> MySQL.Row?
     func readAllRows() throws -> [MySQL.ResultSet]?
@@ -23,7 +23,7 @@ extension MySQL {
     public typealias Row = [String:Any]
     public typealias ResultSet = [Row]
     
-    class TextRow: Result {
+    class TextRow: MysqlResult {
         
         var con:Connection
         
@@ -193,7 +193,7 @@ extension MySQL {
         }
     }
     
-    class BinaryRow: Result {
+    class BinaryRow: MysqlResult {
         
         fileprivate var con:Connection
         
