@@ -11,12 +11,12 @@ import Foundation
 
 public extension MySQL.Connection {
 
-    public enum QueryResultType {
+	enum QueryResultType {
         case success(MySQL.ResultSet)
         case error(Error)
     }
     
-    public class QueryResult {
+	class QueryResult {
         
         var rows : MySQL.ResultSet?
         var succClosure : ((_ rows:MySQL.ResultSet)->Void)? = nil
@@ -46,7 +46,7 @@ public extension MySQL.Connection {
     }
 
 
-    func query(_ q:String) throws -> Result {
+    func query(_ q:String) throws -> MysqlResult {
         
      //   if self.EOFfound && !self.hasMoreResults {
             try writeCommandPacketStr(MysqlCommands.COM_QUERY, q: q)
@@ -60,7 +60,7 @@ public extension MySQL.Connection {
     //    throw MySQL.Connection.Error.QueryInProgress
     }
     
-    func nextResult() throws -> Result {
+    func nextResult() throws -> MysqlResult {
         let resLen = try readResultSetHeaderPacket()
         self.columns = try readColumns(resLen)
         

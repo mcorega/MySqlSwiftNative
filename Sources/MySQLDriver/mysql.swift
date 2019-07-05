@@ -46,7 +46,7 @@ public struct MySQL {
         var dbname:String?
         var port : Int?
         
-        var affectedRows : UInt64 = 0
+		open var affectedRows : UInt64 = 0
         open var insertId : UInt64 = 0
         var status : UInt16 = 0
         open var conID = UUID().uuidString

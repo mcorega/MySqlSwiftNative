@@ -10,7 +10,7 @@ import Foundation
 
 public extension MySQL.Connection {
 
-    public enum ConnectionError : Error {
+	enum ConnectionError : Error {
         case addressNotSet
         case usernameNotSet
         case notConnected
@@ -20,7 +20,7 @@ public extension MySQL.Connection {
         case wrongHandshake
     }
     
-   public func open() throws {
+	func open() throws {
         
         guard self.addr != nil else {
             throw ConnectionError.addressNotSet
@@ -33,7 +33,7 @@ public extension MySQL.Connection {
         try self.open(self.addr!, user: self.user!, passwd: self.passwd, dbname: self.dbname)
     }
     
-    public func open(_ addr:String, user:String, passwd:String? = nil, dbname:String? = nil) throws {
+	func open(_ addr:String, user:String, passwd:String? = nil, dbname:String? = nil) throws {
         
         self.addr = addr
         self.user = user
@@ -46,7 +46,7 @@ public extension MySQL.Connection {
         self.isConnected = true
     }
     
-    public func close() throws {
+	func close() throws {
         try writeCommandPacket(MysqlCommands.COM_QUIT)
         try self.socket?.close()
         self.hasMoreResults = false
@@ -60,14 +60,14 @@ public extension MySQL.Connection {
         */
     }
     
-    public func reopen() throws {
+	func reopen() throws {
         try self.connect()
         try self.auth()
         try self.readResultOK()
         self.isConnected = true
     }
     
-    public func getTable(_ name: String) -> MySQL.Table {
+	func getTable(_ name: String) -> MySQL.Table {
         return MySQL.Table(tableName: name, connection: self)
     }
     

@@ -300,7 +300,7 @@ extension MySQL {
         
         static func encPasswd(_ pwd:String, scramble:[UInt8]) -> [UInt8]{
             
-            if pwd.characters.count == 0 {
+            if pwd.count == 0 {
                 return [UInt8]()
             }
             
