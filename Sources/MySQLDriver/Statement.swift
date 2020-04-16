@@ -250,8 +250,8 @@ public extension MySQL {
                             break
                             
                         case let str as String:
-                            if str.characters.count < MySQL.maxPackAllowed - 1024*1024 {
-                                let lenArr = MySQL.Utils.lenEncIntArray(UInt64(str.characters.count))
+                            if str.count < MySQL.maxPackAllowed - 1024*1024 {
+                                let lenArr = MySQL.Utils.lenEncIntArray(UInt64(str.count))
                                 dataTypeArr += [UInt8].UInt16Array(UInt16(MysqlTypes.MYSQL_TYPE_STRING))
                                 argsArr += lenArr
                                 argsArr += [UInt8](str.utf8)

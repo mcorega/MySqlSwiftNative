@@ -84,8 +84,8 @@ func arrayOfBytes<T: BinaryInteger>(_ value: T, length totalBytes: Int = MemoryL
         bytes[totalBytes - 1 - j] = (bytesPointer + j).pointee
     }
     
-    valuePointer.deinitialize()
-    valuePointer.deallocate(capacity: 1)
+    valuePointer.deinitialize(count: 1)
+    valuePointer.deallocate()
     
     return bytes
 }

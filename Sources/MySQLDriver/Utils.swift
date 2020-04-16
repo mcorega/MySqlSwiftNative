@@ -300,7 +300,7 @@ extension MySQL {
         
         static func encPasswd(_ pwd:String, scramble:[UInt8]) -> [UInt8]{
             
-            if pwd.characters.count == 0 {
+            if pwd.count == 0 {
                 return [UInt8]()
             }
             
@@ -386,12 +386,11 @@ public extension Date
             static var dateStringFormatter :  DateFormatter? = nil
             static var token : Int = 0
         }
-        
-       // dispatch_once(&statDFT.token) {
-            statDFT.dateStringFormatter = DateFormatter()
-            statDFT.dateStringFormatter!.dateFormat = "yyyy-MM-dd HH:mm:ss.SSSSSS"
-            statDFT.dateStringFormatter!.locale = Locale(identifier: "en_US_POSIX")
-      //  }
+
+        statDFT.dateStringFormatter = DateFormatter()
+        statDFT.dateStringFormatter!.dateFormat = "yyyy-MM-dd HH:mm:ss.SSSSSS"
+        statDFT.dateStringFormatter!.timeZone = TimeZone(abbreviation: "UTC")
+        statDFT.dateStringFormatter!.locale = Locale(identifier: "en_US_POSIX")
         
         if let d = statDFT.dateStringFormatter!.date(from: dateTimeStringUsec) {
             self.init(timeInterval:0, since:d)
