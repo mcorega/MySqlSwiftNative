@@ -26,6 +26,8 @@ struct MysqlClientCaps {
     static let CLIENT_SECURE_CONN       :UInt32 = 0x00008000            // New 4.1 authentication
     static let CLIENT_MULTI_STATEMENTS  :UInt32 = 0x00010000            // Enable/disable multi-stmt support
     static let CLIENT_MULTI_RESULTS     :UInt32 = 0x00020000             // Enable/disable multi-results
+    static let CLIENT_PLUGIN_AUTH     :UInt32 = 0x00080000             // Enable/disable plugin auth
+
 }
 
 struct MysqlFieldFlag {

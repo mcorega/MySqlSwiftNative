@@ -78,57 +78,35 @@ public extension MySQL.Connection {
         if let data = try socket?.readPacket() {
             
             var pos = 0
-            //print(data)
             msh.proto_version = data[pos]
             pos += 1
             msh.server_version = data[pos..<data.count].string()
             pos += (msh.server_version?.utf8.count)! + 1
-   //         let v1 = UInt32(data[pos...pos+4])
-   //         let v2 = data[pos...pos+4].uInt32()
             msh.conn_id = data[pos...pos+4].uInt32()
             pos += 4
             msh.scramble = Array(data[pos..<pos+8])
             pos += 8 + 1
             msh.cap_flags = data[pos...pos+2].uInt16()
             pos += 2
+            msh.server_lang = data[pos];
+            pos += 1;
+            msh.server_status = data[pos...pos+2].uInt16()
+            pos += 2
+            msh.ext_cap_flags = data[pos...pos+2].uInt16()
+            pos += 2
+            let auth_len = Int(data[pos]);
+            pos += 1;
+
+            // unused 10 bytes
+            pos += 10
+
+            let salt2 = Array(data[pos..<pos+12])
+            msh.scramble?.append(contentsOf:salt2)
             
-            if data.count > pos {
-                pos += 1 + 2 + 2 + 1 + 10
-                
-                let c = Array(data[pos..<pos+12])
-                msh.scramble?.append(contentsOf:c)
-            }
+            pos += 12+1;
+            
+            msh.auth_plugin = data[pos...pos+auth_len].string()
         }
-        
-        
-        
-        /*
-        var (len, pn) = (socket?.readHeader())!
-        
-        
-        msh.proto_version = socket?.readUInt8()
-        msh.server_version = String.fromCString(UnsafeMutablePointer<CChar>((socket?.readNTB())!))
-        
-        msh.conn_id = socket?.readUInt32()
-        msh.filler = socket?.readNUInt8(8)
-        socket?.readUInt8()
-        msh.cap_flags = socket?.readUInt16()
-        msh.lang = socket?.readUInt8()
-        msh.status = socket?.readUInt16()
-        socket?.readNUInt8(13)
-        
-        if msh.cap_flags! & UInt16(MysqlClientCaps.CLIENT_PROTOCOL_41) != 0 {
-        msh.scramble2 = [UInt8]()
-        while socket?.bytesToRead > 0 {
-        let b = socket?.readUInt8()
-        msh.scramble2?.append(b!)
-        }
-        
-        }
-        
-        socket?.skipAll()
-        // (len, pn) = (socket?.readHeader())!
-        */
         return msh
     }
     
@@ -138,6 +116,89 @@ public extension MySQL.Connection {
         self.mysql_Handshake = try readHandshake()
     }
     
+    private func sendAuthSwitchResponse() throws {
+        
+        if self.mysql_authSwitch?.auth_name == "mysql_native_password" {
+            var epwd = [UInt8]()
+            
+            if self.passwd != nil {
+                guard mysql_Handshake != nil else {
+                    throw ConnectionError.wrongHandshake
+                }
+                guard mysql_Handshake!.scramble != nil else {
+                    throw ConnectionError.wrongHandshake
+                }
+                epwd = MySQL.Utils.encPasswd(self.passwd!, scramble: self.mysql_Handshake!.scramble!)
+            }
+
+            try socket?.writePacket(epwd)
+        }
+        if self.mysql_authSwitch?.auth_name == "caching_sha2_password" {
+                        
+            var token = MySQL.Utils.calculateToken(self.passwd!, scramble: self.mysql_Handshake!.scramble!);
+            
+            try socket?.writePacket(token)
+            
+            try self.readAuthResponse()
+
+        }
+        if self.mysql_authSwitch?.auth_name == "sha256_password" {
+            // tbd
+        }
+
+    }
+
+    private func readAuthSwitch() throws -> MySQL.mysql_auth_switch {
+        var msh = MySQL.mysql_auth_switch()
+
+        if let data = try socket?.readPacket() {
+            var pos = 0;
+            msh.status = data[pos]
+            pos += 1;
+            let name_start = pos;
+            while data[pos] != 0 {
+                pos += 1;
+            }
+            msh.auth_name = data[name_start..<pos+1].string()
+            msh.auth_data = Array(data[pos..<data.count])
+        }
+        return msh;
+    }
+    
+
+    private func readAuthResponse() throws {
+        if let data = try socket?.readPacket() {
+            if data[1] == 3 {
+                // fast auth
+            }
+            if data[1] == 4 {
+                // full auth
+                try self.requestServerKey();
+            }
+        }
+    }
+
+    private func requestServerKey() throws {
+        var arr:[UInt8] = [2];
+        try socket?.writePacket(arr);
+
+        try readServerKey();
+        
+    }
+
+    private func readServerKey() throws {
+
+        if let data = try socket?.readPacket() {
+
+            let serverPublicKey = Array(data[1..<data.count]);
+
+            var epwd = MySQL.Utils.encPasswd(self.passwd!, scramble: self.mysql_Handshake!.scramble!, key:serverPublicKey);
+             
+            try socket?.writePacket(epwd)
+            
+        }
+    }
+
     private func auth() throws {
         
         var flags :UInt32 = MysqlClientCaps.CLIENT_PROTOCOL_41 |
@@ -147,10 +208,10 @@ public extension MySQL.Connection {
             
             MysqlClientCaps.CLIENT_LOCAL_FILES |
             MysqlClientCaps.CLIENT_MULTI_STATEMENTS |
-            MysqlClientCaps.CLIENT_MULTI_RESULTS
-        
+            MysqlClientCaps.CLIENT_MULTI_RESULTS |
+            MysqlClientCaps.CLIENT_PLUGIN_AUTH
+
         flags &= UInt32((mysql_Handshake?.cap_flags)!) | 0xffff0000
-        //flags = 238213
         
         if self.dbname != nil {
             flags |= MysqlClientCaps.CLIENT_CONNECT_WITH_DB
@@ -203,10 +264,17 @@ public extension MySQL.Connection {
         arr.append(contentsOf:"mysql_native_password".utf8)
         arr.append(0)
         
-        //print(arr)
-        
         try socket?.writePacket(arr)
         
+        if mysql_Handshake?.auth_plugin == "mysql_native_password" {
+            // don't do auth switch
+        }
+        else {
+            self.mysql_authSwitch = try self.readAuthSwitch()
+            try self.sendAuthSwitchResponse();
+        }
+
+
     }
     
     

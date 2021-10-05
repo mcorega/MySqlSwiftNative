@@ -29,11 +29,21 @@ public struct MySQL {
         var conn_id:UInt32?
         var scramble:[UInt8]?
         var cap_flags:UInt16?
+        var server_lang:UInt8?
+        var server_status:UInt16?
+        var ext_cap_flags:UInt16?
         var lang:UInt8?
         var status:UInt16?
         var scramble2:[UInt8]?
+        var auth_plugin:String?
     }
-    
+
+    struct mysql_auth_switch {
+        var status:UInt8?
+        var auth_name:String?
+        var auth_data:[UInt8]?
+    }
+
     public enum MySQLError : Error {
         case error(Int, String)
     }
@@ -53,6 +63,7 @@ public struct MySQL {
         
         var socket:Socket?
         var mysql_Handshake: mysql_handshake?
+        var mysql_authSwitch: mysql_auth_switch?
         
         open var columns:[Field]?
         var hasMoreResults = false

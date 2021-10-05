@@ -11,6 +11,8 @@
     import Glibc
 #endif
 
+import CommonCrypto
+
 import Foundation
 // FIXME: comparison operators with optionals were removed from the Swift Standard Libary.
 // Consider refactoring the code to use the non-optional operators.
@@ -319,6 +321,84 @@ extension MySQL {
             }
             
             return s3
+        }
+
+        static func sha256(bytes:[UInt8]) -> [UInt8] {
+            var hash = [UInt8](repeating: 0, count: Int(CC_SHA256_DIGEST_LENGTH))
+            CC_SHA256(bytes, CC_LONG(bytes.count), &hash)
+            return hash;
+        }
+        
+        static func xor(_ b1:[UInt8], _ b2:[UInt8]) -> [UInt8] {
+            var b3 = b1;
+            for i in 0..<b3.count {
+                b3[i] ^= b2[i]
+            }
+            return b3;
+        }
+
+        static func xorRotating(_ b1:[UInt8], _ b2:[UInt8]) -> [UInt8] {
+            var b3 = b1;
+            for i in 0..<b3.count {
+                b3[i] ^= b2[i % b2.count]
+            }
+            return b3;
+        }
+
+        static func rsaEncrypt(key:[UInt8], data:[UInt8]) -> [UInt8] {
+            if #available(iOS 10.0, *) {
+                let str = String(bytes: key, encoding: .ascii);
+                let bstr = str?.components(separatedBy: "-----")[2].trimmingCharacters(in: .whitespacesAndNewlines);
+                print(bstr!);
+                let dbstr = Data(base64Encoded: bstr!, options: .ignoreUnknownCharacters);
+                                
+                let d2 = dbstr! as CFData;
+                
+                let publickeysi = SecKeyCreateWithData(d2,
+                               [kSecAttrKeyType: kSecAttrKeyTypeRSA,
+                                kSecAttrKeyClass: kSecAttrKeyClassPublic] as CFDictionary, nil)
+            
+                let key_size = SecKeyGetBlockSize(publickeysi!)
+
+                var encrypt_bytes = [UInt8](repeating: 0, count: key_size)
+
+                var output_size : Int = key_size
+                                
+                SecKeyEncrypt(publickeysi!, SecPadding.OAEP, data, data.count, &encrypt_bytes, &output_size)
+                            
+                return encrypt_bytes;
+            }
+            return [];
+        }
+
+        static func calculateToken(_ pwd:String, scramble:[UInt8]) -> [UInt8]{
+
+            let uintpwd = [UInt8](pwd.utf8)
+
+            let stage1 = sha256(bytes: uintpwd);
+            let stage2 = sha256(bytes: stage1);
+            let stage3 = sha256(bytes: stage2 + scramble);
+            
+            let token = xor(stage1, stage3);
+
+            return token;
+        }
+
+        static func encPasswd(_ pwd:String, scramble:[UInt8], key:[UInt8]) -> [UInt8]{
+            
+            if pwd.count == 0 {
+                return [UInt8]()
+            }
+            
+            let uintpwd = [UInt8](pwd.utf8)
+
+            var uintpwdZero = uintpwd;
+            uintpwdZero.append(0);
+            let stage1 = xorRotating(uintpwdZero, scramble);
+            
+            let output = rsaEncrypt(key: key, data: stage1);
+
+            return output;
         }
     }
 }
