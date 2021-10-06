@@ -10,7 +10,7 @@ import Foundation
 
 public extension MySQL {
     
-    public class Statement {
+	class Statement {
 
         enum StatementError : Error {
             case argsCountMismatch
@@ -30,7 +30,7 @@ public extension MySQL {
             self.con = con
         }
         
-        open func query(_ args:[Any]) throws -> Result{
+        open func query(_ args:[Any]) throws -> MysqlResult{
             
             guard self.con != nil else {
                 throw StatementError.nilConnection
@@ -250,8 +250,8 @@ public extension MySQL {
                             break
                             
                         case let str as String:
-                            if str.characters.count < MySQL.maxPackAllowed - 1024*1024 {
-                                let lenArr = MySQL.Utils.lenEncIntArray(UInt64(str.characters.count))
+                            if str.utf8.count < MySQL.maxPackAllowed - 1024*1024 {
+                                let lenArr = MySQL.Utils.lenEncIntArray(UInt64(str.utf8.count))
                                 dataTypeArr += [UInt8].UInt16Array(UInt16(MysqlTypes.MYSQL_TYPE_STRING))
                                 argsArr += lenArr
                                 argsArr += [UInt8](str.utf8)

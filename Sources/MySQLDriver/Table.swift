@@ -11,7 +11,7 @@ import Foundation
 
 public extension MySQL {
     
-    public class Table {
+	class Table {
         
         enum TableError : Error {
             case tableExists
@@ -52,8 +52,7 @@ public extension MySQL {
             
                 if let optPos = s.range(of: "Optional<") {
                     optional = ""
-                    let typePos = optPos.upperBound..<s.index(before: s.endIndex)
-                    type = s.substring(with: typePos)
+                    type = String(s[optPos.upperBound..<s.index(before: s.endIndex)])
                 }
                 else {
                     type = s
