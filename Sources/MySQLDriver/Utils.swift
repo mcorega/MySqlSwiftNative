@@ -358,15 +358,10 @@ extension MySQL {
                                [kSecAttrKeyType: kSecAttrKeyTypeRSA,
                                 kSecAttrKeyClass: kSecAttrKeyClassPublic] as CFDictionary, nil)
             
-                let key_size = SecKeyGetBlockSize(publickeysi!)
-
-                var encrypt_bytes = [UInt8](repeating: 0, count: key_size)
-
-                var output_size : Int = key_size
-                                
-                SecKeyEncrypt(publickeysi!, SecPadding.OAEP, data, data.count, &encrypt_bytes, &output_size)
-                            
-                return encrypt_bytes;
+                var unmanagedError: Unmanaged<CFError>?
+                let encrypt_data = SecKeyCreateEncryptedData(publickeysi!, .rsaEncryptionOAEPSHA1AESGCM, Data(data) as CFData, &unmanagedError)! as Data
+                
+                return Array(encrypt_data)
             }
             return [];
         }
